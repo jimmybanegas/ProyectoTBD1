@@ -5,8 +5,8 @@ using System.Web;
 using System.Web.Mvc;
 using AttributeRouting.Web.Mvc;
 using AutoMapper;
-using PrediLiga.Domain.Entities;
-using PrediLiga.Domain.Services;
+using Pharma.Domain.Entities;
+using Pharma.Domain.Services;
 using Pharma.Api.Models;
 
 namespace Pharma.Api.Controllers

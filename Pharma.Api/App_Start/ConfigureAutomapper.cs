@@ -1,10 +1,8 @@
 
 
 using AutoMapper;
-using NHibernate.Mapping;
-using PrediLiga.Domain.Entities;
-using Pharma.Api.Controllers;
 using Pharma.Api.Models;
+using Pharma.Domain.Entities;
 
 namespace Pharma.Api
 {

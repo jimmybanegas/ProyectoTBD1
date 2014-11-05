@@ -1,9 +1,6 @@
-﻿using System.Collections.Generic;
-using System.Security.Cryptography.X509Certificates;
-using DomainDrivenDatabaseDeployer;
-using FluentNHibernate.Testing.Values;
+﻿using DomainDrivenDatabaseDeployer;
 using NHibernate;
-using PrediLiga.Domain.Entities;
+using Pharma.Domain.Entities;
 
 namespace Pharma.DatabaseDeployer
 {

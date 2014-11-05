@@ -1,16 +1,11 @@
 ﻿using System.Net;
 using System.Web;
 using System.Web.Http;
-using AcklenAvenue.Data.NHibernate;
 using AttributeRouting.Web.Mvc;
 using AutoMapper;
-using FluentNHibernate.Cfg.Db;
-using NHibernate;
-using NHibernate.Mapping;
-using PrediLiga.Data;
-using PrediLiga.Domain.Entities;
-using PrediLiga.Domain.Services;
 using Pharma.Api.Models;
+using Pharma.Domain.Entities;
+using Pharma.Domain.Services;
 
 namespace Pharma.Api.Controllers
 {

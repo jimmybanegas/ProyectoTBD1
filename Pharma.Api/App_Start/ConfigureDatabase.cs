@@ -2,7 +2,7 @@
 using Autofac;
 using FluentNHibernate.Cfg.Db;
 using NHibernate;
-using PrediLiga.Data;
+using Pharma.Data;
 
 namespace Pharma.Api
 {

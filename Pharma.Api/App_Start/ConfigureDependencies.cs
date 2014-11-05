@@ -1,8 +1,6 @@
 using System.Reflection;
 using Autofac;
 using AutoMapper;
-using PrediLiga.Data;
-using PrediLiga.Domain.Services;
 
 namespace Pharma.Api
 {
@@ -19,8 +17,8 @@ namespace Pharma.Api
 
         public void Run()
         {
-            Assembly data = Assembly.Load("PrediLiga.Data");
-            Assembly domain = Assembly.Load("PrediLiga.Domain");
+            Assembly data = Assembly.Load("Pharma.Data");
+            Assembly domain = Assembly.Load("Pharma.Domain");
 
             _containerBuilder
                 .RegisterAssemblyTypes(data, domain)

@@ -75,7 +75,7 @@
       <Project>{58E72539-EC81-4299-84C3-7F1A1E705591}</Project>
       <Name>PrediLiga.Data</Name>
     </ProjectReference>
-    <ProjectReference Include="..\PrediLiga.Domain\PrediLiga.Domain.csproj">
+    <ProjectReference Include="..\Pharma.Domain\Pharma.Domain.csproj">
       <Project>{82DCDBA5-4E13-4FD4-AE3F-3F56074F43F3}</Project>
       <Name>PrediLiga.Domain</Name>
     </ProjectReference>

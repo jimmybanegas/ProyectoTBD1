@@ -1,6 +1,6 @@
 ﻿using DomainDrivenDatabaseDeployer;
 using NHibernate;
-using PrediLiga.Domain.Entities;
+using Pharma.Domain.Entities;
 
 namespace Pharma.DatabaseDeployer
 {
