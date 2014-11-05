@@ -3,7 +3,8 @@
  * (c) 2010-2014 Google, Inc. http://angularjs.org
  * License: MIT
  */
-(function(window, angular, undefined) {'use strict';
+(function(window, angular, undefined) {
+    'use strict';
 
 /* jshint maxlen: false */
 
@@ -238,9 +239,9 @@
  *
  */
 
-angular.module('ngAnimate', ['ng'])
+    angular.module('ngAnimate', ['ng'])
 
-  /**
+        /**
    * @ngdoc object
    * @name ngAnimate.$animateProvider
    * @description
@@ -254,61 +255,63 @@ angular.module('ngAnimate', ['ng'])
    * Please visit the {@link ngAnimate `ngAnimate`} module overview page learn more about how to use animations in your application.
    *
    */
-  .config(['$provide', '$animateProvider', function($provide, $animateProvider) {
-    var noop = angular.noop;
-    var forEach = angular.forEach;
-    var selectors = $animateProvider.$$selectors;
+        .config([
+            '$provide', '$animateProvider', function($provide, $animateProvider) {
+                var noop = angular.noop;
+                var forEach = angular.forEach;
+                var selectors = $animateProvider.$$selectors;
 
-    var ELEMENT_NODE = 1;
-    var NG_ANIMATE_STATE = '$$ngAnimateState';
-    var NG_ANIMATE_CLASS_NAME = 'ng-animate';
-    var rootAnimateState = {running: true};
+                var ELEMENT_NODE = 1;
+                var NG_ANIMATE_STATE = '$$ngAnimateState';
+                var NG_ANIMATE_CLASS_NAME = 'ng-animate';
+                var rootAnimateState = { running: true };
 
-    $provide.decorator('$animate', ['$delegate', '$injector', '$sniffer', '$rootElement', '$timeout', '$rootScope', '$document',
-                            function($delegate,   $injector,   $sniffer,   $rootElement,   $timeout,   $rootScope,   $document) {
+                $provide.decorator('$animate', [
+                    '$delegate', '$injector', '$sniffer', '$rootElement', '$timeout', '$rootScope', '$document',
+                    function($delegate, $injector, $sniffer, $rootElement, $timeout, $rootScope, $document) {
 
-      $rootElement.data(NG_ANIMATE_STATE, rootAnimateState);
+                        $rootElement.data(NG_ANIMATE_STATE, rootAnimateState);
 
-      // disable animations during bootstrap, but once we bootstrapped, wait again
-      // for another digest until enabling animations. The reason why we digest twice
-      // is because all structural animations (enter, leave and move) all perform a
-      // post digest operation before animating. If we only wait for a single digest
-      // to pass then the structural animation would render its animation on page load.
-      // (which is what we're trying to avoid when the application first boots up.)
-      $rootScope.$$postDigest(function() {
-        $rootScope.$$postDigest(function() {
-          rootAnimateState.running = false;
-        });
-      });
+                        // disable animations during bootstrap, but once we bootstrapped, wait again
+                        // for another digest until enabling animations. The reason why we digest twice
+                        // is because all structural animations (enter, leave and move) all perform a
+                        // post digest operation before animating. If we only wait for a single digest
+                        // to pass then the structural animation would render its animation on page load.
+                        // (which is what we're trying to avoid when the application first boots up.)
+                        $rootScope.$$postDigest(function() {
+                            $rootScope.$$postDigest(function() {
+                                rootAnimateState.running = false;
+                            });
+                        });
 
-      function lookup(name) {
-        if (name) {
-          var matches = [],
-              flagMap = {},
-              classes = name.substr(1).split('.');
+                        function lookup(name) {
+                            if (name) {
+                                var matches = [],
+                                    flagMap = {},
+                                    classes = name.substr(1).split('.');
 
-          //the empty string value is the default animation
-          //operation which performs CSS transition and keyframe
-          //animations sniffing. This is always included for each
-          //element animation procedure if the browser supports
-          //transitions and/or keyframe animations
-          if ($sniffer.transitions || $sniffer.animations) {
-            classes.push('');
-          }
+                                //the empty string value is the default animation
+                                //operation which performs CSS transition and keyframe
+                                //animations sniffing. This is always included for each
+                                //element animation procedure if the browser supports
+                                //transitions and/or keyframe animations
+                                if ($sniffer.transitions || $sniffer.animations) {
+                                    classes.push('');
+                                }
 
-          for(var i=0; i < classes.length; i++) {
-            var klass = classes[i],
-                selectorFactoryName = selectors[klass];
-            if(selectorFactoryName && !flagMap[klass]) {
-              matches.push($injector.get(selectorFactoryName));
-              flagMap[klass] = true;
-            }
-          }
-          return matches;
-        }
-      }
+                                for (var i = 0; i < classes.length; i++) {
+                                    var klass = classes[i],
+                                        selectorFactoryName = selectors[klass];
+                                    if (selectorFactoryName && !flagMap[klass]) {
+                                        matches.push($injector.get(selectorFactoryName));
+                                        flagMap[klass] = true;
+                                    }
+                                }
+                                return matches;
+                            }
+                        }
 
-      /**
+                        /**
        * @ngdoc object
        * @name ngAnimate.$animate
        * @function
@@ -327,8 +330,8 @@ angular.module('ngAnimate', ['ng'])
        * Please visit the {@link ngAnimate `ngAnimate`} module overview page learn more about how to use animations in your application.
        *
        */
-      return {
-        /**
+                        return {
+                            /**
          * @ngdoc function
          * @name ngAnimate.$animate#enter
          * @methodOf ngAnimate.$animate
@@ -358,15 +361,15 @@ angular.module('ngAnimate', ['ng'])
          * @param {jQuery/jqLite element} afterElement the sibling element (which is the previous element) of the element that will be the focus of the enter animation
          * @param {function()=} doneCallback the callback function that will be called once the animation is complete
         */
-        enter : function(element, parentElement, afterElement, doneCallback) {
-          this.enabled(false, element);
-          $delegate.enter(element, parentElement, afterElement);
-          $rootScope.$$postDigest(function() {
-            performAnimation('enter', 'ng-enter', element, parentElement, afterElement, noop, doneCallback);
-          });
-        },
+                            enter: function(element, parentElement, afterElement, doneCallback) {
+                                this.enabled(false, element);
+                                $delegate.enter(element, parentElement, afterElement);
+                                $rootScope.$$postDigest(function() {
+                                    performAnimation('enter', 'ng-enter', element, parentElement, afterElement, noop, doneCallback);
+                                });
+                            },
 
-        /**
+                            /**
          * @ngdoc function
          * @name ngAnimate.$animate#leave
          * @methodOf ngAnimate.$animate
@@ -394,17 +397,17 @@ angular.module('ngAnimate', ['ng'])
          * @param {jQuery/jqLite element} element the element that will be the focus of the leave animation
          * @param {function()=} doneCallback the callback function that will be called once the animation is complete
         */
-        leave : function(element, doneCallback) {
-          cancelChildAnimations(element);
-          this.enabled(false, element);
-          $rootScope.$$postDigest(function() {
-            performAnimation('leave', 'ng-leave', element, null, null, function() {
-              $delegate.leave(element);
-            }, doneCallback);
-          });
-        },
+                            leave: function(element, doneCallback) {
+                                cancelChildAnimations(element);
+                                this.enabled(false, element);
+                                $rootScope.$$postDigest(function() {
+                                    performAnimation('leave', 'ng-leave', element, null, null, function() {
+                                        $delegate.leave(element);
+                                    }, doneCallback);
+                                });
+                            },
 
-        /**
+                            /**
          * @ngdoc function
          * @name ngAnimate.$animate#move
          * @methodOf ngAnimate.$animate
@@ -435,16 +438,16 @@ angular.module('ngAnimate', ['ng'])
          * @param {jQuery/jqLite element} afterElement the sibling element (which is the previous element) of the element that will be the focus of the move animation
          * @param {function()=} doneCallback the callback function that will be called once the animation is complete
         */
-        move : function(element, parentElement, afterElement, doneCallback) {
-          cancelChildAnimations(element);
-          this.enabled(false, element);
-          $delegate.move(element, parentElement, afterElement);
-          $rootScope.$$postDigest(function() {
-            performAnimation('move', 'ng-move', element, parentElement, afterElement, noop, doneCallback);
-          });
-        },
+                            move: function(element, parentElement, afterElement, doneCallback) {
+                                cancelChildAnimations(element);
+                                this.enabled(false, element);
+                                $delegate.move(element, parentElement, afterElement);
+                                $rootScope.$$postDigest(function() {
+                                    performAnimation('move', 'ng-move', element, parentElement, afterElement, noop, doneCallback);
+                                });
+                            },
 
-        /**
+                            /**
          * @ngdoc function
          * @name ngAnimate.$animate#addClass
          * @methodOf ngAnimate.$animate
@@ -474,13 +477,13 @@ angular.module('ngAnimate', ['ng'])
          * @param {string} className the CSS class that will be added to the element and then animated
          * @param {function()=} doneCallback the callback function that will be called once the animation is complete
         */
-        addClass : function(element, className, doneCallback) {
-          performAnimation('addClass', className, element, null, null, function() {
-            $delegate.addClass(element, className);
-          }, doneCallback);
-        },
+                            addClass: function(element, className, doneCallback) {
+                                performAnimation('addClass', className, element, null, null, function() {
+                                    $delegate.addClass(element, className);
+                                }, doneCallback);
+                            },
 
-        /**
+                            /**
          * @ngdoc function
          * @name ngAnimate.$animate#removeClass
          * @methodOf ngAnimate.$animate
@@ -510,13 +513,13 @@ angular.module('ngAnimate', ['ng'])
          * @param {string} className the CSS class that will be animated and then removed from the element
          * @param {function()=} doneCallback the callback function that will be called once the animation is complete
         */
-        removeClass : function(element, className, doneCallback) {
-          performAnimation('removeClass', className, element, null, null, function() {
-            $delegate.removeClass(element, className);
-          }, doneCallback);
-        },
+                            removeClass: function(element, className, doneCallback) {
+                                performAnimation('removeClass', className, element, null, null, function() {
+                                    $delegate.removeClass(element, className);
+                                }, doneCallback);
+                            },
 
-        /**
+                            /**
          * @ngdoc function
          * @name ngAnimate.$animate#enabled
          * @methodOf ngAnimate.$animate
@@ -530,765 +533,769 @@ angular.module('ngAnimate', ['ng'])
          * Globally enables/disables animations.
          *
         */
-        enabled : function(value, element) {
-          switch(arguments.length) {
-            case 2:
-              if(value) {
-                cleanup(element);
-              } else {
-                var data = element.data(NG_ANIMATE_STATE) || {};
-                data.disabled = true;
-                element.data(NG_ANIMATE_STATE, data);
-              }
-            break;
+                            enabled: function(value, element) {
+                                switch (arguments.length) {
+                                case 2:
+                                    if (value) {
+                                        cleanup(element);
+                                    } else {
+                                        var data = element.data(NG_ANIMATE_STATE) || {};
+                                        data.disabled = true;
+                                        element.data(NG_ANIMATE_STATE, data);
+                                    }
+                                    break;
 
-            case 1:
-              rootAnimateState.disabled = !value;
-            break;
+                                case 1:
+                                    rootAnimateState.disabled = !value;
+                                    break;
 
-            default:
-              value = !rootAnimateState.disabled;
-            break;
-          }
-          return !!value;
-         }
-      };
+                                default:
+                                    value = !rootAnimateState.disabled;
+                                    break;
+                                }
+                                return !!value;
+                            }
+                        };
 
-      /*
+                        /*
         all animations call this shared animation triggering function internally.
         The animationEvent variable refers to the JavaScript animation event that will be triggered
         and the className value is the name of the animation that will be applied within the
         CSS code. Element, parentElement and afterElement are provided DOM elements for the animation
         and the onComplete callback will be fired once the animation is fully complete.
       */
-      function performAnimation(animationEvent, className, element, parentElement, afterElement, domOperation, doneCallback) {
-        var currentClassName = element.attr('class') || '';
-        var classes = currentClassName + ' ' + className;
-        var animationLookup = (' ' + classes).replace(/\s+/g,'.');
-        if (!parentElement) {
-          parentElement = afterElement ? afterElement.parent() : element.parent();
-        }
+                        function performAnimation(animationEvent, className, element, parentElement, afterElement, domOperation, doneCallback) {
+                            var currentClassName = element.attr('class') || '';
+                            var classes = currentClassName + ' ' + className;
+                            var animationLookup = (' ' + classes).replace(/\s+/g, '.');
+                            if (!parentElement) {
+                                parentElement = afterElement ? afterElement.parent() : element.parent();
+                            }
 
-        var matches = lookup(animationLookup);
-        var isClassBased = animationEvent == 'addClass' || animationEvent == 'removeClass';
-        var ngAnimateState = element.data(NG_ANIMATE_STATE) || {};
+                            var matches = lookup(animationLookup);
+                            var isClassBased = animationEvent == 'addClass' || animationEvent == 'removeClass';
+                            var ngAnimateState = element.data(NG_ANIMATE_STATE) || {};
 
-        //skip the animation if animations are disabled, a parent is already being animated,
-        //the element is not currently attached to the document body or then completely close
-        //the animation if any matching animations are not found at all.
-        //NOTE: IE8 + IE9 should close properly (run closeAnimation()) in case a NO animation is not found.
-        if (animationsDisabled(element, parentElement) || matches.length === 0) {
-          fireDOMOperation();
-          closeAnimation();
-          return;
-        }
+                            //skip the animation if animations are disabled, a parent is already being animated,
+                            //the element is not currently attached to the document body or then completely close
+                            //the animation if any matching animations are not found at all.
+                            //NOTE: IE8 + IE9 should close properly (run closeAnimation()) in case a NO animation is not found.
+                            if (animationsDisabled(element, parentElement) || matches.length === 0) {
+                                fireDOMOperation();
+                                closeAnimation();
+                                return;
+                            }
 
-        var animations = [];
-        //only add animations if the currently running animation is not structural
-        //or if there is no animation running at all
-        if(!ngAnimateState.running || !(isClassBased && ngAnimateState.structural)) {
-          forEach(matches, function(animation) {
-            //add the animation to the queue to if it is allowed to be cancelled
-            if(!animation.allowCancel || animation.allowCancel(element, animationEvent, className)) {
-              var beforeFn, afterFn = animation[animationEvent];
+                            var animations = [];
+                            //only add animations if the currently running animation is not structural
+                            //or if there is no animation running at all
+                            if (!ngAnimateState.running || !(isClassBased && ngAnimateState.structural)) {
+                                forEach(matches, function(animation) {
+                                    //add the animation to the queue to if it is allowed to be cancelled
+                                    if (!animation.allowCancel || animation.allowCancel(element, animationEvent, className)) {
+                                        var beforeFn, afterFn = animation[animationEvent];
 
-              //Special case for a leave animation since there is no point in performing an
-              //animation on a element node that has already been removed from the DOM
-              if(animationEvent == 'leave') {
-                beforeFn = afterFn;
-                afterFn = null; //this must be falsy so that the animation is skipped for leave
-              } else {
-                beforeFn = animation['before' + animationEvent.charAt(0).toUpperCase() + animationEvent.substr(1)];
-              }
-              animations.push({
-                before : beforeFn,
-                after : afterFn
-              });
-            }
-          });
-        }
+                                        //Special case for a leave animation since there is no point in performing an
+                                        //animation on a element node that has already been removed from the DOM
+                                        if (animationEvent == 'leave') {
+                                            beforeFn = afterFn;
+                                            afterFn = null; //this must be falsy so that the animation is skipped for leave
+                                        } else {
+                                            beforeFn = animation['before' + animationEvent.charAt(0).toUpperCase() + animationEvent.substr(1)];
+                                        }
+                                        animations.push({
+                                            before: beforeFn,
+                                            after: afterFn
+                                        });
+                                    }
+                                });
+                            }
 
-        //this would mean that an animation was not allowed so let the existing
-        //animation do it's thing and close this one early
-        if(animations.length === 0) {
-          fireDOMOperation();
-          fireDoneCallbackAsync();
-          return;
-        }
+                            //this would mean that an animation was not allowed so let the existing
+                            //animation do it's thing and close this one early
+                            if (animations.length === 0) {
+                                fireDOMOperation();
+                                fireDoneCallbackAsync();
+                                return;
+                            }
 
-        //this value will be searched for class-based CSS className lookup. Therefore,
-        //we prefix and suffix the current className value with spaces to avoid substring
-        //lookups of className tokens
-        var futureClassName = ' ' + currentClassName + ' ';
-        if(ngAnimateState.running) {
-          //if an animation is currently running on the element then lets take the steps
-          //to cancel that animation and fire any required callbacks
-          $timeout.cancel(ngAnimateState.closeAnimationTimeout);
-          cleanup(element);
-          cancelAnimations(ngAnimateState.animations);
+                            //this value will be searched for class-based CSS className lookup. Therefore,
+                            //we prefix and suffix the current className value with spaces to avoid substring
+                            //lookups of className tokens
+                            var futureClassName = ' ' + currentClassName + ' ';
+                            if (ngAnimateState.running) {
+                                //if an animation is currently running on the element then lets take the steps
+                                //to cancel that animation and fire any required callbacks
+                                $timeout.cancel(ngAnimateState.closeAnimationTimeout);
+                                cleanup(element);
+                                cancelAnimations(ngAnimateState.animations);
 
-          //if the class is removed during the reflow then it will revert the styles temporarily
-          //back to the base class CSS styling causing a jump-like effect to occur. This check
-          //here ensures that the domOperation is only performed after the reflow has commenced
-          if(ngAnimateState.beforeComplete) {
-            (ngAnimateState.done || noop)(true);
-          } else if(isClassBased && !ngAnimateState.structural) {
-            //class-based animations will compare element className values after cancelling the
-            //previous animation to see if the element properties already contain the final CSS
-            //class and if so then the animation will be skipped. Since the domOperation will
-            //be performed only after the reflow is complete then our element's className value
-            //will be invalid. Therefore the same string manipulation that would occur within the
-            //DOM operation will be performed below so that the class comparison is valid...
-            futureClassName = ngAnimateState.event == 'removeClass' ?
-              futureClassName.replace(ngAnimateState.className, '') :
-              futureClassName + ngAnimateState.className + ' ';
-          }
-        }
+                                //if the class is removed during the reflow then it will revert the styles temporarily
+                                //back to the base class CSS styling causing a jump-like effect to occur. This check
+                                //here ensures that the domOperation is only performed after the reflow has commenced
+                                if (ngAnimateState.beforeComplete) {
+                                    (ngAnimateState.done || noop)(true);
+                                } else if (isClassBased && !ngAnimateState.structural) {
+                                    //class-based animations will compare element className values after cancelling the
+                                    //previous animation to see if the element properties already contain the final CSS
+                                    //class and if so then the animation will be skipped. Since the domOperation will
+                                    //be performed only after the reflow is complete then our element's className value
+                                    //will be invalid. Therefore the same string manipulation that would occur within the
+                                    //DOM operation will be performed below so that the class comparison is valid...
+                                    futureClassName = ngAnimateState.event == 'removeClass' ?
+                                        futureClassName.replace(ngAnimateState.className, '') :
+                                        futureClassName + ngAnimateState.className + ' ';
+                                }
+                            }
 
-        //There is no point in perform a class-based animation if the element already contains
-        //(on addClass) or doesn't contain (on removeClass) the className being animated.
-        //The reason why this is being called after the previous animations are cancelled
-        //is so that the CSS classes present on the element can be properly examined.
-        var classNameToken = ' ' + className + ' ';
-        if((animationEvent == 'addClass'    && futureClassName.indexOf(classNameToken) >= 0) ||
-           (animationEvent == 'removeClass' && futureClassName.indexOf(classNameToken) == -1)) {
-          fireDOMOperation();
-          fireDoneCallbackAsync();
-          return;
-        }
+                            //There is no point in perform a class-based animation if the element already contains
+                            //(on addClass) or doesn't contain (on removeClass) the className being animated.
+                            //The reason why this is being called after the previous animations are cancelled
+                            //is so that the CSS classes present on the element can be properly examined.
+                            var classNameToken = ' ' + className + ' ';
+                            if ((animationEvent == 'addClass' && futureClassName.indexOf(classNameToken) >= 0) ||
+                            (animationEvent == 'removeClass' && futureClassName.indexOf(classNameToken) == -1)) {
+                                fireDOMOperation();
+                                fireDoneCallbackAsync();
+                                return;
+                            }
 
-        //the ng-animate class does nothing, but it's here to allow for
-        //parent animations to find and cancel child animations when needed
-        element.addClass(NG_ANIMATE_CLASS_NAME);
+                            //the ng-animate class does nothing, but it's here to allow for
+                            //parent animations to find and cancel child animations when needed
+                            element.addClass(NG_ANIMATE_CLASS_NAME);
 
-        element.data(NG_ANIMATE_STATE, {
-          running:true,
-          event:animationEvent,
-          className:className,
-          structural:!isClassBased,
-          animations:animations,
-          done:onBeforeAnimationsComplete
-        });
+                            element.data(NG_ANIMATE_STATE, {
+                                running: true,
+                                event: animationEvent,
+                                className: className,
+                                structural: !isClassBased,
+                                animations: animations,
+                                done: onBeforeAnimationsComplete
+                            });
 
-        //first we run the before animations and when all of those are complete
-        //then we perform the DOM operation and run the next set of animations
-        invokeRegisteredAnimationFns(animations, 'before', onBeforeAnimationsComplete);
+                            //first we run the before animations and when all of those are complete
+                            //then we perform the DOM operation and run the next set of animations
+                            invokeRegisteredAnimationFns(animations, 'before', onBeforeAnimationsComplete);
 
-        function onBeforeAnimationsComplete(cancelled) {
-          fireDOMOperation();
-          if(cancelled === true) {
-            closeAnimation();
-            return;
-          }
+                            function onBeforeAnimationsComplete(cancelled) {
+                                fireDOMOperation();
+                                if (cancelled === true) {
+                                    closeAnimation();
+                                    return;
+                                }
 
-          //set the done function to the final done function
-          //so that the DOM event won't be executed twice by accident
-          //if the after animation is cancelled as well
-          var data = element.data(NG_ANIMATE_STATE);
-          if(data) {
-            data.done = closeAnimation;
-            element.data(NG_ANIMATE_STATE, data);
-          }
-          invokeRegisteredAnimationFns(animations, 'after', closeAnimation);
-        }
+                                //set the done function to the final done function
+                                //so that the DOM event won't be executed twice by accident
+                                //if the after animation is cancelled as well
+                                var data = element.data(NG_ANIMATE_STATE);
+                                if (data) {
+                                    data.done = closeAnimation;
+                                    element.data(NG_ANIMATE_STATE, data);
+                                }
+                                invokeRegisteredAnimationFns(animations, 'after', closeAnimation);
+                            }
 
-        function invokeRegisteredAnimationFns(animations, phase, allAnimationFnsComplete) {
-          var endFnName = phase + 'End';
-          forEach(animations, function(animation, index) {
-            var animationPhaseCompleted = function() {
-              progress(index, phase);
-            };
+                            function invokeRegisteredAnimationFns(animations, phase, allAnimationFnsComplete) {
+                                var endFnName = phase + 'End';
+                                forEach(animations, function(animation, index) {
+                                    var animationPhaseCompleted = function() {
+                                        progress(index, phase);
+                                    };
 
-            //there are no before functions for enter + move since the DOM
-            //operations happen before the performAnimation method fires
-            if(phase == 'before' && (animationEvent == 'enter' || animationEvent == 'move')) {
-              animationPhaseCompleted();
-              return;
-            }
+                                    //there are no before functions for enter + move since the DOM
+                                    //operations happen before the performAnimation method fires
+                                    if (phase == 'before' && (animationEvent == 'enter' || animationEvent == 'move')) {
+                                        animationPhaseCompleted();
+                                        return;
+                                    }
 
-            if(animation[phase]) {
-              animation[endFnName] = isClassBased ?
-                animation[phase](element, className, animationPhaseCompleted) :
-                animation[phase](element, animationPhaseCompleted);
-            } else {
-              animationPhaseCompleted();
-            }
-          });
+                                    if (animation[phase]) {
+                                        animation[endFnName] = isClassBased ?
+                                            animation[phase](element, className, animationPhaseCompleted) :
+                                            animation[phase](element, animationPhaseCompleted);
+                                    } else {
+                                        animationPhaseCompleted();
+                                    }
+                                });
 
-          function progress(index, phase) {
-            var phaseCompletionFlag = phase + 'Complete';
-            var currentAnimation = animations[index];
-            currentAnimation[phaseCompletionFlag] = true;
-            (currentAnimation[endFnName] || noop)();
+                                function progress(index, phase) {
+                                    var phaseCompletionFlag = phase + 'Complete';
+                                    var currentAnimation = animations[index];
+                                    currentAnimation[phaseCompletionFlag] = true;
+                                    (currentAnimation[endFnName] || noop)();
 
-            for(var i=0;i<animations.length;i++) {
-              if(!animations[i][phaseCompletionFlag]) return;
-            }
+                                    for (var i = 0; i < animations.length; i++) {
+                                        if (!animations[i][phaseCompletionFlag]) return;
+                                    }
 
-            allAnimationFnsComplete();
-          }
-        }
+                                    allAnimationFnsComplete();
+                                }
+                            }
 
-        function fireDoneCallbackAsync() {
-          doneCallback && $timeout(doneCallback, 0, false);
-        }
+                            function fireDoneCallbackAsync() {
+                                doneCallback && $timeout(doneCallback, 0, false);
+                            }
 
-        //it is less complicated to use a flag than managing and cancelling
-        //timeouts containing multiple callbacks.
-        function fireDOMOperation() {
-          if(!fireDOMOperation.hasBeenRun) {
-            fireDOMOperation.hasBeenRun = true;
-            domOperation();
-          }
-        }
+                            //it is less complicated to use a flag than managing and cancelling
+                            //timeouts containing multiple callbacks.
+                            function fireDOMOperation() {
+                                if (!fireDOMOperation.hasBeenRun) {
+                                    fireDOMOperation.hasBeenRun = true;
+                                    domOperation();
+                                }
+                            }
 
-        function closeAnimation() {
-          if(!closeAnimation.hasBeenRun) {
-            closeAnimation.hasBeenRun = true;
-            var data = element.data(NG_ANIMATE_STATE);
-            if(data) {
-              /* only structural animations wait for reflow before removing an
+                            function closeAnimation() {
+                                if (!closeAnimation.hasBeenRun) {
+                                    closeAnimation.hasBeenRun = true;
+                                    var data = element.data(NG_ANIMATE_STATE);
+                                    if (data) {
+                                        /* only structural animations wait for reflow before removing an
                  animation, but class-based animations don't. An example of this
                  failing would be when a parent HTML tag has a ng-class attribute
                  causing ALL directives below to skip animations during the digest */
-              if(isClassBased) {
-                cleanup(element);
-              } else {
-                data.closeAnimationTimeout = $timeout(function() {
-                  cleanup(element);
-                }, 0, false);
-                element.data(NG_ANIMATE_STATE, data);
-              }
-            }
-            fireDoneCallbackAsync();
-          }
-        }
-      }
+                                        if (isClassBased) {
+                                            cleanup(element);
+                                        } else {
+                                            data.closeAnimationTimeout = $timeout(function() {
+                                                cleanup(element);
+                                            }, 0, false);
+                                            element.data(NG_ANIMATE_STATE, data);
+                                        }
+                                    }
+                                    fireDoneCallbackAsync();
+                                }
+                            }
+                        }
 
-      function cancelChildAnimations(element) {
-        var node = element[0];
-        if(node.nodeType != ELEMENT_NODE) {
-          return;
-        }
+                        function cancelChildAnimations(element) {
+                            var node = element[0];
+                            if (node.nodeType != ELEMENT_NODE) {
+                                return;
+                            }
 
-        forEach(node.querySelectorAll('.' + NG_ANIMATE_CLASS_NAME), function(element) {
-          element = angular.element(element);
-          var data = element.data(NG_ANIMATE_STATE);
-          if(data) {
-            cancelAnimations(data.animations);
-            cleanup(element);
-          }
-        });
-      }
+                            forEach(node.querySelectorAll('.' + NG_ANIMATE_CLASS_NAME), function(element) {
+                                element = angular.element(element);
+                                var data = element.data(NG_ANIMATE_STATE);
+                                if (data) {
+                                    cancelAnimations(data.animations);
+                                    cleanup(element);
+                                }
+                            });
+                        }
 
-      function cancelAnimations(animations) {
-        var isCancelledFlag = true;
-        forEach(animations, function(animation) {
-          if(!animations.beforeComplete) {
-            (animation.beforeEnd || noop)(isCancelledFlag);
-          }
-          if(!animations.afterComplete) {
-            (animation.afterEnd || noop)(isCancelledFlag);
-          }
-        });
-      }
+                        function cancelAnimations(animations) {
+                            var isCancelledFlag = true;
+                            forEach(animations, function(animation) {
+                                if (!animations.beforeComplete) {
+                                    (animation.beforeEnd || noop)(isCancelledFlag);
+                                }
+                                if (!animations.afterComplete) {
+                                    (animation.afterEnd || noop)(isCancelledFlag);
+                                }
+                            });
+                        }
 
-      function cleanup(element) {
-        if(element[0] == $rootElement[0]) {
-          if(!rootAnimateState.disabled) {
-            rootAnimateState.running = false;
-            rootAnimateState.structural = false;
-          }
-        } else {
-          element.removeClass(NG_ANIMATE_CLASS_NAME);
-          element.removeData(NG_ANIMATE_STATE);
-        }
-      }
+                        function cleanup(element) {
+                            if (element[0] == $rootElement[0]) {
+                                if (!rootAnimateState.disabled) {
+                                    rootAnimateState.running = false;
+                                    rootAnimateState.structural = false;
+                                }
+                            } else {
+                                element.removeClass(NG_ANIMATE_CLASS_NAME);
+                                element.removeData(NG_ANIMATE_STATE);
+                            }
+                        }
 
-      function animationsDisabled(element, parentElement) {
-        if (rootAnimateState.disabled) return true;
+                        function animationsDisabled(element, parentElement) {
+                            if (rootAnimateState.disabled) return true;
 
-        if(element[0] == $rootElement[0]) {
-          return rootAnimateState.disabled || rootAnimateState.running;
-        }
+                            if (element[0] == $rootElement[0]) {
+                                return rootAnimateState.disabled || rootAnimateState.running;
+                            }
 
-        do {
-          //the element did not reach the root element which means that it
-          //is not apart of the DOM. Therefore there is no reason to do
-          //any animations on it
-          if(parentElement.length === 0) break;
+                            do {
+                                //the element did not reach the root element which means that it
+                                //is not apart of the DOM. Therefore there is no reason to do
+                                //any animations on it
+                                if (parentElement.length === 0) break;
 
-          var isRoot = parentElement[0] == $rootElement[0];
-          var state = isRoot ? rootAnimateState : parentElement.data(NG_ANIMATE_STATE);
-          var result = state && (!!state.disabled || !!state.running);
-          if(isRoot || result) {
-            return result;
-          }
+                                var isRoot = parentElement[0] == $rootElement[0];
+                                var state = isRoot ? rootAnimateState : parentElement.data(NG_ANIMATE_STATE);
+                                var result = state && (!!state.disabled || !!state.running);
+                                if (isRoot || result) {
+                                    return result;
+                                }
 
-          if(isRoot) return true;
-        }
-        while(parentElement = parentElement.parent());
+                                if (isRoot) return true;
+                            } while (parentElement = parentElement.parent());
 
-        return true;
-      }
-    }]);
+                            return true;
+                        }
+                    }
+                ]);
 
-    $animateProvider.register('', ['$window', '$sniffer', '$timeout', function($window, $sniffer, $timeout) {
-      // Detect proper transitionend/animationend event names.
-      var CSS_PREFIX = '', TRANSITION_PROP, TRANSITIONEND_EVENT, ANIMATION_PROP, ANIMATIONEND_EVENT;
+                $animateProvider.register('', [
+                    '$window', '$sniffer', '$timeout', function($window, $sniffer, $timeout) {
+                        // Detect proper transitionend/animationend event names.
+                        var CSS_PREFIX = '', TRANSITION_PROP, TRANSITIONEND_EVENT, ANIMATION_PROP, ANIMATIONEND_EVENT;
 
-      // If unprefixed events are not supported but webkit-prefixed are, use the latter.
-      // Otherwise, just use W3C names, browsers not supporting them at all will just ignore them.
-      // Note: Chrome implements `window.onwebkitanimationend` and doesn't implement `window.onanimationend`
-      // but at the same time dispatches the `animationend` event and not `webkitAnimationEnd`.
-      // Register both events in case `window.onanimationend` is not supported because of that,
-      // do the same for `transitionend` as Safari is likely to exhibit similar behavior.
-      // Also, the only modern browser that uses vendor prefixes for transitions/keyframes is webkit
-      // therefore there is no reason to test anymore for other vendor prefixes: http://caniuse.com/#search=transition
-      if (window.ontransitionend === undefined && window.onwebkittransitionend !== undefined) {
-        CSS_PREFIX = '-webkit-';
-        TRANSITION_PROP = 'WebkitTransition';
-        TRANSITIONEND_EVENT = 'webkitTransitionEnd transitionend';
-      } else {
-        TRANSITION_PROP = 'transition';
-        TRANSITIONEND_EVENT = 'transitionend';
-      }
+                        // If unprefixed events are not supported but webkit-prefixed are, use the latter.
+                        // Otherwise, just use W3C names, browsers not supporting them at all will just ignore them.
+                        // Note: Chrome implements `window.onwebkitanimationend` and doesn't implement `window.onanimationend`
+                        // but at the same time dispatches the `animationend` event and not `webkitAnimationEnd`.
+                        // Register both events in case `window.onanimationend` is not supported because of that,
+                        // do the same for `transitionend` as Safari is likely to exhibit similar behavior.
+                        // Also, the only modern browser that uses vendor prefixes for transitions/keyframes is webkit
+                        // therefore there is no reason to test anymore for other vendor prefixes: http://caniuse.com/#search=transition
+                        if (window.ontransitionend === undefined && window.onwebkittransitionend !== undefined) {
+                            CSS_PREFIX = '-webkit-';
+                            TRANSITION_PROP = 'WebkitTransition';
+                            TRANSITIONEND_EVENT = 'webkitTransitionEnd transitionend';
+                        } else {
+                            TRANSITION_PROP = 'transition';
+                            TRANSITIONEND_EVENT = 'transitionend';
+                        }
 
-      if (window.onanimationend === undefined && window.onwebkitanimationend !== undefined) {
-        CSS_PREFIX = '-webkit-';
-        ANIMATION_PROP = 'WebkitAnimation';
-        ANIMATIONEND_EVENT = 'webkitAnimationEnd animationend';
-      } else {
-        ANIMATION_PROP = 'animation';
-        ANIMATIONEND_EVENT = 'animationend';
-      }
+                        if (window.onanimationend === undefined && window.onwebkitanimationend !== undefined) {
+                            CSS_PREFIX = '-webkit-';
+                            ANIMATION_PROP = 'WebkitAnimation';
+                            ANIMATIONEND_EVENT = 'webkitAnimationEnd animationend';
+                        } else {
+                            ANIMATION_PROP = 'animation';
+                            ANIMATIONEND_EVENT = 'animationend';
+                        }
 
-      var DURATION_KEY = 'Duration';
-      var PROPERTY_KEY = 'Property';
-      var DELAY_KEY = 'Delay';
-      var ANIMATION_ITERATION_COUNT_KEY = 'IterationCount';
-      var NG_ANIMATE_PARENT_KEY = '$$ngAnimateKey';
-      var NG_ANIMATE_CSS_DATA_KEY = '$$ngAnimateCSS3Data';
-      var NG_ANIMATE_FALLBACK_CLASS_NAME = 'ng-animate-start';
-      var NG_ANIMATE_FALLBACK_ACTIVE_CLASS_NAME = 'ng-animate-active';
+                        var DURATION_KEY = 'Duration';
+                        var PROPERTY_KEY = 'Property';
+                        var DELAY_KEY = 'Delay';
+                        var ANIMATION_ITERATION_COUNT_KEY = 'IterationCount';
+                        var NG_ANIMATE_PARENT_KEY = '$$ngAnimateKey';
+                        var NG_ANIMATE_CSS_DATA_KEY = '$$ngAnimateCSS3Data';
+                        var NG_ANIMATE_FALLBACK_CLASS_NAME = 'ng-animate-start';
+                        var NG_ANIMATE_FALLBACK_ACTIVE_CLASS_NAME = 'ng-animate-active';
 
-      var lookupCache = {};
-      var parentCounter = 0;
+                        var lookupCache = {};
+                        var parentCounter = 0;
 
-      var animationReflowQueue = [], animationTimer, timeOut = false;
-      function afterReflow(callback) {
-        animationReflowQueue.push(callback);
-        $timeout.cancel(animationTimer);
-        animationTimer = $timeout(function() {
-          forEach(animationReflowQueue, function(fn) {
-            fn();
-          });
-          animationReflowQueue = [];
-          animationTimer = null;
-          lookupCache = {};
-        }, 10, false);
-      }
+                        var animationReflowQueue = [], animationTimer, timeOut = false;
 
-      function getElementAnimationDetails(element, cacheKey) {
-        var data = cacheKey ? lookupCache[cacheKey] : null;
-        if(!data) {
-          var transitionDuration = 0;
-          var transitionDelay = 0;
-          var animationDuration = 0;
-          var animationDelay = 0;
-          var transitionDelayStyle;
-          var animationDelayStyle;
-          var transitionDurationStyle;
-          var transitionPropertyStyle;
+                        function afterReflow(callback) {
+                            animationReflowQueue.push(callback);
+                            $timeout.cancel(animationTimer);
+                            animationTimer = $timeout(function() {
+                                forEach(animationReflowQueue, function(fn) {
+                                    fn();
+                                });
+                                animationReflowQueue = [];
+                                animationTimer = null;
+                                lookupCache = {};
+                            }, 10, false);
+                        }
 
-          //we want all the styles defined before and after
-          forEach(element, function(element) {
-            if (element.nodeType == ELEMENT_NODE) {
-              var elementStyles = $window.getComputedStyle(element) || {};
+                        function getElementAnimationDetails(element, cacheKey) {
+                            var data = cacheKey ? lookupCache[cacheKey] : null;
+                            if (!data) {
+                                var transitionDuration = 0;
+                                var transitionDelay = 0;
+                                var animationDuration = 0;
+                                var animationDelay = 0;
+                                var transitionDelayStyle;
+                                var animationDelayStyle;
+                                var transitionDurationStyle;
+                                var transitionPropertyStyle;
 
-              transitionDurationStyle = elementStyles[TRANSITION_PROP + DURATION_KEY];
+                                //we want all the styles defined before and after
+                                forEach(element, function(element) {
+                                    if (element.nodeType == ELEMENT_NODE) {
+                                        var elementStyles = $window.getComputedStyle(element) || {};
 
-              transitionDuration = Math.max(parseMaxTime(transitionDurationStyle), transitionDuration);
+                                        transitionDurationStyle = elementStyles[TRANSITION_PROP + DURATION_KEY];
 
-              transitionPropertyStyle = elementStyles[TRANSITION_PROP + PROPERTY_KEY];
+                                        transitionDuration = Math.max(parseMaxTime(transitionDurationStyle), transitionDuration);
 
-              transitionDelayStyle = elementStyles[TRANSITION_PROP + DELAY_KEY];
+                                        transitionPropertyStyle = elementStyles[TRANSITION_PROP + PROPERTY_KEY];
 
-              transitionDelay  = Math.max(parseMaxTime(transitionDelayStyle), transitionDelay);
+                                        transitionDelayStyle = elementStyles[TRANSITION_PROP + DELAY_KEY];
 
-              animationDelayStyle = elementStyles[ANIMATION_PROP + DELAY_KEY];
+                                        transitionDelay = Math.max(parseMaxTime(transitionDelayStyle), transitionDelay);
 
-              animationDelay   = Math.max(parseMaxTime(animationDelayStyle), animationDelay);
+                                        animationDelayStyle = elementStyles[ANIMATION_PROP + DELAY_KEY];
 
-              var aDuration  = parseMaxTime(elementStyles[ANIMATION_PROP + DURATION_KEY]);
+                                        animationDelay = Math.max(parseMaxTime(animationDelayStyle), animationDelay);
 
-              if(aDuration > 0) {
-                aDuration *= parseInt(elementStyles[ANIMATION_PROP + ANIMATION_ITERATION_COUNT_KEY], 10) || 1;
-              }
+                                        var aDuration = parseMaxTime(elementStyles[ANIMATION_PROP + DURATION_KEY]);
 
-              animationDuration = Math.max(aDuration, animationDuration);
-            }
-          });
-          data = {
-            total : 0,
-            transitionPropertyStyle: transitionPropertyStyle,
-            transitionDurationStyle: transitionDurationStyle,
-            transitionDelayStyle: transitionDelayStyle,
-            transitionDelay: transitionDelay,
-            transitionDuration: transitionDuration,
-            animationDelayStyle: animationDelayStyle,
-            animationDelay: animationDelay,
-            animationDuration: animationDuration
-          };
-          if(cacheKey) {
-            lookupCache[cacheKey] = data;
-          }
-        }
-        return data;
-      }
+                                        if (aDuration > 0) {
+                                            aDuration *= parseInt(elementStyles[ANIMATION_PROP + ANIMATION_ITERATION_COUNT_KEY], 10) || 1;
+                                        }
 
-      function parseMaxTime(str) {
-        var maxValue = 0;
-        var values = angular.isString(str) ?
-          str.split(/\s*,\s*/) :
-          [];
-        forEach(values, function(value) {
-          maxValue = Math.max(parseFloat(value) || 0, maxValue);
-        });
-        return maxValue;
-      }
+                                        animationDuration = Math.max(aDuration, animationDuration);
+                                    }
+                                });
+                                data = {
+                                    total: 0,
+                                    transitionPropertyStyle: transitionPropertyStyle,
+                                    transitionDurationStyle: transitionDurationStyle,
+                                    transitionDelayStyle: transitionDelayStyle,
+                                    transitionDelay: transitionDelay,
+                                    transitionDuration: transitionDuration,
+                                    animationDelayStyle: animationDelayStyle,
+                                    animationDelay: animationDelay,
+                                    animationDuration: animationDuration
+                                };
+                                if (cacheKey) {
+                                    lookupCache[cacheKey] = data;
+                                }
+                            }
+                            return data;
+                        }
 
-      function getCacheKey(element) {
-        var parentElement = element.parent();
-        var parentID = parentElement.data(NG_ANIMATE_PARENT_KEY);
-        if(!parentID) {
-          parentElement.data(NG_ANIMATE_PARENT_KEY, ++parentCounter);
-          parentID = parentCounter;
-        }
-        return parentID + '-' + element[0].className;
-      }
+                        function parseMaxTime(str) {
+                            var maxValue = 0;
+                            var values = angular.isString(str) ?
+                                str.split(/\s*,\s*/) :
+                                [];
+                            forEach(values, function(value) {
+                                maxValue = Math.max(parseFloat(value) || 0, maxValue);
+                            });
+                            return maxValue;
+                        }
 
-      function animateSetup(element, className) {
-        var cacheKey = getCacheKey(element);
-        var eventCacheKey = cacheKey + ' ' + className;
-        var stagger = {};
-        var ii = lookupCache[eventCacheKey] ? ++lookupCache[eventCacheKey].total : 0;
+                        function getCacheKey(element) {
+                            var parentElement = element.parent();
+                            var parentID = parentElement.data(NG_ANIMATE_PARENT_KEY);
+                            if (!parentID) {
+                                parentElement.data(NG_ANIMATE_PARENT_KEY, ++parentCounter);
+                                parentID = parentCounter;
+                            }
+                            return parentID + '-' + element[0].className;
+                        }
 
-        if(ii > 0) {
-          var staggerClassName = className + '-stagger';
-          var staggerCacheKey = cacheKey + ' ' + staggerClassName;
-          var applyClasses = !lookupCache[staggerCacheKey];
+                        function animateSetup(element, className) {
+                            var cacheKey = getCacheKey(element);
+                            var eventCacheKey = cacheKey + ' ' + className;
+                            var stagger = {};
+                            var ii = lookupCache[eventCacheKey] ? ++lookupCache[eventCacheKey].total : 0;
 
-          applyClasses && element.addClass(staggerClassName);
+                            if (ii > 0) {
+                                var staggerClassName = className + '-stagger';
+                                var staggerCacheKey = cacheKey + ' ' + staggerClassName;
+                                var applyClasses = !lookupCache[staggerCacheKey];
 
-          stagger = getElementAnimationDetails(element, staggerCacheKey);
+                                applyClasses && element.addClass(staggerClassName);
 
-          applyClasses && element.removeClass(staggerClassName);
-        }
+                                stagger = getElementAnimationDetails(element, staggerCacheKey);
 
-        element.addClass(className);
+                                applyClasses && element.removeClass(staggerClassName);
+                            }
 
-        var timings = getElementAnimationDetails(element, eventCacheKey);
+                            element.addClass(className);
 
-        /* there is no point in performing a reflow if the animation
+                            var timings = getElementAnimationDetails(element, eventCacheKey);
+
+                            /* there is no point in performing a reflow if the animation
            timeout is empty (this would cause a flicker bug normally
            in the page. There is also no point in performing an animation
            that only has a delay and no duration */
-        var maxDuration = Math.max(timings.transitionDuration, timings.animationDuration);
-        if(maxDuration === 0) {
-          element.removeClass(className);
-          return false;
-        }
+                            var maxDuration = Math.max(timings.transitionDuration, timings.animationDuration);
+                            if (maxDuration === 0) {
+                                element.removeClass(className);
+                                return false;
+                            }
 
-        var node = element[0];
-        //temporarily disable the transition so that the enter styles
-        //don't animate twice (this is here to avoid a bug in Chrome/FF).
-        var activeClassName = '';
-        if(timings.transitionDuration > 0) {
-          element.addClass(NG_ANIMATE_FALLBACK_CLASS_NAME);
-          activeClassName += NG_ANIMATE_FALLBACK_ACTIVE_CLASS_NAME + ' ';
-          blockTransitions(element);
-        } else {
-          blockKeyframeAnimations(element);
-        }
+                            var node = element[0];
+                            //temporarily disable the transition so that the enter styles
+                            //don't animate twice (this is here to avoid a bug in Chrome/FF).
+                            var activeClassName = '';
+                            if (timings.transitionDuration > 0) {
+                                element.addClass(NG_ANIMATE_FALLBACK_CLASS_NAME);
+                                activeClassName += NG_ANIMATE_FALLBACK_ACTIVE_CLASS_NAME + ' ';
+                                blockTransitions(element);
+                            } else {
+                                blockKeyframeAnimations(element);
+                            }
 
-        forEach(className.split(' '), function(klass, i) {
-          activeClassName += (i > 0 ? ' ' : '') + klass + '-active';
-        });
+                            forEach(className.split(' '), function(klass, i) {
+                                activeClassName += (i > 0 ? ' ' : '') + klass + '-active';
+                            });
 
-        element.data(NG_ANIMATE_CSS_DATA_KEY, {
-          className : className,
-          activeClassName : activeClassName,
-          maxDuration : maxDuration,
-          classes : className + ' ' + activeClassName,
-          timings : timings,
-          stagger : stagger,
-          ii : ii
-        });
+                            element.data(NG_ANIMATE_CSS_DATA_KEY, {
+                                className: className,
+                                activeClassName: activeClassName,
+                                maxDuration: maxDuration,
+                                classes: className + ' ' + activeClassName,
+                                timings: timings,
+                                stagger: stagger,
+                                ii: ii
+                            });
 
-        return true;
-      }
+                            return true;
+                        }
 
-      function blockTransitions(element) {
-        element[0].style[TRANSITION_PROP + PROPERTY_KEY] = 'none';
-      }
+                        function blockTransitions(element) {
+                            element[0].style[TRANSITION_PROP + PROPERTY_KEY] = 'none';
+                        }
 
-      function blockKeyframeAnimations(element) {
-        element[0].style[ANIMATION_PROP] = 'none 0s';
-      }
+                        function blockKeyframeAnimations(element) {
+                            element[0].style[ANIMATION_PROP] = 'none 0s';
+                        }
 
-      function unblockTransitions(element) {
-        var node = element[0], prop = TRANSITION_PROP + PROPERTY_KEY;
-        if(node.style[prop] && node.style[prop].length > 0) {
-          node.style[prop] = '';
-        }
-      }
+                        function unblockTransitions(element) {
+                            var node = element[0], prop = TRANSITION_PROP + PROPERTY_KEY;
+                            if (node.style[prop] && node.style[prop].length > 0) {
+                                node.style[prop] = '';
+                            }
+                        }
 
-      function unblockKeyframeAnimations(element) {
-        var node = element[0], prop = ANIMATION_PROP;
-        if(node.style[prop] && node.style[prop].length > 0) {
-          element[0].style[prop] = '';
-        }
-      }
+                        function unblockKeyframeAnimations(element) {
+                            var node = element[0], prop = ANIMATION_PROP;
+                            if (node.style[prop] && node.style[prop].length > 0) {
+                                element[0].style[prop] = '';
+                            }
+                        }
 
-      function animateRun(element, className, activeAnimationComplete) {
-        var data = element.data(NG_ANIMATE_CSS_DATA_KEY);
-        if(!element.hasClass(className) || !data) {
-          activeAnimationComplete();
-          return;
-        }
+                        function animateRun(element, className, activeAnimationComplete) {
+                            var data = element.data(NG_ANIMATE_CSS_DATA_KEY);
+                            if (!element.hasClass(className) || !data) {
+                                activeAnimationComplete();
+                                return;
+                            }
 
-        var node = element[0];
-        var timings = data.timings;
-        var stagger = data.stagger;
-        var maxDuration = data.maxDuration;
-        var activeClassName = data.activeClassName;
-        var maxDelayTime = Math.max(timings.transitionDelay, timings.animationDelay) * 1000;
-        var startTime = Date.now();
-        var css3AnimationEvents = ANIMATIONEND_EVENT + ' ' + TRANSITIONEND_EVENT;
-        var ii = data.ii;
+                            var node = element[0];
+                            var timings = data.timings;
+                            var stagger = data.stagger;
+                            var maxDuration = data.maxDuration;
+                            var activeClassName = data.activeClassName;
+                            var maxDelayTime = Math.max(timings.transitionDelay, timings.animationDelay) * 1000;
+                            var startTime = Date.now();
+                            var css3AnimationEvents = ANIMATIONEND_EVENT + ' ' + TRANSITIONEND_EVENT;
+                            var ii = data.ii;
 
-        var applyFallbackStyle, style = '', appliedStyles = [];
-        if(timings.transitionDuration > 0) {
-          var propertyStyle = timings.transitionPropertyStyle;
-          if(propertyStyle.indexOf('all') == -1) {
-            applyFallbackStyle = true;
-            var fallbackProperty = $sniffer.msie ? '-ms-zoom' : 'border-spacing';
-            style += CSS_PREFIX + 'transition-property: ' + propertyStyle + ', ' + fallbackProperty + '; ';
-            style += CSS_PREFIX + 'transition-duration: ' + timings.transitionDurationStyle + ', ' + timings.transitionDuration + 's; ';
-            appliedStyles.push(CSS_PREFIX + 'transition-property');
-            appliedStyles.push(CSS_PREFIX + 'transition-duration');
-          }
-        }
+                            var applyFallbackStyle, style = '', appliedStyles = [];
+                            if (timings.transitionDuration > 0) {
+                                var propertyStyle = timings.transitionPropertyStyle;
+                                if (propertyStyle.indexOf('all') == -1) {
+                                    applyFallbackStyle = true;
+                                    var fallbackProperty = $sniffer.msie ? '-ms-zoom' : 'border-spacing';
+                                    style += CSS_PREFIX + 'transition-property: ' + propertyStyle + ', ' + fallbackProperty + '; ';
+                                    style += CSS_PREFIX + 'transition-duration: ' + timings.transitionDurationStyle + ', ' + timings.transitionDuration + 's; ';
+                                    appliedStyles.push(CSS_PREFIX + 'transition-property');
+                                    appliedStyles.push(CSS_PREFIX + 'transition-duration');
+                                }
+                            }
 
-        if(ii > 0) {
-          if(stagger.transitionDelay > 0 && stagger.transitionDuration === 0) {
-            var delayStyle = timings.transitionDelayStyle;
-            if(applyFallbackStyle) {
-              delayStyle += ', ' + timings.transitionDelay + 's';
-            }
+                            if (ii > 0) {
+                                if (stagger.transitionDelay > 0 && stagger.transitionDuration === 0) {
+                                    var delayStyle = timings.transitionDelayStyle;
+                                    if (applyFallbackStyle) {
+                                        delayStyle += ', ' + timings.transitionDelay + 's';
+                                    }
 
-            style += CSS_PREFIX + 'transition-delay: ' +
-                     prepareStaggerDelay(delayStyle, stagger.transitionDelay, ii) + '; ';
-            appliedStyles.push(CSS_PREFIX + 'transition-delay');
-          }
+                                    style += CSS_PREFIX + 'transition-delay: ' +
+                                        prepareStaggerDelay(delayStyle, stagger.transitionDelay, ii) + '; ';
+                                    appliedStyles.push(CSS_PREFIX + 'transition-delay');
+                                }
 
-          if(stagger.animationDelay > 0 && stagger.animationDuration === 0) {
-            style += CSS_PREFIX + 'animation-delay: ' +
-                     prepareStaggerDelay(timings.animationDelayStyle, stagger.animationDelay, ii) + '; ';
-            appliedStyles.push(CSS_PREFIX + 'animation-delay');
-          }
-        }
+                                if (stagger.animationDelay > 0 && stagger.animationDuration === 0) {
+                                    style += CSS_PREFIX + 'animation-delay: ' +
+                                        prepareStaggerDelay(timings.animationDelayStyle, stagger.animationDelay, ii) + '; ';
+                                    appliedStyles.push(CSS_PREFIX + 'animation-delay');
+                                }
+                            }
 
-        if(appliedStyles.length > 0) {
-          var oldStyle = node.getAttribute('style') || '';
-          node.setAttribute('style', oldStyle + ' ' + style);
-        }
+                            if (appliedStyles.length > 0) {
+                                var oldStyle = node.getAttribute('style') || '';
+                                node.setAttribute('style', oldStyle + ' ' + style);
+                            }
 
-        element.on(css3AnimationEvents, onAnimationProgress);
-        element.addClass(activeClassName);
+                            element.on(css3AnimationEvents, onAnimationProgress);
+                            element.addClass(activeClassName);
 
-        // This will automatically be called by $animate so
-        // there is no need to attach this internally to the
-        // timeout done method.
-        return function onEnd(cancelled) {
-          element.off(css3AnimationEvents, onAnimationProgress);
-          element.removeClass(activeClassName);
-          animateClose(element, className);
-          for (var i in appliedStyles) {
-            node.style.removeProperty(appliedStyles[i]);
-          }
-        };
+                            // This will automatically be called by $animate so
+                            // there is no need to attach this internally to the
+                            // timeout done method.
+                            return function onEnd(cancelled) {
+                                element.off(css3AnimationEvents, onAnimationProgress);
+                                element.removeClass(activeClassName);
+                                animateClose(element, className);
+                                for (var i in appliedStyles) {
+                                    node.style.removeProperty(appliedStyles[i]);
+                                }
+                            };
 
-        function onAnimationProgress(event) {
-          event.stopPropagation();
-          var ev = event.originalEvent || event;
-          var timeStamp = ev.$manualTimeStamp || ev.timeStamp || Date.now();
-          /* $manualTimeStamp is a mocked timeStamp value which is set
+                            function onAnimationProgress(event) {
+                                event.stopPropagation();
+                                var ev = event.originalEvent || event;
+                                var timeStamp = ev.$manualTimeStamp || ev.timeStamp || Date.now();
+                                /* $manualTimeStamp is a mocked timeStamp value which is set
            * within browserTrigger(). This is only here so that tests can
            * mock animations properly. Real events fallback to event.timeStamp,
            * or, if they don't, then a timeStamp is automatically created for them.
            * We're checking to see if the timeStamp surpasses the expected delay,
            * but we're using elapsedTime instead of the timeStamp on the 2nd
            * pre-condition since animations sometimes close off early */
-          if(Math.max(timeStamp - startTime, 0) >= maxDelayTime && ev.elapsedTime >= maxDuration) {
-            activeAnimationComplete();
-          }
-        }
-      }
+                                if (Math.max(timeStamp - startTime, 0) >= maxDelayTime && ev.elapsedTime >= maxDuration) {
+                                    activeAnimationComplete();
+                                }
+                            }
+                        }
 
-      function prepareStaggerDelay(delayStyle, staggerDelay, index) {
-        var style = '';
-        forEach(delayStyle.split(','), function(val, i) {
-          style += (i > 0 ? ',' : '') +
-                   (index * staggerDelay + parseInt(val, 10)) + 's';
-        });
-        return style;
-      }
+                        function prepareStaggerDelay(delayStyle, staggerDelay, index) {
+                            var style = '';
+                            forEach(delayStyle.split(','), function(val, i) {
+                                style += (i > 0 ? ',' : '') +
+                                (index * staggerDelay + parseInt(val, 10)) + 's';
+                            });
+                            return style;
+                        }
 
-      function animateBefore(element, className) {
-        if(animateSetup(element, className)) {
-          return function(cancelled) {
-            cancelled && animateClose(element, className);
-          };
-        }
-      }
+                        function animateBefore(element, className) {
+                            if (animateSetup(element, className)) {
+                                return function(cancelled) {
+                                    cancelled && animateClose(element, className);
+                                };
+                            }
+                        }
 
-      function animateAfter(element, className, afterAnimationComplete) {
-        if(element.data(NG_ANIMATE_CSS_DATA_KEY)) {
-          return animateRun(element, className, afterAnimationComplete);
-        } else {
-          animateClose(element, className);
-          afterAnimationComplete();
-        }
-      }
+                        function animateAfter(element, className, afterAnimationComplete) {
+                            if (element.data(NG_ANIMATE_CSS_DATA_KEY)) {
+                                return animateRun(element, className, afterAnimationComplete);
+                            } else {
+                                animateClose(element, className);
+                                afterAnimationComplete();
+                            }
+                        }
 
-      function animate(element, className, animationComplete) {
-        //If the animateSetup function doesn't bother returning a
-        //cancellation function then it means that there is no animation
-        //to perform at all
-        var preReflowCancellation = animateBefore(element, className);
-        if(!preReflowCancellation) {
-          animationComplete();
-          return;
-        }
+                        function animate(element, className, animationComplete) {
+                            //If the animateSetup function doesn't bother returning a
+                            //cancellation function then it means that there is no animation
+                            //to perform at all
+                            var preReflowCancellation = animateBefore(element, className);
+                            if (!preReflowCancellation) {
+                                animationComplete();
+                                return;
+                            }
 
-        //There are two cancellation functions: one is before the first
-        //reflow animation and the second is during the active state
-        //animation. The first function will take care of removing the
-        //data from the element which will not make the 2nd animation
-        //happen in the first place
-        var cancel = preReflowCancellation;
-        afterReflow(function() {
-          unblockTransitions(element);
-          unblockKeyframeAnimations(element);
-          //once the reflow is complete then we point cancel to
-          //the new cancellation function which will remove all of the
-          //animation properties from the active animation
-          cancel = animateAfter(element, className, animationComplete);
-        });
+                            //There are two cancellation functions: one is before the first
+                            //reflow animation and the second is during the active state
+                            //animation. The first function will take care of removing the
+                            //data from the element which will not make the 2nd animation
+                            //happen in the first place
+                            var cancel = preReflowCancellation;
+                            afterReflow(function() {
+                                unblockTransitions(element);
+                                unblockKeyframeAnimations(element);
+                                //once the reflow is complete then we point cancel to
+                                //the new cancellation function which will remove all of the
+                                //animation properties from the active animation
+                                cancel = animateAfter(element, className, animationComplete);
+                            });
 
-        return function(cancelled) {
-          (cancel || noop)(cancelled);
-        };
-      }
+                            return function(cancelled) {
+                                (cancel || noop)(cancelled);
+                            };
+                        }
 
-      function animateClose(element, className) {
-        element.removeClass(className);
-        element.removeClass(NG_ANIMATE_FALLBACK_CLASS_NAME);
-        element.removeData(NG_ANIMATE_CSS_DATA_KEY);
-      }
+                        function animateClose(element, className) {
+                            element.removeClass(className);
+                            element.removeClass(NG_ANIMATE_FALLBACK_CLASS_NAME);
+                            element.removeData(NG_ANIMATE_CSS_DATA_KEY);
+                        }
 
-      return {
-        allowCancel : function(element, animationEvent, className) {
-          //always cancel the current animation if it is a
-          //structural animation
-          var oldClasses = (element.data(NG_ANIMATE_CSS_DATA_KEY) || {}).classes;
-          if(!oldClasses || ['enter','leave','move'].indexOf(animationEvent) >= 0) {
-            return true;
-          }
+                        return {
+                            allowCancel: function(element, animationEvent, className) {
+                                //always cancel the current animation if it is a
+                                //structural animation
+                                var oldClasses = (element.data(NG_ANIMATE_CSS_DATA_KEY) || {}).classes;
+                                if (!oldClasses || ['enter', 'leave', 'move'].indexOf(animationEvent) >= 0) {
+                                    return true;
+                                }
 
-          var parentElement = element.parent();
-          var clone = angular.element(element[0].cloneNode());
+                                var parentElement = element.parent();
+                                var clone = angular.element(element[0].cloneNode());
 
-          //make the element super hidden and override any CSS style values
-          clone.attr('style','position:absolute; top:-9999px; left:-9999px');
-          clone.removeAttr('id');
-          clone.html('');
+                                //make the element super hidden and override any CSS style values
+                                clone.attr('style', 'position:absolute; top:-9999px; left:-9999px');
+                                clone.removeAttr('id');
+                                clone.html('');
 
-          forEach(oldClasses.split(' '), function(klass) {
-            clone.removeClass(klass);
-          });
+                                forEach(oldClasses.split(' '), function(klass) {
+                                    clone.removeClass(klass);
+                                });
 
-          var suffix = animationEvent == 'addClass' ? '-add' : '-remove';
-          clone.addClass(suffixClasses(className, suffix));
-          parentElement.append(clone);
+                                var suffix = animationEvent == 'addClass' ? '-add' : '-remove';
+                                clone.addClass(suffixClasses(className, suffix));
+                                parentElement.append(clone);
 
-          var timings = getElementAnimationDetails(clone);
-          clone.remove();
+                                var timings = getElementAnimationDetails(clone);
+                                clone.remove();
 
-          return Math.max(timings.transitionDuration, timings.animationDuration) > 0;
-        },
+                                return Math.max(timings.transitionDuration, timings.animationDuration) > 0;
+                            },
 
-        enter : function(element, animationCompleted) {
-          return animate(element, 'ng-enter', animationCompleted);
-        },
+                            enter: function(element, animationCompleted) {
+                                return animate(element, 'ng-enter', animationCompleted);
+                            },
 
-        leave : function(element, animationCompleted) {
-          return animate(element, 'ng-leave', animationCompleted);
-        },
+                            leave: function(element, animationCompleted) {
+                                return animate(element, 'ng-leave', animationCompleted);
+                            },
 
-        move : function(element, animationCompleted) {
-          return animate(element, 'ng-move', animationCompleted);
-        },
+                            move: function(element, animationCompleted) {
+                                return animate(element, 'ng-move', animationCompleted);
+                            },
 
-        beforeAddClass : function(element, className, animationCompleted) {
-          var cancellationMethod = animateBefore(element, suffixClasses(className, '-add'));
-          if(cancellationMethod) {
-            afterReflow(function() {
-              unblockTransitions(element);
-              unblockKeyframeAnimations(element);
-              animationCompleted();
-            });
-            return cancellationMethod;
-          }
-          animationCompleted();
-        },
+                            beforeAddClass: function(element, className, animationCompleted) {
+                                var cancellationMethod = animateBefore(element, suffixClasses(className, '-add'));
+                                if (cancellationMethod) {
+                                    afterReflow(function() {
+                                        unblockTransitions(element);
+                                        unblockKeyframeAnimations(element);
+                                        animationCompleted();
+                                    });
+                                    return cancellationMethod;
+                                }
+                                animationCompleted();
+                            },
 
-        addClass : function(element, className, animationCompleted) {
-          return animateAfter(element, suffixClasses(className, '-add'), animationCompleted);
-        },
+                            addClass: function(element, className, animationCompleted) {
+                                return animateAfter(element, suffixClasses(className, '-add'), animationCompleted);
+                            },
 
-        beforeRemoveClass : function(element, className, animationCompleted) {
-          var cancellationMethod = animateBefore(element, suffixClasses(className, '-remove'));
-          if(cancellationMethod) {
-            afterReflow(function() {
-              unblockTransitions(element);
-              unblockKeyframeAnimations(element);
-              animationCompleted();
-            });
-            return cancellationMethod;
-          }
-          animationCompleted();
-        },
+                            beforeRemoveClass: function(element, className, animationCompleted) {
+                                var cancellationMethod = animateBefore(element, suffixClasses(className, '-remove'));
+                                if (cancellationMethod) {
+                                    afterReflow(function() {
+                                        unblockTransitions(element);
+                                        unblockKeyframeAnimations(element);
+                                        animationCompleted();
+                                    });
+                                    return cancellationMethod;
+                                }
+                                animationCompleted();
+                            },
 
-        removeClass : function(element, className, animationCompleted) {
-          return animateAfter(element, suffixClasses(className, '-remove'), animationCompleted);
-        }
-      };
+                            removeClass: function(element, className, animationCompleted) {
+                                return animateAfter(element, suffixClasses(className, '-remove'), animationCompleted);
+                            }
+                        };
 
-      function suffixClasses(classes, suffix) {
-        var className = '';
-        classes = angular.isArray(classes) ? classes : classes.split(/\s+/);
-        forEach(classes, function(klass, i) {
-          if(klass && klass.length > 0) {
-            className += (i > 0 ? ' ' : '') + klass + suffix;
-          }
-        });
-        return className;
-      }
-    }]);
-  }]);
+                        function suffixClasses(classes, suffix) {
+                            var className = '';
+                            classes = angular.isArray(classes) ? classes : classes.split(/\s+/);
+                            forEach(classes, function(klass, i) {
+                                if (klass && klass.length > 0) {
+                                    className += (i > 0 ? ' ' : '') + klass + suffix;
+                                }
+                            });
+                            return className;
+                        }
+                    }
+                ]);
+            }
+        ]);
 
 
 })(window, window.angular);

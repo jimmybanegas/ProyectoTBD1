@@ -1,17 +1,16 @@
 ﻿/// <reference path="_references.js" />
 /// <reference path="directives.js" />
-
 'use strict';
 
-describe('Directives', function () {
+describe('Directives', function() {
     beforeEach(module('app.directives'));
 
-    describe('app-version', function () {
-        it('should print current version', function () {
-            module(function ($provide) {
+    describe('app-version', function() {
+        it('should print current version', function() {
+            module(function($provide) {
                 $provide.value('version', 'TEST_VER');
             });
-            inject(function ($compile, $rootScope) {
+            inject(function($compile, $rootScope) {
                 var element = $compile('<span app-version></span>')($rootScope);
                 expect(element.text()).toEqual('TEST_VER');
             });

@@ -1,22 +1,54 @@
 ﻿'use strict';
 angular.module('app.controllers')
+
+    // Path: /register
     .controller('RegisterCtrl', [
         '$scope', '$location', '$window', 'Account', function($scope, $location, $window, Account) {
-            $scope.$root.title = 'AngularJS SPA | Register';
-            // TODO: Authorize a user
-            $scope.user = {
-
+            $scope.$root.title = 'SportLiga | Register';
+            // TODO: Register a new user
+            $scope.login = function() {
+                $location.path('/login');
+                return false;
             };
 
-            $scope.register = function() {
-                Account.register($scope.user, function(response) {
-                    $location.path('/login');
+            $scope.registerModel = {};
+
+            $scope.ShowMessage = false;
+
+            $scope.registrarUsuario = function() {
+
+                if ($scope.registerModel.Contrasena != $scope.registerModel.ConfirmarContrasena) {
+                    toastr.warning("Contraseñas no coinciden");
+                    $scope.registerModel.Contrasena = "";
+                    $scope.registerModel.ConfirmarContrasena = "";
+                    return;
+                }
+
+                Account.register($scope.registerModel, function (response) {
+                    if (response.Status == 0) {
+                        toastr.error(response.Message, "Error", {
+                            "closeButton": true,
+                            "positionClass": "toast-bottom-full-width",
+                            "showEasing": "swing",
+                            "hideEasing": "swing",
+                            "showMethod": "slideDown",
+                            "hideMethod": "fadeOut"
+                        });
+                    }
+                    if (response.Status == 1) {
+                        toastr.warning(response.Message);
+                    }
+                    if (response.Status == 2) {
+                        toastr.success(response.Message);
+                      //  $location.path('/loading');
+                        $location.path('/login');
+                    }
+
                 }, function(error) {
-                    alert('Error');
+                    $scope.ShowMessage = false;
                 });
             };
-            $scope.$on('$viewContentLoaded', function() {
-                $window.ga('send', 'pageview', { 'page': $location.path(), 'title': $scope.$root.title });
-            });
+            //   setTimeout($scope.registrarUsuario, 2000);
+
         }
     ]);

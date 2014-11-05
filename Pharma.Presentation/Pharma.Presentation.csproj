@@ -7,13 +7,13 @@
     <ProductVersion>
     </ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
-    <ProjectGuid>{096AD623-AD98-48EE-A7B4-AEBB2F5FF206}</ProjectGuid>
+    <ProjectGuid>{AC550CF2-C1E8-4A04-A8DC-AF3F305BC4F1}</ProjectGuid>
     <ProjectTypeGuids>{349c5851-65df-11da-9384-00065b846f21};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>Pharma.Presentation</RootNamespace>
     <AssemblyName>Pharma.Presentation</AssemblyName>
-    <TargetFrameworkVersion>v4.5.1</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <UseIISExpress>true</UseIISExpress>
     <IISExpressSSLPort />
     <IISExpressAnonymousAuthentication />
@@ -125,6 +125,8 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Content\bootstrap.css" />
+    <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Content\jasmine\jasmine.css" />
     <Content Include="Content\jasmine\jasmine_favicon.png" />
@@ -132,18 +134,85 @@
       <DependentUpon>app.less</DependentUpon>
     </Content>
     <Content Include="Content\app.less" />
+    <Content Include="Content\toastr.css" />
+    <Content Include="Content\toastr.min.css" />
     <Content Include="Content\variables.less" />
     <Content Include="Global.asax" />
+    <Content Include="Content\toastr.less" />
+    <Content Include="Content\bootstrap.css.map" />
+    <None Include="Images\ac-milan.png" />
+    <None Include="Images\ajax_amsterdam.png" />
+    <None Include="Images\alemana.jpg" />
+    <None Include="Images\arsenal.png" />
+    <None Include="Images\as_roma.gif" />
+    <None Include="Images\as-monaco.png" />
+    <None Include="Images\auxerre.png" />
+    <None Include="Images\bayer-leverkusen.png" />
+    <None Include="Images\bayern-munich.png" />
+    <None Include="Images\belga.jpg" />
+    <None Include="Images\benfica.png" />
+    <None Include="Images\bilbao.jpg" />
+    <None Include="Images\borussia_dortmund.png" />
+    <None Include="Images\chelsea.png" />
+    <None Include="Images\deportivo.gif" />
+    <None Include="Images\escudo-atletico-de-madrid.png" />
+    <None Include="Images\escudo-barcelona.png" />
+    <None Include="Images\escudo-madrid.png" />
+    <None Include="Images\espanyol_rcd.gif" />
+    <None Include="Images\española.jpg" />
+    <None Include="Images\everton_fc.png" />
+    <None Include="Images\fc_porto.jpg" />
+    <None Include="Images\finlandesa.jpg" />
+    <None Include="Images\fiorentina.png" />
+    <None Include="Images\francesa.jpg" />
+    <None Include="Images\girondins-de-burdeos.jpg" />
+    <None Include="Images\hamburgo.jpg" />
+    <None Include="Images\hertha-bsc.jpg" />
+    <None Include="Images\holandesa.jpg" />
+    <None Include="Images\inglesa.jpg" />
+    <None Include="Images\intermilan.png" />
+    <None Include="Images\italiana.jpg" />
+    <None Include="Images\juventus.png" />
+    <None Include="Images\liverpool.jpg" />
+    <None Include="Images\manchester-city.png" />
+    <None Include="Images\manchester-united.png" />
+    <None Include="Images\newcastle.jpg" />
+    <None Include="Images\olympique_lyon.png" />
+    <None Include="Images\olympique-marsella.png" />
+    <None Include="Images\palermo-escudo.jpg" />
+    <None Include="Images\portuguesa.jpg" />
+    <None Include="Images\psg.gif" />
+    <None Include="Images\psv.jpg" />
+    <None Include="Images\rennes.gif" />
+    <None Include="Images\rusa.jpg" />
+    <None Include="Images\sampdoria.jpg" />
+    <None Include="Images\schalke-04.png" />
+    <None Include="Images\sevilla_fc.gif" />
+    <Content Include="Images\Soccer2.jpg" />
+    <None Include="Images\sporting_clube_de_portugal.png" />
+    <None Include="Images\ss_lazio.png" />
+    <None Include="Images\stuttgart-fc.png" />
+    <None Include="Images\suiza.jpg" />
+    <None Include="Images\udinese.png" />
+    <None Include="Images\uefa.jpg" />
+    <None Include="Images\valenciacf.jpg" />
+    <None Include="Images\villareal.png" />
+    <None Include="Images\werder-bremen.png" />
+    <None Include="Images\west-ham.png" />
+    <None Include="Images\wolfsburgo.gif" />
     <Content Include="Scripts\controllers.js" />
     <Content Include="Scripts\controllers.spec.js">
       <DependentUpon>controllers.js</DependentUpon>
     </Content>
-    <Content Include="Scripts\Controllers\LeaguesController.js" />
     <Content Include="Scripts\Controllers\AboutController.js" />
     <Content Include="Scripts\Controllers\Error404Controller.js" />
+    <Content Include="Scripts\Controllers\ForgotPasswordController.js" />
     <Content Include="Scripts\Controllers\HomeController.js" />
     <Content Include="Scripts\Controllers\LoginController.js" />
+    <Content Include="Scripts\Controllers\MatchesController.js" />
+    <Content Include="Scripts\Controllers\ProfileController.js" />
     <Content Include="Scripts\Controllers\RegisterController.js" />
+    <Content Include="Scripts\Controllers\SportLigaController.js" />
     <Content Include="Scripts\directives.js" />
     <Content Include="Scripts\directives.spec.js">
       <DependentUpon>directives.js</DependentUpon>
@@ -160,10 +229,17 @@
     <Content Include="Scripts\Services\AccountService.js" />
     <Content Include="Scripts\Services\AuthService.js" />
     <Content Include="Scripts\Services\LeaguesService.js" />
+    <Content Include="Scripts\Services\MatchesService.js" />
+    <Content Include="Scripts\Services\PredecitionsService.js" />
     <Content Include="Scripts\Services\ServerService.js" />
+    <Content Include="Scripts\Services\TeamsService.js" />
+    <Content Include="Scripts\toastr.js" />
+    <Content Include="Scripts\toastr.min.js" />
     <Content Include="Scripts\vendor\angular-csp.css" />
     <Content Include="Scripts\vendor\angular-ui-router.js" />
     <Content Include="Scripts\vendor\angular-ui-router.min.js" />
+    <Content Include="Scripts\vendor\bootstrap.js" />
+    <Content Include="Scripts\vendor\bootstrap.min.js" />
     <Content Include="Scripts\vendor\i18n\angular-locale_af-na.js" />
     <Content Include="Scripts\vendor\i18n\angular-locale_af-za.js" />
     <Content Include="Scripts\vendor\i18n\angular-locale_af.js" />
@@ -482,7 +558,9 @@
     <Content Include="Content\bootstrap\bootstrap.less" />
     <Content Include="Content\bootstrap\badges.less" />
     <Content Include="Content\bootstrap\alerts.less" />
+    <Content Include="Scripts\toastr.min.js.map" />
     <None Include="Scripts\vendor\jquery-2.0.3.intellisense.js" />
+    <Content Include="Scripts\vendor\jquery-1.10.2.js" />
     <Content Include="Scripts\vendor\jquery-2.0.3.js" />
     <Content Include="Scripts\vendor\jquery-2.0.3.min.js" />
     <Content Include="Scripts\vendor\jquery-2.0.3.min.map" />
@@ -497,6 +575,11 @@
       <SubType>Designer</SubType>
     </Content>
     <Content Include="robots.txt" />
+    <Content Include="Views\Index.css" />
+    <Content Include="Views\matches.css" />
+    <Content Include="Views\profile-normal.css" />
+    <Content Include="Views\profile.css" />
+    <Content Include="Views\Login.css" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
     </Content>
@@ -507,7 +590,14 @@
     <Content Include="Views\_PageStart.cshtml" />
     <Content Include="Views\About.cshtml" />
     <Content Include="Views\Register.cshtml" />
-    <Content Include="Views\Leagues.cshtml" />
+    <Content Include="Views\forgot-password.cshtml" />
+    <Content Include="Views\profile.cshtml" />
+    <Content Include="Views\league.cshtml" />
+    <Content Include="Views\newLeague.cshtml" />
+    <Content Include="Views\profile-normal.cshtml" />
+    <Content Include="Views\editLeague.cshtml" />
+    <Content Include="Views\matches.cshtml" />
+    <Content Include="Views\listMatches.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -518,9 +608,14 @@
   <ItemGroup>
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
-    <Compile Include="App_Start\Startup.Auth.cs" />
+    <Compile Include="App_Start\Startup.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
     <Compile Include="Routing\DefaultRoute.cs" />
     <Compile Include="Routing\DefaultRouteHandler.cs" />
@@ -528,15 +623,23 @@
     <Compile Include="Startup.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Images\" />
     <Folder Include="Views\Shared\" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{82A7F48D-3B50-4B1E-B82E-3ADA8210C358}" />
   </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+  </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
     <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationIcon>favicon.ico</ApplicationIcon>
   </PropertyGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <Import Project="$(VSToolsPath)\WebApplications\Microsoft.WebApplication.targets" Condition="'$(VSToolsPath)' != ''" />
@@ -550,8 +653,6 @@
           <DevelopmentServerPort>8080</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>
           <IISUrl>http://localhost:4040/</IISUrl>
-          <OverrideIISAppRootUrl>True</OverrideIISAppRootUrl>
-          <IISAppRootUrl>http://localhost:4040/</IISAppRootUrl>
           <NTLMAuthentication>False</NTLMAuthentication>
           <UseCustomServer>False</UseCustomServer>
           <CustomServerUrl>

@@ -1,0 +1,97 @@
+﻿<link href="~/Views/matches.css" rel="stylesheet" type="text/css" />    
+
+<div class="jumbotron jumbotron-sm">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12 col-lg-12">
+                <h1 class="h1">
+                    SportLiga <small>Nuevo Partido</small>
+                </h1>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="container" ng-init="loadLeagues()" > 
+    <div class="row">
+        <div class="col-md-8">
+            <div class="well well-sm">
+                <form ng-submit="addNewMatch()">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label>
+                                    Escoge una Liga
+                                </label>
+                                <div class="input-group">
+                                    <select class="form-control input-lg" ng-model="Match.League" ng-options="liga.NombreLiga for liga in ligas" ng-change="inicio2(Match.League.Id)"></select><br>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label>
+                                    Equipo 1
+                                </label>
+                                <div class="input-group">
+                                    <select class="form-control input-lg" ng-model="Match.Team1" ng-options="team.Nombre for team in FilterTeamsSelect"></select><br>
+                                </div>
+                            </div>
+                            <div class="form-group" role="form">
+                                <label>
+                                    Equipo 2
+                                </label>
+                                <div class="input-group">
+                                    <select class="form-control input-lg" ng-model="Match.Team2" ng-options="team.Nombre for team in FilterTeamsSelect"></select><br>
+                                </div>
+
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="checkbox">
+                                <label><input type="checkbox" ng-model="Match.IsArchived" />Activo</label>
+                            </div>
+                            <div class="form-group">
+                                <label for="name">
+                                    Hora y fecha
+                                </label>
+                                <textarea style="overflow: auto; resize: none" ng-model="Match.HorayFecha" class="form-control" rows="2" cols="1" required="required"
+                                          placeholder="Hora y fecha"></textarea>
+
+                                <label for="name">
+                                    Lugar
+                                </label>
+                                <textarea ng-model="Match.Lugar" style="overflow: auto; resize: none" class="form-control" rows="2" cols="1" required="required"
+                                          placeholder="Lugar"></textarea>
+                                <label>
+                                    <!-- Select date and time:-->
+                                    <!--<input kendo-date-time-picker
+                                               ng-model="str"
+                                               k-ng-model="obj" />-->
+                                </label>
+                            </div>
+                        </div>
+                        <div class="col-md-12">
+                            <a class="btn btn-primary pull-left" href="/profile">Regresar</a>
+                            <button type="submit" class="btn btn-primary pull-right" id="btnContactUs">
+                                Guardar Partido
+                            </button>                          
+                        </div>                       
+                    </div>
+                </form>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <form>
+                <span class="glyphicon glyphicon-globe"></span> Our office
+                <address>
+                    <strong>SportLiga, Co.</strong><br>
+                    Versión 1.0<br>
+                    San Pedro Sula,HN<br>
+                    <abbr title="Teléfono">
+                        P:
+                    </abbr>
+                    (123) 456-7890
+                </address>               
+            </form>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,72 @@
+﻿/*
+    Note: It is best to use a less version of this file ( see http://css2less.cc
+    For the media queries use @screen-sm-min instead of 768px.
+    For .omb_spanOr use @body-bg instead of white.
+*/
+  .css-form .tq-validate.ng-invalid { background-color: #FA787E; }
+
+  @media (min-width: 768px) {
+      .omb_row-sm-offset-3 div:first-child[class*="col-"] { margin-left: 25%; }
+  }
+
+  .omb_login .omb_authTitle {
+      line-height: 300%;
+      text-align: center;
+  }
+
+  .omb_login .omb_socialButtons a {
+      color: white;
+      opacity: 0.9;
+  }
+
+  .omb_login .omb_socialButtons a:hover {
+      color: white;
+      opacity: 1;
+  }
+
+  .omb_login .omb_socialButtons .omb_btn-facebook { background: #3b5998; }
+
+  .omb_login .omb_socialButtons .omb_btn-twitter { background: #00aced; }
+
+  .omb_login .omb_socialButtons .omb_btn-google { background: #c32f10; }
+
+
+  .omb_login .omb_loginOr {
+      color: #aaa;
+      font-size: 1.5em;
+      margin-bottom: 1em;
+      margin-top: 1em;
+      padding-bottom: 0.5em;
+      padding-top: 0.5em;
+      position: relative;
+  }
+
+  .omb_login .omb_loginOr .omb_hrOr {
+      background-color: #cdcdcd;
+      height: 1px;
+      margin-bottom: 0px !important;
+      margin-top: 0px !important;
+  }
+
+  .omb_login .omb_loginOr .omb_spanOr {
+      background-color: white;
+      display: block;
+      left: 50%;
+      margin-left: -1.5em;
+      position: absolute;
+      text-align: center;
+      top: -0.6em;
+      width: 3em;
+  }
+
+  .omb_login .omb_loginForm .input-group.i { width: 2em; }
+
+  .omb_login .omb_loginForm .help-block { color: red; }
+
+	
+  @media (min-width: 768px) {
+      .omb_login .omb_forgotPwd {
+          margin-top: 10px;
+          text-align: right;
+      }
+  }

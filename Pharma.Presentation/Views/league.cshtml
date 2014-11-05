@@ -1,0 +1,122 @@
+﻿<div class="btn-toolbar">
+
+</div>
+
+<div class="jumbotron jumbotron-sm">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12 col-lg-12">
+                <h1 class="h1">
+                    SportLiga <small>Equipos</small>
+                </h1>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<div class="row clearfix">
+    <div class="col-md-6 column">      
+        <button  ng-disabled="isEditing" ng-click="isAdding()" class="btn btn-primary">
+            Nuevo Equipo
+        </button>     
+    </div>
+
+    <div class="col-md-6 column">
+        
+    </div>
+</div>
+
+<div class="panel-body" ng-init="loadTeams()">
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>
+                    <a href="" ng-click="ordenarPor('Nombre')">
+                        Nombre/s
+                    </a>
+                    <span class="caret" style="cursor: pointer" ng-click="ordenarPor('-Nombre')"></span>
+                </th>
+                <th>Activo</th>
+                <th>      </th>
+                <th>Editar</th>
+                <th>Eliminar</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr ng-repeat="team in FilterTeams">
+                <td>{{team.Id}}</td>
+                <td>{{team.Nombre}}</td> 
+                <td>{{team.IsArchived}}</td> 
+                <td><img ng-src="{{team.Logo}}" style="height: 70px; width: 70px" alt=""/></td>            
+                <td>
+                    <a href="" ng-show="!letAdd" ng-click="editTeam(team.Id,team.Nombre,team.IsArchived,team.Logo,team.SitioWeb)"><i class=" glyphicon glyphicon-pencil"></i></a>                  
+                </td>
+                <td>
+                    <a href="" ng-click="deleteTeam(team.Id)"><i class="glyphicon glyphicon-remove"></i></a>
+                </td>               
+            </tr>
+        </tbody>
+    </table>
+
+    <div class="row" ng-show="letAdd">
+        <form class="col-sm-6 col-sm-offset-3 col-md-4 col-md-offset-4" ng-submit="addNewTeam()">
+            <h2 class="text-center">Nuevo Equipo</h2>
+            <div class="form-box">
+                <div class="form-group">
+                    <input ng-model="Equipo.Nombre" type="text" class="form-control" placeholder="Nombre de Equipo" required />
+                </div>
+                <div class="form-group">
+                    <input ng-model="Equipo.SitioWeb" type="text" class="form-control" placeholder="Sitio Web" required />
+                </div>
+                <div class="checkbox">
+                    <label><input type="checkbox" ng-model="Equipo.IsArchived" />Archivado</label>
+                </div>
+                <div class="form-group">
+                    <label>Logo</label>
+                    <input ng-model="Equipo.Logo" id="upload" type="file" required/>
+                    <p class="help-block">
+                        Escoger el logo del equipo
+                    </p>
+                </div>        
+                <div class="form-group">
+                    <button class="btn btn-primary btn-block" type="submit">Agregar</button>
+                    <button class="btn btn-primary btn-block" type="button" ng-click="cancelAdd()">Cancelar</button>
+                </div>
+            </div>
+        </form>
+    </div>
+
+    <div class="row" ng-show="isEditing" >
+        <form class="col-sm-6 col-sm-offset-3 col-md-4 col-md-offset-4" ng-submit="finishEditing()">
+            <h2 class="text-center">Editar Equipo</h2>
+            <div class="form-box">
+                <div class="form-group">
+                    <input ng-model="EquipoEdit.Id" type="text" class="form-control" placeholder="ID de equipo" required disabled />
+                </div>
+                <div class="form-group">
+                    <input ng-model="EquipoEdit.Nombre" type="text" class="form-control" placeholder="Nombre de Equipo" required />
+                </div>
+                <div class="form-group">
+                    <input ng-model="EquipoEdit.SitioWeb" type="text" class="form-control" placeholder="Sitio Web" required />
+                </div>
+                <div class="checkbox">
+                    <label><input type="checkbox" ng-model="EquipoEdit.IsArchived" />Archivado</label>
+                </div>
+                <div class="form-group">
+                    <label>Logo</label>
+                    <input ng-model="EquipoEdit.Logo" type="file" id="exampleInputFile" required />
+                    <p class="help-block">
+                        Escoger el logo del equipo
+                    </p>
+                </div>   
+                <div class="form-group">
+                    <button class="btn btn-primary btn-block" type="submit">Guardar</button>
+                    <button class="btn btn-primary btn-block" type="button" ng-click="cancelEdit()">Cancelar</button>
+                </div>
+            </div>
+        </form>
+    </div>
+
+</div>

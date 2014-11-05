@@ -4,12 +4,11 @@
 // </copyright>
 // --------------------------------------------------------------------------------------------------------------------
 
+using System.Web.Routing;
+using App.Pharma.Presentation.Routing;
+
 namespace App.Pharma.Presentation
 {
-    using System.Web.Routing;
-
-    using App.Pharma.Presentation.Routing;
-
     public class RouteConfig
     {
         public static void RegisterRoutes(RouteCollection routes)

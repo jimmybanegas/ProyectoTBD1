@@ -4,13 +4,13 @@
 // </copyright>
 // --------------------------------------------------------------------------------------------------------------------
 
+using System;
+using System.Web;
+using System.Web.Routing;
+using System.Web.WebPages;
+
 namespace App.Pharma.Presentation.Routing
 {
-    using System;
-    using System.Web;
-    using System.Web.Routing;
-    using System.Web.WebPages;
-
     public class DefaultRouteHandler : IRouteHandler
     {
         public IHttpHandler GetHttpHandler(RequestContext requestContext)
@@ -20,7 +20,7 @@ namespace App.Pharma.Presentation.Routing
             //     ~/about       -> ~/views/about.cshtml or ~/views/about/index.cshtml
             //     ~/views/about -> ~/views/about.cshtml
             //     ~/xxx         -> ~/views/404.cshtml
-            var filePath = requestContext.HttpContext.Request.AppRelativeCurrentExecutionFilePath;
+            string filePath = requestContext.HttpContext.Request.AppRelativeCurrentExecutionFilePath;
 
             if (filePath == "~/")
             {
@@ -39,7 +39,8 @@ namespace App.Pharma.Presentation.Routing
                 }
             }
 
-            var handler = WebPageHttpHandler.CreateFromVirtualPath(filePath); // returns NULL if .cshtml file wasn't found
+            IHttpHandler handler = WebPageHttpHandler.CreateFromVirtualPath(filePath);
+            // returns NULL if .cshtml file wasn't found
 
             if (handler == null)
             {

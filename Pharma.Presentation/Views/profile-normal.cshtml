@@ -1,0 +1,262 @@
+﻿
+<div class="container" ng-init="loadLeagues() ; loadMatches(); loadPredictions()">
+    <div class="row clearfix">
+        <br />
+        <div class="col-md-2 column">
+            <img alt="140x140" src="http://lorempixel.com/140/140/" class="img-circle" />
+
+            <div class="row clearfix">
+                <div class="col-md-12 column">
+                    <label>        </label>
+                </div>
+            </div>
+            <div class="well">
+                <div class="row clearfix">
+                    <div class="col-md-12 column">
+                        <label>Mis Ligas</label>
+                    </div>
+
+                    <div class="col-md-16 column">
+                        <div class="panel panel-primary" ng-repeat="liga in misLigas" ng-model="myLeague" ng-init='equipos=getTeamsPorLiga(liga.Id)'>
+                            <div class="panel-heading">
+                                <h3 class=" panel-title">
+                                    <!-- {{liga.NombreLiga}} <span class="pull-right clickable"><i class="glyphicon glyphicon-minus"></i></span>-->
+                                    <a href="#" ng-click="loadSuscriptors(liga.Id)" data-toggle="modal" data-target="#t_and_c_d" class="">{{liga.NombreLiga}}</a>
+                                </h3>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-6 column">
+            <h1 class="text-center" style:strong>
+                SportLiga Jimmy Ramos
+            </h1>
+
+            <div class="panel-heading">
+                <div class="input-group col-md-10">
+                    <br />
+                </div>
+            </div>
+
+            <div class="col-md-10 games-schedule">
+                <div class="games-schedule-title">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <h3>Juegos</h3>
+                        </div>
+                        <div class="col-md-6">
+                            <a class="btn btn-primary pull-right" href="#" ng-click="loadPositions()" data-toggle="modal" data-target="#t_and_c_p">Tabla de posiciones</a>   
+                        </div>
+                    </div>
+                </div>
+                <div class="games-schedule-items well" ng-repeat="partido in misPartidos">
+                    <div class="col-md-12" ng-init="liga=getLiga(partido.League)">
+                        <span>{{liga.NombreLiga}}</span>
+                    </div>
+                    <div class="row games-team">
+                        <div class="col-md-5" ng-init="equipo1=getTeam(partido.Team1)">
+                            <img src="http://placehold.it/115x67" alt="Bangladesh" class="img-rounded">
+                            <span>{{equipo1.Nombre}}</span>
+                            <br />
+                        </div>
+                        <div class="col-md-2">
+                            <h4 class="img-circle">VS</h4>
+                        </div>
+
+                        <div class="col-md-5" ng-init="equipo2=getTeam(partido.Team2)">
+                            <img src="http://placehold.it/115x67" alt="Australia" class="img-rounded">
+                            <span>{{equipo2.Nombre}}</span>
+                            <br />
+                        </div>
+                    </div>
+
+                    <div class="row games-info">
+                        <div class="col-md-12">
+                            <br />
+                            <!-- <button class="btn btn-primary pull-right" ng-click="isGuessing()">
+                                  <i class="glyphicon glyphicon-comment" data-toggle="modal" data-target="#t_and_c_m"></i> Predecir
+                              </button>-->
+                            <a ng-hide="{{partido.IsArchived}}" href="#" ng-click="tempPartido(partido.Id)" data-toggle="modal" data-target="#t_and_c_m" class="btn btn-primary pull-right">Predecir/Editar</a>
+                            <p><span class="glyphicon glyphicon-play-circle"></span> {{partido.HorayFecha}} </p>
+
+                            <p class="games-dash">
+                            </p>
+                            <p>Lugar: <small>{{partido.Lugar}}</small></p>
+                        </div>
+                    </div>
+                    <div class="col-md-12 well">
+                        <div class="col-md-6">
+                            <span>Resultado Final</span>
+                        </div>
+                        <div class="col-md-3" ng-show="{{partido.IsArchived}}">
+                            <p><small>{{partido.ResultadoEquipo1}}</small> --- <small>{{partido.ResultadoEquipo2}}</small></p>
+                        </div>
+                        <div class="col-md-3" ng-hide="{{partido.IsArchived}}">
+                            <p><small> -------</small></p>
+                        </div>
+                        <div class="col-md-6" ng-init="prediccion=getPrediction(partido.Id)">
+                            <span>Mi predicción</span>
+                        </div>
+                        <div class="col-md-6">
+                            <p><small>{{prediccion.Equipo1}}</small> --- <small>{{prediccion.Equipo2}}</small></p> 
+                        </div>
+                    </div>
+                    <br />
+                    <br />
+                    <br />
+                    <br />
+                    <br />
+                </div>
+                <br />
+                <br />
+                <br />
+            </div>
+        </div>
+
+        <div class="col-md-4 column">
+
+            <div class="row clearfix">
+                <div class="col-md-12 column">
+                    <ul class="nav nav-pills">
+                        <li class="dropdown pull-right">
+                            <a href="./login" ng-click="logout()">Salir<strong class="caret"></strong></a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+
+            <br />
+            <br />
+            <div class="panel-heading">
+                <div class="input-group col-md-12">
+                    <span class="input-group-addon"><i class="glyphicon glyphicon-search"></i></span>
+                    <input type="text" class="form-control" placeholder="Buscar liga" ng-model="buscar.NombreLiga">
+                </div>
+            </div>
+            <br />
+            <br />
+
+            <div class="col-md-12">
+                <div class="panel panel-primary">
+                    <div class="panel-heading">
+                        <h3 class="panel-title">Ligas recomendadas</h3>
+                    </div>
+                </div>
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>    </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr ng-repeat="liga in ligas | filter:buscar">
+                            <td>
+                                <!-- {{liga.NombreLiga}}-->
+                                <a href="#" ng-click="loadSuscriptors(liga.Id)" data-toggle="modal" data-target="#t_and_c_d" class="">{{liga.NombreLiga}}</a>
+                               <button ng-click="suscribirse(liga)" class="btn btn-primary pull-right">
+                                    <i class="glyphicon glyphicon-ok-sign"></i> Suscribirse
+                                </button>
+                            </td>
+
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+
+<div class="modal fade" id="t_and_c_m" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                <h4 class="modal-title" id="myModalLabel"><strong class="label label-primary">Predecir resultado</strong></h4>
+                <div class="modal-body">
+                    <div class="form-group">
+                        <input type="text" ng-model="PredictionModel.Equipo1" class="form-control input-lg" placeholder="Resultado para equipo 1">
+                    </div>
+                    <div class="form-group">
+                        <input type="text" ng-model="PredictionModel.Equipo2" class="form-control input-lg" placeholder="Resultado para equipo 2">
+                    </div>
+                    <div class="row">
+                        <div class="col-xs-4 col-sm-4 col-md-4">
+                            <button ng-click="addPrediction()" data-dismiss="modal" class="btn btn-lg btn-success btn-block" aria-hidden="true">Guardar</button>
+                        </div>
+                        <div class="col-xs-4 col-sm-4 col-md-4">
+                            <button class="btn btn-lg btn-primary btn-block" data-dismiss="modal" aria-hidden="true">Volver</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+
+
+<div class="modal fade" id="t_and_c_d" tabindex="-1" role="dialog" aria-labelledby="myModalLabel2" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                <h4 class="modal-title" id="myModalLabel2"><strong class="label label-primary">Suscriptores</strong></h4>
+                <div class="modal-body">
+                    <table class="table table-bordered">
+                        <tbody>
+                            <tr ng-repeat="user in suscriptores">
+                                <td><strong>{{user.Nombre}}</strong></td>
+                                <td><i>{{user.Apellido}}</i></td>
+                                <td>{{user.Email}}</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <div class="row">
+                        <div class="col-xs-4 col-sm-4 col-md-4">
+                            <button class="btn btn-lg btn-primary btn-block" data-dismiss="modal" aria-hidden="true">Volver</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+
+<div class="modal fade" id="t_and_c_p" tabindex="-1" role="dialog" aria-labelledby="myModalLabel3" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                <h4 class="modal-title" id="myModalLabel3"><strong class="label label-primary">Tabla de posiciones</strong></h4>
+                <div class="modal-body">
+                    <table class="table table-bordered">
+                        <tr>
+                            <th>Nombre</th>
+                            <th>Apellido</th>
+                            <th>Acertados</th>
+                            <th>Puntaje</th>
+                       </tr>
+                          <tbody>
+                            <tr ng-repeat="user in posiciones">
+                                <td><strong>{{user.Nombre}}</strong></td>
+                                <td><i>{{user.Apellido}}</i></td>
+                                <td>{{user.PartidosAcertados}}</td>
+                                <td>{{user.Puntaje}}</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <div class="row">
+                        <div class="col-xs-4 col-sm-4 col-md-4">
+                            <button class="btn btn-lg btn-primary btn-block" data-dismiss="modal" aria-hidden="true">Volver</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->

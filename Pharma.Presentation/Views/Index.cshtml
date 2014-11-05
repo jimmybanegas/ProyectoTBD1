@@ -1,5 +1,35 @@
 ﻿@{
-    PageData["title"] = "AngularJS SPA Template for Visual Studio";
+    PageData["title"] = "SportLiga | Jimmy Ramos";
 }
-<h2>Bienvenido a PrediLiga</h2>
-<button ng-click="goToLogin()" class="btn btn-default">Iniciar Sesion</button>
+<link href="~/Views/Index.css" rel="stylesheet" type="text/css" />
+<link href="~/Content/bootstrap.css" rel="stylesheet">
+<!-- Carousel -->
+<div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
+    <!-- Indicators -->
+    <ol class="carousel-indicators">
+        <li data-target="#carousel-example-generic" data-slide-to="0" class="active"></li>
+    </ol>
+    <!-- Wrapper for slides -->
+    <div class="carousel-inner">
+        <div class="item active">
+            <img src="~/Images/Soccer2.jpg" alt="First slide">
+            <!-- Static Header -->
+            <div class="header-text hidden-xs">
+                <div class="col-md-12 text-center">
+                    <h2>
+                        <span>Bienvenido a <strong>SportLiga</strong></span>
+                    </h2>
+                    <br>
+                    <h3>
+                        <span>Fútbol, apuestas ...Social.</span>
+                    </h3>
+                    <br>
+                    <div class="">
+                        <a class="btn btn-theme btn-sm btn-min-block" href="./login">Login</a>
+                        <a class="btn btn-theme btn-sm btn-min-block" href="./register">Register</a>
+                    </div>
+                </div>
+            </div><!-- /header-text -->
+        </div>
+    </div><!-- /carousel -->
+</div>

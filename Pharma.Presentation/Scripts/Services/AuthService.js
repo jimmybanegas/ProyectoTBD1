@@ -1,5 +1,4 @@
 ﻿'use strict';
-
 angular.module('app.services')
     .factory('Auth', function ($http, $cookieStore, Server) {
 
@@ -34,6 +33,7 @@ angular.module('app.services')
                     success(res);
                 }).error(error);
             },
+
             login: function (user, success, error) {
 
                 $http.post(Server.get() + '/login', user).success(function (res) {
@@ -45,10 +45,12 @@ angular.module('app.services')
                     success(res);
                 }).error(error);
             },
+
             loginByCookie: function (res, success, error) {
                 changeUser(res);
                 success(res);
             },
+
             logout: function (success, error) {
                 //$http.post('/logout').success(function () {
                 changeUser({
@@ -57,6 +59,7 @@ angular.module('app.services')
                 });
                 $cookieStore.remove('access_token');
                 localStorage.removeItem('res');
+                
                 success();
                 //}).error(error);
             },
