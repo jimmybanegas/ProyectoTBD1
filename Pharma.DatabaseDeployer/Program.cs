@@ -16,19 +16,27 @@ namespace Pharma.DatabaseDeployer
 
             string connectionString = ConnectionStrings.Get();
 
+            Console.WriteLine(connectionString);
 
-
-            MsSqlConfiguration databaseConfiguration =
-                MsSqlConfiguration.MsSql2008.ShowSql().ConnectionString(x => x.Is(connectionString));
+            MySQLConfiguration databaseConfiguration =
+                MySQLConfiguration.Standard.ShowSql().ConnectionString(x => x.Is(connectionString));
 
             DomainDrivenDatabaseDeployer.DatabaseDeployer dd = null;
-            ISessionFactory sessionFactory = new SessionFactoryBuilder(new MappingScheme(), databaseConfiguration)
+
+         /*  ISessionFactory sessionFactory = new SessionFactoryBuilder(new MappingScheme(), databaseConfiguration)
                 .Build(cfg =>
                 {
                     dd = new DomainDrivenDatabaseDeployer.DatabaseDeployer(cfg);
 
-                });
+                });*/
 
+           ISessionFactory sessionFactory = new SessionFactoryBuilder(new MappingScheme(), databaseConfiguration)
+              .Build(cfg =>
+              {
+                  dd = new DomainDrivenDatabaseDeployer.DatabaseDeployer(cfg);
+
+              });
+            
             Console.WriteLine("");
             Console.WriteLine("Database dropped.");
             dd.Drop();
