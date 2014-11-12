@@ -1,0 +1,28 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<hibernate-mapping assembly="Pharma.Domain" namespace="Pharma.Domain" xmlns="urn:nhibernate-mapping-2.2">
+  <class name="grupos_roles" table="grupos_roles" schema="farmacia">
+    <id name="id_rol" type="Int32">
+      <column name="id_rol" not-null="true" precision="11" scale="0" sql-type="int" />
+      <generator class="identity" />
+    </id>
+    <property name="nombre" type="String">
+      <column name="nombre" not-null="false" length="45" sql-type="varchar" />
+    </property>
+    <set name="privilegios" table="grupos_roles_has_privilegios" schema="farmacia" inverse="true" generic="true">
+      <key>
+        <column name="id_rol" />
+      </key>
+      <many-to-many class="privilegios" fetch="join">
+        <column name="id_privilegio" />
+      </many-to-many>
+    </set>
+    <set name="usuarios" table="usuarios_has_grupos_roles" schema="farmacia" inverse="true" generic="true">
+      <key>
+        <column name="id_rol" />
+      </key>
+      <many-to-many class="usuarios" fetch="join">
+        <column name="usuario" />
+      </many-to-many>
+    </set>
+  </class>
+</hibernate-mapping>

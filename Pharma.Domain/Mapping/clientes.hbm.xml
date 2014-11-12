@@ -1,0 +1,30 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<hibernate-mapping assembly="Pharma.Domain" namespace="Pharma.Domain" xmlns="urn:nhibernate-mapping-2.2">
+  <class name="clientes" table="clientes" schema="farmacia">
+    <id name="id_cliente" type="Int32">
+      <column name="id_cliente" not-null="true" precision="11" scale="0" sql-type="int" />
+      <generator class="identity" />
+    </id>
+    <property name="nombre" type="String">
+      <column name="nombre" not-null="false" length="45" sql-type="varchar" />
+    </property>
+    <set name="contactos_clientes" inverse="true" generic="true">
+      <key>
+        <column name="id_cliente" />
+      </key>
+      <one-to-many class="contactos_clientes" />
+    </set>
+    <set name="direcciones_clientes" inverse="true" generic="true">
+      <key>
+        <column name="id_cliente" />
+      </key>
+      <one-to-many class="direcciones_clientes" />
+    </set>
+    <set name="facturas" inverse="true" generic="true">
+      <key>
+        <column name="id_cliente" />
+      </key>
+      <one-to-many class="facturas" />
+    </set>
+  </class>
+</hibernate-mapping>

@@ -1,0 +1,605 @@
+<?xml version="1.0" encoding="utf-8"?>
+<hibernate-mapping assembly="Pharma.Domain" namespace="Pharma.Domain" p1:Guid="8ffeb424-00f8-4fc8-8f43-63e250c76771" xmlns:p1="http://devart.com/schemas/EntityDeveloper/1.0" xmlns="urn:nhibernate-mapping-2.2">
+  <class name="ajustes" table="ajustes" schema="farmacia" p1:Guid="15ff93b3-9b08-46ca-b025-342dc6c5827b">
+    <id name="id_ajuste" type="Int32" p1:ValidateRequired="True" p1:Guid="3bf0ab89-ec74-41d2-b24e-a2688a6dd4b8">
+      <column name="id_ajuste" not-null="true" precision="11" scale="0" sql-type="int" p1:unicode="false" />
+      <generator class="identity" />
+    </id>
+    <property name="fecha" type="DateTime" p1:nullable="true" p1:ValidateRequired="False" p1:Guid="844aaf25-ed92-41b6-8ed9-92620cc5076d">
+      <column name="fecha" not-null="false" sql-type="date" p1:unicode="false" />
+    </property>
+    <property name="cant_producto" type="Int32" p1:nullable="true" p1:ValidateRequired="False" p1:Guid="6c32ac76-b486-4ad0-aea9-7055fbbb46e3">
+      <column name="cant_producto" not-null="false" precision="11" scale="0" sql-type="int" p1:unicode="false" />
+    </property>
+    <property name="id_tipotran" type="Int32" p1:ValidateRequired="True" p1:Guid="75361563-6a91-4292-a103-cec1dfb5375f">
+      <column name="id_tipotran" not-null="true" precision="11" scale="0" sql-type="int" p1:unicode="false" />
+    </property>
+    <many-to-one name="tipo_transacciones" class="tipo_transacciones" p1:AssociationGuid="8bdfb2fc-8529-49ee-8c03-9d2ab6e0f75b" p1:Guid="d84e3d5b-4313-41c8-b1ed-2386a27ab35a">
+      <column name="id_tipotran" not-null="true" precision="11" scale="0" sql-type="int" p1:unicode="false" />
+    </many-to-one>
+    <set name="detalle_ajustes" inverse="true" generic="true" p1:AssociationGuid="23d79f6a-b697-446f-b013-38a3b21168b7" p1:Guid="22281adb-3443-4b33-9a23-0b51db860051">
+      <key>
+        <column name="id_ajuste" />
+      </key>
+      <one-to-many class="detalle_ajustes" />
+    </set>
+  </class>
+  <class name="categoria_productos" table="categoria_productos" schema="farmacia" p1:Guid="3ded7632-c64b-4423-b0b4-2915d43367c0">
+    <id name="cod_categoria" type="Int32" p1:ValidateRequired="True" p1:Guid="bae31ec5-6bed-4bd4-8d69-c1e26dc3e884">
+      <column name="cod_categoria" not-null="true" precision="11" scale="0" sql-type="int" p1:unicode="false" />
+      <generator class="identity" />
+    </id>
+    <property name="nombre" type="String" p1:nullable="true" p1:ValidateMaxLength="45" p1:ValidateRequired="False" p1:Guid="c15a7512-e77c-4d0e-ba5e-2b71f5ab29e2">
+      <column name="nombre" not-null="false" length="45" sql-type="varchar" p1:unicode="true" />
+    </property>
+    <set name="productos" inverse="true" generic="true" p1:AssociationGuid="3d009f79-25f5-4406-8335-27e7a9116938" p1:Guid="d075cf7b-489f-431e-80cb-8d5c14923540">
+      <key>
+        <column name="cod_categoria" />
+      </key>
+      <one-to-many class="productos" />
+    </set>
+  </class>
+  <class name="clientes" table="clientes" schema="farmacia" p1:Guid="6d9e4f03-7fae-41d1-9217-89d0438f02e2">
+    <id name="id_cliente" type="Int32" p1:ValidateRequired="True" p1:Guid="678da714-38a5-4e99-a387-4bb787e0287e">
+      <column name="id_cliente" not-null="true" precision="11" scale="0" sql-type="int" p1:unicode="false" />
+      <generator class="identity" />
+    </id>
+    <property name="nombre" type="String" p1:nullable="true" p1:ValidateMaxLength="45" p1:ValidateRequired="False" p1:Guid="9f1c5fc2-5e1a-4947-a57a-7e9a8ad95284">
+      <column name="nombre" not-null="false" length="45" sql-type="varchar" p1:unicode="true" />
+    </property>
+    <set name="contactos_clientes" inverse="true" generic="true" p1:AssociationGuid="63b93753-9972-4c41-92cc-4f10dff89681" p1:Guid="2457c71c-5acc-4664-ba46-f8b0af6e1f18">
+      <key>
+        <column name="id_cliente" />
+      </key>
+      <one-to-many class="contactos_clientes" />
+    </set>
+    <set name="direcciones_clientes" inverse="true" generic="true" p1:AssociationGuid="f38fc902-0e6a-4d65-977f-493bc489af00" p1:Guid="fa3bbd81-5bb0-431a-a070-8bb5f0fa6753">
+      <key>
+        <column name="id_cliente" />
+      </key>
+      <one-to-many class="direcciones_clientes" />
+    </set>
+    <set name="facturas" inverse="true" generic="true" p1:AssociationGuid="6fb41f1e-dc9b-42f7-9ca5-936d6cb779be" p1:Guid="a441e073-dcf0-488b-84d4-fcf0079d2c58">
+      <key>
+        <column name="id_cliente" />
+      </key>
+      <one-to-many class="facturas" />
+    </set>
+  </class>
+  <class name="compras" table="compras" schema="farmacia" p1:Guid="41b0ace0-d1fd-4c23-aa0f-73e1326a1f59">
+    <id name="id_compra" type="Int32" p1:ValidateRequired="True" p1:Guid="84ff8b8b-64d2-4821-bc04-a5bafdacb6d1">
+      <column name="id_compra" not-null="true" precision="11" scale="0" sql-type="int" p1:unicode="false" />
+      <generator class="identity" />
+    </id>
+    <property name="fecha" type="DateTime" p1:nullable="true" p1:ValidateRequired="False" p1:Guid="03a0cbde-9035-4b13-8337-58d305faba4f">
+      <column name="fecha" not-null="false" sql-type="date" p1:unicode="false" />
+    </property>
+    <property name="total" type="Double" p1:nullable="true" p1:ValidateRequired="False" p1:Guid="b162d931-7884-4fad-b024-1c5621171a9e">
+      <column name="total" not-null="false" sql-type="double" p1:unicode="false" />
+    </property>
+    <property name="id_proveedor" type="Int32" p1:ValidateRequired="True" p1:Guid="f2fc6840-98dd-4e95-98ad-2c3ad2882ffc">
+      <column name="id_proveedor" not-null="true" precision="11" scale="0" sql-type="int" p1:unicode="false" />
+    </property>
+    <many-to-one name="proveedores" class="proveedores" p1:AssociationGuid="c2e74048-8285-4c5b-a1b3-6f2ab5d69a93" p1:Guid="1d2b88f5-cf5d-4dea-951a-b78e930830e2">
+      <column name="id_proveedor" not-null="true" precision="11" scale="0" sql-type="int" p1:unicode="false" />
+    </many-to-one>
+    <set name="detalle_compras" inverse="true" generic="true" p1:AssociationGuid="6ed7df2c-05a8-466c-ae6b-80a83fc01b4a" p1:Guid="270173a8-c1a4-418c-a506-127cfecfb948">
+      <key>
+        <column name="id_compra" />
+      </key>
+      <one-to-many class="detalle_compras" />
+    </set>
+  </class>
+  <class name="contactos_clientes" table="contactos_clientes" schema="farmacia" p1:Guid="6c17a819-3b0e-4cb0-8a67-d9802f48b777">
+    <composite-id>
+      <key-property name="nombre" type="String" p1:ValidateMaxLength="50" p1:ValidateRequired="True" p1:Guid="8b7cfe8c-0e18-4e38-8989-50da17611c08">
+        <column name="nombre" not-null="true" length="50" sql-type="varchar" p1:unicode="true" />
+      </key-property>
+      <key-property name="correo" type="String" p1:ValidateMaxLength="20" p1:ValidateRequired="True" p1:Guid="85bf05dd-595e-4104-8f0f-b3d22addb711">
+        <column name="correo" not-null="true" length="20" sql-type="varchar" p1:unicode="true" />
+      </key-property>
+      <key-property name="telefono" type="String" p1:ValidateMaxLength="15" p1:ValidateRequired="True" p1:Guid="741e7de1-45f3-42b1-8309-a1fa80ff993b">
+        <column name="telefono" not-null="true" length="15" sql-type="varchar" p1:unicode="true" />
+      </key-property>
+      <key-property name="id_cliente" type="Int32" p1:ValidateRequired="True" p1:Guid="b66000c3-2d65-40e2-a994-7c1d66d0317d">
+        <column name="id_cliente" not-null="true" precision="11" scale="0" sql-type="int" p1:unicode="false" />
+      </key-property>
+    </composite-id>
+    <many-to-one name="clientes" class="clientes" p1:AssociationGuid="63b93753-9972-4c41-92cc-4f10dff89681" p1:Guid="8b2dc8ec-4fb1-40df-a51b-49286034b6fa">
+      <column name="id_cliente" not-null="true" precision="11" scale="0" sql-type="int" p1:unicode="false" />
+    </many-to-one>
+  </class>
+  <class name="cotizaciones" table="cotizaciones" schema="farmacia" p1:Guid="2ec897c1-3ac0-4deb-837b-fbd27c9ebd81">
+    <id name="id_cotizacion" type="Int32" p1:ValidateRequired="True" p1:Guid="1f76dd28-7543-4c93-a0bb-07dc2cc9fbc8">
+      <column name="id_cotizacion" not-null="true" precision="11" scale="0" sql-type="int" p1:unicode="false" />
+      <generator class="identity" />
+    </id>
+    <property name="fecha" type="DateTime" p1:nullable="true" p1:ValidateRequired="False" p1:Guid="0ecba5ff-d794-4a69-9591-84515dccf7d6">
+      <column name="fecha" not-null="false" sql-type="date" p1:unicode="false" />
+    </property>
+    <property name="tota" type="Double" p1:nullable="true" p1:ValidateRequired="False" p1:Guid="ecc44b7e-8d67-47b5-8454-a94888d80c32">
+      <column name="tota" not-null="false" sql-type="double" p1:unicode="false" />
+    </property>
+    <property name="id_proveedor" type="Int32" p1:ValidateRequired="True" p1:Guid="bcffa04c-8163-4141-9048-3c4219a2357e">
+      <column name="id_proveedor" not-null="true" precision="11" scale="0" sql-type="int" p1:unicode="false" />
+    </property>
+    <many-to-one name="proveedores" class="proveedores" p1:AssociationGuid="226755b6-0cdf-456d-9219-0b16f17200c4" p1:Guid="4f6ec818-a495-4283-a9a7-0239259de458">
+      <column name="id_proveedor" not-null="true" precision="11" scale="0" sql-type="int" p1:unicode="false" />
+    </many-to-one>
+    <set name="detalle_cotizaciones" inverse="true" generic="true" p1:AssociationGuid="f0c87488-3a87-4acd-8253-a01fbf1b0a7f" p1:Guid="f55f2934-0c82-4ebc-a8b1-27ac5615dd0c">
+      <key>
+        <column name="id_cotizacion" />
+      </key>
+      <one-to-many class="detalle_cotizaciones" />
+    </set>
+  </class>
+  <class name="detalle_ajustes" table="detalle_ajustes" schema="farmacia" p1:Guid="543eb12d-e4b7-4382-9d7d-94c7220835bf">
+    <composite-id>
+      <key-property name="num_detalle" type="Int32" p1:ValidateRequired="True" p1:Guid="b0fede78-2c44-48f9-b6e7-ec5934157d8f">
+        <column name="num_detalle" not-null="true" precision="11" scale="0" sql-type="int" p1:unicode="false" />
+      </key-property>
+      <key-property name="id_ajuste" type="Int32" p1:ValidateRequired="True" p1:Guid="3998a4c0-4fde-42d8-b529-77bde731682b">
+        <column name="id_ajuste" not-null="true" precision="11" scale="0" sql-type="int" p1:unicode="false" />
+      </key-property>
+    </composite-id>
+    <property name="cantidad" type="Int32" p1:nullable="true" p1:ValidateRequired="False" p1:Guid="c6a7223c-ad08-4f9f-87bb-6eb263d39697">
+      <column name="cantidad" not-null="false" precision="11" scale="0" sql-type="int" p1:unicode="false" />
+    </property>
+    <property name="cod_prod" type="Int32" p1:ValidateRequired="True" p1:Guid="7c48e289-55bb-4966-9b9f-e3b197047a4a">
+      <column name="cod_prod" not-null="true" precision="11" scale="0" sql-type="int" p1:unicode="false" />
+    </property>
+    <many-to-one name="ajustes" class="ajustes" p1:AssociationGuid="23d79f6a-b697-446f-b013-38a3b21168b7" p1:Guid="c0716a09-e6cf-45de-98c6-0d2aabeb2c63">
+      <column name="id_ajuste" not-null="true" precision="11" scale="0" sql-type="int" p1:unicode="false" />
+    </many-to-one>
+    <many-to-one name="productos" class="productos" p1:AssociationGuid="5673fb9a-ff8e-49c7-9b6f-1ab2e9ad59b3" p1:Guid="cad334bc-c853-4f05-8326-e85e60cf17a0">
+      <column name="cod_prod" not-null="true" precision="11" scale="0" sql-type="int" p1:unicode="false" />
+    </many-to-one>
+  </class>
+  <class name="detalle_compras" table="detalle_compras" schema="farmacia" p1:Guid="3d411d1b-9315-44d9-8051-899c137f03da">
+    <composite-id>
+      <key-property name="num_detalle" type="Int32" p1:ValidateRequired="True" p1:Guid="d42c1c21-129c-4684-b658-66a87346c115">
+        <column name="num_detalle" not-null="true" precision="11" scale="0" sql-type="int" p1:unicode="false" />
+      </key-property>
+      <key-property name="id_compra" type="Int32" p1:ValidateRequired="True" p1:Guid="d921da01-52dc-4623-9612-8e0767608007">
+        <column name="id_compra" not-null="true" precision="11" scale="0" sql-type="int" p1:unicode="false" />
+      </key-property>
+    </composite-id>
+    <property name="cantidad" type="Int32" p1:nullable="true" p1:ValidateRequired="False" p1:Guid="a6d6cf6a-a4ab-4533-b017-b02904314295">
+      <column name="cantidad" not-null="false" precision="11" scale="0" sql-type="int" p1:unicode="false" />
+    </property>
+    <property name="precio_compra" type="Double" p1:nullable="true" p1:ValidateRequired="False" p1:Guid="794ac335-1631-4002-b6bf-fa70fa675089">
+      <column name="precio_compra" not-null="false" sql-type="double" p1:unicode="false" />
+    </property>
+    <property name="subtotal" type="Double" p1:nullable="true" p1:ValidateRequired="False" p1:Guid="d8efbc6c-cb62-4126-9b5e-5d86b6cff226">
+      <column name="subtotal" not-null="false" sql-type="double" p1:unicode="false" />
+    </property>
+    <property name="cod_prod" type="Int32" p1:ValidateRequired="True" p1:Guid="f051ef0f-dfe2-4e76-9d58-0e065a16259e">
+      <column name="cod_prod" not-null="true" precision="11" scale="0" sql-type="int" p1:unicode="false" />
+    </property>
+    <many-to-one name="compras" class="compras" p1:AssociationGuid="6ed7df2c-05a8-466c-ae6b-80a83fc01b4a" p1:Guid="1f64a307-ae2f-4858-a58c-1879e7685135">
+      <column name="id_compra" not-null="true" precision="11" scale="0" sql-type="int" p1:unicode="false" />
+    </many-to-one>
+    <many-to-one name="productos" class="productos" p1:AssociationGuid="11af1c3c-20c1-4bfa-9973-fa7f2e85feb9" p1:Guid="28300d7a-78fd-4079-ab97-4b157dae07fd">
+      <column name="cod_prod" not-null="true" precision="11" scale="0" sql-type="int" p1:unicode="false" />
+    </many-to-one>
+  </class>
+  <class name="detalle_cotizaciones" table="detalle_cotizaciones" schema="farmacia" p1:Guid="a722996e-73ef-415d-b8a4-22c168298337">
+    <composite-id>
+      <key-property name="num_detalle" type="Int32" p1:ValidateRequired="True" p1:Guid="d01ab55b-93db-463f-b0d2-fc122b17e287">
+        <column name="num_detalle" not-null="true" precision="11" scale="0" sql-type="int" p1:unicode="false" />
+      </key-property>
+      <key-property name="id_cotizacion" type="Int32" p1:ValidateRequired="True" p1:Guid="c001d102-0496-41a7-8b7f-66d0ee7b34d7">
+        <column name="id_cotizacion" not-null="true" precision="11" scale="0" sql-type="int" p1:unicode="false" />
+      </key-property>
+    </composite-id>
+    <property name="cantidad" type="Int32" p1:nullable="true" p1:ValidateRequired="False" p1:Guid="b8dd7942-3141-44b3-90b0-5b2e6c901a96">
+      <column name="cantidad" not-null="false" precision="11" scale="0" sql-type="int" p1:unicode="false" />
+    </property>
+    <property name="precio_unit" type="Double" p1:nullable="true" p1:ValidateRequired="False" p1:Guid="bacaf1ef-5ffd-44a1-8550-6e5f5eae4d6a">
+      <column name="precio_unit" not-null="false" sql-type="double" p1:unicode="false" />
+    </property>
+    <property name="cod_prod" type="Int32" p1:ValidateRequired="True" p1:Guid="bc5c0ec3-d1bb-472a-822c-84cbc4416b0b">
+      <column name="cod_prod" not-null="true" precision="11" scale="0" sql-type="int" p1:unicode="false" />
+    </property>
+    <many-to-one name="cotizaciones" class="cotizaciones" p1:AssociationGuid="f0c87488-3a87-4acd-8253-a01fbf1b0a7f" p1:Guid="526f5735-855d-4506-88ef-df1158500fc6">
+      <column name="id_cotizacion" not-null="true" precision="11" scale="0" sql-type="int" p1:unicode="false" />
+    </many-to-one>
+    <many-to-one name="productos" class="productos" p1:AssociationGuid="ce150da5-de9f-4339-89de-17db5c1f462b" p1:Guid="52b2e4b1-b0dd-42a1-b27e-def5c412de1f">
+      <column name="cod_prod" not-null="true" precision="11" scale="0" sql-type="int" p1:unicode="false" />
+    </many-to-one>
+  </class>
+  <class name="detalle_oc" table="detalle_oc" schema="farmacia" p1:Guid="e4e9d596-c95a-4cd2-937b-b1212455164c">
+    <composite-id>
+      <key-property name="num_detalle" type="Int32" p1:ValidateRequired="True" p1:Guid="ff788a49-9d74-4a8a-8ff5-840ff58d2c8d">
+        <column name="num_detalle" not-null="true" precision="11" scale="0" sql-type="int" p1:unicode="false" />
+      </key-property>
+      <key-property name="id_ordencompra" type="Int32" p1:ValidateRequired="True" p1:Guid="1c3cb52a-095c-4a8d-a04f-b4621fde0f47">
+        <column name="id_ordencompra" not-null="true" precision="11" scale="0" sql-type="int" p1:unicode="false" />
+      </key-property>
+    </composite-id>
+    <property name="cantidad" type="Int32" p1:nullable="true" p1:ValidateRequired="False" p1:Guid="e66b5f4d-ac74-4218-9206-1731f0e75ebb">
+      <column name="cantidad" not-null="false" precision="11" scale="0" sql-type="int" p1:unicode="false" />
+    </property>
+    <property name="subtotal" type="Double" p1:nullable="true" p1:ValidateRequired="False" p1:Guid="cc9bd374-0ffb-43f9-bcce-c98ebceb6be6">
+      <column name="subtotal" not-null="false" sql-type="double" p1:unicode="false" />
+    </property>
+    <property name="precio_unit" type="Double" p1:nullable="true" p1:ValidateRequired="False" p1:Guid="55d8b596-fa3a-441f-87c3-8574cf2d2a7d">
+      <column name="precio_unit" not-null="false" sql-type="double" p1:unicode="false" />
+    </property>
+    <property name="cod_prod" type="Int32" p1:ValidateRequired="True" p1:Guid="3ffed631-d88e-4d83-83c0-700ebce723ea">
+      <column name="cod_prod" not-null="true" precision="11" scale="0" sql-type="int" p1:unicode="false" />
+    </property>
+    <many-to-one name="ordenes_de_compra" class="ordenes_de_compra" p1:AssociationGuid="79dbf323-8a45-4507-a4b5-c94cb8b54d3a" p1:Guid="f839725b-b0b5-49d0-9eac-e9f42b3a8465">
+      <column name="id_ordencompra" not-null="true" precision="11" scale="0" sql-type="int" p1:unicode="false" />
+    </many-to-one>
+    <many-to-one name="productos" class="productos" p1:AssociationGuid="7dd4f146-a131-4f62-af75-f2bd71cd6ed2" p1:Guid="5426f3c6-3b7f-4d4f-83b1-2470fe07af8b">
+      <column name="cod_prod" not-null="true" precision="11" scale="0" sql-type="int" p1:unicode="false" />
+    </many-to-one>
+  </class>
+  <class name="detallle_facturas" table="detallle_facturas" schema="farmacia" p1:Guid="fe93d74d-9b1c-46bd-91e5-61122bc73081">
+    <composite-id>
+      <key-property name="num_detalle" type="Int32" p1:ValidateRequired="True" p1:Guid="583c84c1-3205-4f6d-915a-1901de75dd1f">
+        <column name="num_detalle" not-null="true" precision="11" scale="0" sql-type="int" p1:unicode="false" />
+      </key-property>
+      <key-property name="num_factura" type="Int32" p1:ValidateRequired="True" p1:Guid="e50897b8-5d7b-4672-9cd1-dd1864d979ee">
+        <column name="num_factura" not-null="true" precision="11" scale="0" sql-type="int" p1:unicode="false" />
+      </key-property>
+    </composite-id>
+    <property name="precio_venta" type="Double" p1:nullable="true" p1:ValidateRequired="False" p1:Guid="9f7100fa-a69c-405d-89f2-8104c8530ab1">
+      <column name="precio_venta" not-null="false" sql-type="double" p1:unicode="false" />
+    </property>
+    <property name="cantidad" type="Int32" p1:nullable="true" p1:ValidateRequired="False" p1:Guid="ecec7722-45bc-4f34-86e4-9d282cb0b61d">
+      <column name="cantidad" not-null="false" precision="11" scale="0" sql-type="int" p1:unicode="false" />
+    </property>
+    <property name="subtotal" type="Double" p1:nullable="true" p1:ValidateRequired="False" p1:Guid="5580e929-fa67-4400-9ae9-42e28aed329b">
+      <column name="subtotal" not-null="false" sql-type="double" p1:unicode="false" />
+    </property>
+    <property name="cod_prod" type="Int32" p1:ValidateRequired="True" p1:Guid="6a7362c1-47c0-464b-ad7a-903771782097">
+      <column name="cod_prod" not-null="true" precision="11" scale="0" sql-type="int" p1:unicode="false" />
+    </property>
+    <many-to-one name="facturas" class="facturas" p1:AssociationGuid="bc9c762d-0737-4a7b-a1cd-af65470ce0a7" p1:Guid="5c1a6081-e750-4c29-a3dc-279a868bfa88">
+      <column name="num_factura" not-null="true" precision="11" scale="0" sql-type="int" p1:unicode="false" />
+    </many-to-one>
+    <many-to-one name="productos" class="productos" p1:AssociationGuid="80230a03-79e1-487c-92d9-0cbd3b14d8f0" p1:Guid="5c985535-2873-4246-bc79-c557547fef53">
+      <column name="cod_prod" not-null="true" precision="11" scale="0" sql-type="int" p1:unicode="false" />
+    </many-to-one>
+  </class>
+  <class name="direcciones_clientes" table="direcciones_clientes" schema="farmacia" p1:Guid="843bfa3e-0006-49a8-9867-b348104af773">
+    <composite-id>
+      <key-property name="direccion" type="String" p1:ValidateMaxLength="50" p1:ValidateRequired="True" p1:Guid="e5bd6975-be4c-498d-b584-faf7173d94ff">
+        <column name="direccion" not-null="true" length="50" sql-type="varchar" p1:unicode="true" />
+      </key-property>
+      <key-property name="id_cliente" type="Int32" p1:ValidateRequired="True" p1:Guid="b2dd3b81-d6ec-46ab-a30c-3898bc7bacd1">
+        <column name="id_cliente" default="0" not-null="true" precision="11" scale="0" sql-type="int" p1:unicode="false" />
+      </key-property>
+    </composite-id>
+    <many-to-one name="clientes" class="clientes" p1:AssociationGuid="f38fc902-0e6a-4d65-977f-493bc489af00" p1:Guid="c0eab8db-80bf-4fc2-b811-2263e1782cd1">
+      <column name="id_cliente" default="0" not-null="true" precision="11" scale="0" sql-type="int" p1:unicode="false" />
+    </many-to-one>
+  </class>
+  <class name="facturas" table="facturas" schema="farmacia" p1:Guid="69367980-a0db-4023-a24f-78b7dea395c0">
+    <id name="num_factura" type="Int32" p1:ValidateRequired="True" p1:Guid="de8f6dbf-69f7-4bdf-a017-a7f7f352ee4f">
+      <column name="num_factura" not-null="true" precision="11" scale="0" sql-type="int" p1:unicode="false" />
+    </id>
+    <property name="fecha" type="DateTime" p1:nullable="true" p1:ValidateRequired="False" p1:Guid="cd400276-7315-43d1-89a2-f0e0f14a95fc">
+      <column name="fecha" not-null="false" sql-type="date" p1:unicode="false" />
+    </property>
+    <property name="subtotal" type="Double" p1:nullable="true" p1:ValidateRequired="False" p1:Guid="1f30633c-8b31-4763-abec-aca740c377b9">
+      <column name="subtotal" not-null="false" sql-type="double" p1:unicode="false" />
+    </property>
+    <property name="isv" type="Double" p1:nullable="true" p1:ValidateRequired="False" p1:Guid="a12cfe40-df42-4816-9891-f2e8f8588070">
+      <column name="isv" not-null="false" sql-type="double" p1:unicode="false" />
+    </property>
+    <property name="descuento" type="Double" p1:nullable="true" p1:ValidateRequired="False" p1:Guid="04f1ce98-468f-4883-a205-f3b9fb6da43f">
+      <column name="descuento" not-null="false" sql-type="double" p1:unicode="false" />
+    </property>
+    <property name="total" type="Double" p1:nullable="true" p1:ValidateRequired="False" p1:Guid="3874949c-3710-440a-a558-92e315459da0">
+      <column name="total" not-null="false" sql-type="double" p1:unicode="false" />
+    </property>
+    <property name="id_cliente" type="Int32" p1:ValidateRequired="True" p1:Guid="224f9df7-1887-450f-8334-efcd28463caf">
+      <column name="id_cliente" not-null="true" precision="11" scale="0" sql-type="int" p1:unicode="false" />
+    </property>
+    <many-to-one name="clientes" class="clientes" p1:AssociationGuid="6fb41f1e-dc9b-42f7-9ca5-936d6cb779be" p1:Guid="d78dcdba-1dde-49ba-8405-065d08eddfb9">
+      <column name="id_cliente" not-null="true" precision="11" scale="0" sql-type="int" p1:unicode="false" />
+    </many-to-one>
+    <set name="detallle_facturas" inverse="true" generic="true" p1:AssociationGuid="bc9c762d-0737-4a7b-a1cd-af65470ce0a7" p1:Guid="35f0bf90-c616-4917-8237-0eef26407cd1">
+      <key>
+        <column name="num_factura" />
+      </key>
+      <one-to-many class="detallle_facturas" />
+    </set>
+  </class>
+  <class name="grupos_roles" table="grupos_roles" schema="farmacia" p1:Guid="ec5e5680-e314-4eb1-a8e1-b229899c8d8c">
+    <id name="id_rol" type="Int32" p1:ValidateRequired="True" p1:Guid="b6ec2a54-b578-435c-99d9-2c4ec6cc868a">
+      <column name="id_rol" not-null="true" precision="11" scale="0" sql-type="int" p1:unicode="false" />
+      <generator class="identity" />
+    </id>
+    <property name="nombre" type="String" p1:nullable="true" p1:ValidateMaxLength="45" p1:ValidateRequired="False" p1:Guid="ee91ea51-f650-4f79-a84d-d0f0be09d76b">
+      <column name="nombre" not-null="false" length="45" sql-type="varchar" p1:unicode="true" />
+    </property>
+    <set name="privilegios" table="grupos_roles_has_privilegios" schema="farmacia" inverse="true" generic="true" p1:AssociationGuid="318da0ef-c4cc-4dfe-a9ed-27fe9f9683db" p1:Guid="8495d5d6-304a-4588-a1bd-c3e0f0abe1e1">
+      <key>
+        <column name="id_rol" />
+      </key>
+      <many-to-many class="privilegios" fetch="join">
+        <column name="id_privilegio" />
+      </many-to-many>
+    </set>
+    <set name="usuarios" table="usuarios_has_grupos_roles" schema="farmacia" inverse="true" generic="true" p1:AssociationGuid="72bc4e98-4904-4cf2-b3af-fd852cec32e5" p1:Guid="9a5efba6-197d-4c1a-8d2f-7025555d82cd">
+      <key>
+        <column name="id_rol" />
+      </key>
+      <many-to-many class="usuarios" fetch="join">
+        <column name="usuario" />
+      </many-to-many>
+    </set>
+  </class>
+  <class name="kardex" table="kardex" schema="farmacia" p1:Guid="eb664634-4d74-4be5-9107-9707c2329aaa">
+    <id name="id_operacion" type="Int32" p1:ValidateRequired="True" p1:Guid="1e2273e6-d693-4041-8db5-149953f05319">
+      <column name="id_operacion" not-null="true" precision="11" scale="0" sql-type="int" p1:unicode="false" />
+      <generator class="identity" />
+    </id>
+    <property name="cantidad" type="Int32" p1:nullable="true" p1:ValidateRequired="False" p1:Guid="5f694ced-9f75-42a1-b180-fe09b3e8e308">
+      <column name="cantidad" not-null="false" precision="11" scale="0" sql-type="int" p1:unicode="false" />
+    </property>
+    <property name="costo" type="Double" p1:nullable="true" p1:ValidateRequired="False" p1:Guid="973ca294-57f6-4ad9-855a-be55b96faee6">
+      <column name="costo" not-null="false" sql-type="double" p1:unicode="false" />
+    </property>
+    <property name="inv_antes" type="Int32" p1:nullable="true" p1:ValidateRequired="False" p1:Guid="c7923e4c-74c7-495c-9cee-5de9d97f0bf6">
+      <column name="inv_antes" not-null="false" precision="11" scale="0" sql-type="int" p1:unicode="false" />
+    </property>
+    <property name="inv_despues" type="Int32" p1:nullable="true" p1:ValidateRequired="False" p1:Guid="bedcc676-fee4-400d-96b6-3e2115d8dfec">
+      <column name="inv_despues" not-null="false" precision="11" scale="0" sql-type="int" p1:unicode="false" />
+    </property>
+    <property name="fecha" type="DateTime" p1:nullable="true" p1:ValidateRequired="False" p1:Guid="793f877b-c10a-4ba2-b0ab-7bb8d4f0baec">
+      <column name="fecha" not-null="false" sql-type="date" p1:unicode="false" />
+    </property>
+    <property name="precio" type="Double" p1:nullable="true" p1:ValidateRequired="False" p1:Guid="a82ec735-10c0-4e02-a30c-085c36a45d83">
+      <column name="precio" not-null="false" sql-type="double" p1:unicode="false" />
+    </property>
+    <property name="id_tipotran" type="Int32" p1:ValidateRequired="True" p1:Guid="7d60d227-dad5-4b4b-93c0-a7601d3b121f">
+      <column name="id_tipotran" not-null="true" precision="11" scale="0" sql-type="int" p1:unicode="false" />
+    </property>
+    <many-to-one name="tipo_transacciones" class="tipo_transacciones" p1:AssociationGuid="bf6b9766-7cc1-40d2-9aab-d2e50c06324d" p1:Guid="a55f7201-2624-44a2-b62e-46fa8b612b1f">
+      <column name="id_tipotran" not-null="true" precision="11" scale="0" sql-type="int" p1:unicode="false" />
+    </many-to-one>
+  </class>
+  <class name="log_de_usuarios" table="log_de_usuarios" schema="farmacia" p1:Guid="2922d68f-7547-4c2d-b55c-0552514fbe15">
+    <id name="id_log" type="Int32" p1:ValidateRequired="True" p1:Guid="c779be51-8a05-447d-9aec-29cf56233665">
+      <column name="id_log" not-null="true" precision="11" scale="0" sql-type="int" p1:unicode="false" />
+      <generator class="identity" />
+    </id>
+    <property name="fecha_crea" type="DateTime" p1:nullable="true" p1:ValidateRequired="False" p1:Guid="16643cef-92c4-49e2-a32e-5f6ae3ec689b">
+      <column name="fecha_crea" not-null="false" sql-type="datetime" p1:unicode="false" />
+    </property>
+    <property name="fecha_actu" type="DateTime" p1:nullable="true" p1:ValidateRequired="False" p1:Guid="cf243976-dba2-4ee1-ae80-6be51632cde2">
+      <column name="fecha_actu" not-null="false" sql-type="datetime" p1:unicode="false" />
+    </property>
+    <property name="usuario_crea" type="String" p1:nullable="true" p1:ValidateMaxLength="45" p1:ValidateRequired="False" p1:Guid="39b7e681-f731-4e1b-a27f-c5023d6bad1e">
+      <column name="usuario_crea" not-null="false" length="45" sql-type="varchar" p1:unicode="true" />
+    </property>
+    <property name="usuario_actu" type="String" p1:nullable="true" p1:ValidateMaxLength="45" p1:ValidateRequired="False" p1:Guid="43767af5-ac24-4ea1-a375-181c88cf083f">
+      <column name="usuario_actu" not-null="false" length="45" sql-type="varchar" p1:unicode="true" />
+    </property>
+  </class>
+  <class name="ordenes_de_compra" table="ordenes_de_compra" schema="farmacia" p1:Guid="ca5ba6fa-5c06-4c38-9545-0c323b42d397">
+    <id name="id_ordencompra" type="Int32" p1:ValidateRequired="True" p1:Guid="29cd4b23-4a65-4bbb-bf9c-96a75d983f31">
+      <column name="id_ordencompra" not-null="true" precision="11" scale="0" sql-type="int" p1:unicode="false" />
+      <generator class="identity" />
+    </id>
+    <property name="fecha" type="DateTime" p1:nullable="true" p1:ValidateRequired="False" p1:Guid="7725b0d5-a147-4a74-b9c1-7a78eeb5e01d">
+      <column name="fecha" not-null="false" sql-type="date" p1:unicode="false" />
+    </property>
+    <property name="total" type="Double" p1:nullable="true" p1:ValidateRequired="False" p1:Guid="26daabee-4aa8-47da-b4ee-fb08dc3dbe56">
+      <column name="total" not-null="false" sql-type="double" p1:unicode="false" />
+    </property>
+    <property name="id_proveedor" type="Int32" p1:ValidateRequired="True" p1:Guid="6d5e0c1e-7a1e-4a58-9152-64c702a5a3ec">
+      <column name="id_proveedor" not-null="true" precision="11" scale="0" sql-type="int" p1:unicode="false" />
+    </property>
+    <property name="ejecutada" type="Int32" p1:nullable="true" p1:ValidateRequired="False" p1:Guid="961808a2-ecf7-4512-9deb-d7a90d24004d">
+      <column name="ejecutada" not-null="false" precision="11" scale="0" sql-type="int" p1:unicode="false" />
+    </property>
+    <property name="cancelada" type="Int32" p1:nullable="true" p1:ValidateRequired="False" p1:Guid="a40e192c-a704-4942-b495-095b610da33d">
+      <column name="cancelada" not-null="false" precision="11" scale="0" sql-type="int" p1:unicode="false" />
+    </property>
+    <property name="activa" type="Int32" p1:nullable="true" p1:ValidateRequired="False" p1:Guid="b3a40ba1-65ac-4020-be0c-3f5fbd8b26dd">
+      <column name="activa" not-null="false" precision="11" scale="0" sql-type="int" p1:unicode="false" />
+    </property>
+    <many-to-one name="proveedores" class="proveedores" p1:AssociationGuid="89666806-3365-4c91-a075-ecb6bb4d25f7" p1:Guid="faca9505-aba7-433e-88e7-d409962d5818">
+      <column name="id_proveedor" not-null="true" precision="11" scale="0" sql-type="int" p1:unicode="false" />
+    </many-to-one>
+    <set name="detalle_ocs" inverse="true" generic="true" p1:AssociationGuid="79dbf323-8a45-4507-a4b5-c94cb8b54d3a" p1:Guid="20e402ad-518d-4e6b-9940-e031b69ca1fd">
+      <key>
+        <column name="id_ordencompra" />
+      </key>
+      <one-to-many class="detalle_oc" />
+    </set>
+  </class>
+  <class name="presentacion_productos" table="presentacion_productos" schema="farmacia" p1:Guid="a0170e57-03f8-4132-9675-39046cb3d63f">
+    <id name="cod_presentacion" type="Int32" p1:ValidateRequired="True" p1:Guid="fd9e8024-a1bb-44a2-adc2-20993f45e96a">
+      <column name="cod_presentacion" not-null="true" precision="11" scale="0" sql-type="int" p1:unicode="false" />
+      <generator class="identity" />
+    </id>
+    <property name="nombre" type="String" p1:nullable="true" p1:ValidateMaxLength="45" p1:ValidateRequired="False" p1:Guid="3680516a-d020-4e71-8951-bd15bc454eef">
+      <column name="nombre" not-null="false" length="45" sql-type="varchar" p1:unicode="true" />
+    </property>
+    <set name="productos" inverse="true" generic="true" p1:AssociationGuid="b4388082-5262-474d-801d-49576366515b" p1:Guid="78d9d12a-4bd7-44de-a408-55acbdfd5255">
+      <key>
+        <column name="cod_presentacion" />
+      </key>
+      <one-to-many class="productos" />
+    </set>
+  </class>
+  <class name="privilegios" table="privilegios" schema="farmacia" p1:Guid="1a5e7e28-6cb6-4dc9-a086-fa80c58d6862">
+    <id name="id_privilegio" type="Int32" p1:ValidateRequired="True" p1:Guid="f473f7d7-efab-48e5-a3f9-619ba84b0e1f">
+      <column name="id_privilegio" not-null="true" precision="11" scale="0" sql-type="int" p1:unicode="false" />
+      <generator class="identity" />
+    </id>
+    <property name="nombre" type="String" p1:nullable="true" p1:ValidateMaxLength="45" p1:ValidateRequired="False" p1:Guid="7bfcd46e-bebc-4213-af7d-2b87eb5d3f04">
+      <column name="nombre" not-null="false" length="45" sql-type="varchar" p1:unicode="true" />
+    </property>
+    <set name="grupos_roles" table="grupos_roles_has_privilegios" schema="farmacia" generic="true" p1:AssociationGuid="318da0ef-c4cc-4dfe-a9ed-27fe9f9683db" p1:Guid="84e359d8-2829-4694-a44f-7a5c7668c757">
+      <key not-null="true">
+        <column name="id_privilegio" not-null="true" precision="11" scale="0" sql-type="int" p1:unicode="false" />
+      </key>
+      <many-to-many class="grupos_roles" fetch="join">
+        <column name="id_rol" not-null="true" precision="11" scale="0" sql-type="int" p1:unicode="false" />
+      </many-to-many>
+    </set>
+  </class>
+  <class name="productos" table="productos" schema="farmacia" p1:Guid="826b4aea-6d7a-4081-9b6b-a4bc03250ab3">
+    <id name="cod_prod" type="Int32" p1:ValidateRequired="True" p1:Guid="bc5b3b3b-ca7d-4bf0-a7ad-38c142e7285c">
+      <column name="cod_prod" not-null="true" precision="11" scale="0" sql-type="int" p1:unicode="false" />
+    </id>
+    <property name="existencia" type="Int32" p1:nullable="true" p1:ValidateRequired="False" p1:Guid="5d3aa5d3-9c05-4394-873d-1398f2c3bfd6">
+      <column name="existencia" not-null="false" precision="11" scale="0" sql-type="int" p1:unicode="false" />
+    </property>
+    <property name="fecha_venc" type="DateTime" p1:nullable="true" p1:ValidateRequired="False" p1:Guid="f22555a2-e55b-4c9f-a08f-f6588dff9271">
+      <column name="fecha_venc" not-null="false" sql-type="date" p1:unicode="false" />
+    </property>
+    <property name="costo" type="Single" p1:nullable="true" p1:ValidateRequired="False" p1:Guid="ca0731cf-136b-4915-8c74-4859e01a815f">
+      <column name="costo" not-null="false" sql-type="float" p1:unicode="false" />
+    </property>
+    <property name="precio_consumi" type="Single" p1:nullable="true" p1:ValidateRequired="False" p1:Guid="7980b11b-1984-40df-9c31-c61af136ca1a">
+      <column name="precio_consumi" not-null="false" sql-type="float" p1:unicode="false" />
+    </property>
+    <property name="precio_mayor" type="Single" p1:nullable="true" p1:ValidateRequired="False" p1:Guid="29c69772-5956-4e7e-9192-51f92ac49c54">
+      <column name="precio_mayor" not-null="false" sql-type="float" p1:unicode="false" />
+    </property>
+    <property name="nombre" type="String" p1:nullable="true" p1:ValidateMaxLength="45" p1:ValidateRequired="False" p1:Guid="09913aae-ca83-471e-89cc-c7f25aba72e9">
+      <column name="nombre" not-null="false" length="45" sql-type="varchar" p1:unicode="true" />
+    </property>
+    <property name="cod_presentacion" type="Int32" p1:nullable="true" p1:ValidateRequired="False" p1:Guid="52e2f455-2949-4e0e-ba57-a72f56683d0f">
+      <column name="cod_presentacion" not-null="false" precision="11" scale="0" sql-type="int" p1:unicode="false" />
+    </property>
+    <property name="cod_categoria" type="Int32" p1:nullable="true" p1:ValidateRequired="False" p1:Guid="0e4988d0-fb65-405e-b869-e2a6e6f072e0">
+      <column name="cod_categoria" not-null="false" precision="11" scale="0" sql-type="int" p1:unicode="false" />
+    </property>
+    <property name="existencia_min" type="Int32" p1:nullable="true" p1:ValidateRequired="False" p1:Guid="a244f3a8-862c-4a72-852c-0345bd036ebb">
+      <column name="existencia_min" not-null="false" precision="11" scale="0" sql-type="int" p1:unicode="false" />
+    </property>
+    <property name="existencia_max" type="Int32" p1:nullable="true" p1:ValidateRequired="False" p1:Guid="8ba9fb99-d102-4571-ad75-77f645661a68">
+      <column name="existencia_max" not-null="false" precision="11" scale="0" sql-type="int" p1:unicode="false" />
+    </property>
+    <property name="porcentaje_m" type="Int32" p1:nullable="true" p1:ValidateRequired="False" p1:Guid="35093b1a-7e16-482c-892a-044da7b26528">
+      <column name="porcentaje_m" not-null="false" precision="11" scale="0" sql-type="int" p1:unicode="false" />
+    </property>
+    <many-to-one name="categoria_productos" class="categoria_productos" p1:AssociationGuid="3d009f79-25f5-4406-8335-27e7a9116938" p1:Guid="7aa00127-edf5-4c99-b032-efdf41421def">
+      <column name="cod_categoria" not-null="false" precision="11" scale="0" sql-type="int" p1:unicode="false" />
+    </many-to-one>
+    <many-to-one name="presentacion_productos" class="presentacion_productos" p1:AssociationGuid="b4388082-5262-474d-801d-49576366515b" p1:Guid="032146c3-7917-4fd3-88a9-1a5eeb7444f8">
+      <column name="cod_presentacion" not-null="false" precision="11" scale="0" sql-type="int" p1:unicode="false" />
+    </many-to-one>
+    <set name="detalle_ajustes" inverse="true" generic="true" p1:AssociationGuid="5673fb9a-ff8e-49c7-9b6f-1ab2e9ad59b3" p1:Guid="543332e7-8ff1-4230-b584-d474177f97f8">
+      <key>
+        <column name="cod_prod" />
+      </key>
+      <one-to-many class="detalle_ajustes" />
+    </set>
+    <set name="detalle_compras" inverse="true" generic="true" p1:AssociationGuid="11af1c3c-20c1-4bfa-9973-fa7f2e85feb9" p1:Guid="07e22a26-402c-4bde-88f2-ed1d2e524b4d">
+      <key>
+        <column name="cod_prod" />
+      </key>
+      <one-to-many class="detalle_compras" />
+    </set>
+    <set name="detalle_cotizaciones" inverse="true" generic="true" p1:AssociationGuid="ce150da5-de9f-4339-89de-17db5c1f462b" p1:Guid="7d614d65-ff02-4ef7-aca0-9ea61692a544">
+      <key>
+        <column name="cod_prod" />
+      </key>
+      <one-to-many class="detalle_cotizaciones" />
+    </set>
+    <set name="detalle_ocs" inverse="true" generic="true" p1:AssociationGuid="7dd4f146-a131-4f62-af75-f2bd71cd6ed2" p1:Guid="d5f328c6-7c74-49b5-9c0d-d5879a189271">
+      <key>
+        <column name="cod_prod" />
+      </key>
+      <one-to-many class="detalle_oc" />
+    </set>
+    <set name="detallle_facturas" inverse="true" generic="true" p1:AssociationGuid="80230a03-79e1-487c-92d9-0cbd3b14d8f0" p1:Guid="fa67c45e-c323-4e5d-85b0-2c3d96eb9565">
+      <key>
+        <column name="cod_prod" />
+      </key>
+      <one-to-many class="detallle_facturas" />
+    </set>
+  </class>
+  <class name="proveedores" table="proveedores" schema="farmacia" p1:Guid="27f54ded-4b2a-4e65-a428-43151fbeebeb">
+    <id name="id_proveedor" type="Int32" p1:ValidateRequired="True" p1:Guid="b35a95a8-8fe1-4634-b265-de4fd489a969">
+      <column name="id_proveedor" not-null="true" precision="11" scale="0" sql-type="int" p1:unicode="false" />
+      <generator class="identity" />
+    </id>
+    <property name="direccion" type="String" p1:nullable="true" p1:ValidateMaxLength="45" p1:ValidateRequired="False" p1:Guid="6f8b0666-5e1a-4c34-a74f-7ebc652db5e9">
+      <column name="direccion" not-null="false" length="45" sql-type="varchar" p1:unicode="true" />
+    </property>
+    <property name="telefono" type="String" p1:nullable="true" p1:ValidateMaxLength="15" p1:ValidateRequired="False" p1:Guid="2cede999-3870-4d3a-baa3-e3141c8ce176">
+      <column name="telefono" not-null="false" length="15" sql-type="varchar" p1:unicode="true" />
+    </property>
+    <property name="nombre" type="String" p1:nullable="true" p1:ValidateMaxLength="45" p1:ValidateRequired="False" p1:Guid="8f005356-d68c-4472-9951-e69e1013cc50">
+      <column name="nombre" not-null="false" length="45" sql-type="varchar" p1:unicode="true" />
+    </property>
+    <property name="contacto" type="String" p1:nullable="true" p1:ValidateMaxLength="45" p1:ValidateRequired="False" p1:Guid="05f6e11a-ada7-4031-b5cf-d1f4c70db023">
+      <column name="contacto" not-null="false" length="45" sql-type="varchar" p1:unicode="true" />
+    </property>
+    <set name="compras" inverse="true" generic="true" p1:AssociationGuid="c2e74048-8285-4c5b-a1b3-6f2ab5d69a93" p1:Guid="40859fdb-33b8-4ad5-99f3-9711a696169e">
+      <key>
+        <column name="id_proveedor" />
+      </key>
+      <one-to-many class="compras" />
+    </set>
+    <set name="cotizaciones" inverse="true" generic="true" p1:AssociationGuid="226755b6-0cdf-456d-9219-0b16f17200c4" p1:Guid="bf09db85-996c-4503-9d23-ad7bf555091b">
+      <key>
+        <column name="id_proveedor" />
+      </key>
+      <one-to-many class="cotizaciones" />
+    </set>
+    <set name="ordenes_de_compras" inverse="true" generic="true" p1:AssociationGuid="89666806-3365-4c91-a075-ecb6bb4d25f7" p1:Guid="207751b4-ca67-462e-a09e-b2d1701e5ba7">
+      <key>
+        <column name="id_proveedor" />
+      </key>
+      <one-to-many class="ordenes_de_compra" />
+    </set>
+  </class>
+  <class name="tipo_transacciones" table="tipo_transacciones" schema="farmacia" p1:Guid="d9ae61ce-a9e0-4058-8218-7775cb465fc4">
+    <id name="id_tipotran" type="Int32" p1:ValidateRequired="True" p1:Guid="ef687012-a001-4b00-9051-97c658acc1a7">
+      <column name="id_tipotran" not-null="true" precision="11" scale="0" sql-type="int" p1:unicode="false" />
+    </id>
+    <property name="nombre" type="String" p1:nullable="true" p1:ValidateMaxLength="15" p1:ValidateRequired="False" p1:Guid="7846b34d-5945-4c2f-8f36-55ee1788ec98">
+      <column name="nombre" not-null="false" length="15" sql-type="varchar" p1:unicode="true" />
+    </property>
+    <set name="ajustes" inverse="true" generic="true" p1:AssociationGuid="8bdfb2fc-8529-49ee-8c03-9d2ab6e0f75b" p1:Guid="d0d61871-ef20-4093-91d0-5be02a268af8">
+      <key>
+        <column name="id_tipotran" />
+      </key>
+      <one-to-many class="ajustes" />
+    </set>
+    <set name="kardexes" inverse="true" generic="true" p1:AssociationGuid="bf6b9766-7cc1-40d2-9aab-d2e50c06324d" p1:Guid="f4b8f5c9-acf7-4af5-acce-9422c8a896b4">
+      <key>
+        <column name="id_tipotran" />
+      </key>
+      <one-to-many class="kardex" />
+    </set>
+  </class>
+  <class name="usuarios" table="usuarios" schema="farmacia" p1:Guid="f7021607-515b-41e3-be2c-1fc7d0ac095f">
+    <id name="usuario" type="String" p1:ValidateMaxLength="45" p1:ValidateRequired="True" p1:Guid="2f0b080c-a5cc-4d6d-b625-160d98b7fc70">
+      <column name="usuario" not-null="true" length="45" sql-type="varchar" p1:unicode="true" />
+    </id>
+    <property name="correo" type="String" p1:nullable="true" p1:ValidateMaxLength="45" p1:ValidateRequired="False" p1:Guid="378e3630-15be-4e5c-ac48-baca468c79e7">
+      <column name="correo" not-null="false" length="45" sql-type="varchar" p1:unicode="true" />
+    </property>
+    <property name="nombre" type="String" p1:nullable="true" p1:ValidateMaxLength="45" p1:ValidateRequired="False" p1:Guid="6ac99cf2-85a2-43f9-9503-d02774a43724">
+      <column name="nombre" not-null="false" length="45" sql-type="varchar" p1:unicode="true" />
+    </property>
+    <property name="clave" type="Byte" p1:nullable="true" p1:ValidateRequired="False" p1:Guid="595182a7-f8a0-48d7-8316-63c8e25fa768">
+      <column name="clave" not-null="false" length="1" sql-type="binary" p1:fixed-length="true" p1:unicode="false" />
+    </property>
+    <property name="key" type="Byte" p1:nullable="true" p1:ValidateRequired="False" p1:Guid="086cfc26-847c-4613-aec7-3a3054a3163c">
+      <column name="`key`" not-null="false" length="1" sql-type="binary" p1:fixed-length="true" p1:unicode="false" />
+    </property>
+    <set name="grupos_roles" table="usuarios_has_grupos_roles" schema="farmacia" generic="true" p1:AssociationGuid="72bc4e98-4904-4cf2-b3af-fd852cec32e5" p1:Guid="8883dacb-ce82-4f97-aaca-0385c81079e5">
+      <key not-null="true">
+        <column name="usuario" not-null="true" length="45" sql-type="varchar" p1:unicode="true" />
+      </key>
+      <many-to-many class="grupos_roles" fetch="join">
+        <column name="id_rol" not-null="true" precision="11" scale="0" sql-type="int" p1:unicode="false" />
+      </many-to-many>
+    </set>
+  </class>
+</hibernate-mapping>

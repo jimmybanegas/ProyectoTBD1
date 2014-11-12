@@ -1,0 +1,24 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<hibernate-mapping assembly="Pharma.Domain" namespace="Pharma.Domain" xmlns="urn:nhibernate-mapping-2.2">
+  <class name="tipo_transacciones" table="tipo_transacciones" schema="farmacia">
+    <id name="id_tipotran" type="Int32">
+      <column name="id_tipotran" not-null="true" precision="11" scale="0" sql-type="int" />
+      <generator class="assigned" />
+    </id>
+    <property name="nombre" type="String">
+      <column name="nombre" not-null="false" length="15" sql-type="varchar" />
+    </property>
+    <set name="ajustes" inverse="true" generic="true">
+      <key>
+        <column name="id_tipotran" />
+      </key>
+      <one-to-many class="ajustes" />
+    </set>
+    <set name="kardexes" inverse="true" generic="true">
+      <key>
+        <column name="id_tipotran" />
+      </key>
+      <one-to-many class="kardex" />
+    </set>
+  </class>
+</hibernate-mapping>

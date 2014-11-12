@@ -1,0 +1,25 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<hibernate-mapping assembly="Pharma.Domain" namespace="Pharma.Domain" xmlns="urn:nhibernate-mapping-2.2">
+  <class name="detalle_ajustes" table="detalle_ajustes" schema="farmacia">
+    <composite-id>
+      <key-property name="num_detalle" type="Int32">
+        <column name="num_detalle" not-null="true" precision="11" scale="0" sql-type="int" />
+      </key-property>
+      <key-property name="id_ajuste" type="Int32">
+        <column name="id_ajuste" not-null="true" precision="11" scale="0" sql-type="int" />
+      </key-property>
+    </composite-id>
+    <property name="cantidad" type="Int32">
+      <column name="cantidad" not-null="false" precision="11" scale="0" sql-type="int" />
+    </property>
+    <property name="cod_prod" type="Int32">
+      <column name="cod_prod" not-null="true" precision="11" scale="0" sql-type="int" />
+    </property>
+    <many-to-one name="ajustes" class="ajustes">
+      <column name="id_ajuste" not-null="true" precision="11" scale="0" sql-type="int" />
+    </many-to-one>
+    <many-to-one name="productos" class="productos">
+      <column name="cod_prod" not-null="true" precision="11" scale="0" sql-type="int" />
+    </many-to-one>
+  </class>
+</hibernate-mapping>

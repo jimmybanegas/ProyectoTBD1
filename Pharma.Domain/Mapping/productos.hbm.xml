@@ -1,0 +1,78 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<hibernate-mapping assembly="Pharma.Domain" namespace="Pharma.Domain" xmlns="urn:nhibernate-mapping-2.2">
+  <class name="productos" table="productos" schema="farmacia">
+    <id name="cod_prod" type="Int32">
+      <column name="cod_prod" not-null="true" precision="11" scale="0" sql-type="int" />
+      <generator class="assigned" />
+    </id>
+    <property name="existencia" type="Int32">
+      <column name="existencia" not-null="false" precision="11" scale="0" sql-type="int" />
+    </property>
+    <property name="fecha_venc" type="DateTime">
+      <column name="fecha_venc" not-null="false" sql-type="date" />
+    </property>
+    <property name="costo" type="Single">
+      <column name="costo" not-null="false" sql-type="float" />
+    </property>
+    <property name="precio_consumi" type="Single">
+      <column name="precio_consumi" not-null="false" sql-type="float" />
+    </property>
+    <property name="precio_mayor" type="Single">
+      <column name="precio_mayor" not-null="false" sql-type="float" />
+    </property>
+    <property name="nombre" type="String">
+      <column name="nombre" not-null="false" length="45" sql-type="varchar" />
+    </property>
+    <property name="cod_presentacion" type="Int32">
+      <column name="cod_presentacion" not-null="false" precision="11" scale="0" sql-type="int" />
+    </property>
+    <property name="cod_categoria" type="Int32">
+      <column name="cod_categoria" not-null="false" precision="11" scale="0" sql-type="int" />
+    </property>
+    <property name="existencia_min" type="Int32">
+      <column name="existencia_min" not-null="false" precision="11" scale="0" sql-type="int" />
+    </property>
+    <property name="existencia_max" type="Int32">
+      <column name="existencia_max" not-null="false" precision="11" scale="0" sql-type="int" />
+    </property>
+    <property name="porcentaje_m" type="Int32">
+      <column name="porcentaje_m" not-null="false" precision="11" scale="0" sql-type="int" />
+    </property>
+    <many-to-one name="categoria_productos" class="categoria_productos">
+      <column name="cod_categoria" not-null="false" precision="11" scale="0" sql-type="int" />
+    </many-to-one>
+    <many-to-one name="presentacion_productos" class="presentacion_productos">
+      <column name="cod_presentacion" not-null="false" precision="11" scale="0" sql-type="int" />
+    </many-to-one>
+    <set name="detalle_ajustes" inverse="true" generic="true">
+      <key>
+        <column name="cod_prod" />
+      </key>
+      <one-to-many class="detalle_ajustes" />
+    </set>
+    <set name="detalle_compras" inverse="true" generic="true">
+      <key>
+        <column name="cod_prod" />
+      </key>
+      <one-to-many class="detalle_compras" />
+    </set>
+    <set name="detalle_cotizaciones" inverse="true" generic="true">
+      <key>
+        <column name="cod_prod" />
+      </key>
+      <one-to-many class="detalle_cotizaciones" />
+    </set>
+    <set name="detalle_ocs" inverse="true" generic="true">
+      <key>
+        <column name="cod_prod" />
+      </key>
+      <one-to-many class="detalle_oc" />
+    </set>
+    <set name="detallle_facturas" inverse="true" generic="true">
+      <key>
+        <column name="cod_prod" />
+      </key>
+      <one-to-many class="detallle_facturas" />
+    </set>
+  </class>
+</hibernate-mapping>

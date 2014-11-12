@@ -1,0 +1,143 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<EntityDeveloper Version="5.7.480.0">
+  <ModelSettings xmlns:ed="http://devart.com/schemas/EntityDeveloper/1.0" ConnectionStringInAppConfig="False" DetectTPTInheritance="True" IncludeForeignKeysInModel="true">
+    <Connection ConnectionString="persistsecurityinfo=True;server=localhost;user id=VisualStudio;password=tb1.admin;database=farmacia" Provider="MySql.Data.MySqlClient" />
+    <Generation>
+      <GeneratedFiles>
+        <File Name="ajustes.cs" Project="Pharma.Domain" ProjectFolder="Entities" />
+        <File Name="categoria_productos.cs" Project="Pharma.Domain" ProjectFolder="Entities" />
+        <File Name="clientes.cs" Project="Pharma.Domain" ProjectFolder="Entities" />
+        <File Name="compras.cs" Project="Pharma.Domain" ProjectFolder="Entities" />
+        <File Name="contactos_clientes.cs" Project="Pharma.Domain" ProjectFolder="Entities" />
+        <File Name="cotizaciones.cs" Project="Pharma.Domain" ProjectFolder="Entities" />
+        <File Name="detalle_ajustes.cs" Project="Pharma.Domain" ProjectFolder="Entities" />
+        <File Name="detalle_compras.cs" Project="Pharma.Domain" ProjectFolder="Entities" />
+        <File Name="detalle_cotizaciones.cs" Project="Pharma.Domain" ProjectFolder="Entities" />
+        <File Name="detalle_oc.cs" Project="Pharma.Domain" ProjectFolder="Entities" />
+        <File Name="detallle_facturas.cs" Project="Pharma.Domain" ProjectFolder="Entities" />
+        <File Name="direcciones_clientes.cs" Project="Pharma.Domain" ProjectFolder="Entities" />
+        <File Name="facturas.cs" Project="Pharma.Domain" ProjectFolder="Entities" />
+        <File Name="grupos_roles.cs" Project="Pharma.Domain" ProjectFolder="Entities" />
+        <File Name="kardex.cs" Project="Pharma.Domain" ProjectFolder="Entities" />
+        <File Name="log_de_usuarios.cs" Project="Pharma.Domain" ProjectFolder="Entities" />
+        <File Name="ordenes_de_compra.cs" Project="Pharma.Domain" ProjectFolder="Entities" />
+        <File Name="presentacion_productos.cs" Project="Pharma.Domain" ProjectFolder="Entities" />
+        <File Name="privilegios.cs" Project="Pharma.Domain" ProjectFolder="Entities" />
+        <File Name="productos.cs" Project="Pharma.Domain" ProjectFolder="Entities" />
+        <File Name="proveedores.cs" Project="Pharma.Domain" ProjectFolder="Entities" />
+        <File Name="tipo_transacciones.cs" Project="Pharma.Domain" ProjectFolder="Entities" />
+        <File Name="usuarios.cs" Project="Pharma.Domain" ProjectFolder="Entities" />
+        <File Name="ajustes.hbm.xml" Project="Pharma.Domain" ProjectFolder="Mapping" />
+        <File Name="categoria_productos.hbm.xml" Project="Pharma.Domain" ProjectFolder="Mapping" />
+        <File Name="clientes.hbm.xml" Project="Pharma.Domain" ProjectFolder="Mapping" />
+        <File Name="compras.hbm.xml" Project="Pharma.Domain" ProjectFolder="Mapping" />
+        <File Name="contactos_clientes.hbm.xml" Project="Pharma.Domain" ProjectFolder="Mapping" />
+        <File Name="cotizaciones.hbm.xml" Project="Pharma.Domain" ProjectFolder="Mapping" />
+        <File Name="detalle_ajustes.hbm.xml" Project="Pharma.Domain" ProjectFolder="Mapping" />
+        <File Name="detalle_compras.hbm.xml" Project="Pharma.Domain" ProjectFolder="Mapping" />
+        <File Name="detalle_cotizaciones.hbm.xml" Project="Pharma.Domain" ProjectFolder="Mapping" />
+        <File Name="detalle_oc.hbm.xml" Project="Pharma.Domain" ProjectFolder="Mapping" />
+        <File Name="detallle_facturas.hbm.xml" Project="Pharma.Domain" ProjectFolder="Mapping" />
+        <File Name="direcciones_clientes.hbm.xml" Project="Pharma.Domain" ProjectFolder="Mapping" />
+        <File Name="facturas.hbm.xml" Project="Pharma.Domain" ProjectFolder="Mapping" />
+        <File Name="grupos_roles.hbm.xml" Project="Pharma.Domain" ProjectFolder="Mapping" />
+        <File Name="kardex.hbm.xml" Project="Pharma.Domain" ProjectFolder="Mapping" />
+        <File Name="log_de_usuarios.hbm.xml" Project="Pharma.Domain" ProjectFolder="Mapping" />
+        <File Name="ordenes_de_compra.hbm.xml" Project="Pharma.Domain" ProjectFolder="Mapping" />
+        <File Name="presentacion_productos.hbm.xml" Project="Pharma.Domain" ProjectFolder="Mapping" />
+        <File Name="privilegios.hbm.xml" Project="Pharma.Domain" ProjectFolder="Mapping" />
+        <File Name="productos.hbm.xml" Project="Pharma.Domain" ProjectFolder="Mapping" />
+        <File Name="proveedores.hbm.xml" Project="Pharma.Domain" ProjectFolder="Mapping" />
+        <File Name="tipo_transacciones.hbm.xml" Project="Pharma.Domain" ProjectFolder="Mapping" />
+        <File Name="usuarios.hbm.xml" Project="Pharma.Domain" ProjectFolder="Mapping" />
+      </GeneratedFiles>
+    </Generation>
+    <generator class="assigned" />
+    <DatabaseFirstNamingRules>
+      <EntitySet PluralizationName="Pluralize" />
+      <Class UseSchemaAsPrefix="False" PluralizeCollectionNavigationPropertyName="True" RemoveUnderscores="False" RemoveInvalidCharacters="True" CodeCase="Unchanged" AddPrefix="" AddSuffix="" RemovePrefixes="" RemoveSuffixes="" PluralizationName="Unchanged" />
+      <Property RemoveUnderscores="False" RemoveInvalidCharacters="True" CodeCase="Unchanged" AddPrefix="" AddSuffix="" RemovePrefixes="" RemoveSuffixes="" PluralizationName="Unchanged" />
+    </DatabaseFirstNamingRules>
+    <ModelFirst StorageSynchronizationEnabled="False" TargetSchema="farmacia" TargetProviderName="MySql.Data.MySqlClient">
+      <TargetServer Server="MySQL" ServerVersion="5.6" />
+      <ModelFirstNamingRules>
+        <Table RemoveUnderscores="False" RemoveInvalidCharacters="True" CodeCase="Unchanged" AddPrefix="" AddSuffix="" RemovePrefixes="" RemoveSuffixes="" PluralizationName="Pluralize" />
+        <Column RemoveUnderscores="False" RemoveInvalidCharacters="True" CodeCase="Unchanged" AddPrefix="" AddSuffix="" RemovePrefixes="" RemoveSuffixes="" PluralizationName="Unchanged" />
+      </ModelFirstNamingRules>
+    </ModelFirst>
+    <Diagrams>
+      <Diagram Name="Diagram1" DefaultDiagram="True" />
+    </Diagrams>
+    <Templates>
+      <Template Name="NHibernate" Description="Use this template to generate classes and xml mappings for an NHibernate model." Enabled="True" PredefinedTemplateName="NHibernate C#">
+        <ed:Property Name="ValidationFramework" Type="EntityDeveloper.TemplateEngine.ValidationFramework, EntityDeveloper.Common, Version=5.7.480.0, Culture=neutral, PublicKeyToken=09af7300eec23701">
+          <ValidationFramework>None</ValidationFramework>
+        </ed:Property>
+        <ed:Property Name="ValidationErrorMessages" Type="EntityDeveloper.TemplateEngine.ValidationErrorMessages, EntityDeveloper.Common, Version=5.7.480.0, Culture=neutral, PublicKeyToken=09af7300eec23701">
+          <ValidationErrorMessages xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" />
+        </ed:Property>
+        <ed:Property Name="FilePerClass" Type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+          <boolean>true</boolean>
+        </ed:Property>
+        <ed:Property Name="ModelNameAsFilesPrefix" Type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+          <boolean>false</boolean>
+        </ed:Property>
+        <ed:Property Name="HeaderTimestampVersionControlTag" Type="System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+          <string d6p1:nil="true" xmlns:d6p1="http://www.w3.org/2001/XMLSchema-instance" />
+        </ed:Property>
+        <ed:Property Name="EntitiesOutput" Type="EntityDeveloper.TemplateEngine.OutputInfo, EntityDeveloper.Common, Version=5.7.480.0, Culture=neutral, PublicKeyToken=09af7300eec23701">
+          <OutputInfo xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+            <Project>Pharma.Domain</Project>
+            <ProjectFolder>Entities</ProjectFolder>
+            <DestinationFolder />
+          </OutputInfo>
+        </ed:Property>
+        <ed:Property Name="NHibernateV3Compatible" Type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+          <boolean>false</boolean>
+        </ed:Property>
+        <ed:Property Name="PropertyChangeNotifiers" Type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+          <boolean>false</boolean>
+        </ed:Property>
+        <ed:Property Name="PropertyChangePartialMethods" Type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+          <boolean>false</boolean>
+        </ed:Property>
+        <ed:Property Name="ImplementValidatable" Type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+          <boolean>false</boolean>
+        </ed:Property>
+        <ed:Property Name="ImplementEquals" Type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+          <boolean>false</boolean>
+        </ed:Property>
+        <ed:Property Name="ImplementCloneable" Type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+          <boolean>false</boolean>
+        </ed:Property>
+        <ed:Property Name="GeneratePartialClass" Type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+          <boolean>false</boolean>
+        </ed:Property>
+        <ed:Property Name="GenerateDataContracts" Type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+          <boolean>false</boolean>
+        </ed:Property>
+        <ed:Property Name="GenerateDummyComments" Type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+          <boolean>true</boolean>
+        </ed:Property>
+        <ed:Property Name="GenerateSerializableAttributes" Type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+          <boolean>false</boolean>
+        </ed:Property>
+        <ed:Property Name="XmlMappingOutput" Type="EntityDeveloper.TemplateEngine.OutputInfo, EntityDeveloper.Common, Version=5.7.480.0, Culture=neutral, PublicKeyToken=09af7300eec23701">
+          <OutputInfo xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+            <Project>Pharma.Domain</Project>
+            <ProjectFolder>Mapping</ProjectFolder>
+            <DestinationFolder />
+          </OutputInfo>
+        </ed:Property>
+        <ed:Property Name="XmlMappingAction" Type="EntityDeveloper.MetadataArtifactProcessing, EntityDeveloper.Orm.Common, Version=5.7.480.0, Culture=neutral, PublicKeyToken=09af7300eec23701">
+          <MetadataArtifactProcessing>EmbedInOutputAssembly</MetadataArtifactProcessing>
+        </ed:Property>
+        <ed:Property Name="XmlMappingFilePerClass" Type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+          <boolean>true</boolean>
+        </ed:Property>
+      </Template>
+    </Templates>
+    <AttributeAssemblies />
+    <Configuration SeparateConfigFile="False" />
+  </ModelSettings>
+</EntityDeveloper>

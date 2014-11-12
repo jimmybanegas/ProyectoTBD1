@@ -11,7 +11,7 @@ namespace Pharma.Api.Controllers
 {
     public class AccountController : BaseApiController
     {
-        readonly IReadOnlyRepository _readOnlyRepository;
+      /*  readonly IReadOnlyRepository _readOnlyRepository;
         readonly IWriteOnlyRepository _writeOnlyRepository;
         readonly IMappingEngine _mappingEngine;
 
@@ -59,6 +59,6 @@ namespace Pharma.Api.Controllers
             return authModel;
         }
 
-
+        */
     }
 }

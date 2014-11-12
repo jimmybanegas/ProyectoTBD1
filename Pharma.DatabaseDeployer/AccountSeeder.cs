@@ -16,13 +16,13 @@ namespace Pharma.DatabaseDeployer
         public void Seed()
         {
 
-            var account = new Account
+           /* var account = new Account
             {
                 Email = "test@test.com",
                 Name = "Test Name",
                 Password = "password",
             };
-            _session.Save(account);
+            _session.Save(account);*/
         }
     }
 }

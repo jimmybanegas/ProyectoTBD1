@@ -45,9 +45,9 @@ namespace Pharma.Api.Controllers
             if (userTokenModel == null)
                 throw new HttpException((int)HttpStatusCode.Unauthorized, "User is not authorized");
 
-            var account = _readOnlyRepository.Query<AccountLeagues>(x => x.User.Email == userTokenModel.email).Select(y => y.League);
-            var leaguesModel = _mappingEngine.Map<List<Leagues>, List<LeaguesModel>>(account.ToList());
-            return leaguesModel;
+         //   var account = _readOnlyRepository.Query<AccountLeagues>(x => x.User.Email == userTokenModel.email).Select(y => y.League);
+         //   var leaguesModel = _mappingEngine.Map<List<Leagues>, List<LeaguesModel>>(account.ToList());
+            return null;
         }
 
     }
