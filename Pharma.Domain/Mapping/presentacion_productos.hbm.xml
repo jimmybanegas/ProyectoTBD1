@@ -8,6 +8,18 @@
     <property name="nombre" type="String">
       <column name="nombre" not-null="false" length="45" sql-type="varchar" />
     </property>
+    <property name="fecha_crea" type="DateTime">
+      <column name="fecha_crea" not-null="false" sql-type="datetime" />
+    </property>
+    <property name="fecha_actu" type="DateTime">
+      <column name="fecha_actu" not-null="false" sql-type="datetime" />
+    </property>
+    <property name="usuario_crea" type="String">
+      <column name="usuario_crea" not-null="false" length="45" sql-type="varchar" />
+    </property>
+    <property name="usuario_actu" type="String">
+      <column name="usuario_actu" not-null="false" length="45" sql-type="varchar" />
+    </property>
     <set name="productos" inverse="true" generic="true">
       <key>
         <column name="cod_presentacion" />

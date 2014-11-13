@@ -56,7 +56,6 @@
     <Compile Include="Entities\IEntity.cs" />
     <Compile Include="Entities\kardex.cs" />
     <Compile Include="Entities\Leagues.cs" />
-    <Compile Include="Entities\log_de_usuarios.cs" />
     <Compile Include="Entities\ordenes_de_compra.cs" />
     <Compile Include="Entities\presentacion_productos.cs" />
     <Compile Include="Entities\privilegios.cs" />
@@ -129,9 +128,6 @@
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Mapping\kardex.hbm.xml" />
-  </ItemGroup>
-  <ItemGroup>
-    <EmbeddedResource Include="Mapping\log_de_usuarios.hbm.xml" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Mapping\ordenes_de_compra.hbm.xml" />

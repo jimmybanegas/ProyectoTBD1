@@ -1,323 +1,413 @@
 <?xml version="1.0" encoding="utf-8"?>
-<hibernate-mapping assembly="Pharma.Domain" namespace="Pharma.Domain" p1:Guid="8ffeb424-00f8-4fc8-8f43-63e250c76771" xmlns:p1="http://devart.com/schemas/EntityDeveloper/1.0" xmlns="urn:nhibernate-mapping-2.2">
-  <class name="ajustes" table="ajustes" schema="farmacia" p1:Guid="15ff93b3-9b08-46ca-b025-342dc6c5827b">
-    <id name="id_ajuste" type="Int32" p1:ValidateRequired="True" p1:Guid="3bf0ab89-ec74-41d2-b24e-a2688a6dd4b8">
+<hibernate-mapping assembly="Pharma.Domain" namespace="Pharma.Domain" p1:Guid="c154f170-56d4-4d01-82b6-78881a7c5040" xmlns:p1="http://devart.com/schemas/EntityDeveloper/1.0" xmlns="urn:nhibernate-mapping-2.2">
+  <class name="ajustes" table="ajustes" schema="farmacia" p1:Guid="7ddee271-5c61-42cb-85ba-41d2d59da3b4">
+    <id name="id_ajuste" type="Int32" p1:ValidateRequired="True" p1:Guid="915cbe77-b949-4d48-b552-34b769d2012b">
       <column name="id_ajuste" not-null="true" precision="11" scale="0" sql-type="int" p1:unicode="false" />
       <generator class="identity" />
     </id>
-    <property name="fecha" type="DateTime" p1:nullable="true" p1:ValidateRequired="False" p1:Guid="844aaf25-ed92-41b6-8ed9-92620cc5076d">
+    <property name="fecha" type="DateTime" p1:nullable="true" p1:ValidateRequired="False" p1:Guid="a0608309-a063-4aae-ac44-19a4ec441d40">
       <column name="fecha" not-null="false" sql-type="date" p1:unicode="false" />
     </property>
-    <property name="cant_producto" type="Int32" p1:nullable="true" p1:ValidateRequired="False" p1:Guid="6c32ac76-b486-4ad0-aea9-7055fbbb46e3">
+    <property name="cant_producto" type="Int32" p1:nullable="true" p1:ValidateRequired="False" p1:Guid="b0d859bb-9551-4422-a053-f261fbf06bd7">
       <column name="cant_producto" not-null="false" precision="11" scale="0" sql-type="int" p1:unicode="false" />
     </property>
-    <property name="id_tipotran" type="Int32" p1:ValidateRequired="True" p1:Guid="75361563-6a91-4292-a103-cec1dfb5375f">
+    <property name="fecha_crea" type="DateTime" p1:nullable="true" p1:ValidateRequired="False" p1:Guid="0f0c7ee8-8e0f-4bb2-b6e0-16c9b1a67321">
+      <column name="fecha_crea" not-null="false" sql-type="datetime" p1:unicode="false" />
+    </property>
+    <property name="fecha_actu" type="DateTime" p1:nullable="true" p1:ValidateRequired="False" p1:Guid="78792281-a02c-4d26-a3a9-4963f9fa0bc3">
+      <column name="fecha_actu" not-null="false" sql-type="datetime" p1:unicode="false" />
+    </property>
+    <property name="usuario_crea" type="String" p1:nullable="true" p1:ValidateMaxLength="45" p1:ValidateRequired="False" p1:Guid="c33080cf-ee35-4260-9c47-7cb7e5f947a7">
+      <column name="usuario_crea" not-null="false" length="45" sql-type="varchar" p1:unicode="true" />
+    </property>
+    <property name="usuario_actu" type="String" p1:nullable="true" p1:ValidateMaxLength="45" p1:ValidateRequired="False" p1:Guid="128ec31f-01e6-4041-a8c2-c2dd745d5f8b">
+      <column name="usuario_actu" not-null="false" length="45" sql-type="varchar" p1:unicode="true" />
+    </property>
+    <property name="id_tipotran" type="Int32" p1:ValidateRequired="True" p1:Guid="9aa5dfbd-a319-459d-ad22-1d6c215aae10">
       <column name="id_tipotran" not-null="true" precision="11" scale="0" sql-type="int" p1:unicode="false" />
     </property>
-    <many-to-one name="tipo_transacciones" class="tipo_transacciones" p1:AssociationGuid="8bdfb2fc-8529-49ee-8c03-9d2ab6e0f75b" p1:Guid="d84e3d5b-4313-41c8-b1ed-2386a27ab35a">
+    <many-to-one name="tipo_transacciones" class="tipo_transacciones" p1:AssociationGuid="cd26a71c-2dd3-47a4-9642-2f4568978681" p1:Guid="8a231172-bd4d-418a-8454-ef54f926c608">
       <column name="id_tipotran" not-null="true" precision="11" scale="0" sql-type="int" p1:unicode="false" />
     </many-to-one>
-    <set name="detalle_ajustes" inverse="true" generic="true" p1:AssociationGuid="23d79f6a-b697-446f-b013-38a3b21168b7" p1:Guid="22281adb-3443-4b33-9a23-0b51db860051">
+    <set name="detalle_ajustes" inverse="true" generic="true" p1:AssociationGuid="e2892e2f-25b8-4289-a4bf-08b078c49967" p1:Guid="e52d696c-d598-4803-9dc8-c90ee582ed76">
       <key>
         <column name="id_ajuste" />
       </key>
       <one-to-many class="detalle_ajustes" />
     </set>
   </class>
-  <class name="categoria_productos" table="categoria_productos" schema="farmacia" p1:Guid="3ded7632-c64b-4423-b0b4-2915d43367c0">
-    <id name="cod_categoria" type="Int32" p1:ValidateRequired="True" p1:Guid="bae31ec5-6bed-4bd4-8d69-c1e26dc3e884">
+  <class name="categoria_productos" table="categoria_productos" schema="farmacia" p1:Guid="e7d25e5c-bf2c-4cc9-a80c-d05e93ddefbe">
+    <id name="cod_categoria" type="Int32" p1:ValidateRequired="True" p1:Guid="7925bde1-94c0-4033-b0e6-9045c2d1a68b">
       <column name="cod_categoria" not-null="true" precision="11" scale="0" sql-type="int" p1:unicode="false" />
       <generator class="identity" />
     </id>
-    <property name="nombre" type="String" p1:nullable="true" p1:ValidateMaxLength="45" p1:ValidateRequired="False" p1:Guid="c15a7512-e77c-4d0e-ba5e-2b71f5ab29e2">
+    <property name="nombre" type="String" p1:nullable="true" p1:ValidateMaxLength="45" p1:ValidateRequired="False" p1:Guid="70176cb5-ca47-4fbf-a7ee-de8adf022914">
       <column name="nombre" not-null="false" length="45" sql-type="varchar" p1:unicode="true" />
     </property>
-    <set name="productos" inverse="true" generic="true" p1:AssociationGuid="3d009f79-25f5-4406-8335-27e7a9116938" p1:Guid="d075cf7b-489f-431e-80cb-8d5c14923540">
+    <property name="fecha_crea" type="DateTime" p1:nullable="true" p1:ValidateRequired="False" p1:Guid="b91ab5c3-6414-4cc6-8337-df138067b5d3">
+      <column name="fecha_crea" not-null="false" sql-type="datetime" p1:unicode="false" />
+    </property>
+    <property name="fecha_actu" type="DateTime" p1:nullable="true" p1:ValidateRequired="False" p1:Guid="c1c2b2fa-7393-4c2f-ae35-eef8cc7ca29e">
+      <column name="fecha_actu" not-null="false" sql-type="datetime" p1:unicode="false" />
+    </property>
+    <property name="usuario_crea" type="String" p1:nullable="true" p1:ValidateMaxLength="45" p1:ValidateRequired="False" p1:Guid="b8484c43-3e17-41fa-8b2d-dcc690a59d78">
+      <column name="usuario_crea" not-null="false" length="45" sql-type="varchar" p1:unicode="true" />
+    </property>
+    <property name="usuario_actu" type="String" p1:nullable="true" p1:ValidateMaxLength="45" p1:ValidateRequired="False" p1:Guid="8233108e-6907-4d9b-b1c6-c980024406da">
+      <column name="usuario_actu" not-null="false" length="45" sql-type="varchar" p1:unicode="true" />
+    </property>
+    <set name="productos" inverse="true" generic="true" p1:AssociationGuid="14c9772c-1da1-4c90-82f7-df2190e342fe" p1:Guid="12d04115-edaa-44da-b481-87a0da4b2b54">
       <key>
         <column name="cod_categoria" />
       </key>
       <one-to-many class="productos" />
     </set>
   </class>
-  <class name="clientes" table="clientes" schema="farmacia" p1:Guid="6d9e4f03-7fae-41d1-9217-89d0438f02e2">
-    <id name="id_cliente" type="Int32" p1:ValidateRequired="True" p1:Guid="678da714-38a5-4e99-a387-4bb787e0287e">
+  <class name="clientes" table="clientes" schema="farmacia" p1:Guid="d5138f84-f612-4e5d-ae2a-80f2a5b9cb54">
+    <id name="id_cliente" type="Int32" p1:ValidateRequired="True" p1:Guid="67e9090e-2f13-4715-a125-92d72345d331">
       <column name="id_cliente" not-null="true" precision="11" scale="0" sql-type="int" p1:unicode="false" />
       <generator class="identity" />
     </id>
-    <property name="nombre" type="String" p1:nullable="true" p1:ValidateMaxLength="45" p1:ValidateRequired="False" p1:Guid="9f1c5fc2-5e1a-4947-a57a-7e9a8ad95284">
+    <property name="nombre" type="String" p1:nullable="true" p1:ValidateMaxLength="45" p1:ValidateRequired="False" p1:Guid="07a6ee79-f8d4-49b5-b0f4-7c7a5dac1421">
       <column name="nombre" not-null="false" length="45" sql-type="varchar" p1:unicode="true" />
     </property>
-    <set name="contactos_clientes" inverse="true" generic="true" p1:AssociationGuid="63b93753-9972-4c41-92cc-4f10dff89681" p1:Guid="2457c71c-5acc-4664-ba46-f8b0af6e1f18">
+    <property name="fecha_crea" type="DateTime" p1:nullable="true" p1:ValidateRequired="False" p1:Guid="76fd6f2f-6318-46c7-8e97-72dc1fbb9445">
+      <column name="fecha_crea" not-null="false" sql-type="datetime" p1:unicode="false" />
+    </property>
+    <property name="fecha_actu" type="DateTime" p1:nullable="true" p1:ValidateRequired="False" p1:Guid="95a7a7a3-0490-4676-862b-6c88d0944e79">
+      <column name="fecha_actu" not-null="false" sql-type="datetime" p1:unicode="false" />
+    </property>
+    <property name="usuario_crea" type="String" p1:nullable="true" p1:ValidateMaxLength="45" p1:ValidateRequired="False" p1:Guid="942ab59b-a405-4b8b-95b4-39f91ef62f62">
+      <column name="usuario_crea" not-null="false" length="45" sql-type="varchar" p1:unicode="true" />
+    </property>
+    <property name="usuario_actu" type="String" p1:nullable="true" p1:ValidateMaxLength="45" p1:ValidateRequired="False" p1:Guid="34e2d140-5a84-4ea3-a2b3-88e95946235a">
+      <column name="usuario_actu" not-null="false" length="45" sql-type="varchar" p1:unicode="true" />
+    </property>
+    <set name="contactos_clientes" inverse="true" generic="true" p1:AssociationGuid="144ab3a6-cd73-4d7a-993e-8552f99fd673" p1:Guid="f5d16279-3491-411b-9268-e97785d0c450">
       <key>
         <column name="id_cliente" />
       </key>
       <one-to-many class="contactos_clientes" />
     </set>
-    <set name="direcciones_clientes" inverse="true" generic="true" p1:AssociationGuid="f38fc902-0e6a-4d65-977f-493bc489af00" p1:Guid="fa3bbd81-5bb0-431a-a070-8bb5f0fa6753">
+    <set name="direcciones_clientes" inverse="true" generic="true" p1:AssociationGuid="b345f73b-8808-4aa6-af71-ccfdc155e486" p1:Guid="af5d2dbe-946c-4607-8d64-3b1dca54c9c3">
       <key>
         <column name="id_cliente" />
       </key>
       <one-to-many class="direcciones_clientes" />
     </set>
-    <set name="facturas" inverse="true" generic="true" p1:AssociationGuid="6fb41f1e-dc9b-42f7-9ca5-936d6cb779be" p1:Guid="a441e073-dcf0-488b-84d4-fcf0079d2c58">
+    <set name="facturas" inverse="true" generic="true" p1:AssociationGuid="95e5925f-6b08-4d14-ab07-b61070fef8d5" p1:Guid="323830c5-fa9d-4099-abe2-80aedcf030c8">
       <key>
         <column name="id_cliente" />
       </key>
       <one-to-many class="facturas" />
     </set>
   </class>
-  <class name="compras" table="compras" schema="farmacia" p1:Guid="41b0ace0-d1fd-4c23-aa0f-73e1326a1f59">
-    <id name="id_compra" type="Int32" p1:ValidateRequired="True" p1:Guid="84ff8b8b-64d2-4821-bc04-a5bafdacb6d1">
+  <class name="compras" table="compras" schema="farmacia" p1:Guid="9972ac17-6908-4dd3-afce-65d37491d881">
+    <id name="id_compra" type="Int32" p1:ValidateRequired="True" p1:Guid="5e66e82a-ddf2-4d62-8090-ae683d90177c">
       <column name="id_compra" not-null="true" precision="11" scale="0" sql-type="int" p1:unicode="false" />
       <generator class="identity" />
     </id>
-    <property name="fecha" type="DateTime" p1:nullable="true" p1:ValidateRequired="False" p1:Guid="03a0cbde-9035-4b13-8337-58d305faba4f">
+    <property name="fecha" type="DateTime" p1:nullable="true" p1:ValidateRequired="False" p1:Guid="93f4884d-88bd-4293-892a-5660f6fac322">
       <column name="fecha" not-null="false" sql-type="date" p1:unicode="false" />
     </property>
-    <property name="total" type="Double" p1:nullable="true" p1:ValidateRequired="False" p1:Guid="b162d931-7884-4fad-b024-1c5621171a9e">
+    <property name="total" type="Double" p1:nullable="true" p1:ValidateRequired="False" p1:Guid="c155650a-d458-4668-84ea-5bf4a0f861b3">
       <column name="total" not-null="false" sql-type="double" p1:unicode="false" />
     </property>
-    <property name="id_proveedor" type="Int32" p1:ValidateRequired="True" p1:Guid="f2fc6840-98dd-4e95-98ad-2c3ad2882ffc">
+    <property name="fecha_crea" type="DateTime" p1:nullable="true" p1:ValidateRequired="False" p1:Guid="9f952e3a-b6f4-442e-871f-b0f914494552">
+      <column name="fecha_crea" not-null="false" sql-type="datetime" p1:unicode="false" />
+    </property>
+    <property name="fecha_actu" type="DateTime" p1:nullable="true" p1:ValidateRequired="False" p1:Guid="0609216e-3861-4547-9942-42b89e8df005">
+      <column name="fecha_actu" not-null="false" sql-type="datetime" p1:unicode="false" />
+    </property>
+    <property name="usuario_crea" type="String" p1:nullable="true" p1:ValidateMaxLength="45" p1:ValidateRequired="False" p1:Guid="ca6d9a1c-06d7-4967-856f-8f34e1d20f31">
+      <column name="usuario_crea" not-null="false" length="45" sql-type="varchar" p1:unicode="true" />
+    </property>
+    <property name="usuario_actu" type="String" p1:nullable="true" p1:ValidateMaxLength="45" p1:ValidateRequired="False" p1:Guid="317a0f13-c634-4857-a5b5-84008886150c">
+      <column name="usuario_actu" not-null="false" length="45" sql-type="varchar" p1:unicode="true" />
+    </property>
+    <property name="id_proveedor" type="Int32" p1:ValidateRequired="True" p1:Guid="ad717735-e2a6-4abd-bfdb-e8c5b41b6dd0">
       <column name="id_proveedor" not-null="true" precision="11" scale="0" sql-type="int" p1:unicode="false" />
     </property>
-    <many-to-one name="proveedores" class="proveedores" p1:AssociationGuid="c2e74048-8285-4c5b-a1b3-6f2ab5d69a93" p1:Guid="1d2b88f5-cf5d-4dea-951a-b78e930830e2">
+    <many-to-one name="proveedores" class="proveedores" p1:AssociationGuid="d3ad21b8-faf6-492e-a74f-f2d8bc29f6d2" p1:Guid="d1165377-72be-40f2-a55d-5e940e006511">
       <column name="id_proveedor" not-null="true" precision="11" scale="0" sql-type="int" p1:unicode="false" />
     </many-to-one>
-    <set name="detalle_compras" inverse="true" generic="true" p1:AssociationGuid="6ed7df2c-05a8-466c-ae6b-80a83fc01b4a" p1:Guid="270173a8-c1a4-418c-a506-127cfecfb948">
+    <set name="detalle_compras" inverse="true" generic="true" p1:AssociationGuid="cb58b494-3d81-4677-bd40-e4980e685901" p1:Guid="478718fa-d8c3-47fd-ba42-1327750d6ede">
       <key>
         <column name="id_compra" />
       </key>
       <one-to-many class="detalle_compras" />
     </set>
   </class>
-  <class name="contactos_clientes" table="contactos_clientes" schema="farmacia" p1:Guid="6c17a819-3b0e-4cb0-8a67-d9802f48b777">
+  <class name="contactos_clientes" table="contactos_clientes" schema="farmacia" p1:Guid="ce4c4dbc-8e38-4647-994f-067e019c0fc8">
     <composite-id>
-      <key-property name="nombre" type="String" p1:ValidateMaxLength="50" p1:ValidateRequired="True" p1:Guid="8b7cfe8c-0e18-4e38-8989-50da17611c08">
+      <key-property name="id_contactocliente" type="Int32" p1:ValidateRequired="True" p1:Guid="02bcc0c7-4c6b-4330-a8cf-8f6e9affcc99">
+        <column name="id_contactocliente" not-null="true" precision="11" scale="0" sql-type="int" p1:unicode="false" />
+      </key-property>
+      <key-property name="nombre" type="String" p1:ValidateMaxLength="50" p1:ValidateRequired="True" p1:Guid="08aa915c-a763-45e0-bdaf-4c635612e1db">
         <column name="nombre" not-null="true" length="50" sql-type="varchar" p1:unicode="true" />
       </key-property>
-      <key-property name="correo" type="String" p1:ValidateMaxLength="20" p1:ValidateRequired="True" p1:Guid="85bf05dd-595e-4104-8f0f-b3d22addb711">
+      <key-property name="correo" type="String" p1:ValidateMaxLength="20" p1:ValidateRequired="True" p1:Guid="947bb2b0-fcec-45a9-959b-766d5e1ba129">
         <column name="correo" not-null="true" length="20" sql-type="varchar" p1:unicode="true" />
       </key-property>
-      <key-property name="telefono" type="String" p1:ValidateMaxLength="15" p1:ValidateRequired="True" p1:Guid="741e7de1-45f3-42b1-8309-a1fa80ff993b">
+      <key-property name="telefono" type="String" p1:ValidateMaxLength="15" p1:ValidateRequired="True" p1:Guid="62dac5ef-4739-4e33-a68c-3a164bb0b01e">
         <column name="telefono" not-null="true" length="15" sql-type="varchar" p1:unicode="true" />
       </key-property>
-      <key-property name="id_cliente" type="Int32" p1:ValidateRequired="True" p1:Guid="b66000c3-2d65-40e2-a994-7c1d66d0317d">
+      <key-property name="id_cliente" type="Int32" p1:ValidateRequired="True" p1:Guid="34a0d226-14db-4564-8e2f-2be97dec1afa">
         <column name="id_cliente" not-null="true" precision="11" scale="0" sql-type="int" p1:unicode="false" />
       </key-property>
     </composite-id>
-    <many-to-one name="clientes" class="clientes" p1:AssociationGuid="63b93753-9972-4c41-92cc-4f10dff89681" p1:Guid="8b2dc8ec-4fb1-40df-a51b-49286034b6fa">
+    <many-to-one name="clientes" class="clientes" p1:AssociationGuid="144ab3a6-cd73-4d7a-993e-8552f99fd673" p1:Guid="a49750a7-f155-489b-8a1b-15bacee078a5">
       <column name="id_cliente" not-null="true" precision="11" scale="0" sql-type="int" p1:unicode="false" />
     </many-to-one>
   </class>
-  <class name="cotizaciones" table="cotizaciones" schema="farmacia" p1:Guid="2ec897c1-3ac0-4deb-837b-fbd27c9ebd81">
-    <id name="id_cotizacion" type="Int32" p1:ValidateRequired="True" p1:Guid="1f76dd28-7543-4c93-a0bb-07dc2cc9fbc8">
+  <class name="cotizaciones" table="cotizaciones" schema="farmacia" p1:Guid="36f8d092-dbeb-418c-8596-7cffbc643dd4">
+    <id name="id_cotizacion" type="Int32" p1:ValidateRequired="True" p1:Guid="74c57568-fe29-41e9-a02e-e5c1b6811a41">
       <column name="id_cotizacion" not-null="true" precision="11" scale="0" sql-type="int" p1:unicode="false" />
       <generator class="identity" />
     </id>
-    <property name="fecha" type="DateTime" p1:nullable="true" p1:ValidateRequired="False" p1:Guid="0ecba5ff-d794-4a69-9591-84515dccf7d6">
+    <property name="fecha" type="DateTime" p1:nullable="true" p1:ValidateRequired="False" p1:Guid="aa6d0d2a-8f65-4266-996b-ea713802e026">
       <column name="fecha" not-null="false" sql-type="date" p1:unicode="false" />
     </property>
-    <property name="tota" type="Double" p1:nullable="true" p1:ValidateRequired="False" p1:Guid="ecc44b7e-8d67-47b5-8454-a94888d80c32">
+    <property name="tota" type="Double" p1:nullable="true" p1:ValidateRequired="False" p1:Guid="02d4799e-7a54-48d8-a680-07254270d7df">
       <column name="tota" not-null="false" sql-type="double" p1:unicode="false" />
     </property>
-    <property name="id_proveedor" type="Int32" p1:ValidateRequired="True" p1:Guid="bcffa04c-8163-4141-9048-3c4219a2357e">
+    <property name="fecha_crea" type="DateTime" p1:nullable="true" p1:ValidateRequired="False" p1:Guid="d0d05fea-0974-47b6-bb51-12595c162e8e">
+      <column name="fecha_crea" not-null="false" sql-type="datetime" p1:unicode="false" />
+    </property>
+    <property name="fecha_actu" type="DateTime" p1:nullable="true" p1:ValidateRequired="False" p1:Guid="09c2c5b2-18e1-47cf-a369-47461f596176">
+      <column name="fecha_actu" not-null="false" sql-type="datetime" p1:unicode="false" />
+    </property>
+    <property name="usuario_crea" type="String" p1:nullable="true" p1:ValidateMaxLength="45" p1:ValidateRequired="False" p1:Guid="e480deed-65e4-430e-b51f-6af663b26221">
+      <column name="usuario_crea" not-null="false" length="45" sql-type="varchar" p1:unicode="true" />
+    </property>
+    <property name="usuario_actu" type="String" p1:nullable="true" p1:ValidateMaxLength="45" p1:ValidateRequired="False" p1:Guid="6a426887-ac06-4329-b3c9-6aa42dc02781">
+      <column name="usuario_actu" not-null="false" length="45" sql-type="varchar" p1:unicode="true" />
+    </property>
+    <property name="id_proveedor" type="Int32" p1:ValidateRequired="True" p1:Guid="8572b49b-daef-438d-a63f-8ec99fdbbca4">
       <column name="id_proveedor" not-null="true" precision="11" scale="0" sql-type="int" p1:unicode="false" />
     </property>
-    <many-to-one name="proveedores" class="proveedores" p1:AssociationGuid="226755b6-0cdf-456d-9219-0b16f17200c4" p1:Guid="4f6ec818-a495-4283-a9a7-0239259de458">
+    <many-to-one name="proveedores" class="proveedores" p1:AssociationGuid="01f448bb-d1a5-4f69-9e95-0031f6178932" p1:Guid="589ff173-2831-476d-9f57-5b2893e1171a">
       <column name="id_proveedor" not-null="true" precision="11" scale="0" sql-type="int" p1:unicode="false" />
     </many-to-one>
-    <set name="detalle_cotizaciones" inverse="true" generic="true" p1:AssociationGuid="f0c87488-3a87-4acd-8253-a01fbf1b0a7f" p1:Guid="f55f2934-0c82-4ebc-a8b1-27ac5615dd0c">
+    <set name="detalle_cotizaciones" inverse="true" generic="true" p1:AssociationGuid="a5d94334-dbc8-4f2f-80ba-f62c7522d485" p1:Guid="b48fa896-908e-4982-9416-d225d88af341">
       <key>
         <column name="id_cotizacion" />
       </key>
       <one-to-many class="detalle_cotizaciones" />
     </set>
   </class>
-  <class name="detalle_ajustes" table="detalle_ajustes" schema="farmacia" p1:Guid="543eb12d-e4b7-4382-9d7d-94c7220835bf">
+  <class name="detalle_ajustes" table="detalle_ajustes" schema="farmacia" p1:Guid="96867b80-4609-4daa-8713-a279d5ebfa18">
     <composite-id>
-      <key-property name="num_detalle" type="Int32" p1:ValidateRequired="True" p1:Guid="b0fede78-2c44-48f9-b6e7-ec5934157d8f">
+      <key-property name="num_detalle" type="Int32" p1:ValidateRequired="True" p1:Guid="31f22911-6f3c-4f65-8f5b-cde540fc0db7">
         <column name="num_detalle" not-null="true" precision="11" scale="0" sql-type="int" p1:unicode="false" />
       </key-property>
-      <key-property name="id_ajuste" type="Int32" p1:ValidateRequired="True" p1:Guid="3998a4c0-4fde-42d8-b529-77bde731682b">
+      <key-property name="id_ajuste" type="Int32" p1:ValidateRequired="True" p1:Guid="d74e7f00-1f61-4dee-8ff5-41c846153444">
         <column name="id_ajuste" not-null="true" precision="11" scale="0" sql-type="int" p1:unicode="false" />
       </key-property>
     </composite-id>
-    <property name="cantidad" type="Int32" p1:nullable="true" p1:ValidateRequired="False" p1:Guid="c6a7223c-ad08-4f9f-87bb-6eb263d39697">
+    <property name="cantidad" type="Int32" p1:nullable="true" p1:ValidateRequired="False" p1:Guid="0d3cb2e2-dcc9-456e-9f54-ae57be45ac0c">
       <column name="cantidad" not-null="false" precision="11" scale="0" sql-type="int" p1:unicode="false" />
     </property>
-    <property name="cod_prod" type="Int32" p1:ValidateRequired="True" p1:Guid="7c48e289-55bb-4966-9b9f-e3b197047a4a">
+    <property name="cod_prod" type="Int32" p1:ValidateRequired="True" p1:Guid="8345bbf6-c57c-463f-a243-ec59f5225498">
       <column name="cod_prod" not-null="true" precision="11" scale="0" sql-type="int" p1:unicode="false" />
     </property>
-    <many-to-one name="ajustes" class="ajustes" p1:AssociationGuid="23d79f6a-b697-446f-b013-38a3b21168b7" p1:Guid="c0716a09-e6cf-45de-98c6-0d2aabeb2c63">
+    <many-to-one name="ajustes" class="ajustes" p1:AssociationGuid="e2892e2f-25b8-4289-a4bf-08b078c49967" p1:Guid="97138389-1427-4ecc-8d2b-6dedb05372dc">
       <column name="id_ajuste" not-null="true" precision="11" scale="0" sql-type="int" p1:unicode="false" />
     </many-to-one>
-    <many-to-one name="productos" class="productos" p1:AssociationGuid="5673fb9a-ff8e-49c7-9b6f-1ab2e9ad59b3" p1:Guid="cad334bc-c853-4f05-8326-e85e60cf17a0">
+    <many-to-one name="productos" class="productos" p1:AssociationGuid="9c240ecf-ce77-4859-8075-bd920d45c761" p1:Guid="a669d7cf-f5da-478b-8e38-859b299343d1">
       <column name="cod_prod" not-null="true" precision="11" scale="0" sql-type="int" p1:unicode="false" />
     </many-to-one>
   </class>
-  <class name="detalle_compras" table="detalle_compras" schema="farmacia" p1:Guid="3d411d1b-9315-44d9-8051-899c137f03da">
+  <class name="detalle_compras" table="detalle_compras" schema="farmacia" p1:Guid="89cfc0a1-6d7b-46f9-8c20-86c633ae8081">
     <composite-id>
-      <key-property name="num_detalle" type="Int32" p1:ValidateRequired="True" p1:Guid="d42c1c21-129c-4684-b658-66a87346c115">
+      <key-property name="num_detalle" type="Int32" p1:ValidateRequired="True" p1:Guid="2665711a-c45d-4b7a-a25f-e82198ec4cb4">
         <column name="num_detalle" not-null="true" precision="11" scale="0" sql-type="int" p1:unicode="false" />
       </key-property>
-      <key-property name="id_compra" type="Int32" p1:ValidateRequired="True" p1:Guid="d921da01-52dc-4623-9612-8e0767608007">
+      <key-property name="id_compra" type="Int32" p1:ValidateRequired="True" p1:Guid="52c12688-f0e4-413a-808b-df675b873241">
         <column name="id_compra" not-null="true" precision="11" scale="0" sql-type="int" p1:unicode="false" />
       </key-property>
     </composite-id>
-    <property name="cantidad" type="Int32" p1:nullable="true" p1:ValidateRequired="False" p1:Guid="a6d6cf6a-a4ab-4533-b017-b02904314295">
+    <property name="cantidad" type="Int32" p1:nullable="true" p1:ValidateRequired="False" p1:Guid="a510379e-165f-49a6-a9f7-aac887f35149">
       <column name="cantidad" not-null="false" precision="11" scale="0" sql-type="int" p1:unicode="false" />
     </property>
-    <property name="precio_compra" type="Double" p1:nullable="true" p1:ValidateRequired="False" p1:Guid="794ac335-1631-4002-b6bf-fa70fa675089">
+    <property name="precio_compra" type="Double" p1:nullable="true" p1:ValidateRequired="False" p1:Guid="4ecd5ac6-ae5c-49ce-99ca-8441999f6833">
       <column name="precio_compra" not-null="false" sql-type="double" p1:unicode="false" />
     </property>
-    <property name="subtotal" type="Double" p1:nullable="true" p1:ValidateRequired="False" p1:Guid="d8efbc6c-cb62-4126-9b5e-5d86b6cff226">
+    <property name="subtotal" type="Double" p1:nullable="true" p1:ValidateRequired="False" p1:Guid="57c0a5f1-1132-4ebb-ac98-990177430afb">
       <column name="subtotal" not-null="false" sql-type="double" p1:unicode="false" />
     </property>
-    <property name="cod_prod" type="Int32" p1:ValidateRequired="True" p1:Guid="f051ef0f-dfe2-4e76-9d58-0e065a16259e">
+    <property name="cod_prod" type="Int32" p1:ValidateRequired="True" p1:Guid="e1deb948-3d63-414e-9442-1e544fbe2546">
       <column name="cod_prod" not-null="true" precision="11" scale="0" sql-type="int" p1:unicode="false" />
     </property>
-    <many-to-one name="compras" class="compras" p1:AssociationGuid="6ed7df2c-05a8-466c-ae6b-80a83fc01b4a" p1:Guid="1f64a307-ae2f-4858-a58c-1879e7685135">
+    <many-to-one name="compras" class="compras" p1:AssociationGuid="cb58b494-3d81-4677-bd40-e4980e685901" p1:Guid="5ecf9532-aa5c-4197-b335-6fdd860bb982">
       <column name="id_compra" not-null="true" precision="11" scale="0" sql-type="int" p1:unicode="false" />
     </many-to-one>
-    <many-to-one name="productos" class="productos" p1:AssociationGuid="11af1c3c-20c1-4bfa-9973-fa7f2e85feb9" p1:Guid="28300d7a-78fd-4079-ab97-4b157dae07fd">
+    <many-to-one name="productos" class="productos" p1:AssociationGuid="91d41aec-2829-419d-9802-82fbe8c8da88" p1:Guid="54638257-14a3-4d6d-8120-d2d3fa4ea56e">
       <column name="cod_prod" not-null="true" precision="11" scale="0" sql-type="int" p1:unicode="false" />
     </many-to-one>
   </class>
-  <class name="detalle_cotizaciones" table="detalle_cotizaciones" schema="farmacia" p1:Guid="a722996e-73ef-415d-b8a4-22c168298337">
+  <class name="detalle_cotizaciones" table="detalle_cotizaciones" schema="farmacia" p1:Guid="ea6ec5c4-2134-4f31-b90f-d2ce22746d18">
     <composite-id>
-      <key-property name="num_detalle" type="Int32" p1:ValidateRequired="True" p1:Guid="d01ab55b-93db-463f-b0d2-fc122b17e287">
+      <key-property name="num_detalle" type="Int32" p1:ValidateRequired="True" p1:Guid="0015b16a-9bf3-4efb-95f4-e983b8e1daa6">
         <column name="num_detalle" not-null="true" precision="11" scale="0" sql-type="int" p1:unicode="false" />
       </key-property>
-      <key-property name="id_cotizacion" type="Int32" p1:ValidateRequired="True" p1:Guid="c001d102-0496-41a7-8b7f-66d0ee7b34d7">
+      <key-property name="id_cotizacion" type="Int32" p1:ValidateRequired="True" p1:Guid="859b6282-b86f-421d-9259-865918921911">
         <column name="id_cotizacion" not-null="true" precision="11" scale="0" sql-type="int" p1:unicode="false" />
       </key-property>
     </composite-id>
-    <property name="cantidad" type="Int32" p1:nullable="true" p1:ValidateRequired="False" p1:Guid="b8dd7942-3141-44b3-90b0-5b2e6c901a96">
+    <property name="cantidad" type="Int32" p1:nullable="true" p1:ValidateRequired="False" p1:Guid="f8b3852b-e5fd-42d7-9874-1496522e5b4a">
       <column name="cantidad" not-null="false" precision="11" scale="0" sql-type="int" p1:unicode="false" />
     </property>
-    <property name="precio_unit" type="Double" p1:nullable="true" p1:ValidateRequired="False" p1:Guid="bacaf1ef-5ffd-44a1-8550-6e5f5eae4d6a">
+    <property name="precio_unit" type="Double" p1:nullable="true" p1:ValidateRequired="False" p1:Guid="f4c9ac69-9383-458b-ad59-c53541b13302">
       <column name="precio_unit" not-null="false" sql-type="double" p1:unicode="false" />
     </property>
-    <property name="cod_prod" type="Int32" p1:ValidateRequired="True" p1:Guid="bc5c0ec3-d1bb-472a-822c-84cbc4416b0b">
+    <property name="cod_prod" type="Int32" p1:ValidateRequired="True" p1:Guid="85168e47-067a-4ecc-b188-763c17aee1cb">
       <column name="cod_prod" not-null="true" precision="11" scale="0" sql-type="int" p1:unicode="false" />
     </property>
-    <many-to-one name="cotizaciones" class="cotizaciones" p1:AssociationGuid="f0c87488-3a87-4acd-8253-a01fbf1b0a7f" p1:Guid="526f5735-855d-4506-88ef-df1158500fc6">
+    <many-to-one name="cotizaciones" class="cotizaciones" p1:AssociationGuid="a5d94334-dbc8-4f2f-80ba-f62c7522d485" p1:Guid="78f5ff40-d8bc-43b9-a880-14f5841789cd">
       <column name="id_cotizacion" not-null="true" precision="11" scale="0" sql-type="int" p1:unicode="false" />
     </many-to-one>
-    <many-to-one name="productos" class="productos" p1:AssociationGuid="ce150da5-de9f-4339-89de-17db5c1f462b" p1:Guid="52b2e4b1-b0dd-42a1-b27e-def5c412de1f">
+    <many-to-one name="productos" class="productos" p1:AssociationGuid="738cf44a-d8a1-41a6-9235-2d667af20ecf" p1:Guid="7dda5901-458a-4ea6-87c7-b3a73a15da5e">
       <column name="cod_prod" not-null="true" precision="11" scale="0" sql-type="int" p1:unicode="false" />
     </many-to-one>
   </class>
-  <class name="detalle_oc" table="detalle_oc" schema="farmacia" p1:Guid="e4e9d596-c95a-4cd2-937b-b1212455164c">
+  <class name="detalle_oc" table="detalle_oc" schema="farmacia" p1:Guid="a183e64b-e42d-4182-9d79-953d11183f2c">
     <composite-id>
-      <key-property name="num_detalle" type="Int32" p1:ValidateRequired="True" p1:Guid="ff788a49-9d74-4a8a-8ff5-840ff58d2c8d">
+      <key-property name="num_detalle" type="Int32" p1:ValidateRequired="True" p1:Guid="55d2a6e6-721a-48db-8723-b744ec73ba46">
         <column name="num_detalle" not-null="true" precision="11" scale="0" sql-type="int" p1:unicode="false" />
       </key-property>
-      <key-property name="id_ordencompra" type="Int32" p1:ValidateRequired="True" p1:Guid="1c3cb52a-095c-4a8d-a04f-b4621fde0f47">
+      <key-property name="id_ordencompra" type="Int32" p1:ValidateRequired="True" p1:Guid="0d2bdd54-b4e0-4821-8b03-e93731cdf19e">
         <column name="id_ordencompra" not-null="true" precision="11" scale="0" sql-type="int" p1:unicode="false" />
       </key-property>
     </composite-id>
-    <property name="cantidad" type="Int32" p1:nullable="true" p1:ValidateRequired="False" p1:Guid="e66b5f4d-ac74-4218-9206-1731f0e75ebb">
+    <property name="cantidad" type="Int32" p1:nullable="true" p1:ValidateRequired="False" p1:Guid="f8c15fe1-b3d0-461c-a529-9de2b6d7daf2">
       <column name="cantidad" not-null="false" precision="11" scale="0" sql-type="int" p1:unicode="false" />
     </property>
-    <property name="subtotal" type="Double" p1:nullable="true" p1:ValidateRequired="False" p1:Guid="cc9bd374-0ffb-43f9-bcce-c98ebceb6be6">
+    <property name="subtotal" type="Double" p1:nullable="true" p1:ValidateRequired="False" p1:Guid="81b8f999-168a-4baa-ae51-1d4d6bc3706a">
       <column name="subtotal" not-null="false" sql-type="double" p1:unicode="false" />
     </property>
-    <property name="precio_unit" type="Double" p1:nullable="true" p1:ValidateRequired="False" p1:Guid="55d8b596-fa3a-441f-87c3-8574cf2d2a7d">
+    <property name="precio_unit" type="Double" p1:nullable="true" p1:ValidateRequired="False" p1:Guid="32abd099-936e-4266-b2a8-5761b0946acf">
       <column name="precio_unit" not-null="false" sql-type="double" p1:unicode="false" />
     </property>
-    <property name="cod_prod" type="Int32" p1:ValidateRequired="True" p1:Guid="3ffed631-d88e-4d83-83c0-700ebce723ea">
+    <property name="cod_prod" type="Int32" p1:ValidateRequired="True" p1:Guid="bc9ef82b-7e87-498d-b44b-b7e9c179715e">
       <column name="cod_prod" not-null="true" precision="11" scale="0" sql-type="int" p1:unicode="false" />
     </property>
-    <many-to-one name="ordenes_de_compra" class="ordenes_de_compra" p1:AssociationGuid="79dbf323-8a45-4507-a4b5-c94cb8b54d3a" p1:Guid="f839725b-b0b5-49d0-9eac-e9f42b3a8465">
+    <many-to-one name="ordenes_de_compra" class="ordenes_de_compra" p1:AssociationGuid="8945773d-4ccf-4019-abde-7f836fb223b3" p1:Guid="6af7a655-91e8-407d-a5c9-fe271e80aafd">
       <column name="id_ordencompra" not-null="true" precision="11" scale="0" sql-type="int" p1:unicode="false" />
     </many-to-one>
-    <many-to-one name="productos" class="productos" p1:AssociationGuid="7dd4f146-a131-4f62-af75-f2bd71cd6ed2" p1:Guid="5426f3c6-3b7f-4d4f-83b1-2470fe07af8b">
+    <many-to-one name="productos" class="productos" p1:AssociationGuid="d8382914-5a0e-4d0c-8204-4195023b3aa6" p1:Guid="bc93a568-2dc2-4f1d-9b78-3be80cc9ad28">
       <column name="cod_prod" not-null="true" precision="11" scale="0" sql-type="int" p1:unicode="false" />
     </many-to-one>
   </class>
-  <class name="detallle_facturas" table="detallle_facturas" schema="farmacia" p1:Guid="fe93d74d-9b1c-46bd-91e5-61122bc73081">
+  <class name="detallle_facturas" table="detallle_facturas" schema="farmacia" p1:Guid="f266864d-fc37-465c-8ee9-804727b78bc1">
     <composite-id>
-      <key-property name="num_detalle" type="Int32" p1:ValidateRequired="True" p1:Guid="583c84c1-3205-4f6d-915a-1901de75dd1f">
+      <key-property name="num_detalle" type="Int32" p1:ValidateRequired="True" p1:Guid="a68666fa-bafe-4e90-bc86-5f25825428a5">
         <column name="num_detalle" not-null="true" precision="11" scale="0" sql-type="int" p1:unicode="false" />
       </key-property>
-      <key-property name="num_factura" type="Int32" p1:ValidateRequired="True" p1:Guid="e50897b8-5d7b-4672-9cd1-dd1864d979ee">
+      <key-property name="num_factura" type="Int32" p1:ValidateRequired="True" p1:Guid="22f66c78-2a24-4fc0-8dd7-52571ca292a4">
         <column name="num_factura" not-null="true" precision="11" scale="0" sql-type="int" p1:unicode="false" />
       </key-property>
     </composite-id>
-    <property name="precio_venta" type="Double" p1:nullable="true" p1:ValidateRequired="False" p1:Guid="9f7100fa-a69c-405d-89f2-8104c8530ab1">
+    <property name="precio_venta" type="Double" p1:nullable="true" p1:ValidateRequired="False" p1:Guid="3974090a-cc83-42b2-9cbe-f68a45b48641">
       <column name="precio_venta" not-null="false" sql-type="double" p1:unicode="false" />
     </property>
-    <property name="cantidad" type="Int32" p1:nullable="true" p1:ValidateRequired="False" p1:Guid="ecec7722-45bc-4f34-86e4-9d282cb0b61d">
+    <property name="cantidad" type="Int32" p1:nullable="true" p1:ValidateRequired="False" p1:Guid="b9eb9589-c09f-44d0-97e4-06f9f12aaecf">
       <column name="cantidad" not-null="false" precision="11" scale="0" sql-type="int" p1:unicode="false" />
     </property>
-    <property name="subtotal" type="Double" p1:nullable="true" p1:ValidateRequired="False" p1:Guid="5580e929-fa67-4400-9ae9-42e28aed329b">
+    <property name="subtotal" type="Double" p1:nullable="true" p1:ValidateRequired="False" p1:Guid="43dd5d86-ee16-4273-b2a6-d333b3ee8c05">
       <column name="subtotal" not-null="false" sql-type="double" p1:unicode="false" />
     </property>
-    <property name="cod_prod" type="Int32" p1:ValidateRequired="True" p1:Guid="6a7362c1-47c0-464b-ad7a-903771782097">
+    <property name="cod_prod" type="Int32" p1:ValidateRequired="True" p1:Guid="4cc46cfc-60f7-4d9c-83c2-a421ba536378">
       <column name="cod_prod" not-null="true" precision="11" scale="0" sql-type="int" p1:unicode="false" />
     </property>
-    <many-to-one name="facturas" class="facturas" p1:AssociationGuid="bc9c762d-0737-4a7b-a1cd-af65470ce0a7" p1:Guid="5c1a6081-e750-4c29-a3dc-279a868bfa88">
+    <many-to-one name="facturas" class="facturas" p1:AssociationGuid="8525625e-91d7-4078-ac2f-32ac3af4b087" p1:Guid="90402a52-063b-43ac-8622-3585fdf6c81a">
       <column name="num_factura" not-null="true" precision="11" scale="0" sql-type="int" p1:unicode="false" />
     </many-to-one>
-    <many-to-one name="productos" class="productos" p1:AssociationGuid="80230a03-79e1-487c-92d9-0cbd3b14d8f0" p1:Guid="5c985535-2873-4246-bc79-c557547fef53">
+    <many-to-one name="productos" class="productos" p1:AssociationGuid="8cd226db-f085-4ad8-82ed-37404f804d21" p1:Guid="fd3cec6f-f1bf-430b-a094-b56b25f4dd27">
       <column name="cod_prod" not-null="true" precision="11" scale="0" sql-type="int" p1:unicode="false" />
     </many-to-one>
   </class>
-  <class name="direcciones_clientes" table="direcciones_clientes" schema="farmacia" p1:Guid="843bfa3e-0006-49a8-9867-b348104af773">
+  <class name="direcciones_clientes" table="direcciones_clientes" schema="farmacia" p1:Guid="5fa4bda2-cd02-4eee-a3ed-ed2f90f7079a">
     <composite-id>
-      <key-property name="direccion" type="String" p1:ValidateMaxLength="50" p1:ValidateRequired="True" p1:Guid="e5bd6975-be4c-498d-b584-faf7173d94ff">
+      <key-property name="id_direccioncliente" type="Int32" p1:ValidateRequired="True" p1:Guid="8c5162df-a1f4-48af-bdbe-208a0b23f780">
+        <column name="id_direccioncliente" not-null="true" precision="11" scale="0" sql-type="int" p1:unicode="false" />
+      </key-property>
+      <key-property name="direccion" type="String" p1:ValidateMaxLength="50" p1:ValidateRequired="True" p1:Guid="ff8230d6-2d02-4e0b-a749-4bd159b6e887">
         <column name="direccion" not-null="true" length="50" sql-type="varchar" p1:unicode="true" />
       </key-property>
-      <key-property name="id_cliente" type="Int32" p1:ValidateRequired="True" p1:Guid="b2dd3b81-d6ec-46ab-a30c-3898bc7bacd1">
-        <column name="id_cliente" default="0" not-null="true" precision="11" scale="0" sql-type="int" p1:unicode="false" />
+      <key-property name="id_cliente" type="Int32" p1:ValidateRequired="True" p1:Guid="459a2942-c59f-4412-9c2e-be0fe8aa5a3c">
+        <column name="id_cliente" not-null="true" precision="11" scale="0" sql-type="int" p1:unicode="false" />
       </key-property>
     </composite-id>
-    <many-to-one name="clientes" class="clientes" p1:AssociationGuid="f38fc902-0e6a-4d65-977f-493bc489af00" p1:Guid="c0eab8db-80bf-4fc2-b811-2263e1782cd1">
-      <column name="id_cliente" default="0" not-null="true" precision="11" scale="0" sql-type="int" p1:unicode="false" />
+    <many-to-one name="clientes" class="clientes" p1:AssociationGuid="b345f73b-8808-4aa6-af71-ccfdc155e486" p1:Guid="29871251-5b05-42cd-aefb-b48f36f458b3">
+      <column name="id_cliente" not-null="true" precision="11" scale="0" sql-type="int" p1:unicode="false" />
     </many-to-one>
   </class>
-  <class name="facturas" table="facturas" schema="farmacia" p1:Guid="69367980-a0db-4023-a24f-78b7dea395c0">
-    <id name="num_factura" type="Int32" p1:ValidateRequired="True" p1:Guid="de8f6dbf-69f7-4bdf-a017-a7f7f352ee4f">
+  <class name="facturas" table="facturas" schema="farmacia" p1:Guid="f2fdd445-da3e-42dd-aa6a-968899b2ad1c">
+    <id name="num_factura" type="Int32" p1:ValidateRequired="True" p1:Guid="1767fada-13c6-4b5a-a5f9-104194424085">
       <column name="num_factura" not-null="true" precision="11" scale="0" sql-type="int" p1:unicode="false" />
     </id>
-    <property name="fecha" type="DateTime" p1:nullable="true" p1:ValidateRequired="False" p1:Guid="cd400276-7315-43d1-89a2-f0e0f14a95fc">
+    <property name="fecha" type="DateTime" p1:nullable="true" p1:ValidateRequired="False" p1:Guid="01238d5a-f1bb-4ef8-aef9-325ea2fa8f9a">
       <column name="fecha" not-null="false" sql-type="date" p1:unicode="false" />
     </property>
-    <property name="subtotal" type="Double" p1:nullable="true" p1:ValidateRequired="False" p1:Guid="1f30633c-8b31-4763-abec-aca740c377b9">
+    <property name="subtotal" type="Double" p1:nullable="true" p1:ValidateRequired="False" p1:Guid="259f5f41-08e4-4449-a969-de8ac25f4216">
       <column name="subtotal" not-null="false" sql-type="double" p1:unicode="false" />
     </property>
-    <property name="isv" type="Double" p1:nullable="true" p1:ValidateRequired="False" p1:Guid="a12cfe40-df42-4816-9891-f2e8f8588070">
+    <property name="isv" type="Double" p1:nullable="true" p1:ValidateRequired="False" p1:Guid="145027fb-00f1-4dea-8e3a-02465dfba770">
       <column name="isv" not-null="false" sql-type="double" p1:unicode="false" />
     </property>
-    <property name="descuento" type="Double" p1:nullable="true" p1:ValidateRequired="False" p1:Guid="04f1ce98-468f-4883-a205-f3b9fb6da43f">
+    <property name="descuento" type="Double" p1:nullable="true" p1:ValidateRequired="False" p1:Guid="3520226c-9a39-4099-9350-3c462fa40b52">
       <column name="descuento" not-null="false" sql-type="double" p1:unicode="false" />
     </property>
-    <property name="total" type="Double" p1:nullable="true" p1:ValidateRequired="False" p1:Guid="3874949c-3710-440a-a558-92e315459da0">
+    <property name="total" type="Double" p1:nullable="true" p1:ValidateRequired="False" p1:Guid="6c1dac56-9dce-4d9c-8bcb-64eabfb2ffb7">
       <column name="total" not-null="false" sql-type="double" p1:unicode="false" />
     </property>
-    <property name="id_cliente" type="Int32" p1:ValidateRequired="True" p1:Guid="224f9df7-1887-450f-8334-efcd28463caf">
+    <property name="fecha_crea" type="DateTime" p1:nullable="true" p1:ValidateRequired="False" p1:Guid="26bb852d-3e5b-46af-80bd-d11cfd1818d9">
+      <column name="fecha_crea" not-null="false" sql-type="datetime" p1:unicode="false" />
+    </property>
+    <property name="fecha_actu" type="DateTime" p1:nullable="true" p1:ValidateRequired="False" p1:Guid="05dfdba2-a9b3-4ce9-b8df-1501fb27a5bb">
+      <column name="fecha_actu" not-null="false" sql-type="datetime" p1:unicode="false" />
+    </property>
+    <property name="usuario_crea" type="String" p1:nullable="true" p1:ValidateMaxLength="45" p1:ValidateRequired="False" p1:Guid="bf803fd0-4ab1-4e5b-9fcd-71f3ec11cb94">
+      <column name="usuario_crea" not-null="false" length="45" sql-type="varchar" p1:unicode="true" />
+    </property>
+    <property name="usuario_actu" type="String" p1:nullable="true" p1:ValidateMaxLength="45" p1:ValidateRequired="False" p1:Guid="f031490e-f1e4-47b6-a07f-346ca0195e32">
+      <column name="usuario_actu" not-null="false" length="45" sql-type="varchar" p1:unicode="true" />
+    </property>
+    <property name="id_cliente" type="Int32" p1:ValidateRequired="True" p1:Guid="4d726a97-34d0-414f-9fec-0d8f3e53f5b0">
       <column name="id_cliente" not-null="true" precision="11" scale="0" sql-type="int" p1:unicode="false" />
     </property>
-    <many-to-one name="clientes" class="clientes" p1:AssociationGuid="6fb41f1e-dc9b-42f7-9ca5-936d6cb779be" p1:Guid="d78dcdba-1dde-49ba-8405-065d08eddfb9">
+    <many-to-one name="clientes" class="clientes" p1:AssociationGuid="95e5925f-6b08-4d14-ab07-b61070fef8d5" p1:Guid="73cdf7e2-c29f-4551-a381-4c7d91ccb880">
       <column name="id_cliente" not-null="true" precision="11" scale="0" sql-type="int" p1:unicode="false" />
     </many-to-one>
-    <set name="detallle_facturas" inverse="true" generic="true" p1:AssociationGuid="bc9c762d-0737-4a7b-a1cd-af65470ce0a7" p1:Guid="35f0bf90-c616-4917-8237-0eef26407cd1">
+    <set name="detallle_facturas" inverse="true" generic="true" p1:AssociationGuid="8525625e-91d7-4078-ac2f-32ac3af4b087" p1:Guid="df0166be-b78b-47b5-8d86-45a6609fa2bc">
       <key>
         <column name="num_factura" />
       </key>
       <one-to-many class="detallle_facturas" />
     </set>
   </class>
-  <class name="grupos_roles" table="grupos_roles" schema="farmacia" p1:Guid="ec5e5680-e314-4eb1-a8e1-b229899c8d8c">
-    <id name="id_rol" type="Int32" p1:ValidateRequired="True" p1:Guid="b6ec2a54-b578-435c-99d9-2c4ec6cc868a">
+  <class name="grupos_roles" table="grupos_roles" schema="farmacia" p1:Guid="1004da25-c97c-4e5f-832f-8a7d692cff99">
+    <id name="id_rol" type="Int32" p1:ValidateRequired="True" p1:Guid="e063a532-82d3-4958-a5fb-cae59307aafb">
       <column name="id_rol" not-null="true" precision="11" scale="0" sql-type="int" p1:unicode="false" />
       <generator class="identity" />
     </id>
-    <property name="nombre" type="String" p1:nullable="true" p1:ValidateMaxLength="45" p1:ValidateRequired="False" p1:Guid="ee91ea51-f650-4f79-a84d-d0f0be09d76b">
+    <property name="nombre" type="String" p1:nullable="true" p1:ValidateMaxLength="45" p1:ValidateRequired="False" p1:Guid="3c3cd348-91b7-4ffc-bf1a-42d583b43530">
       <column name="nombre" not-null="false" length="45" sql-type="varchar" p1:unicode="true" />
     </property>
-    <set name="privilegios" table="grupos_roles_has_privilegios" schema="farmacia" inverse="true" generic="true" p1:AssociationGuid="318da0ef-c4cc-4dfe-a9ed-27fe9f9683db" p1:Guid="8495d5d6-304a-4588-a1bd-c3e0f0abe1e1">
+    <property name="fecha_crea" type="DateTime" p1:nullable="true" p1:ValidateRequired="False" p1:Guid="6ae29e6f-96ac-485e-8ac8-548541cdfca5">
+      <column name="fecha_crea" not-null="false" sql-type="datetime" p1:unicode="false" />
+    </property>
+    <property name="fecha_actu" type="DateTime" p1:nullable="true" p1:ValidateRequired="False" p1:Guid="42b137cc-874a-459a-b4d2-325e22e40cc3">
+      <column name="fecha_actu" not-null="false" sql-type="datetime" p1:unicode="false" />
+    </property>
+    <property name="usuario_crea" type="String" p1:nullable="true" p1:ValidateMaxLength="45" p1:ValidateRequired="False" p1:Guid="1932366b-5b60-491e-a158-b01152d43383">
+      <column name="usuario_crea" not-null="false" length="45" sql-type="varchar" p1:unicode="true" />
+    </property>
+    <property name="usuario_actu" type="String" p1:nullable="true" p1:ValidateMaxLength="45" p1:ValidateRequired="False" p1:Guid="0e165d3c-78ce-4699-8589-d4236305a663">
+      <column name="usuario_actu" not-null="false" length="45" sql-type="varchar" p1:unicode="true" />
+    </property>
+    <set name="privilegios" table="grupos_roles_has_privilegios" schema="farmacia" inverse="true" generic="true" p1:AssociationGuid="4ea3b6a2-1965-4992-b80d-aba02515792d" p1:Guid="b5d30238-e05e-4abe-8706-5047e781f144">
       <key>
         <column name="id_rol" />
       </key>
@@ -325,7 +415,7 @@
         <column name="id_privilegio" />
       </many-to-many>
     </set>
-    <set name="usuarios" table="usuarios_has_grupos_roles" schema="farmacia" inverse="true" generic="true" p1:AssociationGuid="72bc4e98-4904-4cf2-b3af-fd852cec32e5" p1:Guid="9a5efba6-197d-4c1a-8d2f-7025555d82cd">
+    <set name="usuarios" table="usuarios_has_grupos_roles" schema="farmacia" inverse="true" generic="true" p1:AssociationGuid="6704bbfa-bab7-4f1c-b72b-56839667835c" p1:Guid="91b49acd-82ab-4498-bf5f-b37670824874">
       <key>
         <column name="id_rol" />
       </key>
@@ -334,111 +424,132 @@
       </many-to-many>
     </set>
   </class>
-  <class name="kardex" table="kardex" schema="farmacia" p1:Guid="eb664634-4d74-4be5-9107-9707c2329aaa">
-    <id name="id_operacion" type="Int32" p1:ValidateRequired="True" p1:Guid="1e2273e6-d693-4041-8db5-149953f05319">
+  <class name="kardex" table="kardex" schema="farmacia" p1:Guid="4448a78c-939b-4975-918e-2088e38cad7e">
+    <id name="id_operacion" type="Int32" p1:ValidateRequired="True" p1:Guid="210f3d24-1d26-4abc-8fc7-09e55b6be905">
       <column name="id_operacion" not-null="true" precision="11" scale="0" sql-type="int" p1:unicode="false" />
       <generator class="identity" />
     </id>
-    <property name="cantidad" type="Int32" p1:nullable="true" p1:ValidateRequired="False" p1:Guid="5f694ced-9f75-42a1-b180-fe09b3e8e308">
+    <property name="cantidad" type="Int32" p1:nullable="true" p1:ValidateRequired="False" p1:Guid="0e79a351-0299-4b95-b0c8-bfd6eebf4173">
       <column name="cantidad" not-null="false" precision="11" scale="0" sql-type="int" p1:unicode="false" />
     </property>
-    <property name="costo" type="Double" p1:nullable="true" p1:ValidateRequired="False" p1:Guid="973ca294-57f6-4ad9-855a-be55b96faee6">
+    <property name="costo" type="Double" p1:nullable="true" p1:ValidateRequired="False" p1:Guid="e89021b8-d470-4ddb-8979-e4c4ce0e6f25">
       <column name="costo" not-null="false" sql-type="double" p1:unicode="false" />
     </property>
-    <property name="inv_antes" type="Int32" p1:nullable="true" p1:ValidateRequired="False" p1:Guid="c7923e4c-74c7-495c-9cee-5de9d97f0bf6">
+    <property name="inv_antes" type="Int32" p1:nullable="true" p1:ValidateRequired="False" p1:Guid="a8c0fd99-4dd3-47e7-93f3-e5a77a38f53c">
       <column name="inv_antes" not-null="false" precision="11" scale="0" sql-type="int" p1:unicode="false" />
     </property>
-    <property name="inv_despues" type="Int32" p1:nullable="true" p1:ValidateRequired="False" p1:Guid="bedcc676-fee4-400d-96b6-3e2115d8dfec">
+    <property name="inv_despues" type="Int32" p1:nullable="true" p1:ValidateRequired="False" p1:Guid="602a40ba-5432-4bb2-8b24-0cc7e82a3c88">
       <column name="inv_despues" not-null="false" precision="11" scale="0" sql-type="int" p1:unicode="false" />
     </property>
-    <property name="fecha" type="DateTime" p1:nullable="true" p1:ValidateRequired="False" p1:Guid="793f877b-c10a-4ba2-b0ab-7bb8d4f0baec">
-      <column name="fecha" not-null="false" sql-type="date" p1:unicode="false" />
+    <property name="fecha_crea" type="DateTime" p1:nullable="true" p1:ValidateRequired="False" p1:Guid="9fffdc68-7707-45ea-a0a4-afadf3fef102">
+      <column name="fecha_crea" not-null="false" sql-type="datetime" p1:unicode="false" />
     </property>
-    <property name="precio" type="Double" p1:nullable="true" p1:ValidateRequired="False" p1:Guid="a82ec735-10c0-4e02-a30c-085c36a45d83">
+    <property name="usuario_crea" type="String" p1:nullable="true" p1:ValidateMaxLength="45" p1:ValidateRequired="False" p1:Guid="b7c48267-6006-4c29-aa71-f07fd2b70fea">
+      <column name="usuario_crea" not-null="false" length="45" sql-type="varchar" p1:unicode="true" />
+    </property>
+    <property name="precio" type="Double" p1:nullable="true" p1:ValidateRequired="False" p1:Guid="52b27f18-2f4b-4538-93e9-994caf4c595f">
       <column name="precio" not-null="false" sql-type="double" p1:unicode="false" />
     </property>
-    <property name="id_tipotran" type="Int32" p1:ValidateRequired="True" p1:Guid="7d60d227-dad5-4b4b-93c0-a7601d3b121f">
+    <property name="id_tipotran" type="Int32" p1:ValidateRequired="True" p1:Guid="2c8c0c57-5ff4-4397-a3bc-e6e78c20735a">
       <column name="id_tipotran" not-null="true" precision="11" scale="0" sql-type="int" p1:unicode="false" />
     </property>
-    <many-to-one name="tipo_transacciones" class="tipo_transacciones" p1:AssociationGuid="bf6b9766-7cc1-40d2-9aab-d2e50c06324d" p1:Guid="a55f7201-2624-44a2-b62e-46fa8b612b1f">
+    <many-to-one name="tipo_transacciones" class="tipo_transacciones" p1:AssociationGuid="fa3706be-6af9-4c18-a358-d80503e4a01e" p1:Guid="6e77a4be-a8bd-4775-811c-363fb1323d0e">
       <column name="id_tipotran" not-null="true" precision="11" scale="0" sql-type="int" p1:unicode="false" />
     </many-to-one>
   </class>
-  <class name="log_de_usuarios" table="log_de_usuarios" schema="farmacia" p1:Guid="2922d68f-7547-4c2d-b55c-0552514fbe15">
-    <id name="id_log" type="Int32" p1:ValidateRequired="True" p1:Guid="c779be51-8a05-447d-9aec-29cf56233665">
-      <column name="id_log" not-null="true" precision="11" scale="0" sql-type="int" p1:unicode="false" />
-      <generator class="identity" />
-    </id>
-    <property name="fecha_crea" type="DateTime" p1:nullable="true" p1:ValidateRequired="False" p1:Guid="16643cef-92c4-49e2-a32e-5f6ae3ec689b">
-      <column name="fecha_crea" not-null="false" sql-type="datetime" p1:unicode="false" />
-    </property>
-    <property name="fecha_actu" type="DateTime" p1:nullable="true" p1:ValidateRequired="False" p1:Guid="cf243976-dba2-4ee1-ae80-6be51632cde2">
-      <column name="fecha_actu" not-null="false" sql-type="datetime" p1:unicode="false" />
-    </property>
-    <property name="usuario_crea" type="String" p1:nullable="true" p1:ValidateMaxLength="45" p1:ValidateRequired="False" p1:Guid="39b7e681-f731-4e1b-a27f-c5023d6bad1e">
-      <column name="usuario_crea" not-null="false" length="45" sql-type="varchar" p1:unicode="true" />
-    </property>
-    <property name="usuario_actu" type="String" p1:nullable="true" p1:ValidateMaxLength="45" p1:ValidateRequired="False" p1:Guid="43767af5-ac24-4ea1-a375-181c88cf083f">
-      <column name="usuario_actu" not-null="false" length="45" sql-type="varchar" p1:unicode="true" />
-    </property>
-  </class>
-  <class name="ordenes_de_compra" table="ordenes_de_compra" schema="farmacia" p1:Guid="ca5ba6fa-5c06-4c38-9545-0c323b42d397">
-    <id name="id_ordencompra" type="Int32" p1:ValidateRequired="True" p1:Guid="29cd4b23-4a65-4bbb-bf9c-96a75d983f31">
+  <class name="ordenes_de_compra" table="ordenes_de_compra" schema="farmacia" p1:Guid="4b5ce2e0-63f0-4023-88f5-5426825472cd">
+    <id name="id_ordencompra" type="Int32" p1:ValidateRequired="True" p1:Guid="a608ec82-f718-4f1e-b4dc-95433862be59">
       <column name="id_ordencompra" not-null="true" precision="11" scale="0" sql-type="int" p1:unicode="false" />
       <generator class="identity" />
     </id>
-    <property name="fecha" type="DateTime" p1:nullable="true" p1:ValidateRequired="False" p1:Guid="7725b0d5-a147-4a74-b9c1-7a78eeb5e01d">
+    <property name="fecha" type="DateTime" p1:nullable="true" p1:ValidateRequired="False" p1:Guid="a04038eb-3314-432a-948f-5fe33cb4b427">
       <column name="fecha" not-null="false" sql-type="date" p1:unicode="false" />
     </property>
-    <property name="total" type="Double" p1:nullable="true" p1:ValidateRequired="False" p1:Guid="26daabee-4aa8-47da-b4ee-fb08dc3dbe56">
+    <property name="total" type="Double" p1:nullable="true" p1:ValidateRequired="False" p1:Guid="298ff064-ff15-4283-9747-dd4bc2fa28ef">
       <column name="total" not-null="false" sql-type="double" p1:unicode="false" />
     </property>
-    <property name="id_proveedor" type="Int32" p1:ValidateRequired="True" p1:Guid="6d5e0c1e-7a1e-4a58-9152-64c702a5a3ec">
+    <property name="id_proveedor" type="Int32" p1:ValidateRequired="True" p1:Guid="0d56c3c4-7e9a-4f32-94e6-59b843d32f24">
       <column name="id_proveedor" not-null="true" precision="11" scale="0" sql-type="int" p1:unicode="false" />
     </property>
-    <property name="ejecutada" type="Int32" p1:nullable="true" p1:ValidateRequired="False" p1:Guid="961808a2-ecf7-4512-9deb-d7a90d24004d">
+    <property name="ejecutada" type="Int32" p1:nullable="true" p1:ValidateRequired="False" p1:Guid="6c9c7a8f-4e27-41bf-9dc0-d986f61c3d46">
       <column name="ejecutada" not-null="false" precision="11" scale="0" sql-type="int" p1:unicode="false" />
     </property>
-    <property name="cancelada" type="Int32" p1:nullable="true" p1:ValidateRequired="False" p1:Guid="a40e192c-a704-4942-b495-095b610da33d">
+    <property name="cancelada" type="Int32" p1:nullable="true" p1:ValidateRequired="False" p1:Guid="08f289a6-ef38-46b0-9efd-8164f961012e">
       <column name="cancelada" not-null="false" precision="11" scale="0" sql-type="int" p1:unicode="false" />
     </property>
-    <property name="activa" type="Int32" p1:nullable="true" p1:ValidateRequired="False" p1:Guid="b3a40ba1-65ac-4020-be0c-3f5fbd8b26dd">
+    <property name="activa" type="Int32" p1:nullable="true" p1:ValidateRequired="False" p1:Guid="a1bf074d-98b9-4bd0-9a7c-c99c4d3dca69">
       <column name="activa" not-null="false" precision="11" scale="0" sql-type="int" p1:unicode="false" />
     </property>
-    <many-to-one name="proveedores" class="proveedores" p1:AssociationGuid="89666806-3365-4c91-a075-ecb6bb4d25f7" p1:Guid="faca9505-aba7-433e-88e7-d409962d5818">
+    <property name="fecha_crea" type="DateTime" p1:nullable="true" p1:ValidateRequired="False" p1:Guid="df4f5ce1-1ed4-4ec7-bd72-8f42246b6597">
+      <column name="fecha_crea" not-null="false" sql-type="datetime" p1:unicode="false" />
+    </property>
+    <property name="fecha_actu" type="DateTime" p1:nullable="true" p1:ValidateRequired="False" p1:Guid="e9800264-d73e-4932-8c3d-680c0f6233d5">
+      <column name="fecha_actu" not-null="false" sql-type="datetime" p1:unicode="false" />
+    </property>
+    <property name="usuario_crea" type="String" p1:nullable="true" p1:ValidateMaxLength="45" p1:ValidateRequired="False" p1:Guid="a3992eb8-3691-40d9-8c41-8a0be761dcbe">
+      <column name="usuario_crea" not-null="false" length="45" sql-type="varchar" p1:unicode="true" />
+    </property>
+    <property name="usuario_actu" type="String" p1:nullable="true" p1:ValidateMaxLength="45" p1:ValidateRequired="False" p1:Guid="a5f02965-d677-452a-8f0b-6140de474c42">
+      <column name="usuario_actu" not-null="false" length="45" sql-type="varchar" p1:unicode="true" />
+    </property>
+    <many-to-one name="proveedores" class="proveedores" p1:AssociationGuid="f89c7473-a44f-4d18-88cb-9f69660baaae" p1:Guid="9d4e801a-08f8-46dd-bdf5-4e632437f99c">
       <column name="id_proveedor" not-null="true" precision="11" scale="0" sql-type="int" p1:unicode="false" />
     </many-to-one>
-    <set name="detalle_ocs" inverse="true" generic="true" p1:AssociationGuid="79dbf323-8a45-4507-a4b5-c94cb8b54d3a" p1:Guid="20e402ad-518d-4e6b-9940-e031b69ca1fd">
+    <set name="detalle_ocs" inverse="true" generic="true" p1:AssociationGuid="8945773d-4ccf-4019-abde-7f836fb223b3" p1:Guid="a1cc8417-c328-43c0-a39d-55debc08fbef">
       <key>
         <column name="id_ordencompra" />
       </key>
       <one-to-many class="detalle_oc" />
     </set>
   </class>
-  <class name="presentacion_productos" table="presentacion_productos" schema="farmacia" p1:Guid="a0170e57-03f8-4132-9675-39046cb3d63f">
-    <id name="cod_presentacion" type="Int32" p1:ValidateRequired="True" p1:Guid="fd9e8024-a1bb-44a2-adc2-20993f45e96a">
+  <class name="presentacion_productos" table="presentacion_productos" schema="farmacia" p1:Guid="775ad480-7aec-41e4-9c40-840fd759e7d5">
+    <id name="cod_presentacion" type="Int32" p1:ValidateRequired="True" p1:Guid="86f80b0a-8b3f-407e-a954-e2c3ab26bfd7">
       <column name="cod_presentacion" not-null="true" precision="11" scale="0" sql-type="int" p1:unicode="false" />
       <generator class="identity" />
     </id>
-    <property name="nombre" type="String" p1:nullable="true" p1:ValidateMaxLength="45" p1:ValidateRequired="False" p1:Guid="3680516a-d020-4e71-8951-bd15bc454eef">
+    <property name="nombre" type="String" p1:nullable="true" p1:ValidateMaxLength="45" p1:ValidateRequired="False" p1:Guid="29de618b-f136-4cc9-be6b-8259bd7773a8">
       <column name="nombre" not-null="false" length="45" sql-type="varchar" p1:unicode="true" />
     </property>
-    <set name="productos" inverse="true" generic="true" p1:AssociationGuid="b4388082-5262-474d-801d-49576366515b" p1:Guid="78d9d12a-4bd7-44de-a408-55acbdfd5255">
+    <property name="fecha_crea" type="DateTime" p1:nullable="true" p1:ValidateRequired="False" p1:Guid="3af9a266-da35-4209-8b21-1dc52e67ba1f">
+      <column name="fecha_crea" not-null="false" sql-type="datetime" p1:unicode="false" />
+    </property>
+    <property name="fecha_actu" type="DateTime" p1:nullable="true" p1:ValidateRequired="False" p1:Guid="8584db9b-7aef-4cc2-afbe-3f3aaa61e08c">
+      <column name="fecha_actu" not-null="false" sql-type="datetime" p1:unicode="false" />
+    </property>
+    <property name="usuario_crea" type="String" p1:nullable="true" p1:ValidateMaxLength="45" p1:ValidateRequired="False" p1:Guid="a16653dd-6990-4c45-8f44-f46ea191ac89">
+      <column name="usuario_crea" not-null="false" length="45" sql-type="varchar" p1:unicode="true" />
+    </property>
+    <property name="usuario_actu" type="String" p1:nullable="true" p1:ValidateMaxLength="45" p1:ValidateRequired="False" p1:Guid="e899c40c-d2e0-423e-ab8c-4390eec8f03b">
+      <column name="usuario_actu" not-null="false" length="45" sql-type="varchar" p1:unicode="true" />
+    </property>
+    <set name="productos" inverse="true" generic="true" p1:AssociationGuid="e7f40277-45b2-40ca-91a4-07b837d51483" p1:Guid="eea0baec-1059-41b8-a321-bdb857c5c5fb">
       <key>
         <column name="cod_presentacion" />
       </key>
       <one-to-many class="productos" />
     </set>
   </class>
-  <class name="privilegios" table="privilegios" schema="farmacia" p1:Guid="1a5e7e28-6cb6-4dc9-a086-fa80c58d6862">
-    <id name="id_privilegio" type="Int32" p1:ValidateRequired="True" p1:Guid="f473f7d7-efab-48e5-a3f9-619ba84b0e1f">
+  <class name="privilegios" table="privilegios" schema="farmacia" p1:Guid="edac48dc-0055-4649-927c-f39ab82b9af6">
+    <id name="id_privilegio" type="Int32" p1:ValidateRequired="True" p1:Guid="1264a0c9-3b5c-4e99-a58a-049c47d3262d">
       <column name="id_privilegio" not-null="true" precision="11" scale="0" sql-type="int" p1:unicode="false" />
       <generator class="identity" />
     </id>
-    <property name="nombre" type="String" p1:nullable="true" p1:ValidateMaxLength="45" p1:ValidateRequired="False" p1:Guid="7bfcd46e-bebc-4213-af7d-2b87eb5d3f04">
+    <property name="nombre" type="String" p1:nullable="true" p1:ValidateMaxLength="45" p1:ValidateRequired="False" p1:Guid="c392c3c5-47a4-4e37-84e8-a2aec4ea2073">
       <column name="nombre" not-null="false" length="45" sql-type="varchar" p1:unicode="true" />
     </property>
-    <set name="grupos_roles" table="grupos_roles_has_privilegios" schema="farmacia" generic="true" p1:AssociationGuid="318da0ef-c4cc-4dfe-a9ed-27fe9f9683db" p1:Guid="84e359d8-2829-4694-a44f-7a5c7668c757">
+    <property name="fecha_crea" type="DateTime" p1:nullable="true" p1:ValidateRequired="False" p1:Guid="5a5b83af-fc54-46fe-97f9-0c5ed572686c">
+      <column name="fecha_crea" not-null="false" sql-type="datetime" p1:unicode="false" />
+    </property>
+    <property name="fecha_actu" type="DateTime" p1:nullable="true" p1:ValidateRequired="False" p1:Guid="19d20677-59d8-4498-9e01-803bb1a5cbd5">
+      <column name="fecha_actu" not-null="false" sql-type="datetime" p1:unicode="false" />
+    </property>
+    <property name="usuario_crea" type="String" p1:nullable="true" p1:ValidateMaxLength="45" p1:ValidateRequired="False" p1:Guid="0a14935e-4954-4ecb-8afe-c6cfe7b6c4e6">
+      <column name="usuario_crea" not-null="false" length="45" sql-type="varchar" p1:unicode="true" />
+    </property>
+    <property name="usuario_actu" type="String" p1:nullable="true" p1:ValidateMaxLength="45" p1:ValidateRequired="False" p1:Guid="5ffbd5a3-a2ac-400b-8a13-5ad9bfc7cade">
+      <column name="usuario_actu" not-null="false" length="45" sql-type="varchar" p1:unicode="true" />
+    </property>
+    <set name="grupos_roles" table="grupos_roles_has_privilegios" schema="farmacia" generic="true" p1:AssociationGuid="4ea3b6a2-1965-4992-b80d-aba02515792d" p1:Guid="4c5bfb0c-5887-4335-ba13-1c0ca861177c">
       <key not-null="true">
         <column name="id_privilegio" not-null="true" precision="11" scale="0" sql-type="int" p1:unicode="false" />
       </key>
@@ -447,153 +558,189 @@
       </many-to-many>
     </set>
   </class>
-  <class name="productos" table="productos" schema="farmacia" p1:Guid="826b4aea-6d7a-4081-9b6b-a4bc03250ab3">
-    <id name="cod_prod" type="Int32" p1:ValidateRequired="True" p1:Guid="bc5b3b3b-ca7d-4bf0-a7ad-38c142e7285c">
+  <class name="productos" table="productos" schema="farmacia" p1:Guid="4382dea6-e04d-4656-b497-8e1af212ba49">
+    <id name="cod_prod" type="Int32" p1:ValidateRequired="True" p1:Guid="c3d75655-fc03-4fb2-b903-cb2c344b6362">
       <column name="cod_prod" not-null="true" precision="11" scale="0" sql-type="int" p1:unicode="false" />
     </id>
-    <property name="existencia" type="Int32" p1:nullable="true" p1:ValidateRequired="False" p1:Guid="5d3aa5d3-9c05-4394-873d-1398f2c3bfd6">
+    <property name="existencia" type="Int32" p1:nullable="true" p1:ValidateRequired="False" p1:Guid="de6de3fb-e3aa-4e65-b6bc-7aa0673d44ba">
       <column name="existencia" not-null="false" precision="11" scale="0" sql-type="int" p1:unicode="false" />
     </property>
-    <property name="fecha_venc" type="DateTime" p1:nullable="true" p1:ValidateRequired="False" p1:Guid="f22555a2-e55b-4c9f-a08f-f6588dff9271">
+    <property name="fecha_venc" type="DateTime" p1:nullable="true" p1:ValidateRequired="False" p1:Guid="e3998848-9fef-4161-8cb1-37dff9ec0e41">
       <column name="fecha_venc" not-null="false" sql-type="date" p1:unicode="false" />
     </property>
-    <property name="costo" type="Single" p1:nullable="true" p1:ValidateRequired="False" p1:Guid="ca0731cf-136b-4915-8c74-4859e01a815f">
+    <property name="costo" type="Single" p1:nullable="true" p1:ValidateRequired="False" p1:Guid="fa3fb77f-e9bc-4cbc-af67-129c17b35ea6">
       <column name="costo" not-null="false" sql-type="float" p1:unicode="false" />
     </property>
-    <property name="precio_consumi" type="Single" p1:nullable="true" p1:ValidateRequired="False" p1:Guid="7980b11b-1984-40df-9c31-c61af136ca1a">
+    <property name="precio_consumi" type="Single" p1:nullable="true" p1:ValidateRequired="False" p1:Guid="ce16dfc1-66d1-4f94-be42-beacad04f581">
       <column name="precio_consumi" not-null="false" sql-type="float" p1:unicode="false" />
     </property>
-    <property name="precio_mayor" type="Single" p1:nullable="true" p1:ValidateRequired="False" p1:Guid="29c69772-5956-4e7e-9192-51f92ac49c54">
+    <property name="precio_mayor" type="Single" p1:nullable="true" p1:ValidateRequired="False" p1:Guid="a6d90f39-e071-4cc8-a55b-d9a13610dc62">
       <column name="precio_mayor" not-null="false" sql-type="float" p1:unicode="false" />
     </property>
-    <property name="nombre" type="String" p1:nullable="true" p1:ValidateMaxLength="45" p1:ValidateRequired="False" p1:Guid="09913aae-ca83-471e-89cc-c7f25aba72e9">
+    <property name="nombre" type="String" p1:nullable="true" p1:ValidateMaxLength="45" p1:ValidateRequired="False" p1:Guid="d96b5ff4-e52b-4c48-83a0-b20985749c7a">
       <column name="nombre" not-null="false" length="45" sql-type="varchar" p1:unicode="true" />
     </property>
-    <property name="cod_presentacion" type="Int32" p1:nullable="true" p1:ValidateRequired="False" p1:Guid="52e2f455-2949-4e0e-ba57-a72f56683d0f">
+    <property name="cod_presentacion" type="Int32" p1:nullable="true" p1:ValidateRequired="False" p1:Guid="04b4ba06-b996-4dd9-9350-a2d02b0bf879">
       <column name="cod_presentacion" not-null="false" precision="11" scale="0" sql-type="int" p1:unicode="false" />
     </property>
-    <property name="cod_categoria" type="Int32" p1:nullable="true" p1:ValidateRequired="False" p1:Guid="0e4988d0-fb65-405e-b869-e2a6e6f072e0">
+    <property name="cod_categoria" type="Int32" p1:nullable="true" p1:ValidateRequired="False" p1:Guid="e6936280-1215-485c-9a11-e2885d30687b">
       <column name="cod_categoria" not-null="false" precision="11" scale="0" sql-type="int" p1:unicode="false" />
     </property>
-    <property name="existencia_min" type="Int32" p1:nullable="true" p1:ValidateRequired="False" p1:Guid="a244f3a8-862c-4a72-852c-0345bd036ebb">
+    <property name="existencia_min" type="Int32" p1:nullable="true" p1:ValidateRequired="False" p1:Guid="585c4d36-ffb6-4974-9c54-b1c32780f5e8">
       <column name="existencia_min" not-null="false" precision="11" scale="0" sql-type="int" p1:unicode="false" />
     </property>
-    <property name="existencia_max" type="Int32" p1:nullable="true" p1:ValidateRequired="False" p1:Guid="8ba9fb99-d102-4571-ad75-77f645661a68">
+    <property name="existencia_max" type="Int32" p1:nullable="true" p1:ValidateRequired="False" p1:Guid="9323c693-3261-40e8-8a92-3fd4232eabd8">
       <column name="existencia_max" not-null="false" precision="11" scale="0" sql-type="int" p1:unicode="false" />
     </property>
-    <property name="porcentaje_m" type="Int32" p1:nullable="true" p1:ValidateRequired="False" p1:Guid="35093b1a-7e16-482c-892a-044da7b26528">
+    <property name="porcentaje_m" type="Int32" p1:nullable="true" p1:ValidateRequired="False" p1:Guid="284e23fd-0e77-4d6b-8079-af6963f81e99">
       <column name="porcentaje_m" not-null="false" precision="11" scale="0" sql-type="int" p1:unicode="false" />
     </property>
-    <many-to-one name="categoria_productos" class="categoria_productos" p1:AssociationGuid="3d009f79-25f5-4406-8335-27e7a9116938" p1:Guid="7aa00127-edf5-4c99-b032-efdf41421def">
+    <property name="fecha_crea" type="DateTime" p1:nullable="true" p1:ValidateRequired="False" p1:Guid="d404b353-af30-4a8f-b090-cb3d5bd51462">
+      <column name="fecha_crea" not-null="false" sql-type="datetime" p1:unicode="false" />
+    </property>
+    <property name="fecha_actu" type="DateTime" p1:nullable="true" p1:ValidateRequired="False" p1:Guid="cd3996dd-fa12-4ff8-9c2c-38ac4b9aff2d">
+      <column name="fecha_actu" not-null="false" sql-type="datetime" p1:unicode="false" />
+    </property>
+    <property name="usuario_crea" type="String" p1:nullable="true" p1:ValidateMaxLength="45" p1:ValidateRequired="False" p1:Guid="735370be-6610-43be-8e9c-d599a01e0e11">
+      <column name="usuario_crea" not-null="false" length="45" sql-type="varchar" p1:unicode="true" />
+    </property>
+    <property name="usuario_actu" type="String" p1:nullable="true" p1:ValidateMaxLength="45" p1:ValidateRequired="False" p1:Guid="c5e1e9b2-2bc2-4df4-a274-6b35cc316d90">
+      <column name="usuario_actu" not-null="false" length="45" sql-type="varchar" p1:unicode="true" />
+    </property>
+    <many-to-one name="categoria_productos" class="categoria_productos" p1:AssociationGuid="14c9772c-1da1-4c90-82f7-df2190e342fe" p1:Guid="6d085fa0-55f5-47b6-957c-988f57a8b857">
       <column name="cod_categoria" not-null="false" precision="11" scale="0" sql-type="int" p1:unicode="false" />
     </many-to-one>
-    <many-to-one name="presentacion_productos" class="presentacion_productos" p1:AssociationGuid="b4388082-5262-474d-801d-49576366515b" p1:Guid="032146c3-7917-4fd3-88a9-1a5eeb7444f8">
+    <many-to-one name="presentacion_productos" class="presentacion_productos" p1:AssociationGuid="e7f40277-45b2-40ca-91a4-07b837d51483" p1:Guid="c5f5bbc3-7bc2-4476-b7f4-a6d7206a2228">
       <column name="cod_presentacion" not-null="false" precision="11" scale="0" sql-type="int" p1:unicode="false" />
     </many-to-one>
-    <set name="detalle_ajustes" inverse="true" generic="true" p1:AssociationGuid="5673fb9a-ff8e-49c7-9b6f-1ab2e9ad59b3" p1:Guid="543332e7-8ff1-4230-b584-d474177f97f8">
+    <set name="detalle_ajustes" inverse="true" generic="true" p1:AssociationGuid="9c240ecf-ce77-4859-8075-bd920d45c761" p1:Guid="d244d5e5-0728-4f94-845d-84ba86602b67">
       <key>
         <column name="cod_prod" />
       </key>
       <one-to-many class="detalle_ajustes" />
     </set>
-    <set name="detalle_compras" inverse="true" generic="true" p1:AssociationGuid="11af1c3c-20c1-4bfa-9973-fa7f2e85feb9" p1:Guid="07e22a26-402c-4bde-88f2-ed1d2e524b4d">
+    <set name="detalle_compras" inverse="true" generic="true" p1:AssociationGuid="91d41aec-2829-419d-9802-82fbe8c8da88" p1:Guid="28d171f9-7e74-4d92-a6d5-aab48e544031">
       <key>
         <column name="cod_prod" />
       </key>
       <one-to-many class="detalle_compras" />
     </set>
-    <set name="detalle_cotizaciones" inverse="true" generic="true" p1:AssociationGuid="ce150da5-de9f-4339-89de-17db5c1f462b" p1:Guid="7d614d65-ff02-4ef7-aca0-9ea61692a544">
+    <set name="detalle_cotizaciones" inverse="true" generic="true" p1:AssociationGuid="738cf44a-d8a1-41a6-9235-2d667af20ecf" p1:Guid="0c3eff0e-c9cf-442a-9e96-832eb35acd3a">
       <key>
         <column name="cod_prod" />
       </key>
       <one-to-many class="detalle_cotizaciones" />
     </set>
-    <set name="detalle_ocs" inverse="true" generic="true" p1:AssociationGuid="7dd4f146-a131-4f62-af75-f2bd71cd6ed2" p1:Guid="d5f328c6-7c74-49b5-9c0d-d5879a189271">
+    <set name="detalle_ocs" inverse="true" generic="true" p1:AssociationGuid="d8382914-5a0e-4d0c-8204-4195023b3aa6" p1:Guid="949f6886-1519-4148-861c-35d1f366d83a">
       <key>
         <column name="cod_prod" />
       </key>
       <one-to-many class="detalle_oc" />
     </set>
-    <set name="detallle_facturas" inverse="true" generic="true" p1:AssociationGuid="80230a03-79e1-487c-92d9-0cbd3b14d8f0" p1:Guid="fa67c45e-c323-4e5d-85b0-2c3d96eb9565">
+    <set name="detallle_facturas" inverse="true" generic="true" p1:AssociationGuid="8cd226db-f085-4ad8-82ed-37404f804d21" p1:Guid="6f8d94fe-172c-4dcf-9594-afe5c00b1417">
       <key>
         <column name="cod_prod" />
       </key>
       <one-to-many class="detallle_facturas" />
     </set>
   </class>
-  <class name="proveedores" table="proveedores" schema="farmacia" p1:Guid="27f54ded-4b2a-4e65-a428-43151fbeebeb">
-    <id name="id_proveedor" type="Int32" p1:ValidateRequired="True" p1:Guid="b35a95a8-8fe1-4634-b265-de4fd489a969">
+  <class name="proveedores" table="proveedores" schema="farmacia" p1:Guid="6096825f-d658-46a9-bff0-85ee15467382">
+    <id name="id_proveedor" type="Int32" p1:ValidateRequired="True" p1:Guid="ec942a5d-b312-4727-929c-c2fafeeb4e5c">
       <column name="id_proveedor" not-null="true" precision="11" scale="0" sql-type="int" p1:unicode="false" />
       <generator class="identity" />
     </id>
-    <property name="direccion" type="String" p1:nullable="true" p1:ValidateMaxLength="45" p1:ValidateRequired="False" p1:Guid="6f8b0666-5e1a-4c34-a74f-7ebc652db5e9">
+    <property name="direccion" type="String" p1:nullable="true" p1:ValidateMaxLength="45" p1:ValidateRequired="False" p1:Guid="5425c023-e880-4bf9-a83b-334fffbed0ef">
       <column name="direccion" not-null="false" length="45" sql-type="varchar" p1:unicode="true" />
     </property>
-    <property name="telefono" type="String" p1:nullable="true" p1:ValidateMaxLength="15" p1:ValidateRequired="False" p1:Guid="2cede999-3870-4d3a-baa3-e3141c8ce176">
+    <property name="telefono" type="String" p1:nullable="true" p1:ValidateMaxLength="15" p1:ValidateRequired="False" p1:Guid="e9736851-1025-4079-8302-f7e6e69007c8">
       <column name="telefono" not-null="false" length="15" sql-type="varchar" p1:unicode="true" />
     </property>
-    <property name="nombre" type="String" p1:nullable="true" p1:ValidateMaxLength="45" p1:ValidateRequired="False" p1:Guid="8f005356-d68c-4472-9951-e69e1013cc50">
+    <property name="nombre" type="String" p1:nullable="true" p1:ValidateMaxLength="45" p1:ValidateRequired="False" p1:Guid="19d6327d-fd4d-4bcf-8cc5-f3b3cc3f2cec">
       <column name="nombre" not-null="false" length="45" sql-type="varchar" p1:unicode="true" />
     </property>
-    <property name="contacto" type="String" p1:nullable="true" p1:ValidateMaxLength="45" p1:ValidateRequired="False" p1:Guid="05f6e11a-ada7-4031-b5cf-d1f4c70db023">
+    <property name="contacto" type="String" p1:nullable="true" p1:ValidateMaxLength="45" p1:ValidateRequired="False" p1:Guid="3fb24108-3927-48e9-96c0-f3b918502bd2">
       <column name="contacto" not-null="false" length="45" sql-type="varchar" p1:unicode="true" />
     </property>
-    <set name="compras" inverse="true" generic="true" p1:AssociationGuid="c2e74048-8285-4c5b-a1b3-6f2ab5d69a93" p1:Guid="40859fdb-33b8-4ad5-99f3-9711a696169e">
+    <property name="fecha_crea" type="DateTime" p1:nullable="true" p1:ValidateRequired="False" p1:Guid="d961f2ca-f591-45bf-bdb8-3fbb74a6b646">
+      <column name="fecha_crea" not-null="false" sql-type="datetime" p1:unicode="false" />
+    </property>
+    <property name="fecha_actu" type="DateTime" p1:nullable="true" p1:ValidateRequired="False" p1:Guid="80a097a3-3dbc-45c2-9574-91578769ea50">
+      <column name="fecha_actu" not-null="false" sql-type="datetime" p1:unicode="false" />
+    </property>
+    <property name="usuario_crea" type="String" p1:nullable="true" p1:ValidateMaxLength="45" p1:ValidateRequired="False" p1:Guid="40d55788-66ef-488b-92fb-2d945a50bd8b">
+      <column name="usuario_crea" not-null="false" length="45" sql-type="varchar" p1:unicode="true" />
+    </property>
+    <property name="usuario_actu" type="String" p1:nullable="true" p1:ValidateMaxLength="45" p1:ValidateRequired="False" p1:Guid="5fcab1cf-5483-4d13-952a-62f6952625fb">
+      <column name="usuario_actu" not-null="false" length="45" sql-type="varchar" p1:unicode="true" />
+    </property>
+    <set name="compras" inverse="true" generic="true" p1:AssociationGuid="d3ad21b8-faf6-492e-a74f-f2d8bc29f6d2" p1:Guid="fdcebed1-a2d7-4d6f-945a-2b04a1d38ed0">
       <key>
         <column name="id_proveedor" />
       </key>
       <one-to-many class="compras" />
     </set>
-    <set name="cotizaciones" inverse="true" generic="true" p1:AssociationGuid="226755b6-0cdf-456d-9219-0b16f17200c4" p1:Guid="bf09db85-996c-4503-9d23-ad7bf555091b">
+    <set name="cotizaciones" inverse="true" generic="true" p1:AssociationGuid="01f448bb-d1a5-4f69-9e95-0031f6178932" p1:Guid="9b6ced9f-5785-4de8-b592-d8d6af6212b6">
       <key>
         <column name="id_proveedor" />
       </key>
       <one-to-many class="cotizaciones" />
     </set>
-    <set name="ordenes_de_compras" inverse="true" generic="true" p1:AssociationGuid="89666806-3365-4c91-a075-ecb6bb4d25f7" p1:Guid="207751b4-ca67-462e-a09e-b2d1701e5ba7">
+    <set name="ordenes_de_compras" inverse="true" generic="true" p1:AssociationGuid="f89c7473-a44f-4d18-88cb-9f69660baaae" p1:Guid="8cfea168-42e4-443c-aeaa-9e617301d046">
       <key>
         <column name="id_proveedor" />
       </key>
       <one-to-many class="ordenes_de_compra" />
     </set>
   </class>
-  <class name="tipo_transacciones" table="tipo_transacciones" schema="farmacia" p1:Guid="d9ae61ce-a9e0-4058-8218-7775cb465fc4">
-    <id name="id_tipotran" type="Int32" p1:ValidateRequired="True" p1:Guid="ef687012-a001-4b00-9051-97c658acc1a7">
+  <class name="tipo_transacciones" table="tipo_transacciones" schema="farmacia" p1:Guid="afb36a5b-9ec1-483c-9b95-5a2daabfe1c5">
+    <id name="id_tipotran" type="Int32" p1:ValidateRequired="True" p1:Guid="f65b0aeb-f9e2-4c3c-b528-d8fcb09b207f">
       <column name="id_tipotran" not-null="true" precision="11" scale="0" sql-type="int" p1:unicode="false" />
     </id>
-    <property name="nombre" type="String" p1:nullable="true" p1:ValidateMaxLength="15" p1:ValidateRequired="False" p1:Guid="7846b34d-5945-4c2f-8f36-55ee1788ec98">
+    <property name="nombre" type="String" p1:nullable="true" p1:ValidateMaxLength="15" p1:ValidateRequired="False" p1:Guid="4061106b-e6b6-4788-b59d-22ba0ab05fb5">
       <column name="nombre" not-null="false" length="15" sql-type="varchar" p1:unicode="true" />
     </property>
-    <set name="ajustes" inverse="true" generic="true" p1:AssociationGuid="8bdfb2fc-8529-49ee-8c03-9d2ab6e0f75b" p1:Guid="d0d61871-ef20-4093-91d0-5be02a268af8">
+    <set name="ajustes" inverse="true" generic="true" p1:AssociationGuid="cd26a71c-2dd3-47a4-9642-2f4568978681" p1:Guid="a315f507-1cce-42e6-8238-9ba5c6e608ec">
       <key>
         <column name="id_tipotran" />
       </key>
       <one-to-many class="ajustes" />
     </set>
-    <set name="kardexes" inverse="true" generic="true" p1:AssociationGuid="bf6b9766-7cc1-40d2-9aab-d2e50c06324d" p1:Guid="f4b8f5c9-acf7-4af5-acce-9422c8a896b4">
+    <set name="kardexes" inverse="true" generic="true" p1:AssociationGuid="fa3706be-6af9-4c18-a358-d80503e4a01e" p1:Guid="4f356958-c439-479e-a623-75dbe7013583">
       <key>
         <column name="id_tipotran" />
       </key>
       <one-to-many class="kardex" />
     </set>
   </class>
-  <class name="usuarios" table="usuarios" schema="farmacia" p1:Guid="f7021607-515b-41e3-be2c-1fc7d0ac095f">
-    <id name="usuario" type="String" p1:ValidateMaxLength="45" p1:ValidateRequired="True" p1:Guid="2f0b080c-a5cc-4d6d-b625-160d98b7fc70">
+  <class name="usuarios" table="usuarios" schema="farmacia" p1:Guid="d50bc97c-400f-4968-8a42-f18cec021b67">
+    <id name="usuario" type="String" p1:ValidateMaxLength="45" p1:ValidateRequired="True" p1:Guid="8a326ed9-26d6-4813-a4e0-6b7d6766bc8e">
       <column name="usuario" not-null="true" length="45" sql-type="varchar" p1:unicode="true" />
     </id>
-    <property name="correo" type="String" p1:nullable="true" p1:ValidateMaxLength="45" p1:ValidateRequired="False" p1:Guid="378e3630-15be-4e5c-ac48-baca468c79e7">
+    <property name="correo" type="String" p1:nullable="true" p1:ValidateMaxLength="45" p1:ValidateRequired="False" p1:Guid="9c353276-9afc-4481-9bd8-f9ff0ac84346">
       <column name="correo" not-null="false" length="45" sql-type="varchar" p1:unicode="true" />
     </property>
-    <property name="nombre" type="String" p1:nullable="true" p1:ValidateMaxLength="45" p1:ValidateRequired="False" p1:Guid="6ac99cf2-85a2-43f9-9503-d02774a43724">
+    <property name="nombre" type="String" p1:nullable="true" p1:ValidateMaxLength="45" p1:ValidateRequired="False" p1:Guid="31fb9ebc-9cae-44c9-bb28-e4e5a1b38c96">
       <column name="nombre" not-null="false" length="45" sql-type="varchar" p1:unicode="true" />
     </property>
-    <property name="clave" type="Byte" p1:nullable="true" p1:ValidateRequired="False" p1:Guid="595182a7-f8a0-48d7-8316-63c8e25fa768">
+    <property name="clave" type="Byte" p1:nullable="true" p1:ValidateRequired="False" p1:Guid="5960f9dd-312b-4388-af88-cdb6c114a0a7">
       <column name="clave" not-null="false" length="1" sql-type="binary" p1:fixed-length="true" p1:unicode="false" />
     </property>
-    <property name="key" type="Byte" p1:nullable="true" p1:ValidateRequired="False" p1:Guid="086cfc26-847c-4613-aec7-3a3054a3163c">
+    <property name="key" type="Byte" p1:nullable="true" p1:ValidateRequired="False" p1:Guid="00e5f0c9-af76-4f38-81ac-6385a5e8f30e">
       <column name="`key`" not-null="false" length="1" sql-type="binary" p1:fixed-length="true" p1:unicode="false" />
     </property>
-    <set name="grupos_roles" table="usuarios_has_grupos_roles" schema="farmacia" generic="true" p1:AssociationGuid="72bc4e98-4904-4cf2-b3af-fd852cec32e5" p1:Guid="8883dacb-ce82-4f97-aaca-0385c81079e5">
+    <property name="fecha_crea" type="DateTime" p1:nullable="true" p1:ValidateRequired="False" p1:Guid="9aa3a6d9-bdc3-4943-93c8-1ce0d7dd2752">
+      <column name="fecha_crea" not-null="false" sql-type="datetime" p1:unicode="false" />
+    </property>
+    <property name="fecha_actu" type="DateTime" p1:nullable="true" p1:ValidateRequired="False" p1:Guid="a2332311-313b-45e7-b3b7-2f0e77a88277">
+      <column name="fecha_actu" not-null="false" sql-type="datetime" p1:unicode="false" />
+    </property>
+    <property name="usuario_crea" type="String" p1:nullable="true" p1:ValidateMaxLength="45" p1:ValidateRequired="False" p1:Guid="9ec22015-9441-4785-8169-2e797bbf733f">
+      <column name="usuario_crea" not-null="false" length="45" sql-type="varchar" p1:unicode="true" />
+    </property>
+    <property name="usuario_actu" type="String" p1:nullable="true" p1:ValidateMaxLength="45" p1:ValidateRequired="False" p1:Guid="b6a1fcd7-2ef8-496d-bd4d-6ce48e1b2f47">
+      <column name="usuario_actu" not-null="false" length="45" sql-type="varchar" p1:unicode="true" />
+    </property>
+    <set name="grupos_roles" table="usuarios_has_grupos_roles" schema="farmacia" generic="true" p1:AssociationGuid="6704bbfa-bab7-4f1c-b72b-56839667835c" p1:Guid="28aa9066-7767-40d7-bab4-4966cb499098">
       <key not-null="true">
         <column name="usuario" not-null="true" length="45" sql-type="varchar" p1:unicode="true" />
       </key>

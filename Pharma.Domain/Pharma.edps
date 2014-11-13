@@ -19,7 +19,6 @@
         <File Name="facturas.cs" Project="Pharma.Domain" ProjectFolder="Entities" />
         <File Name="grupos_roles.cs" Project="Pharma.Domain" ProjectFolder="Entities" />
         <File Name="kardex.cs" Project="Pharma.Domain" ProjectFolder="Entities" />
-        <File Name="log_de_usuarios.cs" Project="Pharma.Domain" ProjectFolder="Entities" />
         <File Name="ordenes_de_compra.cs" Project="Pharma.Domain" ProjectFolder="Entities" />
         <File Name="presentacion_productos.cs" Project="Pharma.Domain" ProjectFolder="Entities" />
         <File Name="privilegios.cs" Project="Pharma.Domain" ProjectFolder="Entities" />
@@ -42,7 +41,6 @@
         <File Name="facturas.hbm.xml" Project="Pharma.Domain" ProjectFolder="Mapping" />
         <File Name="grupos_roles.hbm.xml" Project="Pharma.Domain" ProjectFolder="Mapping" />
         <File Name="kardex.hbm.xml" Project="Pharma.Domain" ProjectFolder="Mapping" />
-        <File Name="log_de_usuarios.hbm.xml" Project="Pharma.Domain" ProjectFolder="Mapping" />
         <File Name="ordenes_de_compra.hbm.xml" Project="Pharma.Domain" ProjectFolder="Mapping" />
         <File Name="presentacion_productos.hbm.xml" Project="Pharma.Domain" ProjectFolder="Mapping" />
         <File Name="privilegios.hbm.xml" Project="Pharma.Domain" ProjectFolder="Mapping" />

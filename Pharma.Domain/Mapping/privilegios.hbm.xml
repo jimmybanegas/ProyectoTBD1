@@ -8,6 +8,18 @@
     <property name="nombre" type="String">
       <column name="nombre" not-null="false" length="45" sql-type="varchar" />
     </property>
+    <property name="fecha_crea" type="DateTime">
+      <column name="fecha_crea" not-null="false" sql-type="datetime" />
+    </property>
+    <property name="fecha_actu" type="DateTime">
+      <column name="fecha_actu" not-null="false" sql-type="datetime" />
+    </property>
+    <property name="usuario_crea" type="String">
+      <column name="usuario_crea" not-null="false" length="45" sql-type="varchar" />
+    </property>
+    <property name="usuario_actu" type="String">
+      <column name="usuario_actu" not-null="false" length="45" sql-type="varchar" />
+    </property>
     <set name="grupos_roles" table="grupos_roles_has_privilegios" schema="farmacia" generic="true">
       <key not-null="true">
         <column name="id_privilegio" not-null="true" precision="11" scale="0" sql-type="int" />

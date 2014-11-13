@@ -17,8 +17,11 @@
     <property name="inv_despues" type="Int32">
       <column name="inv_despues" not-null="false" precision="11" scale="0" sql-type="int" />
     </property>
-    <property name="fecha" type="DateTime">
-      <column name="fecha" not-null="false" sql-type="date" />
+    <property name="fecha_crea" type="DateTime">
+      <column name="fecha_crea" not-null="false" sql-type="datetime" />
+    </property>
+    <property name="usuario_crea" type="String">
+      <column name="usuario_crea" not-null="false" length="45" sql-type="varchar" />
     </property>
     <property name="precio" type="Double">
       <column name="precio" not-null="false" sql-type="double" />
