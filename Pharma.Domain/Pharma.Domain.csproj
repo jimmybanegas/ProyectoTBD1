@@ -4,13 +4,14 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{82DCDBA5-4E13-4FD4-AE3F-3F56074F43F3}</ProjectGuid>
+    <ProjectGuid>{7099503C-CA3B-4E94-AFF6-9A4875647CC3}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>Pharma.Domain</RootNamespace>
     <AssemblyName>Pharma.Domain</AssemblyName>
-    <TargetFrameworkVersion>v4.5.1</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
+    <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -30,6 +31,12 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Iesi.Collections">
+      <HintPath>..\packages\Iesi.Collections.3.2.0.4000\lib\Net35\Iesi.Collections.dll</HintPath>
+    </Reference>
+    <Reference Include="NHibernate">
+      <HintPath>..\packages\NHibernate.3.3.1.4000\lib\Net35\NHibernate.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
@@ -40,14 +47,29 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Entities\Account.cs" />
-    <Compile Include="Entities\AccountLeagues.cs" />
+    <Compile Include="Entities\AccountLeague.cs" />
+    <Compile Include="Entities\Game.cs" />
+    <Compile Include="Entities\GameStadium.cs" />
     <Compile Include="Entities\IEntity.cs" />
-    <Compile Include="Entities\Leagues.cs" />
+    <Compile Include="Entities\League.cs" />
+    <Compile Include="Entities\Location.cs" />
+    <Compile Include="Entities\Prediction.cs" />
+    <Compile Include="Entities\AccountGamePrediction.cs" />
+    <Compile Include="Entities\Result.cs" />
+    <Compile Include="Entities\Role.cs" />
+    <Compile Include="Entities\Stadium.cs" />
+    <Compile Include="Entities\Team.cs" />
+    <Compile Include="Entities\WinnerTeam.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Services\IEmailService.cs" />
+    <Compile Include="Services\IEncryption.cs" />
     <Compile Include="Services\IReadOnlyRepository.cs" />
     <Compile Include="Services\IWriteOnlyRepository.cs" />
+    <Compile Include="Services\Sha256Encrypter.cs" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <None Include="packages.config" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

@@ -1,4 +1,4 @@
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using Pharma.Domain.Entities;
 
 namespace Pharma.Domain.Services
