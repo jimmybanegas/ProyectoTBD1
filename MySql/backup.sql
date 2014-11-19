@@ -126,7 +126,7 @@ CREATE TABLE `compras` (
   PRIMARY KEY (`id_compra`),
   KEY `fk_COMPRAS_PROVEEDORES1_idx` (`id_proveedor`),
   CONSTRAINT `fk_COMPRAS_PROVEEDORES1` FOREIGN KEY (`id_proveedor`) REFERENCES `proveedores` (`id_proveedor`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -135,6 +135,7 @@ CREATE TABLE `compras` (
 
 LOCK TABLES `compras` WRITE;
 /*!40000 ALTER TABLE `compras` DISABLE KEYS */;
+INSERT INTO `compras` VALUES (2,'2014-11-14',320,'2014-11-19 00:00:00','2014-11-19 00:00:00','JIMMY','JIMMY',1);
 /*!40000 ALTER TABLE `compras` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -304,6 +305,7 @@ CREATE TABLE `detalle_compras` (
 
 LOCK TABLES `detalle_compras` WRITE;
 /*!40000 ALTER TABLE `detalle_compras` DISABLE KEYS */;
+INSERT INTO `detalle_compras` VALUES (1,5,320,325,2,'001'),(2,5,320,325,2,'005-A'),(3,10,360,365,2,'002');
 /*!40000 ALTER TABLE `detalle_compras` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!50003 SET @saved_cs_client      = @@character_set_client */ ;
@@ -383,7 +385,7 @@ CREATE TABLE `detalle_facturas` (
 
 LOCK TABLES `detalle_facturas` WRITE;
 /*!40000 ALTER TABLE `detalle_facturas` DISABLE KEYS */;
-INSERT INTO `detalle_facturas` VALUES (1,30,5,32,1,'001'),(2,30,26,32,1,'005-A');
+INSERT INTO `detalle_facturas` VALUES (1,30,5,32,1,'001'),(2,30,26,32,1,'005-A'),(3,20,3,35,1,'002'),(4,25,2,50,1,'001'),(5,32,8,20,1,'002'),(6,22,3,12,1,'001');
 /*!40000 ALTER TABLE `detalle_facturas` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!50003 SET @saved_cs_client      = @@character_set_client */ ;
@@ -582,7 +584,7 @@ CREATE TABLE `kardex` (
   PRIMARY KEY (`id_operacion`),
   KEY `fk_KARDEX_PRODUCTOS1_idx` (`cod_prod`),
   CONSTRAINT `fk_KARDEX_PRODUCTOS1` FOREIGN KEY (`cod_prod`) REFERENCES `productos` (`cod_prod`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -591,6 +593,7 @@ CREATE TABLE `kardex` (
 
 LOCK TABLES `kardex` WRITE;
 /*!40000 ALTER TABLE `kardex` DISABLE KEYS */;
+INSERT INTO `kardex` VALUES (1,-3,20,20,17,'2014-11-19 13:11:09','Jimmy',25,'002','S'),(2,-2,20,15,13,'2014-11-19 13:11:09','Jimmy',25,'001','S'),(3,19,32,13,32,'2014-11-19 13:45:01','Jimmy',25,'001','E'),(4,5,32,32,37,'2014-11-19 13:56:38','Jimmy',55,'001','E'),(5,5,20,-6,-1,'2014-11-19 14:00:26','Jimmy',25,'005-A','E'),(6,10,20,17,27,'2014-11-19 14:25:54','JIMMY',25,'002','E'),(7,8,20,27,19,'2014-11-19 14:27:32','JIMMY',25,'002','S'),(8,3,32,37,34,'2014-11-19 14:30:15','JIMMY',55,'001','S');
 /*!40000 ALTER TABLE `kardex` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -721,9 +724,40 @@ CREATE TABLE `productos` (
 
 LOCK TABLES `productos` WRITE;
 /*!40000 ALTER TABLE `productos` DISABLE KEYS */;
-INSERT INTO `productos` VALUES ('001',15,'2014-11-18',20,25,30,'PRUEBA',1,2,2,50,20,'2014-11-18 00:00:00','2014-11-18 00:00:00','JIMMY_RAMOS','JIMMY_RAMOS'),('002',20,'2014-11-18',20,25,30,'PRUEBA 2',1,2,2,50,20,'2014-11-18 00:00:00','2014-11-18 00:00:00','JIMMY_RAMOS','JIMMY_RAMOS'),('005-A',-6,'2014-11-18',20,25,30,'PRUEBA 2',1,2,2,50,20,'2014-11-18 00:00:00','2014-11-18 00:00:00','JIMMY_RAMOS','JIMMY_RAMOS');
+INSERT INTO `productos` VALUES ('001',34,'2014-11-19',32,55,20,'ACTUAL',1,1,5,20,12,'2014-11-19 00:00:00','2014-11-19 00:00:00','JUAN_VILLA','JUAN_VILLA'),('002',19,'2014-11-18',20,25,30,'PRUEBA 2',1,2,2,50,20,'2014-11-18 00:00:00','2014-11-18 00:00:00','JIMMY_RAMOS','JIMMY_RAMOS'),('005-A',-1,'2014-11-18',20,25,30,'PRUEBA 2',1,2,2,50,20,'2014-11-18 00:00:00','2014-11-18 00:00:00','JIMMY_RAMOS','JIMMY_RAMOS');
 /*!40000 ALTER TABLE `productos` ENABLE KEYS */;
 UNLOCK TABLES;
+/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
+/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
+/*!50003 SET @saved_col_connection = @@collation_connection */ ;
+/*!50003 SET character_set_client  = utf8 */ ;
+/*!50003 SET character_set_results = utf8 */ ;
+/*!50003 SET collation_connection  = utf8_general_ci */ ;
+/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
+/*!50003 SET sql_mode              = 'STRICT_TRANS_TABLES,NO_AUTO_CREATE_USER,NO_ENGINE_SUBSTITUTION' */ ;
+DELIMITER ;;
+/*!50003 CREATE*/ /*!50017 DEFINER=`root`@`localhost`*/ /*!50003 TRIGGER `farmacia`.`productos_AFTER_UPDATE` AFTER UPDATE ON `productos` FOR EACH ROW
+    BEGIN
+      DECLARE e_o_s varchar(1);
+      
+      if(new.existencia < old.existencia) then
+		set e_o_s = 'S';
+      else
+		set e_o_s = 'E';
+      END IF;
+      
+      IF(NEW.EXISTENCIA <> OLD.EXISTENCIA) 
+      then
+		CALL sp_ins_kardex(abs(new.existencia-old.existencia),new.costo,old.existencia,
+          new.existencia,now(),'JIMMY',OLD.precio_consumi,new.cod_prod,e_o_s);
+      END IF;
+      
+    END */;;
+DELIMITER ;
+/*!50003 SET sql_mode              = @saved_sql_mode */ ;
+/*!50003 SET character_set_client  = @saved_cs_client */ ;
+/*!50003 SET character_set_results = @saved_cs_results */ ;
+/*!50003 SET collation_connection  = @saved_col_connection */ ;
 
 --
 -- Table structure for table `proveedores`
@@ -743,7 +777,7 @@ CREATE TABLE `proveedores` (
   `usuario_crea` varchar(45) DEFAULT NULL,
   `usuario_actu` varchar(45) DEFAULT NULL,
   PRIMARY KEY (`id_proveedor`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -752,6 +786,7 @@ CREATE TABLE `proveedores` (
 
 LOCK TABLES `proveedores` WRITE;
 /*!40000 ALTER TABLE `proveedores` DISABLE KEYS */;
+INSERT INTO `proveedores` VALUES (1,'ANTUNEZ','99201220','PRVEE1','JUAN','2014-11-19 00:00:00','2014-11-19 00:00:00','JUAN','JUAN');
 /*!40000 ALTER TABLE `proveedores` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -904,6 +939,38 @@ LOCK TABLES `usuarios_has_grupos_roles` WRITE;
 UNLOCK TABLES;
 
 --
+-- Temporary table structure for view `vw_producto`
+--
+
+DROP TABLE IF EXISTS `vw_producto`;
+/*!50001 DROP VIEW IF EXISTS `vw_producto`*/;
+SET @saved_cs_client     = @@character_set_client;
+SET character_set_client = utf8;
+/*!50001 CREATE TABLE `vw_producto` (
+  `cod_prod` tinyint NOT NULL,
+  `existencia` tinyint NOT NULL,
+  `fecha_venc` tinyint NOT NULL,
+  `costo` tinyint NOT NULL,
+  `precio_consumi` tinyint NOT NULL,
+  `precio_mayor` tinyint NOT NULL,
+  `nombre` tinyint NOT NULL,
+  `cod_presentacion` tinyint NOT NULL,
+  `cod_categoria` tinyint NOT NULL,
+  `existencia_min` tinyint NOT NULL,
+  `existencia_max` tinyint NOT NULL,
+  `porcentaje_m` tinyint NOT NULL,
+  `fecha_crea` tinyint NOT NULL,
+  `fecha_actu` tinyint NOT NULL,
+  `usuario_crea` tinyint NOT NULL,
+  `usuario_actu` tinyint NOT NULL
+) ENGINE=MyISAM */;
+SET character_set_client = @saved_cs_client;
+
+--
+-- Dumping events for database 'farmacia'
+--
+
+--
 -- Dumping routines for database 'farmacia'
 --
 /*!50003 DROP FUNCTION IF EXISTS `calcular_precio_consumidor` */;
@@ -964,6 +1031,25 @@ DELIMITER ;
 /*!50003 SET character_set_client  = @saved_cs_client */ ;
 /*!50003 SET character_set_results = @saved_cs_results */ ;
 /*!50003 SET collation_connection  = @saved_col_connection */ ;
+/*!50003 DROP FUNCTION IF EXISTS `getProducto` */;
+/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
+/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
+/*!50003 SET @saved_col_connection = @@collation_connection */ ;
+/*!50003 SET character_set_client  = utf8 */ ;
+/*!50003 SET character_set_results = utf8 */ ;
+/*!50003 SET collation_connection  = utf8_general_ci */ ;
+/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
+/*!50003 SET sql_mode              = 'STRICT_TRANS_TABLES,NO_AUTO_CREATE_USER,NO_ENGINE_SUBSTITUTION' */ ;
+DELIMITER ;;
+CREATE DEFINER=`root`@`localhost` FUNCTION `getProducto`() RETURNS varchar(20) CHARSET utf8
+    NO SQL
+    DETERMINISTIC
+return @p1 ;;
+DELIMITER ;
+/*!50003 SET sql_mode              = @saved_sql_mode */ ;
+/*!50003 SET character_set_client  = @saved_cs_client */ ;
+/*!50003 SET character_set_results = @saved_cs_results */ ;
+/*!50003 SET collation_connection  = @saved_col_connection */ ;
 /*!50003 DROP PROCEDURE IF EXISTS `sp_del_ajustes` */;
 /*!50003 SET @saved_cs_client      = @@character_set_client */ ;
 /*!50003 SET @saved_cs_results     = @@character_set_results */ ;
@@ -974,15 +1060,23 @@ DELIMITER ;
 /*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
 /*!50003 SET sql_mode              = 'STRICT_TRANS_TABLES,NO_AUTO_CREATE_USER,NO_ENGINE_SUBSTITUTION' */ ;
 DELIMITER ;;
-CREATE DEFINER=`VisualStudio`@`%` PROCEDURE `sp_del_ajustes`(
-   IN 
-  `p_id_ajuste`
-   int
+CREATE DEFINER=`VisualStudio`@`%` PROCEDURE `sp_del_ajustes`(
+
+   IN 
+
+  `p_id_ajuste`
+
+   int
+
 )
-BEGIN
-  DELETE FROM `ajustes`
-  WHERE     
-    (`id_ajuste` = `p_id_ajuste`);
+BEGIN
+
+  DELETE FROM `ajustes`
+
+  WHERE     
+
+    (`id_ajuste` = `p_id_ajuste`);
+
 END ;;
 DELIMITER ;
 /*!50003 SET sql_mode              = @saved_sql_mode */ ;
@@ -999,15 +1093,23 @@ DELIMITER ;
 /*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
 /*!50003 SET sql_mode              = 'STRICT_TRANS_TABLES,NO_AUTO_CREATE_USER,NO_ENGINE_SUBSTITUTION' */ ;
 DELIMITER ;;
-CREATE DEFINER=`VisualStudio`@`%` PROCEDURE `sp_del_categoria_productos`(
-   IN 
-  `p_cod_categoria`
-   int
+CREATE DEFINER=`VisualStudio`@`%` PROCEDURE `sp_del_categoria_productos`(
+
+   IN 
+
+  `p_cod_categoria`
+
+   int
+
 )
-BEGIN
-  DELETE FROM `categoria_productos`
-  WHERE     
-    (`cod_categoria` = `p_cod_categoria`);
+BEGIN
+
+  DELETE FROM `categoria_productos`
+
+  WHERE     
+
+    (`cod_categoria` = `p_cod_categoria`);
+
 END ;;
 DELIMITER ;
 /*!50003 SET sql_mode              = @saved_sql_mode */ ;
@@ -1024,15 +1126,23 @@ DELIMITER ;
 /*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
 /*!50003 SET sql_mode              = 'STRICT_TRANS_TABLES,NO_AUTO_CREATE_USER,NO_ENGINE_SUBSTITUTION' */ ;
 DELIMITER ;;
-CREATE DEFINER=`VisualStudio`@`%` PROCEDURE `sp_del_clientes`(
-   IN 
-  `p_id_cliente`
-   int
+CREATE DEFINER=`VisualStudio`@`%` PROCEDURE `sp_del_clientes`(
+
+   IN 
+
+  `p_id_cliente`
+
+   int
+
 )
-BEGIN
-  DELETE FROM `clientes`
-  WHERE     
-    (`id_cliente` = `p_id_cliente`);
+BEGIN
+
+  DELETE FROM `clientes`
+
+  WHERE     
+
+    (`id_cliente` = `p_id_cliente`);
+
 END ;;
 DELIMITER ;
 /*!50003 SET sql_mode              = @saved_sql_mode */ ;
@@ -1049,15 +1159,23 @@ DELIMITER ;
 /*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
 /*!50003 SET sql_mode              = 'STRICT_TRANS_TABLES,NO_AUTO_CREATE_USER,NO_ENGINE_SUBSTITUTION' */ ;
 DELIMITER ;;
-CREATE DEFINER=`VisualStudio`@`%` PROCEDURE `sp_del_compras`(
-   IN 
-  `p_id_compra`
-   int
+CREATE DEFINER=`VisualStudio`@`%` PROCEDURE `sp_del_compras`(
+
+   IN 
+
+  `p_id_compra`
+
+   int
+
 )
-BEGIN
-  DELETE FROM `compras`
-  WHERE     
-    (`id_compra` = `p_id_compra`);
+BEGIN
+
+  DELETE FROM `compras`
+
+  WHERE     
+
+    (`id_compra` = `p_id_compra`);
+
 END ;;
 DELIMITER ;
 /*!50003 SET sql_mode              = @saved_sql_mode */ ;
@@ -1074,31 +1192,55 @@ DELIMITER ;
 /*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
 /*!50003 SET sql_mode              = 'STRICT_TRANS_TABLES,NO_AUTO_CREATE_USER,NO_ENGINE_SUBSTITUTION' */ ;
 DELIMITER ;;
-CREATE DEFINER=`VisualStudio`@`%` PROCEDURE `sp_del_contactos_clientes`(
-   IN 
-  `p_id_contactocliente`
-   int,
-   IN 
-  `p_nombre`
-   varchar(50),
-   IN 
-  `p_correo`
-   varchar(20),
-   IN 
-  `p_telefono`
-   varchar(15),
-   IN 
-  `p_id_cliente`
-   int
+CREATE DEFINER=`VisualStudio`@`%` PROCEDURE `sp_del_contactos_clientes`(
+
+   IN 
+
+  `p_id_contactocliente`
+
+   int,
+
+   IN 
+
+  `p_nombre`
+
+   varchar(50),
+
+   IN 
+
+  `p_correo`
+
+   varchar(20),
+
+   IN 
+
+  `p_telefono`
+
+   varchar(15),
+
+   IN 
+
+  `p_id_cliente`
+
+   int
+
 )
-BEGIN
-  DELETE FROM `contactos_clientes`
-  WHERE     
-    (`id_contactocliente` = `p_id_contactocliente`) AND    
-    (`nombre` = `p_nombre`) AND    
-    (`correo` = `p_correo`) AND    
-    (`telefono` = `p_telefono`) AND    
-    (`id_cliente` = `p_id_cliente`);
+BEGIN
+
+  DELETE FROM `contactos_clientes`
+
+  WHERE     
+
+    (`id_contactocliente` = `p_id_contactocliente`) AND    
+
+    (`nombre` = `p_nombre`) AND    
+
+    (`correo` = `p_correo`) AND    
+
+    (`telefono` = `p_telefono`) AND    
+
+    (`id_cliente` = `p_id_cliente`);
+
 END ;;
 DELIMITER ;
 /*!50003 SET sql_mode              = @saved_sql_mode */ ;
@@ -1115,19 +1257,31 @@ DELIMITER ;
 /*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
 /*!50003 SET sql_mode              = 'STRICT_TRANS_TABLES,NO_AUTO_CREATE_USER,NO_ENGINE_SUBSTITUTION' */ ;
 DELIMITER ;;
-CREATE DEFINER=`VisualStudio`@`%` PROCEDURE `sp_del_costo_prod_proveedor`(
-   IN 
-  `p_cod_prod`
-   varchar(20),
-   IN 
-  `p_id_proveedor`
-   int
+CREATE DEFINER=`VisualStudio`@`%` PROCEDURE `sp_del_costo_prod_proveedor`(
+
+   IN 
+
+  `p_cod_prod`
+
+   varchar(20),
+
+   IN 
+
+  `p_id_proveedor`
+
+   int
+
 )
-BEGIN
-  DELETE FROM `costo_prod_proveedor`
-  WHERE     
-    (`cod_prod` = `p_cod_prod`) AND    
-    (`id_proveedor` = `p_id_proveedor`);
+BEGIN
+
+  DELETE FROM `costo_prod_proveedor`
+
+  WHERE     
+
+    (`cod_prod` = `p_cod_prod`) AND    
+
+    (`id_proveedor` = `p_id_proveedor`);
+
 END ;;
 DELIMITER ;
 /*!50003 SET sql_mode              = @saved_sql_mode */ ;
@@ -1144,15 +1298,23 @@ DELIMITER ;
 /*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
 /*!50003 SET sql_mode              = 'STRICT_TRANS_TABLES,NO_AUTO_CREATE_USER,NO_ENGINE_SUBSTITUTION' */ ;
 DELIMITER ;;
-CREATE DEFINER=`VisualStudio`@`%` PROCEDURE `sp_del_cotizaciones`(
-   IN 
-  `p_id_cotizacion`
-   int
+CREATE DEFINER=`VisualStudio`@`%` PROCEDURE `sp_del_cotizaciones`(
+
+   IN 
+
+  `p_id_cotizacion`
+
+   int
+
 )
-BEGIN
-  DELETE FROM `cotizaciones`
-  WHERE     
-    (`id_cotizacion` = `p_id_cotizacion`);
+BEGIN
+
+  DELETE FROM `cotizaciones`
+
+  WHERE     
+
+    (`id_cotizacion` = `p_id_cotizacion`);
+
 END ;;
 DELIMITER ;
 /*!50003 SET sql_mode              = @saved_sql_mode */ ;
@@ -1169,19 +1331,31 @@ DELIMITER ;
 /*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
 /*!50003 SET sql_mode              = 'STRICT_TRANS_TABLES,NO_AUTO_CREATE_USER,NO_ENGINE_SUBSTITUTION' */ ;
 DELIMITER ;;
-CREATE DEFINER=`VisualStudio`@`%` PROCEDURE `sp_del_detalle_ajustes`(
-   IN 
-  `p_num_detalle`
-   int,
-   IN 
-  `p_id_ajuste`
-   int
+CREATE DEFINER=`VisualStudio`@`%` PROCEDURE `sp_del_detalle_ajustes`(
+
+   IN 
+
+  `p_num_detalle`
+
+   int,
+
+   IN 
+
+  `p_id_ajuste`
+
+   int
+
 )
-BEGIN
-  DELETE FROM `detalle_ajustes`
-  WHERE     
-    (`num_detalle` = `p_num_detalle`) AND    
-    (`id_ajuste` = `p_id_ajuste`);
+BEGIN
+
+  DELETE FROM `detalle_ajustes`
+
+  WHERE     
+
+    (`num_detalle` = `p_num_detalle`) AND    
+
+    (`id_ajuste` = `p_id_ajuste`);
+
 END ;;
 DELIMITER ;
 /*!50003 SET sql_mode              = @saved_sql_mode */ ;
@@ -1198,19 +1372,31 @@ DELIMITER ;
 /*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
 /*!50003 SET sql_mode              = 'STRICT_TRANS_TABLES,NO_AUTO_CREATE_USER,NO_ENGINE_SUBSTITUTION' */ ;
 DELIMITER ;;
-CREATE DEFINER=`VisualStudio`@`%` PROCEDURE `sp_del_detalle_compras`(
-   IN 
-  `p_num_detalle`
-   int,
-   IN 
-  `p_id_compra`
-   int
+CREATE DEFINER=`VisualStudio`@`%` PROCEDURE `sp_del_detalle_compras`(
+
+   IN 
+
+  `p_num_detalle`
+
+   int,
+
+   IN 
+
+  `p_id_compra`
+
+   int
+
 )
-BEGIN
-  DELETE FROM `detalle_compras`
-  WHERE     
-    (`num_detalle` = `p_num_detalle`) AND    
-    (`id_compra` = `p_id_compra`);
+BEGIN
+
+  DELETE FROM `detalle_compras`
+
+  WHERE     
+
+    (`num_detalle` = `p_num_detalle`) AND    
+
+    (`id_compra` = `p_id_compra`);
+
 END ;;
 DELIMITER ;
 /*!50003 SET sql_mode              = @saved_sql_mode */ ;
@@ -1227,19 +1413,31 @@ DELIMITER ;
 /*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
 /*!50003 SET sql_mode              = 'STRICT_TRANS_TABLES,NO_AUTO_CREATE_USER,NO_ENGINE_SUBSTITUTION' */ ;
 DELIMITER ;;
-CREATE DEFINER=`VisualStudio`@`%` PROCEDURE `sp_del_detalle_cotizaciones`(
-   IN 
-  `p_num_detalle`
-   int,
-   IN 
-  `p_id_cotizacion`
-   int
+CREATE DEFINER=`VisualStudio`@`%` PROCEDURE `sp_del_detalle_cotizaciones`(
+
+   IN 
+
+  `p_num_detalle`
+
+   int,
+
+   IN 
+
+  `p_id_cotizacion`
+
+   int
+
 )
-BEGIN
-  DELETE FROM `detalle_cotizaciones`
-  WHERE     
-    (`num_detalle` = `p_num_detalle`) AND    
-    (`id_cotizacion` = `p_id_cotizacion`);
+BEGIN
+
+  DELETE FROM `detalle_cotizaciones`
+
+  WHERE     
+
+    (`num_detalle` = `p_num_detalle`) AND    
+
+    (`id_cotizacion` = `p_id_cotizacion`);
+
 END ;;
 DELIMITER ;
 /*!50003 SET sql_mode              = @saved_sql_mode */ ;
@@ -1256,19 +1454,31 @@ DELIMITER ;
 /*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
 /*!50003 SET sql_mode              = 'STRICT_TRANS_TABLES,NO_AUTO_CREATE_USER,NO_ENGINE_SUBSTITUTION' */ ;
 DELIMITER ;;
-CREATE DEFINER=`VisualStudio`@`%` PROCEDURE `sp_del_detalle_facturas`(
-   IN 
-  `p_num_detalle`
-   int,
-   IN 
-  `p_num_factura`
-   int
+CREATE DEFINER=`VisualStudio`@`%` PROCEDURE `sp_del_detalle_facturas`(
+
+   IN 
+
+  `p_num_detalle`
+
+   int,
+
+   IN 
+
+  `p_num_factura`
+
+   int
+
 )
-BEGIN
-  DELETE FROM `detalle_facturas`
-  WHERE     
-    (`num_detalle` = `p_num_detalle`) AND    
-    (`num_factura` = `p_num_factura`);
+BEGIN
+
+  DELETE FROM `detalle_facturas`
+
+  WHERE     
+
+    (`num_detalle` = `p_num_detalle`) AND    
+
+    (`num_factura` = `p_num_factura`);
+
 END ;;
 DELIMITER ;
 /*!50003 SET sql_mode              = @saved_sql_mode */ ;
@@ -1285,19 +1495,31 @@ DELIMITER ;
 /*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
 /*!50003 SET sql_mode              = 'STRICT_TRANS_TABLES,NO_AUTO_CREATE_USER,NO_ENGINE_SUBSTITUTION' */ ;
 DELIMITER ;;
-CREATE DEFINER=`VisualStudio`@`%` PROCEDURE `sp_del_detalle_oc`(
-   IN 
-  `p_num_detalle`
-   int,
-   IN 
-  `p_id_ordencompra`
-   int
+CREATE DEFINER=`VisualStudio`@`%` PROCEDURE `sp_del_detalle_oc`(
+
+   IN 
+
+  `p_num_detalle`
+
+   int,
+
+   IN 
+
+  `p_id_ordencompra`
+
+   int
+
 )
-BEGIN
-  DELETE FROM `detalle_oc`
-  WHERE     
-    (`num_detalle` = `p_num_detalle`) AND    
-    (`id_ordencompra` = `p_id_ordencompra`);
+BEGIN
+
+  DELETE FROM `detalle_oc`
+
+  WHERE     
+
+    (`num_detalle` = `p_num_detalle`) AND    
+
+    (`id_ordencompra` = `p_id_ordencompra`);
+
 END ;;
 DELIMITER ;
 /*!50003 SET sql_mode              = @saved_sql_mode */ ;
@@ -1314,23 +1536,39 @@ DELIMITER ;
 /*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
 /*!50003 SET sql_mode              = 'STRICT_TRANS_TABLES,NO_AUTO_CREATE_USER,NO_ENGINE_SUBSTITUTION' */ ;
 DELIMITER ;;
-CREATE DEFINER=`VisualStudio`@`%` PROCEDURE `sp_del_direcciones_clientes`(
-   IN 
-  `p_id_direccioncliente`
-   int,
-   IN 
-  `p_direccion`
-   varchar(50),
-   IN 
-  `p_id_cliente`
-   int
+CREATE DEFINER=`VisualStudio`@`%` PROCEDURE `sp_del_direcciones_clientes`(
+
+   IN 
+
+  `p_id_direccioncliente`
+
+   int,
+
+   IN 
+
+  `p_direccion`
+
+   varchar(50),
+
+   IN 
+
+  `p_id_cliente`
+
+   int
+
 )
-BEGIN
-  DELETE FROM `direcciones_clientes`
-  WHERE     
-    (`id_direccioncliente` = `p_id_direccioncliente`) AND    
-    (`direccion` = `p_direccion`) AND    
-    (`id_cliente` = `p_id_cliente`);
+BEGIN
+
+  DELETE FROM `direcciones_clientes`
+
+  WHERE     
+
+    (`id_direccioncliente` = `p_id_direccioncliente`) AND    
+
+    (`direccion` = `p_direccion`) AND    
+
+    (`id_cliente` = `p_id_cliente`);
+
 END ;;
 DELIMITER ;
 /*!50003 SET sql_mode              = @saved_sql_mode */ ;
@@ -1347,15 +1585,23 @@ DELIMITER ;
 /*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
 /*!50003 SET sql_mode              = 'STRICT_TRANS_TABLES,NO_AUTO_CREATE_USER,NO_ENGINE_SUBSTITUTION' */ ;
 DELIMITER ;;
-CREATE DEFINER=`VisualStudio`@`%` PROCEDURE `sp_del_facturas`(
-   IN 
-  `p_num_factura`
-   int
+CREATE DEFINER=`VisualStudio`@`%` PROCEDURE `sp_del_facturas`(
+
+   IN 
+
+  `p_num_factura`
+
+   int
+
 )
-BEGIN
-  DELETE FROM `facturas`
-  WHERE     
-    (`num_factura` = `p_num_factura`);
+BEGIN
+
+  DELETE FROM `facturas`
+
+  WHERE     
+
+    (`num_factura` = `p_num_factura`);
+
 END ;;
 DELIMITER ;
 /*!50003 SET sql_mode              = @saved_sql_mode */ ;
@@ -1372,15 +1618,23 @@ DELIMITER ;
 /*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
 /*!50003 SET sql_mode              = 'STRICT_TRANS_TABLES,NO_AUTO_CREATE_USER,NO_ENGINE_SUBSTITUTION' */ ;
 DELIMITER ;;
-CREATE DEFINER=`VisualStudio`@`%` PROCEDURE `sp_del_grupos_roles`(
-   IN 
-  `p_id_rol`
-   int
+CREATE DEFINER=`VisualStudio`@`%` PROCEDURE `sp_del_grupos_roles`(
+
+   IN 
+
+  `p_id_rol`
+
+   int
+
 )
-BEGIN
-  DELETE FROM `grupos_roles`
-  WHERE     
-    (`id_rol` = `p_id_rol`);
+BEGIN
+
+  DELETE FROM `grupos_roles`
+
+  WHERE     
+
+    (`id_rol` = `p_id_rol`);
+
 END ;;
 DELIMITER ;
 /*!50003 SET sql_mode              = @saved_sql_mode */ ;
@@ -1397,19 +1651,31 @@ DELIMITER ;
 /*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
 /*!50003 SET sql_mode              = 'STRICT_TRANS_TABLES,NO_AUTO_CREATE_USER,NO_ENGINE_SUBSTITUTION' */ ;
 DELIMITER ;;
-CREATE DEFINER=`VisualStudio`@`%` PROCEDURE `sp_del_grupos_roles_has_privilegios`(
-   IN 
-  `p_id_rol`
-   int,
-   IN 
-  `p_id_privilegio`
-   int
+CREATE DEFINER=`VisualStudio`@`%` PROCEDURE `sp_del_grupos_roles_has_privilegios`(
+
+   IN 
+
+  `p_id_rol`
+
+   int,
+
+   IN 
+
+  `p_id_privilegio`
+
+   int
+
 )
-BEGIN
-  DELETE FROM `grupos_roles_has_privilegios`
-  WHERE     
-    (`id_rol` = `p_id_rol`) AND    
-    (`id_privilegio` = `p_id_privilegio`);
+BEGIN
+
+  DELETE FROM `grupos_roles_has_privilegios`
+
+  WHERE     
+
+    (`id_rol` = `p_id_rol`) AND    
+
+    (`id_privilegio` = `p_id_privilegio`);
+
 END ;;
 DELIMITER ;
 /*!50003 SET sql_mode              = @saved_sql_mode */ ;
@@ -1426,15 +1692,23 @@ DELIMITER ;
 /*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
 /*!50003 SET sql_mode              = 'STRICT_TRANS_TABLES,NO_AUTO_CREATE_USER,NO_ENGINE_SUBSTITUTION' */ ;
 DELIMITER ;;
-CREATE DEFINER=`VisualStudio`@`%` PROCEDURE `sp_del_kardex`(
-   IN 
-  `p_id_operacion`
-   int
+CREATE DEFINER=`VisualStudio`@`%` PROCEDURE `sp_del_kardex`(
+
+   IN 
+
+  `p_id_operacion`
+
+   int
+
 )
-BEGIN
-  DELETE FROM `kardex`
-  WHERE     
-    (`id_operacion` = `p_id_operacion`);
+BEGIN
+
+  DELETE FROM `kardex`
+
+  WHERE     
+
+    (`id_operacion` = `p_id_operacion`);
+
 END ;;
 DELIMITER ;
 /*!50003 SET sql_mode              = @saved_sql_mode */ ;
@@ -1451,15 +1725,23 @@ DELIMITER ;
 /*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
 /*!50003 SET sql_mode              = 'STRICT_TRANS_TABLES,NO_AUTO_CREATE_USER,NO_ENGINE_SUBSTITUTION' */ ;
 DELIMITER ;;
-CREATE DEFINER=`VisualStudio`@`%` PROCEDURE `sp_del_ordenes_de_compra`(
-   IN 
-  `p_id_ordencompra`
-   int
+CREATE DEFINER=`VisualStudio`@`%` PROCEDURE `sp_del_ordenes_de_compra`(
+
+   IN 
+
+  `p_id_ordencompra`
+
+   int
+
 )
-BEGIN
-  DELETE FROM `ordenes_de_compra`
-  WHERE     
-    (`id_ordencompra` = `p_id_ordencompra`);
+BEGIN
+
+  DELETE FROM `ordenes_de_compra`
+
+  WHERE     
+
+    (`id_ordencompra` = `p_id_ordencompra`);
+
 END ;;
 DELIMITER ;
 /*!50003 SET sql_mode              = @saved_sql_mode */ ;
@@ -1476,15 +1758,23 @@ DELIMITER ;
 /*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
 /*!50003 SET sql_mode              = 'STRICT_TRANS_TABLES,NO_AUTO_CREATE_USER,NO_ENGINE_SUBSTITUTION' */ ;
 DELIMITER ;;
-CREATE DEFINER=`VisualStudio`@`%` PROCEDURE `sp_del_presentacion_productos`(
-   IN 
-  `p_cod_presentacion`
-   int
+CREATE DEFINER=`VisualStudio`@`%` PROCEDURE `sp_del_presentacion_productos`(
+
+   IN 
+
+  `p_cod_presentacion`
+
+   int
+
 )
-BEGIN
-  DELETE FROM `presentacion_productos`
-  WHERE     
-    (`cod_presentacion` = `p_cod_presentacion`);
+BEGIN
+
+  DELETE FROM `presentacion_productos`
+
+  WHERE     
+
+    (`cod_presentacion` = `p_cod_presentacion`);
+
 END ;;
 DELIMITER ;
 /*!50003 SET sql_mode              = @saved_sql_mode */ ;
@@ -1501,15 +1791,23 @@ DELIMITER ;
 /*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
 /*!50003 SET sql_mode              = 'STRICT_TRANS_TABLES,NO_AUTO_CREATE_USER,NO_ENGINE_SUBSTITUTION' */ ;
 DELIMITER ;;
-CREATE DEFINER=`VisualStudio`@`%` PROCEDURE `sp_del_privilegios`(
-   IN 
-  `p_id_privilegio`
-   int
+CREATE DEFINER=`VisualStudio`@`%` PROCEDURE `sp_del_privilegios`(
+
+   IN 
+
+  `p_id_privilegio`
+
+   int
+
 )
-BEGIN
-  DELETE FROM `privilegios`
-  WHERE     
-    (`id_privilegio` = `p_id_privilegio`);
+BEGIN
+
+  DELETE FROM `privilegios`
+
+  WHERE     
+
+    (`id_privilegio` = `p_id_privilegio`);
+
 END ;;
 DELIMITER ;
 /*!50003 SET sql_mode              = @saved_sql_mode */ ;
@@ -1526,15 +1824,23 @@ DELIMITER ;
 /*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
 /*!50003 SET sql_mode              = 'STRICT_TRANS_TABLES,NO_AUTO_CREATE_USER,NO_ENGINE_SUBSTITUTION' */ ;
 DELIMITER ;;
-CREATE DEFINER=`VisualStudio`@`%` PROCEDURE `sp_del_productos`(
-   IN 
-  `p_cod_prod`
-   varchar(20)
+CREATE DEFINER=`VisualStudio`@`%` PROCEDURE `sp_del_productos`(
+
+   IN 
+
+  `p_cod_prod`
+
+   varchar(20)
+
 )
-BEGIN
-  DELETE FROM `productos`
-  WHERE     
-    (`cod_prod` = `p_cod_prod`);
+BEGIN
+
+  DELETE FROM `productos`
+
+  WHERE     
+
+    (`cod_prod` = `p_cod_prod`);
+
 END ;;
 DELIMITER ;
 /*!50003 SET sql_mode              = @saved_sql_mode */ ;
@@ -1551,15 +1857,23 @@ DELIMITER ;
 /*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
 /*!50003 SET sql_mode              = 'STRICT_TRANS_TABLES,NO_AUTO_CREATE_USER,NO_ENGINE_SUBSTITUTION' */ ;
 DELIMITER ;;
-CREATE DEFINER=`VisualStudio`@`%` PROCEDURE `sp_del_proveedores`(
-   IN 
-  `p_id_proveedor`
-   int
+CREATE DEFINER=`VisualStudio`@`%` PROCEDURE `sp_del_proveedores`(
+
+   IN 
+
+  `p_id_proveedor`
+
+   int
+
 )
-BEGIN
-  DELETE FROM `proveedores`
-  WHERE     
-    (`id_proveedor` = `p_id_proveedor`);
+BEGIN
+
+  DELETE FROM `proveedores`
+
+  WHERE     
+
+    (`id_proveedor` = `p_id_proveedor`);
+
 END ;;
 DELIMITER ;
 /*!50003 SET sql_mode              = @saved_sql_mode */ ;
@@ -1576,19 +1890,31 @@ DELIMITER ;
 /*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
 /*!50003 SET sql_mode              = 'STRICT_TRANS_TABLES,NO_AUTO_CREATE_USER,NO_ENGINE_SUBSTITUTION' */ ;
 DELIMITER ;;
-CREATE DEFINER=`VisualStudio`@`%` PROCEDURE `sp_del_telefonos_clientes`(
-   IN 
-  `p_id_telefonosclientes`
-   int,
-   IN 
-  `p_id_cliente`
-   int
+CREATE DEFINER=`VisualStudio`@`%` PROCEDURE `sp_del_telefonos_clientes`(
+
+   IN 
+
+  `p_id_telefonosclientes`
+
+   int,
+
+   IN 
+
+  `p_id_cliente`
+
+   int
+
 )
-BEGIN
-  DELETE FROM `telefonos_clientes`
-  WHERE     
-    (`id_telefonosclientes` = `p_id_telefonosclientes`) AND    
-    (`id_cliente` = `p_id_cliente`);
+BEGIN
+
+  DELETE FROM `telefonos_clientes`
+
+  WHERE     
+
+    (`id_telefonosclientes` = `p_id_telefonosclientes`) AND    
+
+    (`id_cliente` = `p_id_cliente`);
+
 END ;;
 DELIMITER ;
 /*!50003 SET sql_mode              = @saved_sql_mode */ ;
@@ -1605,15 +1931,23 @@ DELIMITER ;
 /*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
 /*!50003 SET sql_mode              = 'STRICT_TRANS_TABLES,NO_AUTO_CREATE_USER,NO_ENGINE_SUBSTITUTION' */ ;
 DELIMITER ;;
-CREATE DEFINER=`VisualStudio`@`%` PROCEDURE `sp_del_tipo_cliente`(
-   IN 
-  `p_id_tipocliente`
-   int
+CREATE DEFINER=`VisualStudio`@`%` PROCEDURE `sp_del_tipo_cliente`(
+
+   IN 
+
+  `p_id_tipocliente`
+
+   int
+
 )
-BEGIN
-  DELETE FROM `tipo_cliente`
-  WHERE     
-    (`id_tipocliente` = `p_id_tipocliente`);
+BEGIN
+
+  DELETE FROM `tipo_cliente`
+
+  WHERE     
+
+    (`id_tipocliente` = `p_id_tipocliente`);
+
 END ;;
 DELIMITER ;
 /*!50003 SET sql_mode              = @saved_sql_mode */ ;
@@ -1630,15 +1964,23 @@ DELIMITER ;
 /*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
 /*!50003 SET sql_mode              = 'STRICT_TRANS_TABLES,NO_AUTO_CREATE_USER,NO_ENGINE_SUBSTITUTION' */ ;
 DELIMITER ;;
-CREATE DEFINER=`VisualStudio`@`%` PROCEDURE `sp_del_tipo_transacciones`(
-   IN 
-  `p_id_tipotran`
-   int
+CREATE DEFINER=`VisualStudio`@`%` PROCEDURE `sp_del_tipo_transacciones`(
+
+   IN 
+
+  `p_id_tipotran`
+
+   int
+
 )
-BEGIN
-  DELETE FROM `tipo_transacciones`
-  WHERE     
-    (`id_tipotran` = `p_id_tipotran`);
+BEGIN
+
+  DELETE FROM `tipo_transacciones`
+
+  WHERE     
+
+    (`id_tipotran` = `p_id_tipotran`);
+
 END ;;
 DELIMITER ;
 /*!50003 SET sql_mode              = @saved_sql_mode */ ;
@@ -1655,15 +1997,23 @@ DELIMITER ;
 /*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
 /*!50003 SET sql_mode              = 'STRICT_TRANS_TABLES,NO_AUTO_CREATE_USER,NO_ENGINE_SUBSTITUTION' */ ;
 DELIMITER ;;
-CREATE DEFINER=`VisualStudio`@`%` PROCEDURE `sp_del_usuarios`(
-   IN 
-  `p_usuario`
-   varchar(45)
+CREATE DEFINER=`VisualStudio`@`%` PROCEDURE `sp_del_usuarios`(
+
+   IN 
+
+  `p_usuario`
+
+   varchar(45)
+
 )
-BEGIN
-  DELETE FROM `usuarios`
-  WHERE     
-    (`usuario` = `p_usuario`);
+BEGIN
+
+  DELETE FROM `usuarios`
+
+  WHERE     
+
+    (`usuario` = `p_usuario`);
+
 END ;;
 DELIMITER ;
 /*!50003 SET sql_mode              = @saved_sql_mode */ ;
@@ -1680,19 +2030,31 @@ DELIMITER ;
 /*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
 /*!50003 SET sql_mode              = 'STRICT_TRANS_TABLES,NO_AUTO_CREATE_USER,NO_ENGINE_SUBSTITUTION' */ ;
 DELIMITER ;;
-CREATE DEFINER=`VisualStudio`@`%` PROCEDURE `sp_del_usuarios_has_grupos_roles`(
-   IN 
-  `p_usuario`
-   varchar(45),
-   IN 
-  `p_id_rol`
-   int
+CREATE DEFINER=`VisualStudio`@`%` PROCEDURE `sp_del_usuarios_has_grupos_roles`(
+
+   IN 
+
+  `p_usuario`
+
+   varchar(45),
+
+   IN 
+
+  `p_id_rol`
+
+   int
+
 )
-BEGIN
-  DELETE FROM `usuarios_has_grupos_roles`
-  WHERE     
-    (`usuario` = `p_usuario`) AND    
-    (`id_rol` = `p_id_rol`);
+BEGIN
+
+  DELETE FROM `usuarios_has_grupos_roles`
+
+  WHERE     
+
+    (`usuario` = `p_usuario`) AND    
+
+    (`id_rol` = `p_id_rol`);
+
 END ;;
 DELIMITER ;
 /*!50003 SET sql_mode              = @saved_sql_mode */ ;
@@ -1709,36 +2071,65 @@ DELIMITER ;
 /*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
 /*!50003 SET sql_mode              = 'STRICT_TRANS_TABLES,NO_AUTO_CREATE_USER,NO_ENGINE_SUBSTITUTION' */ ;
 DELIMITER ;;
-CREATE DEFINER=`VisualStudio`@`%` PROCEDURE `sp_ins_ajustes`(
-  IN `p_fecha` date,
-  IN `p_cant_producto` int,
-  IN `p_fecha_crea` datetime,
-  IN `p_fecha_actu` datetime,
-  IN `p_usuario_crea` varchar(45),
-  IN `p_usuario_actu` varchar(45),
-  IN `p_id_tipotran` int
+CREATE DEFINER=`VisualStudio`@`%` PROCEDURE `sp_ins_ajustes`(
+
+  IN `p_fecha` date,
+
+  IN `p_cant_producto` int,
+
+  IN `p_fecha_crea` datetime,
+
+  IN `p_fecha_actu` datetime,
+
+  IN `p_usuario_crea` varchar(45),
+
+  IN `p_usuario_actu` varchar(45),
+
+  IN `p_id_tipotran` int
+
 )
-BEGIN
-  INSERT INTO `ajustes`
-  (
-    `fecha`,
-    `cant_producto`,
-    `fecha_crea`,
-    `fecha_actu`,
-    `usuario_crea`,
-    `usuario_actu`,
-    `id_tipotran`
-  )
-  VALUES 
-  (
-    `p_fecha`,
-    `p_cant_producto`,
-    `p_fecha_crea`,
-    `p_fecha_actu`,
-    `p_usuario_crea`,
-    `p_usuario_actu`,
-    `p_id_tipotran`
-  );
+BEGIN
+
+  INSERT INTO `ajustes`
+
+  (
+
+    `fecha`,
+
+    `cant_producto`,
+
+    `fecha_crea`,
+
+    `fecha_actu`,
+
+    `usuario_crea`,
+
+    `usuario_actu`,
+
+    `id_tipotran`
+
+  )
+
+  VALUES 
+
+  (
+
+    `p_fecha`,
+
+    `p_cant_producto`,
+
+    `p_fecha_crea`,
+
+    `p_fecha_actu`,
+
+    `p_usuario_crea`,
+
+    `p_usuario_actu`,
+
+    `p_id_tipotran`
+
+  );
+
 END ;;
 DELIMITER ;
 /*!50003 SET sql_mode              = @saved_sql_mode */ ;
@@ -1755,30 +2146,53 @@ DELIMITER ;
 /*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
 /*!50003 SET sql_mode              = 'STRICT_TRANS_TABLES,NO_AUTO_CREATE_USER,NO_ENGINE_SUBSTITUTION' */ ;
 DELIMITER ;;
-CREATE DEFINER=`VisualStudio`@`%` PROCEDURE `sp_ins_categoria_productos`(
-  IN `p_nombre` varchar(45),
-  IN `p_fecha_crea` datetime,
-  IN `p_fecha_actu` datetime,
-  IN `p_usuario_crea` varchar(45),
-  IN `p_usuario_actu` varchar(45)
+CREATE DEFINER=`VisualStudio`@`%` PROCEDURE `sp_ins_categoria_productos`(
+
+  IN `p_nombre` varchar(45),
+
+  IN `p_fecha_crea` datetime,
+
+  IN `p_fecha_actu` datetime,
+
+  IN `p_usuario_crea` varchar(45),
+
+  IN `p_usuario_actu` varchar(45)
+
 )
-BEGIN
-  INSERT INTO `categoria_productos`
-  (
-    `nombre`,
-    `fecha_crea`,
-    `fecha_actu`,
-    `usuario_crea`,
-    `usuario_actu`
-  )
-  VALUES 
-  (
-    `p_nombre`,
-    `p_fecha_crea`,
-    `p_fecha_actu`,
-    `p_usuario_crea`,
-    `p_usuario_actu`
-  );
+BEGIN
+
+  INSERT INTO `categoria_productos`
+
+  (
+
+    `nombre`,
+
+    `fecha_crea`,
+
+    `fecha_actu`,
+
+    `usuario_crea`,
+
+    `usuario_actu`
+
+  )
+
+  VALUES 
+
+  (
+
+    `p_nombre`,
+
+    `p_fecha_crea`,
+
+    `p_fecha_actu`,
+
+    `p_usuario_crea`,
+
+    `p_usuario_actu`
+
+  );
+
 END ;;
 DELIMITER ;
 /*!50003 SET sql_mode              = @saved_sql_mode */ ;
@@ -1795,33 +2209,59 @@ DELIMITER ;
 /*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
 /*!50003 SET sql_mode              = 'STRICT_TRANS_TABLES,NO_AUTO_CREATE_USER,NO_ENGINE_SUBSTITUTION' */ ;
 DELIMITER ;;
-CREATE DEFINER=`VisualStudio`@`%` PROCEDURE `sp_ins_clientes`(
-  IN `p_nombre` varchar(45),
-  IN `p_fecha_crea` datetime,
-  IN `p_fecha_actu` datetime,
-  IN `p_usuario_crea` varchar(45),
-  IN `p_usuario_actu` varchar(45),
-  IN `p_id_tipocliente` int
+CREATE DEFINER=`VisualStudio`@`%` PROCEDURE `sp_ins_clientes`(
+
+  IN `p_nombre` varchar(45),
+
+  IN `p_fecha_crea` datetime,
+
+  IN `p_fecha_actu` datetime,
+
+  IN `p_usuario_crea` varchar(45),
+
+  IN `p_usuario_actu` varchar(45),
+
+  IN `p_id_tipocliente` int
+
 )
-BEGIN
-  INSERT INTO `clientes`
-  (
-    `nombre`,
-    `fecha_crea`,
-    `fecha_actu`,
-    `usuario_crea`,
-    `usuario_actu`,
-    `id_tipocliente`
-  )
-  VALUES 
-  (
-    `p_nombre`,
-    `p_fecha_crea`,
-    `p_fecha_actu`,
-    `p_usuario_crea`,
-    `p_usuario_actu`,
-    `p_id_tipocliente`
-  );
+BEGIN
+
+  INSERT INTO `clientes`
+
+  (
+
+    `nombre`,
+
+    `fecha_crea`,
+
+    `fecha_actu`,
+
+    `usuario_crea`,
+
+    `usuario_actu`,
+
+    `id_tipocliente`
+
+  )
+
+  VALUES 
+
+  (
+
+    `p_nombre`,
+
+    `p_fecha_crea`,
+
+    `p_fecha_actu`,
+
+    `p_usuario_crea`,
+
+    `p_usuario_actu`,
+
+    `p_id_tipocliente`
+
+  );
+
 END ;;
 DELIMITER ;
 /*!50003 SET sql_mode              = @saved_sql_mode */ ;
@@ -1838,36 +2278,65 @@ DELIMITER ;
 /*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
 /*!50003 SET sql_mode              = 'STRICT_TRANS_TABLES,NO_AUTO_CREATE_USER,NO_ENGINE_SUBSTITUTION' */ ;
 DELIMITER ;;
-CREATE DEFINER=`VisualStudio`@`%` PROCEDURE `sp_ins_compras`(
-  IN `p_fecha` date,
-  IN `p_total` double,
-  IN `p_fecha_crea` datetime,
-  IN `p_fecha_actu` datetime,
-  IN `p_usuario_crea` varchar(45),
-  IN `p_usuario_actu` varchar(45),
-  IN `p_id_proveedor` int
+CREATE DEFINER=`VisualStudio`@`%` PROCEDURE `sp_ins_compras`(
+
+  IN `p_fecha` date,
+
+  IN `p_total` double,
+
+  IN `p_fecha_crea` datetime,
+
+  IN `p_fecha_actu` datetime,
+
+  IN `p_usuario_crea` varchar(45),
+
+  IN `p_usuario_actu` varchar(45),
+
+  IN `p_id_proveedor` int
+
 )
-BEGIN
-  INSERT INTO `compras`
-  (
-    `fecha`,
-    `total`,
-    `fecha_crea`,
-    `fecha_actu`,
-    `usuario_crea`,
-    `usuario_actu`,
-    `id_proveedor`
-  )
-  VALUES 
-  (
-    `p_fecha`,
-    `p_total`,
-    `p_fecha_crea`,
-    `p_fecha_actu`,
-    `p_usuario_crea`,
-    `p_usuario_actu`,
-    `p_id_proveedor`
-  );
+BEGIN
+
+  INSERT INTO `compras`
+
+  (
+
+    `fecha`,
+
+    `total`,
+
+    `fecha_crea`,
+
+    `fecha_actu`,
+
+    `usuario_crea`,
+
+    `usuario_actu`,
+
+    `id_proveedor`
+
+  )
+
+  VALUES 
+
+  (
+
+    `p_fecha`,
+
+    `p_total`,
+
+    `p_fecha_crea`,
+
+    `p_fecha_actu`,
+
+    `p_usuario_crea`,
+
+    `p_usuario_actu`,
+
+    `p_id_proveedor`
+
+  );
+
 END ;;
 DELIMITER ;
 /*!50003 SET sql_mode              = @saved_sql_mode */ ;
@@ -1884,39 +2353,71 @@ DELIMITER ;
 /*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
 /*!50003 SET sql_mode              = 'STRICT_TRANS_TABLES,NO_AUTO_CREATE_USER,NO_ENGINE_SUBSTITUTION' */ ;
 DELIMITER ;;
-CREATE DEFINER=`VisualStudio`@`%` PROCEDURE `sp_ins_contactos_clientes`(
-  IN `p_nombre` varchar(50),
-  IN `p_correo` varchar(20),
-  IN `p_telefono` varchar(15),
-  IN `p_id_cliente` int,
-  IN `p_fecha_crea` datetime,
-  IN `p_fecha_actu` datetime,
-  IN `p_usuario_crea` varchar(45),
-  IN `p_usuario_actu` varchar(45)
+CREATE DEFINER=`VisualStudio`@`%` PROCEDURE `sp_ins_contactos_clientes`(
+
+  IN `p_nombre` varchar(50),
+
+  IN `p_correo` varchar(20),
+
+  IN `p_telefono` varchar(15),
+
+  IN `p_id_cliente` int,
+
+  IN `p_fecha_crea` datetime,
+
+  IN `p_fecha_actu` datetime,
+
+  IN `p_usuario_crea` varchar(45),
+
+  IN `p_usuario_actu` varchar(45)
+
 )
-BEGIN
-  INSERT INTO `contactos_clientes`
-  (
-    `nombre`,
-    `correo`,
-    `telefono`,
-    `id_cliente`,
-    `fecha_crea`,
-    `fecha_actu`,
-    `usuario_crea`,
-    `usuario_actu`
-  )
-  VALUES 
-  (
-    `p_nombre`,
-    `p_correo`,
-    `p_telefono`,
-    `p_id_cliente`,
-    `p_fecha_crea`,
-    `p_fecha_actu`,
-    `p_usuario_crea`,
-    `p_usuario_actu`
-  );
+BEGIN
+
+  INSERT INTO `contactos_clientes`
+
+  (
+
+    `nombre`,
+
+    `correo`,
+
+    `telefono`,
+
+    `id_cliente`,
+
+    `fecha_crea`,
+
+    `fecha_actu`,
+
+    `usuario_crea`,
+
+    `usuario_actu`
+
+  )
+
+  VALUES 
+
+  (
+
+    `p_nombre`,
+
+    `p_correo`,
+
+    `p_telefono`,
+
+    `p_id_cliente`,
+
+    `p_fecha_crea`,
+
+    `p_fecha_actu`,
+
+    `p_usuario_crea`,
+
+    `p_usuario_actu`
+
+  );
+
 END ;;
 DELIMITER ;
 /*!50003 SET sql_mode              = @saved_sql_mode */ ;
@@ -1933,24 +2434,41 @@ DELIMITER ;
 /*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
 /*!50003 SET sql_mode              = 'STRICT_TRANS_TABLES,NO_AUTO_CREATE_USER,NO_ENGINE_SUBSTITUTION' */ ;
 DELIMITER ;;
-CREATE DEFINER=`VisualStudio`@`%` PROCEDURE `sp_ins_costo_prod_proveedor`(
-  IN `p_costo` double,
-  IN `p_cod_prod` varchar(20),
-  IN `p_id_proveedor` int
+CREATE DEFINER=`VisualStudio`@`%` PROCEDURE `sp_ins_costo_prod_proveedor`(
+
+  IN `p_costo` double,
+
+  IN `p_cod_prod` varchar(20),
+
+  IN `p_id_proveedor` int
+
 )
-BEGIN
-  INSERT INTO `costo_prod_proveedor`
-  (
-    `costo`,
-    `cod_prod`,
-    `id_proveedor`
-  )
-  VALUES 
-  (
-    `p_costo`,
-    `p_cod_prod`,
-    `p_id_proveedor`
-  );
+BEGIN
+
+  INSERT INTO `costo_prod_proveedor`
+
+  (
+
+    `costo`,
+
+    `cod_prod`,
+
+    `id_proveedor`
+
+  )
+
+  VALUES 
+
+  (
+
+    `p_costo`,
+
+    `p_cod_prod`,
+
+    `p_id_proveedor`
+
+  );
+
 END ;;
 DELIMITER ;
 /*!50003 SET sql_mode              = @saved_sql_mode */ ;
@@ -1967,36 +2485,65 @@ DELIMITER ;
 /*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
 /*!50003 SET sql_mode              = 'STRICT_TRANS_TABLES,NO_AUTO_CREATE_USER,NO_ENGINE_SUBSTITUTION' */ ;
 DELIMITER ;;
-CREATE DEFINER=`VisualStudio`@`%` PROCEDURE `sp_ins_cotizaciones`(
-  IN `p_fecha` date,
-  IN `p_total` double,
-  IN `p_fecha_crea` datetime,
-  IN `p_fecha_actu` datetime,
-  IN `p_usuario_crea` varchar(45),
-  IN `p_usuario_actu` varchar(45),
-  IN `p_id_proveedor` int
+CREATE DEFINER=`VisualStudio`@`%` PROCEDURE `sp_ins_cotizaciones`(
+
+  IN `p_fecha` date,
+
+  IN `p_total` double,
+
+  IN `p_fecha_crea` datetime,
+
+  IN `p_fecha_actu` datetime,
+
+  IN `p_usuario_crea` varchar(45),
+
+  IN `p_usuario_actu` varchar(45),
+
+  IN `p_id_proveedor` int
+
 )
-BEGIN
-  INSERT INTO `cotizaciones`
-  (
-    `fecha`,
-    `total`,
-    `fecha_crea`,
-    `fecha_actu`,
-    `usuario_crea`,
-    `usuario_actu`,
-    `id_proveedor`
-  )
-  VALUES 
-  (
-    `p_fecha`,
-    `p_total`,
-    `p_fecha_crea`,
-    `p_fecha_actu`,
-    `p_usuario_crea`,
-    `p_usuario_actu`,
-    `p_id_proveedor`
-  );
+BEGIN
+
+  INSERT INTO `cotizaciones`
+
+  (
+
+    `fecha`,
+
+    `total`,
+
+    `fecha_crea`,
+
+    `fecha_actu`,
+
+    `usuario_crea`,
+
+    `usuario_actu`,
+
+    `id_proveedor`
+
+  )
+
+  VALUES 
+
+  (
+
+    `p_fecha`,
+
+    `p_total`,
+
+    `p_fecha_crea`,
+
+    `p_fecha_actu`,
+
+    `p_usuario_crea`,
+
+    `p_usuario_actu`,
+
+    `p_id_proveedor`
+
+  );
+
 END ;;
 DELIMITER ;
 /*!50003 SET sql_mode              = @saved_sql_mode */ ;
@@ -2013,27 +2560,47 @@ DELIMITER ;
 /*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
 /*!50003 SET sql_mode              = 'STRICT_TRANS_TABLES,NO_AUTO_CREATE_USER,NO_ENGINE_SUBSTITUTION' */ ;
 DELIMITER ;;
-CREATE DEFINER=`VisualStudio`@`%` PROCEDURE `sp_ins_detalle_ajustes`(
-  IN `p_num_detalle` int,
-  IN `p_cantidad` int,
-  IN `p_id_ajuste` int,
-  IN `p_cod_prod` varchar(20)
+CREATE DEFINER=`VisualStudio`@`%` PROCEDURE `sp_ins_detalle_ajustes`(
+
+  IN `p_num_detalle` int,
+
+  IN `p_cantidad` int,
+
+  IN `p_id_ajuste` int,
+
+  IN `p_cod_prod` varchar(20)
+
 )
-BEGIN
-  INSERT INTO `detalle_ajustes`
-  (
-    `num_detalle`,
-    `cantidad`,
-    `id_ajuste`,
-    `cod_prod`
-  )
-  VALUES 
-  (
-    `p_num_detalle`,
-    `p_cantidad`,
-    `p_id_ajuste`,
-    `p_cod_prod`
-  );
+BEGIN
+
+  INSERT INTO `detalle_ajustes`
+
+  (
+
+    `num_detalle`,
+
+    `cantidad`,
+
+    `id_ajuste`,
+
+    `cod_prod`
+
+  )
+
+  VALUES 
+
+  (
+
+    `p_num_detalle`,
+
+    `p_cantidad`,
+
+    `p_id_ajuste`,
+
+    `p_cod_prod`
+
+  );
+
 END ;;
 DELIMITER ;
 /*!50003 SET sql_mode              = @saved_sql_mode */ ;
@@ -2050,33 +2617,59 @@ DELIMITER ;
 /*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
 /*!50003 SET sql_mode              = 'STRICT_TRANS_TABLES,NO_AUTO_CREATE_USER,NO_ENGINE_SUBSTITUTION' */ ;
 DELIMITER ;;
-CREATE DEFINER=`VisualStudio`@`%` PROCEDURE `sp_ins_detalle_compras`(
-  IN `p_num_detalle` int,
-  IN `p_cantidad` int,
-  IN `p_precio_compra` double,
-  IN `p_subtotal` double,
-  IN `p_id_compra` int,
-  IN `p_cod_prod` varchar(20)
+CREATE DEFINER=`VisualStudio`@`%` PROCEDURE `sp_ins_detalle_compras`(
+
+  IN `p_num_detalle` int,
+
+  IN `p_cantidad` int,
+
+  IN `p_precio_compra` double,
+
+  IN `p_subtotal` double,
+
+  IN `p_id_compra` int,
+
+  IN `p_cod_prod` varchar(20)
+
 )
-BEGIN
-  INSERT INTO `detalle_compras`
-  (
-    `num_detalle`,
-    `cantidad`,
-    `precio_compra`,
-    `subtotal`,
-    `id_compra`,
-    `cod_prod`
-  )
-  VALUES 
-  (
-    `p_num_detalle`,
-    `p_cantidad`,
-    `p_precio_compra`,
-    `p_subtotal`,
-    `p_id_compra`,
-    `p_cod_prod`
-  );
+BEGIN
+
+  INSERT INTO `detalle_compras`
+
+  (
+
+    `num_detalle`,
+
+    `cantidad`,
+
+    `precio_compra`,
+
+    `subtotal`,
+
+    `id_compra`,
+
+    `cod_prod`
+
+  )
+
+  VALUES 
+
+  (
+
+    `p_num_detalle`,
+
+    `p_cantidad`,
+
+    `p_precio_compra`,
+
+    `p_subtotal`,
+
+    `p_id_compra`,
+
+    `p_cod_prod`
+
+  );
+
 END ;;
 DELIMITER ;
 /*!50003 SET sql_mode              = @saved_sql_mode */ ;
@@ -2093,30 +2686,53 @@ DELIMITER ;
 /*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
 /*!50003 SET sql_mode              = 'STRICT_TRANS_TABLES,NO_AUTO_CREATE_USER,NO_ENGINE_SUBSTITUTION' */ ;
 DELIMITER ;;
-CREATE DEFINER=`VisualStudio`@`%` PROCEDURE `sp_ins_detalle_cotizaciones`(
-  IN `p_num_detalle` int,
-  IN `p_cantidad` int,
-  IN `p_precio_unit` double,
-  IN `p_id_cotizacion` int,
-  IN `p_cod_prod` varchar(20)
+CREATE DEFINER=`VisualStudio`@`%` PROCEDURE `sp_ins_detalle_cotizaciones`(
+
+  IN `p_num_detalle` int,
+
+  IN `p_cantidad` int,
+
+  IN `p_precio_unit` double,
+
+  IN `p_id_cotizacion` int,
+
+  IN `p_cod_prod` varchar(20)
+
 )
-BEGIN
-  INSERT INTO `detalle_cotizaciones`
-  (
-    `num_detalle`,
-    `cantidad`,
-    `precio_unit`,
-    `id_cotizacion`,
-    `cod_prod`
-  )
-  VALUES 
-  (
-    `p_num_detalle`,
-    `p_cantidad`,
-    `p_precio_unit`,
-    `p_id_cotizacion`,
-    `p_cod_prod`
-  );
+BEGIN
+
+  INSERT INTO `detalle_cotizaciones`
+
+  (
+
+    `num_detalle`,
+
+    `cantidad`,
+
+    `precio_unit`,
+
+    `id_cotizacion`,
+
+    `cod_prod`
+
+  )
+
+  VALUES 
+
+  (
+
+    `p_num_detalle`,
+
+    `p_cantidad`,
+
+    `p_precio_unit`,
+
+    `p_id_cotizacion`,
+
+    `p_cod_prod`
+
+  );
+
 END ;;
 DELIMITER ;
 /*!50003 SET sql_mode              = @saved_sql_mode */ ;
@@ -2133,33 +2749,59 @@ DELIMITER ;
 /*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
 /*!50003 SET sql_mode              = 'STRICT_TRANS_TABLES,NO_AUTO_CREATE_USER,NO_ENGINE_SUBSTITUTION' */ ;
 DELIMITER ;;
-CREATE DEFINER=`VisualStudio`@`%` PROCEDURE `sp_ins_detalle_facturas`(
-  IN `p_num_detalle` int,
-  IN `p_precio_venta` double,
-  IN `p_cantidad` int,
-  IN `p_subtotal` double,
-  IN `p_num_factura` int,
-  IN `p_cod_prod` varchar(20)
+CREATE DEFINER=`VisualStudio`@`%` PROCEDURE `sp_ins_detalle_facturas`(
+
+  IN `p_num_detalle` int,
+
+  IN `p_precio_venta` double,
+
+  IN `p_cantidad` int,
+
+  IN `p_subtotal` double,
+
+  IN `p_num_factura` int,
+
+  IN `p_cod_prod` varchar(20)
+
 )
-BEGIN
-  INSERT INTO `detalle_facturas`
-  (
-    `num_detalle`,
-    `precio_venta`,
-    `cantidad`,
-    `subtotal`,
-    `num_factura`,
-    `cod_prod`
-  )
-  VALUES 
-  (
-    `p_num_detalle`,
-    `p_precio_venta`,
-    `p_cantidad`,
-    `p_subtotal`,
-    `p_num_factura`,
-    `p_cod_prod`
-  );
+BEGIN
+
+  INSERT INTO `detalle_facturas`
+
+  (
+
+    `num_detalle`,
+
+    `precio_venta`,
+
+    `cantidad`,
+
+    `subtotal`,
+
+    `num_factura`,
+
+    `cod_prod`
+
+  )
+
+  VALUES 
+
+  (
+
+    `p_num_detalle`,
+
+    `p_precio_venta`,
+
+    `p_cantidad`,
+
+    `p_subtotal`,
+
+    `p_num_factura`,
+
+    `p_cod_prod`
+
+  );
+
 END ;;
 DELIMITER ;
 /*!50003 SET sql_mode              = @saved_sql_mode */ ;
@@ -2176,33 +2818,59 @@ DELIMITER ;
 /*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
 /*!50003 SET sql_mode              = 'STRICT_TRANS_TABLES,NO_AUTO_CREATE_USER,NO_ENGINE_SUBSTITUTION' */ ;
 DELIMITER ;;
-CREATE DEFINER=`VisualStudio`@`%` PROCEDURE `sp_ins_detalle_oc`(
-  IN `p_num_detalle` int,
-  IN `p_cantidad` int,
-  IN `p_subtotal` double,
-  IN `p_precio_unit` double,
-  IN `p_id_ordencompra` int,
-  IN `p_cod_prod` varchar(20)
+CREATE DEFINER=`VisualStudio`@`%` PROCEDURE `sp_ins_detalle_oc`(
+
+  IN `p_num_detalle` int,
+
+  IN `p_cantidad` int,
+
+  IN `p_subtotal` double,
+
+  IN `p_precio_unit` double,
+
+  IN `p_id_ordencompra` int,
+
+  IN `p_cod_prod` varchar(20)
+
 )
-BEGIN
-  INSERT INTO `detalle_oc`
-  (
-    `num_detalle`,
-    `cantidad`,
-    `subtotal`,
-    `precio_unit`,
-    `id_ordencompra`,
-    `cod_prod`
-  )
-  VALUES 
-  (
-    `p_num_detalle`,
-    `p_cantidad`,
-    `p_subtotal`,
-    `p_precio_unit`,
-    `p_id_ordencompra`,
-    `p_cod_prod`
-  );
+BEGIN
+
+  INSERT INTO `detalle_oc`
+
+  (
+
+    `num_detalle`,
+
+    `cantidad`,
+
+    `subtotal`,
+
+    `precio_unit`,
+
+    `id_ordencompra`,
+
+    `cod_prod`
+
+  )
+
+  VALUES 
+
+  (
+
+    `p_num_detalle`,
+
+    `p_cantidad`,
+
+    `p_subtotal`,
+
+    `p_precio_unit`,
+
+    `p_id_ordencompra`,
+
+    `p_cod_prod`
+
+  );
+
 END ;;
 DELIMITER ;
 /*!50003 SET sql_mode              = @saved_sql_mode */ ;
@@ -2219,33 +2887,59 @@ DELIMITER ;
 /*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
 /*!50003 SET sql_mode              = 'STRICT_TRANS_TABLES,NO_AUTO_CREATE_USER,NO_ENGINE_SUBSTITUTION' */ ;
 DELIMITER ;;
-CREATE DEFINER=`VisualStudio`@`%` PROCEDURE `sp_ins_direcciones_clientes`(
-  IN `p_direccion` varchar(50),
-  IN `p_id_cliente` int,
-  IN `p_fecha_crea` datetime,
-  IN `p_fecha_actu` datetime,
-  IN `p_usuario_crea` varchar(45),
-  IN `p_usuario_actu` varchar(45)
+CREATE DEFINER=`VisualStudio`@`%` PROCEDURE `sp_ins_direcciones_clientes`(
+
+  IN `p_direccion` varchar(50),
+
+  IN `p_id_cliente` int,
+
+  IN `p_fecha_crea` datetime,
+
+  IN `p_fecha_actu` datetime,
+
+  IN `p_usuario_crea` varchar(45),
+
+  IN `p_usuario_actu` varchar(45)
+
 )
-BEGIN
-  INSERT INTO `direcciones_clientes`
-  (
-    `direccion`,
-    `id_cliente`,
-    `fecha_crea`,
-    `fecha_actu`,
-    `usuario_crea`,
-    `usuario_actu`
-  )
-  VALUES 
-  (
-    `p_direccion`,
-    `p_id_cliente`,
-    `p_fecha_crea`,
-    `p_fecha_actu`,
-    `p_usuario_crea`,
-    `p_usuario_actu`
-  );
+BEGIN
+
+  INSERT INTO `direcciones_clientes`
+
+  (
+
+    `direccion`,
+
+    `id_cliente`,
+
+    `fecha_crea`,
+
+    `fecha_actu`,
+
+    `usuario_crea`,
+
+    `usuario_actu`
+
+  )
+
+  VALUES 
+
+  (
+
+    `p_direccion`,
+
+    `p_id_cliente`,
+
+    `p_fecha_crea`,
+
+    `p_fecha_actu`,
+
+    `p_usuario_crea`,
+
+    `p_usuario_actu`
+
+  );
+
 END ;;
 DELIMITER ;
 /*!50003 SET sql_mode              = @saved_sql_mode */ ;
@@ -2262,45 +2956,83 @@ DELIMITER ;
 /*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
 /*!50003 SET sql_mode              = 'STRICT_TRANS_TABLES,NO_AUTO_CREATE_USER,NO_ENGINE_SUBSTITUTION' */ ;
 DELIMITER ;;
-CREATE DEFINER=`VisualStudio`@`%` PROCEDURE `sp_ins_facturas`(
-  IN `p_fecha` date,
-  IN `p_subtotal` double,
-  IN `p_isv` double,
-  IN `p_descuento` double,
-  IN `p_total` double,
-  IN `p_fecha_crea` datetime,
-  IN `p_fecha_actu` datetime,
-  IN `p_usuario_crea` varchar(45),
-  IN `p_usuario_actu` varchar(45),
-  IN `p_id_cliente` int
+CREATE DEFINER=`VisualStudio`@`%` PROCEDURE `sp_ins_facturas`(
+
+  IN `p_fecha` date,
+
+  IN `p_subtotal` double,
+
+  IN `p_isv` double,
+
+  IN `p_descuento` double,
+
+  IN `p_total` double,
+
+  IN `p_fecha_crea` datetime,
+
+  IN `p_fecha_actu` datetime,
+
+  IN `p_usuario_crea` varchar(45),
+
+  IN `p_usuario_actu` varchar(45),
+
+  IN `p_id_cliente` int
+
 )
-BEGIN
-  INSERT INTO `facturas`
-  (
-    `fecha`,
-    `subtotal`,
-    `isv`,
-    `descuento`,
-    `total`,
-    `fecha_crea`,
-    `fecha_actu`,
-    `usuario_crea`,
-    `usuario_actu`,
-    `id_cliente`
-  )
-  VALUES 
-  (
-    `p_fecha`,
-    `p_subtotal`,
-    `p_isv`,
-    `p_descuento`,
-    `p_total`,
-    `p_fecha_crea`,
-    `p_fecha_actu`,
-    `p_usuario_crea`,
-    `p_usuario_actu`,
-    `p_id_cliente`
-  );
+BEGIN
+
+  INSERT INTO `facturas`
+
+  (
+
+    `fecha`,
+
+    `subtotal`,
+
+    `isv`,
+
+    `descuento`,
+
+    `total`,
+
+    `fecha_crea`,
+
+    `fecha_actu`,
+
+    `usuario_crea`,
+
+    `usuario_actu`,
+
+    `id_cliente`
+
+  )
+
+  VALUES 
+
+  (
+
+    `p_fecha`,
+
+    `p_subtotal`,
+
+    `p_isv`,
+
+    `p_descuento`,
+
+    `p_total`,
+
+    `p_fecha_crea`,
+
+    `p_fecha_actu`,
+
+    `p_usuario_crea`,
+
+    `p_usuario_actu`,
+
+    `p_id_cliente`
+
+  );
+
 END ;;
 DELIMITER ;
 /*!50003 SET sql_mode              = @saved_sql_mode */ ;
@@ -2317,30 +3049,53 @@ DELIMITER ;
 /*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
 /*!50003 SET sql_mode              = 'STRICT_TRANS_TABLES,NO_AUTO_CREATE_USER,NO_ENGINE_SUBSTITUTION' */ ;
 DELIMITER ;;
-CREATE DEFINER=`VisualStudio`@`%` PROCEDURE `sp_ins_grupos_roles`(
-  IN `p_nombre` varchar(45),
-  IN `p_fecha_crea` datetime,
-  IN `p_fecha_actu` datetime,
-  IN `p_usuario_crea` varchar(45),
-  IN `p_usuario_actu` varchar(45)
+CREATE DEFINER=`VisualStudio`@`%` PROCEDURE `sp_ins_grupos_roles`(
+
+  IN `p_nombre` varchar(45),
+
+  IN `p_fecha_crea` datetime,
+
+  IN `p_fecha_actu` datetime,
+
+  IN `p_usuario_crea` varchar(45),
+
+  IN `p_usuario_actu` varchar(45)
+
 )
-BEGIN
-  INSERT INTO `grupos_roles`
-  (
-    `nombre`,
-    `fecha_crea`,
-    `fecha_actu`,
-    `usuario_crea`,
-    `usuario_actu`
-  )
-  VALUES 
-  (
-    `p_nombre`,
-    `p_fecha_crea`,
-    `p_fecha_actu`,
-    `p_usuario_crea`,
-    `p_usuario_actu`
-  );
+BEGIN
+
+  INSERT INTO `grupos_roles`
+
+  (
+
+    `nombre`,
+
+    `fecha_crea`,
+
+    `fecha_actu`,
+
+    `usuario_crea`,
+
+    `usuario_actu`
+
+  )
+
+  VALUES 
+
+  (
+
+    `p_nombre`,
+
+    `p_fecha_crea`,
+
+    `p_fecha_actu`,
+
+    `p_usuario_crea`,
+
+    `p_usuario_actu`
+
+  );
+
 END ;;
 DELIMITER ;
 /*!50003 SET sql_mode              = @saved_sql_mode */ ;
@@ -2357,33 +3112,59 @@ DELIMITER ;
 /*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
 /*!50003 SET sql_mode              = 'STRICT_TRANS_TABLES,NO_AUTO_CREATE_USER,NO_ENGINE_SUBSTITUTION' */ ;
 DELIMITER ;;
-CREATE DEFINER=`VisualStudio`@`%` PROCEDURE `sp_ins_grupos_roles_has_privilegios`(
-  IN `p_id_rol` int,
-  IN `p_id_privilegio` int,
-  IN `p_fecha_crea` datetime,
-  IN `p_fecha_actu` datetime,
-  IN `p_usuario_crea` varchar(45),
-  IN `p_usuario_actu` varchar(45)
+CREATE DEFINER=`VisualStudio`@`%` PROCEDURE `sp_ins_grupos_roles_has_privilegios`(
+
+  IN `p_id_rol` int,
+
+  IN `p_id_privilegio` int,
+
+  IN `p_fecha_crea` datetime,
+
+  IN `p_fecha_actu` datetime,
+
+  IN `p_usuario_crea` varchar(45),
+
+  IN `p_usuario_actu` varchar(45)
+
 )
-BEGIN
-  INSERT INTO `grupos_roles_has_privilegios`
-  (
-    `id_rol`,
-    `id_privilegio`,
-    `fecha_crea`,
-    `fecha_actu`,
-    `usuario_crea`,
-    `usuario_actu`
-  )
-  VALUES 
-  (
-    `p_id_rol`,
-    `p_id_privilegio`,
-    `p_fecha_crea`,
-    `p_fecha_actu`,
-    `p_usuario_crea`,
-    `p_usuario_actu`
-  );
+BEGIN
+
+  INSERT INTO `grupos_roles_has_privilegios`
+
+  (
+
+    `id_rol`,
+
+    `id_privilegio`,
+
+    `fecha_crea`,
+
+    `fecha_actu`,
+
+    `usuario_crea`,
+
+    `usuario_actu`
+
+  )
+
+  VALUES 
+
+  (
+
+    `p_id_rol`,
+
+    `p_id_privilegio`,
+
+    `p_fecha_crea`,
+
+    `p_fecha_actu`,
+
+    `p_usuario_crea`,
+
+    `p_usuario_actu`
+
+  );
+
 END ;;
 DELIMITER ;
 /*!50003 SET sql_mode              = @saved_sql_mode */ ;
@@ -2400,42 +3181,77 @@ DELIMITER ;
 /*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
 /*!50003 SET sql_mode              = 'STRICT_TRANS_TABLES,NO_AUTO_CREATE_USER,NO_ENGINE_SUBSTITUTION' */ ;
 DELIMITER ;;
-CREATE DEFINER=`VisualStudio`@`%` PROCEDURE `sp_ins_kardex`(
-  IN `p_cantidad` int,
-  IN `p_costo` double,
-  IN `p_inv_antes` int,
-  IN `p_inv_despues` int,
-  IN `p_fecha_crea` datetime,
-  IN `p_usuario_crea` varchar(45),
-  IN `p_precio` double,
-  IN `p_cod_prod` varchar(20),
-  IN `p_entrada_o_salida` varchar(1)
+CREATE DEFINER=`VisualStudio`@`%` PROCEDURE `sp_ins_kardex`(
+
+  IN `p_cantidad` int,
+
+  IN `p_costo` double,
+
+  IN `p_inv_antes` int,
+
+  IN `p_inv_despues` int,
+
+  IN `p_fecha_crea` datetime,
+
+  IN `p_usuario_crea` varchar(45),
+
+  IN `p_precio` double,
+
+  IN `p_cod_prod` varchar(20),
+
+  IN `p_entrada_o_salida` varchar(1)
+
 )
-BEGIN
-  INSERT INTO `kardex`
-  (
-    `cantidad`,
-    `costo`,
-    `inv_antes`,
-    `inv_despues`,
-    `fecha_crea`,
-    `usuario_crea`,
-    `precio`,
-    `cod_prod`,
-    `entrada_o_salida`
-  )
-  VALUES 
-  (
-    `p_cantidad`,
-    `p_costo`,
-    `p_inv_antes`,
-    `p_inv_despues`,
-    `p_fecha_crea`,
-    `p_usuario_crea`,
-    `p_precio`,
-    `p_cod_prod`,
-    `p_entrada_o_salida`
-  );
+BEGIN
+
+  INSERT INTO `kardex`
+
+  (
+
+    `cantidad`,
+
+    `costo`,
+
+    `inv_antes`,
+
+    `inv_despues`,
+
+    `fecha_crea`,
+
+    `usuario_crea`,
+
+    `precio`,
+
+    `cod_prod`,
+
+    `entrada_o_salida`
+
+  )
+
+  VALUES 
+
+  (
+
+    `p_cantidad`,
+
+    `p_costo`,
+
+    `p_inv_antes`,
+
+    `p_inv_despues`,
+
+    `p_fecha_crea`,
+
+    `p_usuario_crea`,
+
+    `p_precio`,
+
+    `p_cod_prod`,
+
+    `p_entrada_o_salida`
+
+  );
+
 END ;;
 DELIMITER ;
 /*!50003 SET sql_mode              = @saved_sql_mode */ ;
@@ -2452,45 +3268,83 @@ DELIMITER ;
 /*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
 /*!50003 SET sql_mode              = 'STRICT_TRANS_TABLES,NO_AUTO_CREATE_USER,NO_ENGINE_SUBSTITUTION' */ ;
 DELIMITER ;;
-CREATE DEFINER=`VisualStudio`@`%` PROCEDURE `sp_ins_ordenes_de_compra`(
-  IN `p_fecha` date,
-  IN `p_total` double,
-  IN `p_id_proveedor` int,
-  IN `p_ejecutada` tinyint(1),
-  IN `p_cancelada` tinyint(1),
-  IN `p_activa` tinyint(1),
-  IN `p_fecha_crea` datetime,
-  IN `p_fecha_actu` datetime,
-  IN `p_usuario_crea` varchar(45),
-  IN `p_usuario_actu` varchar(45)
+CREATE DEFINER=`VisualStudio`@`%` PROCEDURE `sp_ins_ordenes_de_compra`(
+
+  IN `p_fecha` date,
+
+  IN `p_total` double,
+
+  IN `p_id_proveedor` int,
+
+  IN `p_ejecutada` tinyint(1),
+
+  IN `p_cancelada` tinyint(1),
+
+  IN `p_activa` tinyint(1),
+
+  IN `p_fecha_crea` datetime,
+
+  IN `p_fecha_actu` datetime,
+
+  IN `p_usuario_crea` varchar(45),
+
+  IN `p_usuario_actu` varchar(45)
+
 )
-BEGIN
-  INSERT INTO `ordenes_de_compra`
-  (
-    `fecha`,
-    `total`,
-    `id_proveedor`,
-    `ejecutada`,
-    `cancelada`,
-    `activa`,
-    `fecha_crea`,
-    `fecha_actu`,
-    `usuario_crea`,
-    `usuario_actu`
-  )
-  VALUES 
-  (
-    `p_fecha`,
-    `p_total`,
-    `p_id_proveedor`,
-    `p_ejecutada`,
-    `p_cancelada`,
-    `p_activa`,
-    `p_fecha_crea`,
-    `p_fecha_actu`,
-    `p_usuario_crea`,
-    `p_usuario_actu`
-  );
+BEGIN
+
+  INSERT INTO `ordenes_de_compra`
+
+  (
+
+    `fecha`,
+
+    `total`,
+
+    `id_proveedor`,
+
+    `ejecutada`,
+
+    `cancelada`,
+
+    `activa`,
+
+    `fecha_crea`,
+
+    `fecha_actu`,
+
+    `usuario_crea`,
+
+    `usuario_actu`
+
+  )
+
+  VALUES 
+
+  (
+
+    `p_fecha`,
+
+    `p_total`,
+
+    `p_id_proveedor`,
+
+    `p_ejecutada`,
+
+    `p_cancelada`,
+
+    `p_activa`,
+
+    `p_fecha_crea`,
+
+    `p_fecha_actu`,
+
+    `p_usuario_crea`,
+
+    `p_usuario_actu`
+
+  );
+
 END ;;
 DELIMITER ;
 /*!50003 SET sql_mode              = @saved_sql_mode */ ;
@@ -2507,30 +3361,53 @@ DELIMITER ;
 /*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
 /*!50003 SET sql_mode              = 'STRICT_TRANS_TABLES,NO_AUTO_CREATE_USER,NO_ENGINE_SUBSTITUTION' */ ;
 DELIMITER ;;
-CREATE DEFINER=`VisualStudio`@`%` PROCEDURE `sp_ins_presentacion_productos`(
-  IN `p_nombre` varchar(45),
-  IN `p_fecha_crea` datetime,
-  IN `p_fecha_actu` datetime,
-  IN `p_usuario_crea` varchar(45),
-  IN `p_usuario_actu` varchar(45)
+CREATE DEFINER=`VisualStudio`@`%` PROCEDURE `sp_ins_presentacion_productos`(
+
+  IN `p_nombre` varchar(45),
+
+  IN `p_fecha_crea` datetime,
+
+  IN `p_fecha_actu` datetime,
+
+  IN `p_usuario_crea` varchar(45),
+
+  IN `p_usuario_actu` varchar(45)
+
 )
-BEGIN
-  INSERT INTO `presentacion_productos`
-  (
-    `nombre`,
-    `fecha_crea`,
-    `fecha_actu`,
-    `usuario_crea`,
-    `usuario_actu`
-  )
-  VALUES 
-  (
-    `p_nombre`,
-    `p_fecha_crea`,
-    `p_fecha_actu`,
-    `p_usuario_crea`,
-    `p_usuario_actu`
-  );
+BEGIN
+
+  INSERT INTO `presentacion_productos`
+
+  (
+
+    `nombre`,
+
+    `fecha_crea`,
+
+    `fecha_actu`,
+
+    `usuario_crea`,
+
+    `usuario_actu`
+
+  )
+
+  VALUES 
+
+  (
+
+    `p_nombre`,
+
+    `p_fecha_crea`,
+
+    `p_fecha_actu`,
+
+    `p_usuario_crea`,
+
+    `p_usuario_actu`
+
+  );
+
 END ;;
 DELIMITER ;
 /*!50003 SET sql_mode              = @saved_sql_mode */ ;
@@ -2547,30 +3424,53 @@ DELIMITER ;
 /*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
 /*!50003 SET sql_mode              = 'STRICT_TRANS_TABLES,NO_AUTO_CREATE_USER,NO_ENGINE_SUBSTITUTION' */ ;
 DELIMITER ;;
-CREATE DEFINER=`VisualStudio`@`%` PROCEDURE `sp_ins_privilegios`(
-  IN `p_nombre` varchar(45),
-  IN `p_fecha_crea` datetime,
-  IN `p_fecha_actu` datetime,
-  IN `p_usuario_crea` varchar(45),
-  IN `p_usuario_actu` varchar(45)
+CREATE DEFINER=`VisualStudio`@`%` PROCEDURE `sp_ins_privilegios`(
+
+  IN `p_nombre` varchar(45),
+
+  IN `p_fecha_crea` datetime,
+
+  IN `p_fecha_actu` datetime,
+
+  IN `p_usuario_crea` varchar(45),
+
+  IN `p_usuario_actu` varchar(45)
+
 )
-BEGIN
-  INSERT INTO `privilegios`
-  (
-    `nombre`,
-    `fecha_crea`,
-    `fecha_actu`,
-    `usuario_crea`,
-    `usuario_actu`
-  )
-  VALUES 
-  (
-    `p_nombre`,
-    `p_fecha_crea`,
-    `p_fecha_actu`,
-    `p_usuario_crea`,
-    `p_usuario_actu`
-  );
+BEGIN
+
+  INSERT INTO `privilegios`
+
+  (
+
+    `nombre`,
+
+    `fecha_crea`,
+
+    `fecha_actu`,
+
+    `usuario_crea`,
+
+    `usuario_actu`
+
+  )
+
+  VALUES 
+
+  (
+
+    `p_nombre`,
+
+    `p_fecha_crea`,
+
+    `p_fecha_actu`,
+
+    `p_usuario_crea`,
+
+    `p_usuario_actu`
+
+  );
+
 END ;;
 DELIMITER ;
 /*!50003 SET sql_mode              = @saved_sql_mode */ ;
@@ -2587,63 +3487,119 @@ DELIMITER ;
 /*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
 /*!50003 SET sql_mode              = 'STRICT_TRANS_TABLES,NO_AUTO_CREATE_USER,NO_ENGINE_SUBSTITUTION' */ ;
 DELIMITER ;;
-CREATE DEFINER=`VisualStudio`@`%` PROCEDURE `sp_ins_productos`(
-  IN `p_cod_prod` varchar(20),
-  IN `p_existencia` int,
-  IN `p_fecha_venc` date,
-  IN `p_costo` double,
-  IN `p_precio_consumi` double,
-  IN `p_precio_mayor` double,
-  IN `p_nombre` varchar(45),
-  IN `p_cod_presentacion` int,
-  IN `p_cod_categoria` int,
-  IN `p_existencia_min` int,
-  IN `p_existencia_max` int,
-  IN `p_porcentaje_m` int,
-  IN `p_fecha_crea` datetime,
-  IN `p_fecha_actu` datetime,
-  IN `p_usuario_crea` varchar(45),
-  IN `p_usuario_actu` varchar(45)
+CREATE DEFINER=`VisualStudio`@`%` PROCEDURE `sp_ins_productos`(
+
+  IN `p_cod_prod` varchar(20),
+
+  IN `p_existencia` int,
+
+  IN `p_fecha_venc` date,
+
+  IN `p_costo` double,
+
+  IN `p_precio_consumi` double,
+
+  IN `p_precio_mayor` double,
+
+  IN `p_nombre` varchar(45),
+
+  IN `p_cod_presentacion` int,
+
+  IN `p_cod_categoria` int,
+
+  IN `p_existencia_min` int,
+
+  IN `p_existencia_max` int,
+
+  IN `p_porcentaje_m` int,
+
+  IN `p_fecha_crea` datetime,
+
+  IN `p_fecha_actu` datetime,
+
+  IN `p_usuario_crea` varchar(45),
+
+  IN `p_usuario_actu` varchar(45)
+
 )
-BEGIN
-  INSERT INTO `productos`
-  (
-    `cod_prod`,
-    `existencia`,
-    `fecha_venc`,
-    `costo`,
-    `precio_consumi`,
-    `precio_mayor`,
-    `nombre`,
-    `cod_presentacion`,
-    `cod_categoria`,
-    `existencia_min`,
-    `existencia_max`,
-    `porcentaje_m`,
-    `fecha_crea`,
-    `fecha_actu`,
-    `usuario_crea`,
-    `usuario_actu`
-  )
-  VALUES 
-  (
-    `p_cod_prod`,
-    `p_existencia`,
-    `p_fecha_venc`,
-    `p_costo`,
-    `p_precio_consumi`,
-    `p_precio_mayor`,
-    `p_nombre`,
-    `p_cod_presentacion`,
-    `p_cod_categoria`,
-    `p_existencia_min`,
-    `p_existencia_max`,
-    `p_porcentaje_m`,
-    `p_fecha_crea`,
-    `p_fecha_actu`,
-    `p_usuario_crea`,
-    `p_usuario_actu`
-  );
+BEGIN
+
+  INSERT INTO `productos`
+
+  (
+
+    `cod_prod`,
+
+    `existencia`,
+
+    `fecha_venc`,
+
+    `costo`,
+
+    `precio_consumi`,
+
+    `precio_mayor`,
+
+    `nombre`,
+
+    `cod_presentacion`,
+
+    `cod_categoria`,
+
+    `existencia_min`,
+
+    `existencia_max`,
+
+    `porcentaje_m`,
+
+    `fecha_crea`,
+
+    `fecha_actu`,
+
+    `usuario_crea`,
+
+    `usuario_actu`
+
+  )
+
+  VALUES 
+
+  (
+
+    `p_cod_prod`,
+
+    `p_existencia`,
+
+    `p_fecha_venc`,
+
+    `p_costo`,
+
+    `p_precio_consumi`,
+
+    `p_precio_mayor`,
+
+    `p_nombre`,
+
+    `p_cod_presentacion`,
+
+    `p_cod_categoria`,
+
+    `p_existencia_min`,
+
+    `p_existencia_max`,
+
+    `p_porcentaje_m`,
+
+    `p_fecha_crea`,
+
+    `p_fecha_actu`,
+
+    `p_usuario_crea`,
+
+    `p_usuario_actu`
+
+  );
+
 END ;;
 DELIMITER ;
 /*!50003 SET sql_mode              = @saved_sql_mode */ ;
@@ -2660,39 +3616,71 @@ DELIMITER ;
 /*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
 /*!50003 SET sql_mode              = 'STRICT_TRANS_TABLES,NO_AUTO_CREATE_USER,NO_ENGINE_SUBSTITUTION' */ ;
 DELIMITER ;;
-CREATE DEFINER=`VisualStudio`@`%` PROCEDURE `sp_ins_proveedores`(
-  IN `p_direccion` varchar(45),
-  IN `p_telefono` varchar(15),
-  IN `p_nombre` varchar(45),
-  IN `p_contacto` varchar(45),
-  IN `p_fecha_crea` datetime,
-  IN `p_fecha_actu` datetime,
-  IN `p_usuario_crea` varchar(45),
-  IN `p_usuario_actu` varchar(45)
+CREATE DEFINER=`VisualStudio`@`%` PROCEDURE `sp_ins_proveedores`(
+
+  IN `p_direccion` varchar(45),
+
+  IN `p_telefono` varchar(15),
+
+  IN `p_nombre` varchar(45),
+
+  IN `p_contacto` varchar(45),
+
+  IN `p_fecha_crea` datetime,
+
+  IN `p_fecha_actu` datetime,
+
+  IN `p_usuario_crea` varchar(45),
+
+  IN `p_usuario_actu` varchar(45)
+
 )
-BEGIN
-  INSERT INTO `proveedores`
-  (
-    `direccion`,
-    `telefono`,
-    `nombre`,
-    `contacto`,
-    `fecha_crea`,
-    `fecha_actu`,
-    `usuario_crea`,
-    `usuario_actu`
-  )
-  VALUES 
-  (
-    `p_direccion`,
-    `p_telefono`,
-    `p_nombre`,
-    `p_contacto`,
-    `p_fecha_crea`,
-    `p_fecha_actu`,
-    `p_usuario_crea`,
-    `p_usuario_actu`
-  );
+BEGIN
+
+  INSERT INTO `proveedores`
+
+  (
+
+    `direccion`,
+
+    `telefono`,
+
+    `nombre`,
+
+    `contacto`,
+
+    `fecha_crea`,
+
+    `fecha_actu`,
+
+    `usuario_crea`,
+
+    `usuario_actu`
+
+  )
+
+  VALUES 
+
+  (
+
+    `p_direccion`,
+
+    `p_telefono`,
+
+    `p_nombre`,
+
+    `p_contacto`,
+
+    `p_fecha_crea`,
+
+    `p_fecha_actu`,
+
+    `p_usuario_crea`,
+
+    `p_usuario_actu`
+
+  );
+
 END ;;
 DELIMITER ;
 /*!50003 SET sql_mode              = @saved_sql_mode */ ;
@@ -2709,33 +3697,59 @@ DELIMITER ;
 /*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
 /*!50003 SET sql_mode              = 'STRICT_TRANS_TABLES,NO_AUTO_CREATE_USER,NO_ENGINE_SUBSTITUTION' */ ;
 DELIMITER ;;
-CREATE DEFINER=`VisualStudio`@`%` PROCEDURE `sp_ins_telefonos_clientes`(
-  IN `p_numero_tel` varchar(15),
-  IN `p_fecha_crea` datetime,
-  IN `p_fecha_actu` datetime,
-  IN `p_usuario_crea` varchar(45),
-  IN `p_usuario_actu` varchar(45),
-  IN `p_id_cliente` int
+CREATE DEFINER=`VisualStudio`@`%` PROCEDURE `sp_ins_telefonos_clientes`(
+
+  IN `p_numero_tel` varchar(15),
+
+  IN `p_fecha_crea` datetime,
+
+  IN `p_fecha_actu` datetime,
+
+  IN `p_usuario_crea` varchar(45),
+
+  IN `p_usuario_actu` varchar(45),
+
+  IN `p_id_cliente` int
+
 )
-BEGIN
-  INSERT INTO `telefonos_clientes`
-  (
-    `numero_tel`,
-    `fecha_crea`,
-    `fecha_actu`,
-    `usuario_crea`,
-    `usuario_actu`,
-    `id_cliente`
-  )
-  VALUES 
-  (
-    `p_numero_tel`,
-    `p_fecha_crea`,
-    `p_fecha_actu`,
-    `p_usuario_crea`,
-    `p_usuario_actu`,
-    `p_id_cliente`
-  );
+BEGIN
+
+  INSERT INTO `telefonos_clientes`
+
+  (
+
+    `numero_tel`,
+
+    `fecha_crea`,
+
+    `fecha_actu`,
+
+    `usuario_crea`,
+
+    `usuario_actu`,
+
+    `id_cliente`
+
+  )
+
+  VALUES 
+
+  (
+
+    `p_numero_tel`,
+
+    `p_fecha_crea`,
+
+    `p_fecha_actu`,
+
+    `p_usuario_crea`,
+
+    `p_usuario_actu`,
+
+    `p_id_cliente`
+
+  );
+
 END ;;
 DELIMITER ;
 /*!50003 SET sql_mode              = @saved_sql_mode */ ;
@@ -2752,30 +3766,53 @@ DELIMITER ;
 /*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
 /*!50003 SET sql_mode              = 'STRICT_TRANS_TABLES,NO_AUTO_CREATE_USER,NO_ENGINE_SUBSTITUTION' */ ;
 DELIMITER ;;
-CREATE DEFINER=`VisualStudio`@`%` PROCEDURE `sp_ins_tipo_cliente`(
-  IN `p_descripcion` varchar(15),
-  IN `p_fecha_crea` datetime,
-  IN `p_fecha_actu` datetime,
-  IN `p_usuario_crea` varchar(45),
-  IN `p_usuario_actu` varchar(45)
+CREATE DEFINER=`VisualStudio`@`%` PROCEDURE `sp_ins_tipo_cliente`(
+
+  IN `p_descripcion` varchar(15),
+
+  IN `p_fecha_crea` datetime,
+
+  IN `p_fecha_actu` datetime,
+
+  IN `p_usuario_crea` varchar(45),
+
+  IN `p_usuario_actu` varchar(45)
+
 )
-BEGIN
-  INSERT INTO `tipo_cliente`
-  (
-    `descripcion`,
-    `fecha_crea`,
-    `fecha_actu`,
-    `usuario_crea`,
-    `usuario_actu`
-  )
-  VALUES 
-  (
-    `p_descripcion`,
-    `p_fecha_crea`,
-    `p_fecha_actu`,
-    `p_usuario_crea`,
-    `p_usuario_actu`
-  );
+BEGIN
+
+  INSERT INTO `tipo_cliente`
+
+  (
+
+    `descripcion`,
+
+    `fecha_crea`,
+
+    `fecha_actu`,
+
+    `usuario_crea`,
+
+    `usuario_actu`
+
+  )
+
+  VALUES 
+
+  (
+
+    `p_descripcion`,
+
+    `p_fecha_crea`,
+
+    `p_fecha_actu`,
+
+    `p_usuario_crea`,
+
+    `p_usuario_actu`
+
+  );
+
 END ;;
 DELIMITER ;
 /*!50003 SET sql_mode              = @saved_sql_mode */ ;
@@ -2792,33 +3829,59 @@ DELIMITER ;
 /*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
 /*!50003 SET sql_mode              = 'STRICT_TRANS_TABLES,NO_AUTO_CREATE_USER,NO_ENGINE_SUBSTITUTION' */ ;
 DELIMITER ;;
-CREATE DEFINER=`VisualStudio`@`%` PROCEDURE `sp_ins_tipo_transacciones`(
-  IN `p_nombre` varchar(45),
-  IN `p_fecha_crea` datetime,
-  IN `p_fecha_actu` datetime,
-  IN `p_usuario_crea` varchar(15),
-  IN `p_usuario_actu` varchar(15),
-  IN `p_entrada_o_salida` varchar(1)
+CREATE DEFINER=`VisualStudio`@`%` PROCEDURE `sp_ins_tipo_transacciones`(
+
+  IN `p_nombre` varchar(45),
+
+  IN `p_fecha_crea` datetime,
+
+  IN `p_fecha_actu` datetime,
+
+  IN `p_usuario_crea` varchar(15),
+
+  IN `p_usuario_actu` varchar(15),
+
+  IN `p_entrada_o_salida` varchar(1)
+
 )
-BEGIN
-  INSERT INTO `tipo_transacciones`
-  (
-    `nombre`,
-    `fecha_crea`,
-    `fecha_actu`,
-    `usuario_crea`,
-    `usuario_actu`,
-    `entrada_o_salida`
-  )
-  VALUES 
-  (
-    `p_nombre`,
-    `p_fecha_crea`,
-    `p_fecha_actu`,
-    `p_usuario_crea`,
-    `p_usuario_actu`,
-    `p_entrada_o_salida`
-  );
+BEGIN
+
+  INSERT INTO `tipo_transacciones`
+
+  (
+
+    `nombre`,
+
+    `fecha_crea`,
+
+    `fecha_actu`,
+
+    `usuario_crea`,
+
+    `usuario_actu`,
+
+    `entrada_o_salida`
+
+  )
+
+  VALUES 
+
+  (
+
+    `p_nombre`,
+
+    `p_fecha_crea`,
+
+    `p_fecha_actu`,
+
+    `p_usuario_crea`,
+
+    `p_usuario_actu`,
+
+    `p_entrada_o_salida`
+
+  );
+
 END ;;
 DELIMITER ;
 /*!50003 SET sql_mode              = @saved_sql_mode */ ;
@@ -2835,42 +3898,77 @@ DELIMITER ;
 /*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
 /*!50003 SET sql_mode              = 'STRICT_TRANS_TABLES,NO_AUTO_CREATE_USER,NO_ENGINE_SUBSTITUTION' */ ;
 DELIMITER ;;
-CREATE DEFINER=`VisualStudio`@`%` PROCEDURE `sp_ins_usuarios`(
-  IN `p_usuario` varchar(45),
-  IN `p_correo` varchar(45),
-  IN `p_nombre` varchar(45),
-  IN `p_clave` binary,
-  IN `p_key` binary,
-  IN `p_fecha_crea` datetime,
-  IN `p_fecha_actu` datetime,
-  IN `p_usuario_crea` varchar(45),
-  IN `p_usuario_actu` varchar(45)
+CREATE DEFINER=`VisualStudio`@`%` PROCEDURE `sp_ins_usuarios`(
+
+  IN `p_usuario` varchar(45),
+
+  IN `p_correo` varchar(45),
+
+  IN `p_nombre` varchar(45),
+
+  IN `p_clave` binary,
+
+  IN `p_key` binary,
+
+  IN `p_fecha_crea` datetime,
+
+  IN `p_fecha_actu` datetime,
+
+  IN `p_usuario_crea` varchar(45),
+
+  IN `p_usuario_actu` varchar(45)
+
 )
-BEGIN
-  INSERT INTO `usuarios`
-  (
-    `usuario`,
-    `correo`,
-    `nombre`,
-    `clave`,
-    `key`,
-    `fecha_crea`,
-    `fecha_actu`,
-    `usuario_crea`,
-    `usuario_actu`
-  )
-  VALUES 
-  (
-    `p_usuario`,
-    `p_correo`,
-    `p_nombre`,
-    `p_clave`,
-    `p_key`,
-    `p_fecha_crea`,
-    `p_fecha_actu`,
-    `p_usuario_crea`,
-    `p_usuario_actu`
-  );
+BEGIN
+
+  INSERT INTO `usuarios`
+
+  (
+
+    `usuario`,
+
+    `correo`,
+
+    `nombre`,
+
+    `clave`,
+
+    `key`,
+
+    `fecha_crea`,
+
+    `fecha_actu`,
+
+    `usuario_crea`,
+
+    `usuario_actu`
+
+  )
+
+  VALUES 
+
+  (
+
+    `p_usuario`,
+
+    `p_correo`,
+
+    `p_nombre`,
+
+    `p_clave`,
+
+    `p_key`,
+
+    `p_fecha_crea`,
+
+    `p_fecha_actu`,
+
+    `p_usuario_crea`,
+
+    `p_usuario_actu`
+
+  );
+
 END ;;
 DELIMITER ;
 /*!50003 SET sql_mode              = @saved_sql_mode */ ;
@@ -2887,33 +3985,59 @@ DELIMITER ;
 /*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
 /*!50003 SET sql_mode              = 'STRICT_TRANS_TABLES,NO_AUTO_CREATE_USER,NO_ENGINE_SUBSTITUTION' */ ;
 DELIMITER ;;
-CREATE DEFINER=`VisualStudio`@`%` PROCEDURE `sp_ins_usuarios_has_grupos_roles`(
-  IN `p_usuario` varchar(45),
-  IN `p_id_rol` int,
-  IN `p_fecha_crea` datetime,
-  IN `p_fecha_actu` datetime,
-  IN `p_usuario_crea` varchar(45),
-  IN `p_usuario_actu` varchar(45)
+CREATE DEFINER=`VisualStudio`@`%` PROCEDURE `sp_ins_usuarios_has_grupos_roles`(
+
+  IN `p_usuario` varchar(45),
+
+  IN `p_id_rol` int,
+
+  IN `p_fecha_crea` datetime,
+
+  IN `p_fecha_actu` datetime,
+
+  IN `p_usuario_crea` varchar(45),
+
+  IN `p_usuario_actu` varchar(45)
+
 )
-BEGIN
-  INSERT INTO `usuarios_has_grupos_roles`
-  (
-    `usuario`,
-    `id_rol`,
-    `fecha_crea`,
-    `fecha_actu`,
-    `usuario_crea`,
-    `usuario_actu`
-  )
-  VALUES 
-  (
-    `p_usuario`,
-    `p_id_rol`,
-    `p_fecha_crea`,
-    `p_fecha_actu`,
-    `p_usuario_crea`,
-    `p_usuario_actu`
-  );
+BEGIN
+
+  INSERT INTO `usuarios_has_grupos_roles`
+
+  (
+
+    `usuario`,
+
+    `id_rol`,
+
+    `fecha_crea`,
+
+    `fecha_actu`,
+
+    `usuario_crea`,
+
+    `usuario_actu`
+
+  )
+
+  VALUES 
+
+  (
+
+    `p_usuario`,
+
+    `p_id_rol`,
+
+    `p_fecha_crea`,
+
+    `p_fecha_actu`,
+
+    `p_usuario_crea`,
+
+    `p_usuario_actu`
+
+  );
+
 END ;;
 DELIMITER ;
 /*!50003 SET sql_mode              = @saved_sql_mode */ ;
@@ -2931,17 +4055,28 @@ DELIMITER ;
 /*!50003 SET sql_mode              = 'STRICT_TRANS_TABLES,NO_AUTO_CREATE_USER,NO_ENGINE_SUBSTITUTION' */ ;
 DELIMITER ;;
 CREATE DEFINER=`VisualStudio`@`%` PROCEDURE `sp_sel_ajustes`()
-BEGIN
-  SELECT
-    `id_ajuste`,
-    `fecha`,
-    `cant_producto`,
-    `fecha_crea`,
-    `fecha_actu`,
-    `usuario_crea`,
-    `usuario_actu`,
-    `id_tipotran`
-  FROM `ajustes`;
+BEGIN
+
+  SELECT
+
+    `id_ajuste`,
+
+    `fecha`,
+
+    `cant_producto`,
+
+    `fecha_crea`,
+
+    `fecha_actu`,
+
+    `usuario_crea`,
+
+    `usuario_actu`,
+
+    `id_tipotran`
+
+  FROM `ajustes`;
+
 END ;;
 DELIMITER ;
 /*!50003 SET sql_mode              = @saved_sql_mode */ ;
@@ -2959,15 +4094,24 @@ DELIMITER ;
 /*!50003 SET sql_mode              = 'STRICT_TRANS_TABLES,NO_AUTO_CREATE_USER,NO_ENGINE_SUBSTITUTION' */ ;
 DELIMITER ;;
 CREATE DEFINER=`VisualStudio`@`%` PROCEDURE `sp_sel_categoria_productos`()
-BEGIN
-  SELECT
-    `cod_categoria`,
-    `nombre`,
-    `fecha_crea`,
-    `fecha_actu`,
-    `usuario_crea`,
-    `usuario_actu`
-  FROM `categoria_productos`;
+BEGIN
+
+  SELECT
+
+    `cod_categoria`,
+
+    `nombre`,
+
+    `fecha_crea`,
+
+    `fecha_actu`,
+
+    `usuario_crea`,
+
+    `usuario_actu`
+
+  FROM `categoria_productos`;
+
 END ;;
 DELIMITER ;
 /*!50003 SET sql_mode              = @saved_sql_mode */ ;
@@ -2985,16 +4129,26 @@ DELIMITER ;
 /*!50003 SET sql_mode              = 'STRICT_TRANS_TABLES,NO_AUTO_CREATE_USER,NO_ENGINE_SUBSTITUTION' */ ;
 DELIMITER ;;
 CREATE DEFINER=`VisualStudio`@`%` PROCEDURE `sp_sel_clientes`()
-BEGIN
-  SELECT
-    `id_cliente`,
-    `nombre`,
-    `fecha_crea`,
-    `fecha_actu`,
-    `usuario_crea`,
-    `usuario_actu`,
-    `id_tipocliente`
-  FROM `clientes`;
+BEGIN
+
+  SELECT
+
+    `id_cliente`,
+
+    `nombre`,
+
+    `fecha_crea`,
+
+    `fecha_actu`,
+
+    `usuario_crea`,
+
+    `usuario_actu`,
+
+    `id_tipocliente`
+
+  FROM `clientes`;
+
 END ;;
 DELIMITER ;
 /*!50003 SET sql_mode              = @saved_sql_mode */ ;
@@ -3012,17 +4166,28 @@ DELIMITER ;
 /*!50003 SET sql_mode              = 'STRICT_TRANS_TABLES,NO_AUTO_CREATE_USER,NO_ENGINE_SUBSTITUTION' */ ;
 DELIMITER ;;
 CREATE DEFINER=`VisualStudio`@`%` PROCEDURE `sp_sel_compras`()
-BEGIN
-  SELECT
-    `id_compra`,
-    `fecha`,
-    `total`,
-    `fecha_crea`,
-    `fecha_actu`,
-    `usuario_crea`,
-    `usuario_actu`,
-    `id_proveedor`
-  FROM `compras`;
+BEGIN
+
+  SELECT
+
+    `id_compra`,
+
+    `fecha`,
+
+    `total`,
+
+    `fecha_crea`,
+
+    `fecha_actu`,
+
+    `usuario_crea`,
+
+    `usuario_actu`,
+
+    `id_proveedor`
+
+  FROM `compras`;
+
 END ;;
 DELIMITER ;
 /*!50003 SET sql_mode              = @saved_sql_mode */ ;
@@ -3040,18 +4205,30 @@ DELIMITER ;
 /*!50003 SET sql_mode              = 'STRICT_TRANS_TABLES,NO_AUTO_CREATE_USER,NO_ENGINE_SUBSTITUTION' */ ;
 DELIMITER ;;
 CREATE DEFINER=`VisualStudio`@`%` PROCEDURE `sp_sel_contactos_clientes`()
-BEGIN
-  SELECT
-    `id_contactocliente`,
-    `nombre`,
-    `correo`,
-    `telefono`,
-    `id_cliente`,
-    `fecha_crea`,
-    `fecha_actu`,
-    `usuario_crea`,
-    `usuario_actu`
-  FROM `contactos_clientes`;
+BEGIN
+
+  SELECT
+
+    `id_contactocliente`,
+
+    `nombre`,
+
+    `correo`,
+
+    `telefono`,
+
+    `id_cliente`,
+
+    `fecha_crea`,
+
+    `fecha_actu`,
+
+    `usuario_crea`,
+
+    `usuario_actu`
+
+  FROM `contactos_clientes`;
+
 END ;;
 DELIMITER ;
 /*!50003 SET sql_mode              = @saved_sql_mode */ ;
@@ -3069,12 +4246,18 @@ DELIMITER ;
 /*!50003 SET sql_mode              = 'STRICT_TRANS_TABLES,NO_AUTO_CREATE_USER,NO_ENGINE_SUBSTITUTION' */ ;
 DELIMITER ;;
 CREATE DEFINER=`VisualStudio`@`%` PROCEDURE `sp_sel_costo_prod_proveedor`()
-BEGIN
-  SELECT
-    `costo`,
-    `cod_prod`,
-    `id_proveedor`
-  FROM `costo_prod_proveedor`;
+BEGIN
+
+  SELECT
+
+    `costo`,
+
+    `cod_prod`,
+
+    `id_proveedor`
+
+  FROM `costo_prod_proveedor`;
+
 END ;;
 DELIMITER ;
 /*!50003 SET sql_mode              = @saved_sql_mode */ ;
@@ -3092,17 +4275,28 @@ DELIMITER ;
 /*!50003 SET sql_mode              = 'STRICT_TRANS_TABLES,NO_AUTO_CREATE_USER,NO_ENGINE_SUBSTITUTION' */ ;
 DELIMITER ;;
 CREATE DEFINER=`VisualStudio`@`%` PROCEDURE `sp_sel_cotizaciones`()
-BEGIN
-  SELECT
-    `id_cotizacion`,
-    `fecha`,
-    `total`,
-    `fecha_crea`,
-    `fecha_actu`,
-    `usuario_crea`,
-    `usuario_actu`,
-    `id_proveedor`
-  FROM `cotizaciones`;
+BEGIN
+
+  SELECT
+
+    `id_cotizacion`,
+
+    `fecha`,
+
+    `total`,
+
+    `fecha_crea`,
+
+    `fecha_actu`,
+
+    `usuario_crea`,
+
+    `usuario_actu`,
+
+    `id_proveedor`
+
+  FROM `cotizaciones`;
+
 END ;;
 DELIMITER ;
 /*!50003 SET sql_mode              = @saved_sql_mode */ ;
@@ -3120,13 +4314,20 @@ DELIMITER ;
 /*!50003 SET sql_mode              = 'STRICT_TRANS_TABLES,NO_AUTO_CREATE_USER,NO_ENGINE_SUBSTITUTION' */ ;
 DELIMITER ;;
 CREATE DEFINER=`VisualStudio`@`%` PROCEDURE `sp_sel_detalle_ajustes`()
-BEGIN
-  SELECT
-    `num_detalle`,
-    `cantidad`,
-    `id_ajuste`,
-    `cod_prod`
-  FROM `detalle_ajustes`;
+BEGIN
+
+  SELECT
+
+    `num_detalle`,
+
+    `cantidad`,
+
+    `id_ajuste`,
+
+    `cod_prod`
+
+  FROM `detalle_ajustes`;
+
 END ;;
 DELIMITER ;
 /*!50003 SET sql_mode              = @saved_sql_mode */ ;
@@ -3144,15 +4345,24 @@ DELIMITER ;
 /*!50003 SET sql_mode              = 'STRICT_TRANS_TABLES,NO_AUTO_CREATE_USER,NO_ENGINE_SUBSTITUTION' */ ;
 DELIMITER ;;
 CREATE DEFINER=`VisualStudio`@`%` PROCEDURE `sp_sel_detalle_compras`()
-BEGIN
-  SELECT
-    `num_detalle`,
-    `cantidad`,
-    `precio_compra`,
-    `subtotal`,
-    `id_compra`,
-    `cod_prod`
-  FROM `detalle_compras`;
+BEGIN
+
+  SELECT
+
+    `num_detalle`,
+
+    `cantidad`,
+
+    `precio_compra`,
+
+    `subtotal`,
+
+    `id_compra`,
+
+    `cod_prod`
+
+  FROM `detalle_compras`;
+
 END ;;
 DELIMITER ;
 /*!50003 SET sql_mode              = @saved_sql_mode */ ;
@@ -3170,14 +4380,22 @@ DELIMITER ;
 /*!50003 SET sql_mode              = 'STRICT_TRANS_TABLES,NO_AUTO_CREATE_USER,NO_ENGINE_SUBSTITUTION' */ ;
 DELIMITER ;;
 CREATE DEFINER=`VisualStudio`@`%` PROCEDURE `sp_sel_detalle_cotizaciones`()
-BEGIN
-  SELECT
-    `num_detalle`,
-    `cantidad`,
-    `precio_unit`,
-    `id_cotizacion`,
-    `cod_prod`
-  FROM `detalle_cotizaciones`;
+BEGIN
+
+  SELECT
+
+    `num_detalle`,
+
+    `cantidad`,
+
+    `precio_unit`,
+
+    `id_cotizacion`,
+
+    `cod_prod`
+
+  FROM `detalle_cotizaciones`;
+
 END ;;
 DELIMITER ;
 /*!50003 SET sql_mode              = @saved_sql_mode */ ;
@@ -3195,15 +4413,24 @@ DELIMITER ;
 /*!50003 SET sql_mode              = 'STRICT_TRANS_TABLES,NO_AUTO_CREATE_USER,NO_ENGINE_SUBSTITUTION' */ ;
 DELIMITER ;;
 CREATE DEFINER=`VisualStudio`@`%` PROCEDURE `sp_sel_detalle_facturas`()
-BEGIN
-  SELECT
-    `num_detalle`,
-    `precio_venta`,
-    `cantidad`,
-    `subtotal`,
-    `num_factura`,
-    `cod_prod`
-  FROM `detalle_facturas`;
+BEGIN
+
+  SELECT
+
+    `num_detalle`,
+
+    `precio_venta`,
+
+    `cantidad`,
+
+    `subtotal`,
+
+    `num_factura`,
+
+    `cod_prod`
+
+  FROM `detalle_facturas`;
+
 END ;;
 DELIMITER ;
 /*!50003 SET sql_mode              = @saved_sql_mode */ ;
@@ -3221,15 +4448,24 @@ DELIMITER ;
 /*!50003 SET sql_mode              = 'STRICT_TRANS_TABLES,NO_AUTO_CREATE_USER,NO_ENGINE_SUBSTITUTION' */ ;
 DELIMITER ;;
 CREATE DEFINER=`VisualStudio`@`%` PROCEDURE `sp_sel_detalle_oc`()
-BEGIN
-  SELECT
-    `num_detalle`,
-    `cantidad`,
-    `subtotal`,
-    `precio_unit`,
-    `id_ordencompra`,
-    `cod_prod`
-  FROM `detalle_oc`;
+BEGIN
+
+  SELECT
+
+    `num_detalle`,
+
+    `cantidad`,
+
+    `subtotal`,
+
+    `precio_unit`,
+
+    `id_ordencompra`,
+
+    `cod_prod`
+
+  FROM `detalle_oc`;
+
 END ;;
 DELIMITER ;
 /*!50003 SET sql_mode              = @saved_sql_mode */ ;
@@ -3247,16 +4483,26 @@ DELIMITER ;
 /*!50003 SET sql_mode              = 'STRICT_TRANS_TABLES,NO_AUTO_CREATE_USER,NO_ENGINE_SUBSTITUTION' */ ;
 DELIMITER ;;
 CREATE DEFINER=`VisualStudio`@`%` PROCEDURE `sp_sel_direcciones_clientes`()
-BEGIN
-  SELECT
-    `id_direccioncliente`,
-    `direccion`,
-    `id_cliente`,
-    `fecha_crea`,
-    `fecha_actu`,
-    `usuario_crea`,
-    `usuario_actu`
-  FROM `direcciones_clientes`;
+BEGIN
+
+  SELECT
+
+    `id_direccioncliente`,
+
+    `direccion`,
+
+    `id_cliente`,
+
+    `fecha_crea`,
+
+    `fecha_actu`,
+
+    `usuario_crea`,
+
+    `usuario_actu`
+
+  FROM `direcciones_clientes`;
+
 END ;;
 DELIMITER ;
 /*!50003 SET sql_mode              = @saved_sql_mode */ ;
@@ -3274,20 +4520,34 @@ DELIMITER ;
 /*!50003 SET sql_mode              = 'STRICT_TRANS_TABLES,NO_AUTO_CREATE_USER,NO_ENGINE_SUBSTITUTION' */ ;
 DELIMITER ;;
 CREATE DEFINER=`VisualStudio`@`%` PROCEDURE `sp_sel_facturas`()
-BEGIN
-  SELECT
-    `num_factura`,
-    `fecha`,
-    `subtotal`,
-    `isv`,
-    `descuento`,
-    `total`,
-    `fecha_crea`,
-    `fecha_actu`,
-    `usuario_crea`,
-    `usuario_actu`,
-    `id_cliente`
-  FROM `facturas`;
+BEGIN
+
+  SELECT
+
+    `num_factura`,
+
+    `fecha`,
+
+    `subtotal`,
+
+    `isv`,
+
+    `descuento`,
+
+    `total`,
+
+    `fecha_crea`,
+
+    `fecha_actu`,
+
+    `usuario_crea`,
+
+    `usuario_actu`,
+
+    `id_cliente`
+
+  FROM `facturas`;
+
 END ;;
 DELIMITER ;
 /*!50003 SET sql_mode              = @saved_sql_mode */ ;
@@ -3305,15 +4565,24 @@ DELIMITER ;
 /*!50003 SET sql_mode              = 'STRICT_TRANS_TABLES,NO_AUTO_CREATE_USER,NO_ENGINE_SUBSTITUTION' */ ;
 DELIMITER ;;
 CREATE DEFINER=`VisualStudio`@`%` PROCEDURE `sp_sel_grupos_roles`()
-BEGIN
-  SELECT
-    `id_rol`,
-    `nombre`,
-    `fecha_crea`,
-    `fecha_actu`,
-    `usuario_crea`,
-    `usuario_actu`
-  FROM `grupos_roles`;
+BEGIN
+
+  SELECT
+
+    `id_rol`,
+
+    `nombre`,
+
+    `fecha_crea`,
+
+    `fecha_actu`,
+
+    `usuario_crea`,
+
+    `usuario_actu`
+
+  FROM `grupos_roles`;
+
 END ;;
 DELIMITER ;
 /*!50003 SET sql_mode              = @saved_sql_mode */ ;
@@ -3331,15 +4600,24 @@ DELIMITER ;
 /*!50003 SET sql_mode              = 'STRICT_TRANS_TABLES,NO_AUTO_CREATE_USER,NO_ENGINE_SUBSTITUTION' */ ;
 DELIMITER ;;
 CREATE DEFINER=`VisualStudio`@`%` PROCEDURE `sp_sel_grupos_roles_has_privilegios`()
-BEGIN
-  SELECT
-    `id_rol`,
-    `id_privilegio`,
-    `fecha_crea`,
-    `fecha_actu`,
-    `usuario_crea`,
-    `usuario_actu`
-  FROM `grupos_roles_has_privilegios`;
+BEGIN
+
+  SELECT
+
+    `id_rol`,
+
+    `id_privilegio`,
+
+    `fecha_crea`,
+
+    `fecha_actu`,
+
+    `usuario_crea`,
+
+    `usuario_actu`
+
+  FROM `grupos_roles_has_privilegios`;
+
 END ;;
 DELIMITER ;
 /*!50003 SET sql_mode              = @saved_sql_mode */ ;
@@ -3357,19 +4635,32 @@ DELIMITER ;
 /*!50003 SET sql_mode              = 'STRICT_TRANS_TABLES,NO_AUTO_CREATE_USER,NO_ENGINE_SUBSTITUTION' */ ;
 DELIMITER ;;
 CREATE DEFINER=`VisualStudio`@`%` PROCEDURE `sp_sel_kardex`()
-BEGIN
-  SELECT
-    `id_operacion`,
-    `cantidad`,
-    `costo`,
-    `inv_antes`,
-    `inv_despues`,
-    `fecha_crea`,
-    `usuario_crea`,
-    `precio`,
-    `cod_prod`,
-    `entrada_o_salida`
-  FROM `kardex`;
+BEGIN
+
+  SELECT
+
+    `id_operacion`,
+
+    `cantidad`,
+
+    `costo`,
+
+    `inv_antes`,
+
+    `inv_despues`,
+
+    `fecha_crea`,
+
+    `usuario_crea`,
+
+    `precio`,
+
+    `cod_prod`,
+
+    `entrada_o_salida`
+
+  FROM `kardex`;
+
 END ;;
 DELIMITER ;
 /*!50003 SET sql_mode              = @saved_sql_mode */ ;
@@ -3387,20 +4678,34 @@ DELIMITER ;
 /*!50003 SET sql_mode              = 'STRICT_TRANS_TABLES,NO_AUTO_CREATE_USER,NO_ENGINE_SUBSTITUTION' */ ;
 DELIMITER ;;
 CREATE DEFINER=`VisualStudio`@`%` PROCEDURE `sp_sel_ordenes_de_compra`()
-BEGIN
-  SELECT
-    `id_ordencompra`,
-    `fecha`,
-    `total`,
-    `id_proveedor`,
-    `ejecutada`,
-    `cancelada`,
-    `activa`,
-    `fecha_crea`,
-    `fecha_actu`,
-    `usuario_crea`,
-    `usuario_actu`
-  FROM `ordenes_de_compra`;
+BEGIN
+
+  SELECT
+
+    `id_ordencompra`,
+
+    `fecha`,
+
+    `total`,
+
+    `id_proveedor`,
+
+    `ejecutada`,
+
+    `cancelada`,
+
+    `activa`,
+
+    `fecha_crea`,
+
+    `fecha_actu`,
+
+    `usuario_crea`,
+
+    `usuario_actu`
+
+  FROM `ordenes_de_compra`;
+
 END ;;
 DELIMITER ;
 /*!50003 SET sql_mode              = @saved_sql_mode */ ;
@@ -3418,15 +4723,24 @@ DELIMITER ;
 /*!50003 SET sql_mode              = 'STRICT_TRANS_TABLES,NO_AUTO_CREATE_USER,NO_ENGINE_SUBSTITUTION' */ ;
 DELIMITER ;;
 CREATE DEFINER=`VisualStudio`@`%` PROCEDURE `sp_sel_presentacion_productos`()
-BEGIN
-  SELECT
-    `cod_presentacion`,
-    `nombre`,
-    `fecha_crea`,
-    `fecha_actu`,
-    `usuario_crea`,
-    `usuario_actu`
-  FROM `presentacion_productos`;
+BEGIN
+
+  SELECT
+
+    `cod_presentacion`,
+
+    `nombre`,
+
+    `fecha_crea`,
+
+    `fecha_actu`,
+
+    `usuario_crea`,
+
+    `usuario_actu`
+
+  FROM `presentacion_productos`;
+
 END ;;
 DELIMITER ;
 /*!50003 SET sql_mode              = @saved_sql_mode */ ;
@@ -3444,15 +4758,24 @@ DELIMITER ;
 /*!50003 SET sql_mode              = 'STRICT_TRANS_TABLES,NO_AUTO_CREATE_USER,NO_ENGINE_SUBSTITUTION' */ ;
 DELIMITER ;;
 CREATE DEFINER=`VisualStudio`@`%` PROCEDURE `sp_sel_privilegios`()
-BEGIN
-  SELECT
-    `id_privilegio`,
-    `nombre`,
-    `fecha_crea`,
-    `fecha_actu`,
-    `usuario_crea`,
-    `usuario_actu`
-  FROM `privilegios`;
+BEGIN
+
+  SELECT
+
+    `id_privilegio`,
+
+    `nombre`,
+
+    `fecha_crea`,
+
+    `fecha_actu`,
+
+    `usuario_crea`,
+
+    `usuario_actu`
+
+  FROM `privilegios`;
+
 END ;;
 DELIMITER ;
 /*!50003 SET sql_mode              = @saved_sql_mode */ ;
@@ -3470,25 +4793,44 @@ DELIMITER ;
 /*!50003 SET sql_mode              = 'STRICT_TRANS_TABLES,NO_AUTO_CREATE_USER,NO_ENGINE_SUBSTITUTION' */ ;
 DELIMITER ;;
 CREATE DEFINER=`VisualStudio`@`%` PROCEDURE `sp_sel_productos`()
-BEGIN
-  SELECT
-    `cod_prod`,
-    `existencia`,
-    `fecha_venc`,
-    `costo`,
-    `precio_consumi`,
-    `precio_mayor`,
-    `nombre`,
-    `cod_presentacion`,
-    `cod_categoria`,
-    `existencia_min`,
-    `existencia_max`,
-    `porcentaje_m`,
-    `fecha_crea`,
-    `fecha_actu`,
-    `usuario_crea`,
-    `usuario_actu`
-  FROM `productos`;
+BEGIN
+
+  SELECT
+
+    `cod_prod`,
+
+    `existencia`,
+
+    `fecha_venc`,
+
+    `costo`,
+
+    `precio_consumi`,
+
+    `precio_mayor`,
+
+    `nombre`,
+
+    `cod_presentacion`,
+
+    `cod_categoria`,
+
+    `existencia_min`,
+
+    `existencia_max`,
+
+    `porcentaje_m`,
+
+    `fecha_crea`,
+
+    `fecha_actu`,
+
+    `usuario_crea`,
+
+    `usuario_actu`
+
+  FROM `productos`;
+
 END ;;
 DELIMITER ;
 /*!50003 SET sql_mode              = @saved_sql_mode */ ;
@@ -3506,18 +4848,30 @@ DELIMITER ;
 /*!50003 SET sql_mode              = 'STRICT_TRANS_TABLES,NO_AUTO_CREATE_USER,NO_ENGINE_SUBSTITUTION' */ ;
 DELIMITER ;;
 CREATE DEFINER=`VisualStudio`@`%` PROCEDURE `sp_sel_proveedores`()
-BEGIN
-  SELECT
-    `id_proveedor`,
-    `direccion`,
-    `telefono`,
-    `nombre`,
-    `contacto`,
-    `fecha_crea`,
-    `fecha_actu`,
-    `usuario_crea`,
-    `usuario_actu`
-  FROM `proveedores`;
+BEGIN
+
+  SELECT
+
+    `id_proveedor`,
+
+    `direccion`,
+
+    `telefono`,
+
+    `nombre`,
+
+    `contacto`,
+
+    `fecha_crea`,
+
+    `fecha_actu`,
+
+    `usuario_crea`,
+
+    `usuario_actu`
+
+  FROM `proveedores`;
+
 END ;;
 DELIMITER ;
 /*!50003 SET sql_mode              = @saved_sql_mode */ ;
@@ -3535,16 +4889,26 @@ DELIMITER ;
 /*!50003 SET sql_mode              = 'STRICT_TRANS_TABLES,NO_AUTO_CREATE_USER,NO_ENGINE_SUBSTITUTION' */ ;
 DELIMITER ;;
 CREATE DEFINER=`VisualStudio`@`%` PROCEDURE `sp_sel_telefonos_clientes`()
-BEGIN
-  SELECT
-    `id_telefonosclientes`,
-    `numero_tel`,
-    `fecha_crea`,
-    `fecha_actu`,
-    `usuario_crea`,
-    `usuario_actu`,
-    `id_cliente`
-  FROM `telefonos_clientes`;
+BEGIN
+
+  SELECT
+
+    `id_telefonosclientes`,
+
+    `numero_tel`,
+
+    `fecha_crea`,
+
+    `fecha_actu`,
+
+    `usuario_crea`,
+
+    `usuario_actu`,
+
+    `id_cliente`
+
+  FROM `telefonos_clientes`;
+
 END ;;
 DELIMITER ;
 /*!50003 SET sql_mode              = @saved_sql_mode */ ;
@@ -3562,15 +4926,24 @@ DELIMITER ;
 /*!50003 SET sql_mode              = 'STRICT_TRANS_TABLES,NO_AUTO_CREATE_USER,NO_ENGINE_SUBSTITUTION' */ ;
 DELIMITER ;;
 CREATE DEFINER=`VisualStudio`@`%` PROCEDURE `sp_sel_tipo_cliente`()
-BEGIN
-  SELECT
-    `id_tipocliente`,
-    `descripcion`,
-    `fecha_crea`,
-    `fecha_actu`,
-    `usuario_crea`,
-    `usuario_actu`
-  FROM `tipo_cliente`;
+BEGIN
+
+  SELECT
+
+    `id_tipocliente`,
+
+    `descripcion`,
+
+    `fecha_crea`,
+
+    `fecha_actu`,
+
+    `usuario_crea`,
+
+    `usuario_actu`
+
+  FROM `tipo_cliente`;
+
 END ;;
 DELIMITER ;
 /*!50003 SET sql_mode              = @saved_sql_mode */ ;
@@ -3588,16 +4961,26 @@ DELIMITER ;
 /*!50003 SET sql_mode              = 'STRICT_TRANS_TABLES,NO_AUTO_CREATE_USER,NO_ENGINE_SUBSTITUTION' */ ;
 DELIMITER ;;
 CREATE DEFINER=`VisualStudio`@`%` PROCEDURE `sp_sel_tipo_transacciones`()
-BEGIN
-  SELECT
-    `id_tipotran`,
-    `nombre`,
-    `fecha_crea`,
-    `fecha_actu`,
-    `usuario_crea`,
-    `usuario_actu`,
-    `entrada_o_salida`
-  FROM `tipo_transacciones`;
+BEGIN
+
+  SELECT
+
+    `id_tipotran`,
+
+    `nombre`,
+
+    `fecha_crea`,
+
+    `fecha_actu`,
+
+    `usuario_crea`,
+
+    `usuario_actu`,
+
+    `entrada_o_salida`
+
+  FROM `tipo_transacciones`;
+
 END ;;
 DELIMITER ;
 /*!50003 SET sql_mode              = @saved_sql_mode */ ;
@@ -3615,18 +4998,30 @@ DELIMITER ;
 /*!50003 SET sql_mode              = 'STRICT_TRANS_TABLES,NO_AUTO_CREATE_USER,NO_ENGINE_SUBSTITUTION' */ ;
 DELIMITER ;;
 CREATE DEFINER=`VisualStudio`@`%` PROCEDURE `sp_sel_usuarios`()
-BEGIN
-  SELECT
-    `usuario`,
-    `correo`,
-    `nombre`,
-    `clave`,
-    `key`,
-    `fecha_crea`,
-    `fecha_actu`,
-    `usuario_crea`,
-    `usuario_actu`
-  FROM `usuarios`;
+BEGIN
+
+  SELECT
+
+    `usuario`,
+
+    `correo`,
+
+    `nombre`,
+
+    `clave`,
+
+    `key`,
+
+    `fecha_crea`,
+
+    `fecha_actu`,
+
+    `usuario_crea`,
+
+    `usuario_actu`
+
+  FROM `usuarios`;
+
 END ;;
 DELIMITER ;
 /*!50003 SET sql_mode              = @saved_sql_mode */ ;
@@ -3644,15 +5039,24 @@ DELIMITER ;
 /*!50003 SET sql_mode              = 'STRICT_TRANS_TABLES,NO_AUTO_CREATE_USER,NO_ENGINE_SUBSTITUTION' */ ;
 DELIMITER ;;
 CREATE DEFINER=`VisualStudio`@`%` PROCEDURE `sp_sel_usuarios_has_grupos_roles`()
-BEGIN
-  SELECT
-    `usuario`,
-    `id_rol`,
-    `fecha_crea`,
-    `fecha_actu`,
-    `usuario_crea`,
-    `usuario_actu`
-  FROM `usuarios_has_grupos_roles`;
+BEGIN
+
+  SELECT
+
+    `usuario`,
+
+    `id_rol`,
+
+    `fecha_crea`,
+
+    `fecha_actu`,
+
+    `usuario_crea`,
+
+    `usuario_actu`
+
+  FROM `usuarios_has_grupos_roles`;
+
 END ;;
 DELIMITER ;
 /*!50003 SET sql_mode              = @saved_sql_mode */ ;
@@ -3669,27 +5073,47 @@ DELIMITER ;
 /*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
 /*!50003 SET sql_mode              = 'STRICT_TRANS_TABLES,NO_AUTO_CREATE_USER,NO_ENGINE_SUBSTITUTION' */ ;
 DELIMITER ;;
-CREATE DEFINER=`VisualStudio`@`%` PROCEDURE `sp_upd_ajustes`(
-  IN `p_id_ajuste` int,
-  IN `p_fecha` date,
-  IN `p_cant_producto` int,
-  IN `p_fecha_crea` datetime,
-  IN `p_fecha_actu` datetime,
-  IN `p_usuario_crea` varchar(45),
-  IN `p_usuario_actu` varchar(45),
-  IN `p_id_tipotran` int
+CREATE DEFINER=`VisualStudio`@`%` PROCEDURE `sp_upd_ajustes`(
+
+  IN `p_id_ajuste` int,
+
+  IN `p_fecha` date,
+
+  IN `p_cant_producto` int,
+
+  IN `p_fecha_crea` datetime,
+
+  IN `p_fecha_actu` datetime,
+
+  IN `p_usuario_crea` varchar(45),
+
+  IN `p_usuario_actu` varchar(45),
+
+  IN `p_id_tipotran` int
+
 )
-BEGIN
-  UPDATE `ajustes` SET
-    `fecha` = `p_fecha`,
-    `cant_producto` = `p_cant_producto`,
-    `fecha_crea` = `p_fecha_crea`,
-    `fecha_actu` = `p_fecha_actu`,
-    `usuario_crea` = `p_usuario_crea`,
-    `usuario_actu` = `p_usuario_actu`,
-    `id_tipotran` = `p_id_tipotran`
-  WHERE 
-    (`id_ajuste` = `p_id_ajuste`);
+BEGIN
+
+  UPDATE `ajustes` SET
+
+    `fecha` = `p_fecha`,
+
+    `cant_producto` = `p_cant_producto`,
+
+    `fecha_crea` = `p_fecha_crea`,
+
+    `fecha_actu` = `p_fecha_actu`,
+
+    `usuario_crea` = `p_usuario_crea`,
+
+    `usuario_actu` = `p_usuario_actu`,
+
+    `id_tipotran` = `p_id_tipotran`
+
+  WHERE 
+
+    (`id_ajuste` = `p_id_ajuste`);
+
 END ;;
 DELIMITER ;
 /*!50003 SET sql_mode              = @saved_sql_mode */ ;
@@ -3706,23 +5130,39 @@ DELIMITER ;
 /*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
 /*!50003 SET sql_mode              = 'STRICT_TRANS_TABLES,NO_AUTO_CREATE_USER,NO_ENGINE_SUBSTITUTION' */ ;
 DELIMITER ;;
-CREATE DEFINER=`VisualStudio`@`%` PROCEDURE `sp_upd_categoria_productos`(
-  IN `p_cod_categoria` int,
-  IN `p_nombre` varchar(45),
-  IN `p_fecha_crea` datetime,
-  IN `p_fecha_actu` datetime,
-  IN `p_usuario_crea` varchar(45),
-  IN `p_usuario_actu` varchar(45)
+CREATE DEFINER=`VisualStudio`@`%` PROCEDURE `sp_upd_categoria_productos`(
+
+  IN `p_cod_categoria` int,
+
+  IN `p_nombre` varchar(45),
+
+  IN `p_fecha_crea` datetime,
+
+  IN `p_fecha_actu` datetime,
+
+  IN `p_usuario_crea` varchar(45),
+
+  IN `p_usuario_actu` varchar(45)
+
 )
-BEGIN
-  UPDATE `categoria_productos` SET
-    `nombre` = `p_nombre`,
-    `fecha_crea` = `p_fecha_crea`,
-    `fecha_actu` = `p_fecha_actu`,
-    `usuario_crea` = `p_usuario_crea`,
-    `usuario_actu` = `p_usuario_actu`
-  WHERE 
-    (`cod_categoria` = `p_cod_categoria`);
+BEGIN
+
+  UPDATE `categoria_productos` SET
+
+    `nombre` = `p_nombre`,
+
+    `fecha_crea` = `p_fecha_crea`,
+
+    `fecha_actu` = `p_fecha_actu`,
+
+    `usuario_crea` = `p_usuario_crea`,
+
+    `usuario_actu` = `p_usuario_actu`
+
+  WHERE 
+
+    (`cod_categoria` = `p_cod_categoria`);
+
 END ;;
 DELIMITER ;
 /*!50003 SET sql_mode              = @saved_sql_mode */ ;
@@ -3739,25 +5179,43 @@ DELIMITER ;
 /*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
 /*!50003 SET sql_mode              = 'STRICT_TRANS_TABLES,NO_AUTO_CREATE_USER,NO_ENGINE_SUBSTITUTION' */ ;
 DELIMITER ;;
-CREATE DEFINER=`VisualStudio`@`%` PROCEDURE `sp_upd_clientes`(
-  IN `p_id_cliente` int,
-  IN `p_nombre` varchar(45),
-  IN `p_fecha_crea` datetime,
-  IN `p_fecha_actu` datetime,
-  IN `p_usuario_crea` varchar(45),
-  IN `p_usuario_actu` varchar(45),
-  IN `p_id_tipocliente` int
+CREATE DEFINER=`VisualStudio`@`%` PROCEDURE `sp_upd_clientes`(
+
+  IN `p_id_cliente` int,
+
+  IN `p_nombre` varchar(45),
+
+  IN `p_fecha_crea` datetime,
+
+  IN `p_fecha_actu` datetime,
+
+  IN `p_usuario_crea` varchar(45),
+
+  IN `p_usuario_actu` varchar(45),
+
+  IN `p_id_tipocliente` int
+
 )
-BEGIN
-  UPDATE `clientes` SET
-    `nombre` = `p_nombre`,
-    `fecha_crea` = `p_fecha_crea`,
-    `fecha_actu` = `p_fecha_actu`,
-    `usuario_crea` = `p_usuario_crea`,
-    `usuario_actu` = `p_usuario_actu`,
-    `id_tipocliente` = `p_id_tipocliente`
-  WHERE 
-    (`id_cliente` = `p_id_cliente`);
+BEGIN
+
+  UPDATE `clientes` SET
+
+    `nombre` = `p_nombre`,
+
+    `fecha_crea` = `p_fecha_crea`,
+
+    `fecha_actu` = `p_fecha_actu`,
+
+    `usuario_crea` = `p_usuario_crea`,
+
+    `usuario_actu` = `p_usuario_actu`,
+
+    `id_tipocliente` = `p_id_tipocliente`
+
+  WHERE 
+
+    (`id_cliente` = `p_id_cliente`);
+
 END ;;
 DELIMITER ;
 /*!50003 SET sql_mode              = @saved_sql_mode */ ;
@@ -3774,27 +5232,47 @@ DELIMITER ;
 /*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
 /*!50003 SET sql_mode              = 'STRICT_TRANS_TABLES,NO_AUTO_CREATE_USER,NO_ENGINE_SUBSTITUTION' */ ;
 DELIMITER ;;
-CREATE DEFINER=`VisualStudio`@`%` PROCEDURE `sp_upd_compras`(
-  IN `p_id_compra` int,
-  IN `p_fecha` date,
-  IN `p_total` double,
-  IN `p_fecha_crea` datetime,
-  IN `p_fecha_actu` datetime,
-  IN `p_usuario_crea` varchar(45),
-  IN `p_usuario_actu` varchar(45),
-  IN `p_id_proveedor` int
+CREATE DEFINER=`VisualStudio`@`%` PROCEDURE `sp_upd_compras`(
+
+  IN `p_id_compra` int,
+
+  IN `p_fecha` date,
+
+  IN `p_total` double,
+
+  IN `p_fecha_crea` datetime,
+
+  IN `p_fecha_actu` datetime,
+
+  IN `p_usuario_crea` varchar(45),
+
+  IN `p_usuario_actu` varchar(45),
+
+  IN `p_id_proveedor` int
+
 )
-BEGIN
-  UPDATE `compras` SET
-    `fecha` = `p_fecha`,
-    `total` = `p_total`,
-    `fecha_crea` = `p_fecha_crea`,
-    `fecha_actu` = `p_fecha_actu`,
-    `usuario_crea` = `p_usuario_crea`,
-    `usuario_actu` = `p_usuario_actu`,
-    `id_proveedor` = `p_id_proveedor`
-  WHERE 
-    (`id_compra` = `p_id_compra`);
+BEGIN
+
+  UPDATE `compras` SET
+
+    `fecha` = `p_fecha`,
+
+    `total` = `p_total`,
+
+    `fecha_crea` = `p_fecha_crea`,
+
+    `fecha_actu` = `p_fecha_actu`,
+
+    `usuario_crea` = `p_usuario_crea`,
+
+    `usuario_actu` = `p_usuario_actu`,
+
+    `id_proveedor` = `p_id_proveedor`
+
+  WHERE 
+
+    (`id_compra` = `p_id_compra`);
+
 END ;;
 DELIMITER ;
 /*!50003 SET sql_mode              = @saved_sql_mode */ ;
@@ -3811,29 +5289,51 @@ DELIMITER ;
 /*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
 /*!50003 SET sql_mode              = 'STRICT_TRANS_TABLES,NO_AUTO_CREATE_USER,NO_ENGINE_SUBSTITUTION' */ ;
 DELIMITER ;;
-CREATE DEFINER=`VisualStudio`@`%` PROCEDURE `sp_upd_contactos_clientes`(
-  IN `p_id_contactocliente` int,
-  IN `p_nombre` varchar(50),
-  IN `p_correo` varchar(20),
-  IN `p_telefono` varchar(15),
-  IN `p_id_cliente` int,
-  IN `p_fecha_crea` datetime,
-  IN `p_fecha_actu` datetime,
-  IN `p_usuario_crea` varchar(45),
-  IN `p_usuario_actu` varchar(45)
+CREATE DEFINER=`VisualStudio`@`%` PROCEDURE `sp_upd_contactos_clientes`(
+
+  IN `p_id_contactocliente` int,
+
+  IN `p_nombre` varchar(50),
+
+  IN `p_correo` varchar(20),
+
+  IN `p_telefono` varchar(15),
+
+  IN `p_id_cliente` int,
+
+  IN `p_fecha_crea` datetime,
+
+  IN `p_fecha_actu` datetime,
+
+  IN `p_usuario_crea` varchar(45),
+
+  IN `p_usuario_actu` varchar(45)
+
 )
-BEGIN
-  UPDATE `contactos_clientes` SET
-    `fecha_crea` = `p_fecha_crea`,
-    `fecha_actu` = `p_fecha_actu`,
-    `usuario_crea` = `p_usuario_crea`,
-    `usuario_actu` = `p_usuario_actu`
-  WHERE 
-    (`id_contactocliente` = `p_id_contactocliente`) AND
-    (`nombre` = `p_nombre`) AND
-    (`correo` = `p_correo`) AND
-    (`telefono` = `p_telefono`) AND
-    (`id_cliente` = `p_id_cliente`);
+BEGIN
+
+  UPDATE `contactos_clientes` SET
+
+    `fecha_crea` = `p_fecha_crea`,
+
+    `fecha_actu` = `p_fecha_actu`,
+
+    `usuario_crea` = `p_usuario_crea`,
+
+    `usuario_actu` = `p_usuario_actu`
+
+  WHERE 
+
+    (`id_contactocliente` = `p_id_contactocliente`) AND
+
+    (`nombre` = `p_nombre`) AND
+
+    (`correo` = `p_correo`) AND
+
+    (`telefono` = `p_telefono`) AND
+
+    (`id_cliente` = `p_id_cliente`);
+
 END ;;
 DELIMITER ;
 /*!50003 SET sql_mode              = @saved_sql_mode */ ;
@@ -3850,17 +5350,27 @@ DELIMITER ;
 /*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
 /*!50003 SET sql_mode              = 'STRICT_TRANS_TABLES,NO_AUTO_CREATE_USER,NO_ENGINE_SUBSTITUTION' */ ;
 DELIMITER ;;
-CREATE DEFINER=`VisualStudio`@`%` PROCEDURE `sp_upd_costo_prod_proveedor`(
-  IN `p_costo` double,
-  IN `p_cod_prod` varchar(20),
-  IN `p_id_proveedor` int
+CREATE DEFINER=`VisualStudio`@`%` PROCEDURE `sp_upd_costo_prod_proveedor`(
+
+  IN `p_costo` double,
+
+  IN `p_cod_prod` varchar(20),
+
+  IN `p_id_proveedor` int
+
 )
-BEGIN
-  UPDATE `costo_prod_proveedor` SET
-    `costo` = `p_costo`
-  WHERE 
-    (`cod_prod` = `p_cod_prod`) AND
-    (`id_proveedor` = `p_id_proveedor`);
+BEGIN
+
+  UPDATE `costo_prod_proveedor` SET
+
+    `costo` = `p_costo`
+
+  WHERE 
+
+    (`cod_prod` = `p_cod_prod`) AND
+
+    (`id_proveedor` = `p_id_proveedor`);
+
 END ;;
 DELIMITER ;
 /*!50003 SET sql_mode              = @saved_sql_mode */ ;
@@ -3877,27 +5387,47 @@ DELIMITER ;
 /*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
 /*!50003 SET sql_mode              = 'STRICT_TRANS_TABLES,NO_AUTO_CREATE_USER,NO_ENGINE_SUBSTITUTION' */ ;
 DELIMITER ;;
-CREATE DEFINER=`VisualStudio`@`%` PROCEDURE `sp_upd_cotizaciones`(
-  IN `p_id_cotizacion` int,
-  IN `p_fecha` date,
-  IN `p_total` double,
-  IN `p_fecha_crea` datetime,
-  IN `p_fecha_actu` datetime,
-  IN `p_usuario_crea` varchar(45),
-  IN `p_usuario_actu` varchar(45),
-  IN `p_id_proveedor` int
+CREATE DEFINER=`VisualStudio`@`%` PROCEDURE `sp_upd_cotizaciones`(
+
+  IN `p_id_cotizacion` int,
+
+  IN `p_fecha` date,
+
+  IN `p_total` double,
+
+  IN `p_fecha_crea` datetime,
+
+  IN `p_fecha_actu` datetime,
+
+  IN `p_usuario_crea` varchar(45),
+
+  IN `p_usuario_actu` varchar(45),
+
+  IN `p_id_proveedor` int
+
 )
-BEGIN
-  UPDATE `cotizaciones` SET
-    `fecha` = `p_fecha`,
-    `total` = `p_total`,
-    `fecha_crea` = `p_fecha_crea`,
-    `fecha_actu` = `p_fecha_actu`,
-    `usuario_crea` = `p_usuario_crea`,
-    `usuario_actu` = `p_usuario_actu`,
-    `id_proveedor` = `p_id_proveedor`
-  WHERE 
-    (`id_cotizacion` = `p_id_cotizacion`);
+BEGIN
+
+  UPDATE `cotizaciones` SET
+
+    `fecha` = `p_fecha`,
+
+    `total` = `p_total`,
+
+    `fecha_crea` = `p_fecha_crea`,
+
+    `fecha_actu` = `p_fecha_actu`,
+
+    `usuario_crea` = `p_usuario_crea`,
+
+    `usuario_actu` = `p_usuario_actu`,
+
+    `id_proveedor` = `p_id_proveedor`
+
+  WHERE 
+
+    (`id_cotizacion` = `p_id_cotizacion`);
+
 END ;;
 DELIMITER ;
 /*!50003 SET sql_mode              = @saved_sql_mode */ ;
@@ -3914,19 +5444,31 @@ DELIMITER ;
 /*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
 /*!50003 SET sql_mode              = 'STRICT_TRANS_TABLES,NO_AUTO_CREATE_USER,NO_ENGINE_SUBSTITUTION' */ ;
 DELIMITER ;;
-CREATE DEFINER=`VisualStudio`@`%` PROCEDURE `sp_upd_detalle_ajustes`(
-  IN `p_num_detalle` int,
-  IN `p_cantidad` int,
-  IN `p_id_ajuste` int,
-  IN `p_cod_prod` varchar(20)
+CREATE DEFINER=`VisualStudio`@`%` PROCEDURE `sp_upd_detalle_ajustes`(
+
+  IN `p_num_detalle` int,
+
+  IN `p_cantidad` int,
+
+  IN `p_id_ajuste` int,
+
+  IN `p_cod_prod` varchar(20)
+
 )
-BEGIN
-  UPDATE `detalle_ajustes` SET
-    `cantidad` = `p_cantidad`,
-    `cod_prod` = `p_cod_prod`
-  WHERE 
-    (`num_detalle` = `p_num_detalle`) AND
-    (`id_ajuste` = `p_id_ajuste`);
+BEGIN
+
+  UPDATE `detalle_ajustes` SET
+
+    `cantidad` = `p_cantidad`,
+
+    `cod_prod` = `p_cod_prod`
+
+  WHERE 
+
+    (`num_detalle` = `p_num_detalle`) AND
+
+    (`id_ajuste` = `p_id_ajuste`);
+
 END ;;
 DELIMITER ;
 /*!50003 SET sql_mode              = @saved_sql_mode */ ;
@@ -3943,23 +5485,39 @@ DELIMITER ;
 /*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
 /*!50003 SET sql_mode              = 'STRICT_TRANS_TABLES,NO_AUTO_CREATE_USER,NO_ENGINE_SUBSTITUTION' */ ;
 DELIMITER ;;
-CREATE DEFINER=`VisualStudio`@`%` PROCEDURE `sp_upd_detalle_compras`(
-  IN `p_num_detalle` int,
-  IN `p_cantidad` int,
-  IN `p_precio_compra` double,
-  IN `p_subtotal` double,
-  IN `p_id_compra` int,
-  IN `p_cod_prod` varchar(20)
+CREATE DEFINER=`VisualStudio`@`%` PROCEDURE `sp_upd_detalle_compras`(
+
+  IN `p_num_detalle` int,
+
+  IN `p_cantidad` int,
+
+  IN `p_precio_compra` double,
+
+  IN `p_subtotal` double,
+
+  IN `p_id_compra` int,
+
+  IN `p_cod_prod` varchar(20)
+
 )
-BEGIN
-  UPDATE `detalle_compras` SET
-    `cantidad` = `p_cantidad`,
-    `precio_compra` = `p_precio_compra`,
-    `subtotal` = `p_subtotal`,
-    `cod_prod` = `p_cod_prod`
-  WHERE 
-    (`num_detalle` = `p_num_detalle`) AND
-    (`id_compra` = `p_id_compra`);
+BEGIN
+
+  UPDATE `detalle_compras` SET
+
+    `cantidad` = `p_cantidad`,
+
+    `precio_compra` = `p_precio_compra`,
+
+    `subtotal` = `p_subtotal`,
+
+    `cod_prod` = `p_cod_prod`
+
+  WHERE 
+
+    (`num_detalle` = `p_num_detalle`) AND
+
+    (`id_compra` = `p_id_compra`);
+
 END ;;
 DELIMITER ;
 /*!50003 SET sql_mode              = @saved_sql_mode */ ;
@@ -3976,21 +5534,35 @@ DELIMITER ;
 /*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
 /*!50003 SET sql_mode              = 'STRICT_TRANS_TABLES,NO_AUTO_CREATE_USER,NO_ENGINE_SUBSTITUTION' */ ;
 DELIMITER ;;
-CREATE DEFINER=`VisualStudio`@`%` PROCEDURE `sp_upd_detalle_cotizaciones`(
-  IN `p_num_detalle` int,
-  IN `p_cantidad` int,
-  IN `p_precio_unit` double,
-  IN `p_id_cotizacion` int,
-  IN `p_cod_prod` varchar(20)
+CREATE DEFINER=`VisualStudio`@`%` PROCEDURE `sp_upd_detalle_cotizaciones`(
+
+  IN `p_num_detalle` int,
+
+  IN `p_cantidad` int,
+
+  IN `p_precio_unit` double,
+
+  IN `p_id_cotizacion` int,
+
+  IN `p_cod_prod` varchar(20)
+
 )
-BEGIN
-  UPDATE `detalle_cotizaciones` SET
-    `cantidad` = `p_cantidad`,
-    `precio_unit` = `p_precio_unit`,
-    `cod_prod` = `p_cod_prod`
-  WHERE 
-    (`num_detalle` = `p_num_detalle`) AND
-    (`id_cotizacion` = `p_id_cotizacion`);
+BEGIN
+
+  UPDATE `detalle_cotizaciones` SET
+
+    `cantidad` = `p_cantidad`,
+
+    `precio_unit` = `p_precio_unit`,
+
+    `cod_prod` = `p_cod_prod`
+
+  WHERE 
+
+    (`num_detalle` = `p_num_detalle`) AND
+
+    (`id_cotizacion` = `p_id_cotizacion`);
+
 END ;;
 DELIMITER ;
 /*!50003 SET sql_mode              = @saved_sql_mode */ ;
@@ -4007,23 +5579,39 @@ DELIMITER ;
 /*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
 /*!50003 SET sql_mode              = 'STRICT_TRANS_TABLES,NO_AUTO_CREATE_USER,NO_ENGINE_SUBSTITUTION' */ ;
 DELIMITER ;;
-CREATE DEFINER=`VisualStudio`@`%` PROCEDURE `sp_upd_detalle_facturas`(
-  IN `p_num_detalle` int,
-  IN `p_precio_venta` double,
-  IN `p_cantidad` int,
-  IN `p_subtotal` double,
-  IN `p_num_factura` int,
-  IN `p_cod_prod` varchar(20)
+CREATE DEFINER=`VisualStudio`@`%` PROCEDURE `sp_upd_detalle_facturas`(
+
+  IN `p_num_detalle` int,
+
+  IN `p_precio_venta` double,
+
+  IN `p_cantidad` int,
+
+  IN `p_subtotal` double,
+
+  IN `p_num_factura` int,
+
+  IN `p_cod_prod` varchar(20)
+
 )
-BEGIN
-  UPDATE `detalle_facturas` SET
-    `precio_venta` = `p_precio_venta`,
-    `cantidad` = `p_cantidad`,
-    `subtotal` = `p_subtotal`,
-    `cod_prod` = `p_cod_prod`
-  WHERE 
-    (`num_detalle` = `p_num_detalle`) AND
-    (`num_factura` = `p_num_factura`);
+BEGIN
+
+  UPDATE `detalle_facturas` SET
+
+    `precio_venta` = `p_precio_venta`,
+
+    `cantidad` = `p_cantidad`,
+
+    `subtotal` = `p_subtotal`,
+
+    `cod_prod` = `p_cod_prod`
+
+  WHERE 
+
+    (`num_detalle` = `p_num_detalle`) AND
+
+    (`num_factura` = `p_num_factura`);
+
 END ;;
 DELIMITER ;
 /*!50003 SET sql_mode              = @saved_sql_mode */ ;
@@ -4040,23 +5628,39 @@ DELIMITER ;
 /*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
 /*!50003 SET sql_mode              = 'STRICT_TRANS_TABLES,NO_AUTO_CREATE_USER,NO_ENGINE_SUBSTITUTION' */ ;
 DELIMITER ;;
-CREATE DEFINER=`VisualStudio`@`%` PROCEDURE `sp_upd_detalle_oc`(
-  IN `p_num_detalle` int,
-  IN `p_cantidad` int,
-  IN `p_subtotal` double,
-  IN `p_precio_unit` double,
-  IN `p_id_ordencompra` int,
-  IN `p_cod_prod` varchar(20)
+CREATE DEFINER=`VisualStudio`@`%` PROCEDURE `sp_upd_detalle_oc`(
+
+  IN `p_num_detalle` int,
+
+  IN `p_cantidad` int,
+
+  IN `p_subtotal` double,
+
+  IN `p_precio_unit` double,
+
+  IN `p_id_ordencompra` int,
+
+  IN `p_cod_prod` varchar(20)
+
 )
-BEGIN
-  UPDATE `detalle_oc` SET
-    `cantidad` = `p_cantidad`,
-    `subtotal` = `p_subtotal`,
-    `precio_unit` = `p_precio_unit`,
-    `cod_prod` = `p_cod_prod`
-  WHERE 
-    (`num_detalle` = `p_num_detalle`) AND
-    (`id_ordencompra` = `p_id_ordencompra`);
+BEGIN
+
+  UPDATE `detalle_oc` SET
+
+    `cantidad` = `p_cantidad`,
+
+    `subtotal` = `p_subtotal`,
+
+    `precio_unit` = `p_precio_unit`,
+
+    `cod_prod` = `p_cod_prod`
+
+  WHERE 
+
+    (`num_detalle` = `p_num_detalle`) AND
+
+    (`id_ordencompra` = `p_id_ordencompra`);
+
 END ;;
 DELIMITER ;
 /*!50003 SET sql_mode              = @saved_sql_mode */ ;
@@ -4073,25 +5677,43 @@ DELIMITER ;
 /*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
 /*!50003 SET sql_mode              = 'STRICT_TRANS_TABLES,NO_AUTO_CREATE_USER,NO_ENGINE_SUBSTITUTION' */ ;
 DELIMITER ;;
-CREATE DEFINER=`VisualStudio`@`%` PROCEDURE `sp_upd_direcciones_clientes`(
-  IN `p_id_direccioncliente` int,
-  IN `p_direccion` varchar(50),
-  IN `p_id_cliente` int,
-  IN `p_fecha_crea` datetime,
-  IN `p_fecha_actu` datetime,
-  IN `p_usuario_crea` varchar(45),
-  IN `p_usuario_actu` varchar(45)
+CREATE DEFINER=`VisualStudio`@`%` PROCEDURE `sp_upd_direcciones_clientes`(
+
+  IN `p_id_direccioncliente` int,
+
+  IN `p_direccion` varchar(50),
+
+  IN `p_id_cliente` int,
+
+  IN `p_fecha_crea` datetime,
+
+  IN `p_fecha_actu` datetime,
+
+  IN `p_usuario_crea` varchar(45),
+
+  IN `p_usuario_actu` varchar(45)
+
 )
-BEGIN
-  UPDATE `direcciones_clientes` SET
-    `fecha_crea` = `p_fecha_crea`,
-    `fecha_actu` = `p_fecha_actu`,
-    `usuario_crea` = `p_usuario_crea`,
-    `usuario_actu` = `p_usuario_actu`
-  WHERE 
-    (`id_direccioncliente` = `p_id_direccioncliente`) AND
-    (`direccion` = `p_direccion`) AND
-    (`id_cliente` = `p_id_cliente`);
+BEGIN
+
+  UPDATE `direcciones_clientes` SET
+
+    `fecha_crea` = `p_fecha_crea`,
+
+    `fecha_actu` = `p_fecha_actu`,
+
+    `usuario_crea` = `p_usuario_crea`,
+
+    `usuario_actu` = `p_usuario_actu`
+
+  WHERE 
+
+    (`id_direccioncliente` = `p_id_direccioncliente`) AND
+
+    (`direccion` = `p_direccion`) AND
+
+    (`id_cliente` = `p_id_cliente`);
+
 END ;;
 DELIMITER ;
 /*!50003 SET sql_mode              = @saved_sql_mode */ ;
@@ -4108,33 +5730,59 @@ DELIMITER ;
 /*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
 /*!50003 SET sql_mode              = 'STRICT_TRANS_TABLES,NO_AUTO_CREATE_USER,NO_ENGINE_SUBSTITUTION' */ ;
 DELIMITER ;;
-CREATE DEFINER=`VisualStudio`@`%` PROCEDURE `sp_upd_facturas`(
-  IN `p_num_factura` int,
-  IN `p_fecha` date,
-  IN `p_subtotal` double,
-  IN `p_isv` double,
-  IN `p_descuento` double,
-  IN `p_total` double,
-  IN `p_fecha_crea` datetime,
-  IN `p_fecha_actu` datetime,
-  IN `p_usuario_crea` varchar(45),
-  IN `p_usuario_actu` varchar(45),
-  IN `p_id_cliente` int
+CREATE DEFINER=`VisualStudio`@`%` PROCEDURE `sp_upd_facturas`(
+
+  IN `p_num_factura` int,
+
+  IN `p_fecha` date,
+
+  IN `p_subtotal` double,
+
+  IN `p_isv` double,
+
+  IN `p_descuento` double,
+
+  IN `p_total` double,
+
+  IN `p_fecha_crea` datetime,
+
+  IN `p_fecha_actu` datetime,
+
+  IN `p_usuario_crea` varchar(45),
+
+  IN `p_usuario_actu` varchar(45),
+
+  IN `p_id_cliente` int
+
 )
-BEGIN
-  UPDATE `facturas` SET
-    `fecha` = `p_fecha`,
-    `subtotal` = `p_subtotal`,
-    `isv` = `p_isv`,
-    `descuento` = `p_descuento`,
-    `total` = `p_total`,
-    `fecha_crea` = `p_fecha_crea`,
-    `fecha_actu` = `p_fecha_actu`,
-    `usuario_crea` = `p_usuario_crea`,
-    `usuario_actu` = `p_usuario_actu`,
-    `id_cliente` = `p_id_cliente`
-  WHERE 
-    (`num_factura` = `p_num_factura`);
+BEGIN
+
+  UPDATE `facturas` SET
+
+    `fecha` = `p_fecha`,
+
+    `subtotal` = `p_subtotal`,
+
+    `isv` = `p_isv`,
+
+    `descuento` = `p_descuento`,
+
+    `total` = `p_total`,
+
+    `fecha_crea` = `p_fecha_crea`,
+
+    `fecha_actu` = `p_fecha_actu`,
+
+    `usuario_crea` = `p_usuario_crea`,
+
+    `usuario_actu` = `p_usuario_actu`,
+
+    `id_cliente` = `p_id_cliente`
+
+  WHERE 
+
+    (`num_factura` = `p_num_factura`);
+
 END ;;
 DELIMITER ;
 /*!50003 SET sql_mode              = @saved_sql_mode */ ;
@@ -4151,23 +5799,39 @@ DELIMITER ;
 /*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
 /*!50003 SET sql_mode              = 'STRICT_TRANS_TABLES,NO_AUTO_CREATE_USER,NO_ENGINE_SUBSTITUTION' */ ;
 DELIMITER ;;
-CREATE DEFINER=`VisualStudio`@`%` PROCEDURE `sp_upd_grupos_roles`(
-  IN `p_id_rol` int,
-  IN `p_nombre` varchar(45),
-  IN `p_fecha_crea` datetime,
-  IN `p_fecha_actu` datetime,
-  IN `p_usuario_crea` varchar(45),
-  IN `p_usuario_actu` varchar(45)
+CREATE DEFINER=`VisualStudio`@`%` PROCEDURE `sp_upd_grupos_roles`(
+
+  IN `p_id_rol` int,
+
+  IN `p_nombre` varchar(45),
+
+  IN `p_fecha_crea` datetime,
+
+  IN `p_fecha_actu` datetime,
+
+  IN `p_usuario_crea` varchar(45),
+
+  IN `p_usuario_actu` varchar(45)
+
 )
-BEGIN
-  UPDATE `grupos_roles` SET
-    `nombre` = `p_nombre`,
-    `fecha_crea` = `p_fecha_crea`,
-    `fecha_actu` = `p_fecha_actu`,
-    `usuario_crea` = `p_usuario_crea`,
-    `usuario_actu` = `p_usuario_actu`
-  WHERE 
-    (`id_rol` = `p_id_rol`);
+BEGIN
+
+  UPDATE `grupos_roles` SET
+
+    `nombre` = `p_nombre`,
+
+    `fecha_crea` = `p_fecha_crea`,
+
+    `fecha_actu` = `p_fecha_actu`,
+
+    `usuario_crea` = `p_usuario_crea`,
+
+    `usuario_actu` = `p_usuario_actu`
+
+  WHERE 
+
+    (`id_rol` = `p_id_rol`);
+
 END ;;
 DELIMITER ;
 /*!50003 SET sql_mode              = @saved_sql_mode */ ;
@@ -4184,23 +5848,39 @@ DELIMITER ;
 /*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
 /*!50003 SET sql_mode              = 'STRICT_TRANS_TABLES,NO_AUTO_CREATE_USER,NO_ENGINE_SUBSTITUTION' */ ;
 DELIMITER ;;
-CREATE DEFINER=`VisualStudio`@`%` PROCEDURE `sp_upd_grupos_roles_has_privilegios`(
-  IN `p_id_rol` int,
-  IN `p_id_privilegio` int,
-  IN `p_fecha_crea` datetime,
-  IN `p_fecha_actu` datetime,
-  IN `p_usuario_crea` varchar(45),
-  IN `p_usuario_actu` varchar(45)
+CREATE DEFINER=`VisualStudio`@`%` PROCEDURE `sp_upd_grupos_roles_has_privilegios`(
+
+  IN `p_id_rol` int,
+
+  IN `p_id_privilegio` int,
+
+  IN `p_fecha_crea` datetime,
+
+  IN `p_fecha_actu` datetime,
+
+  IN `p_usuario_crea` varchar(45),
+
+  IN `p_usuario_actu` varchar(45)
+
 )
-BEGIN
-  UPDATE `grupos_roles_has_privilegios` SET
-    `fecha_crea` = `p_fecha_crea`,
-    `fecha_actu` = `p_fecha_actu`,
-    `usuario_crea` = `p_usuario_crea`,
-    `usuario_actu` = `p_usuario_actu`
-  WHERE 
-    (`id_rol` = `p_id_rol`) AND
-    (`id_privilegio` = `p_id_privilegio`);
+BEGIN
+
+  UPDATE `grupos_roles_has_privilegios` SET
+
+    `fecha_crea` = `p_fecha_crea`,
+
+    `fecha_actu` = `p_fecha_actu`,
+
+    `usuario_crea` = `p_usuario_crea`,
+
+    `usuario_actu` = `p_usuario_actu`
+
+  WHERE 
+
+    (`id_rol` = `p_id_rol`) AND
+
+    (`id_privilegio` = `p_id_privilegio`);
+
 END ;;
 DELIMITER ;
 /*!50003 SET sql_mode              = @saved_sql_mode */ ;
@@ -4217,31 +5897,55 @@ DELIMITER ;
 /*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
 /*!50003 SET sql_mode              = 'STRICT_TRANS_TABLES,NO_AUTO_CREATE_USER,NO_ENGINE_SUBSTITUTION' */ ;
 DELIMITER ;;
-CREATE DEFINER=`VisualStudio`@`%` PROCEDURE `sp_upd_kardex`(
-  IN `p_id_operacion` int,
-  IN `p_cantidad` int,
-  IN `p_costo` double,
-  IN `p_inv_antes` int,
-  IN `p_inv_despues` int,
-  IN `p_fecha_crea` datetime,
-  IN `p_usuario_crea` varchar(45),
-  IN `p_precio` double,
-  IN `p_cod_prod` varchar(20),
-  IN `p_entrada_o_salida` varchar(1)
+CREATE DEFINER=`VisualStudio`@`%` PROCEDURE `sp_upd_kardex`(
+
+  IN `p_id_operacion` int,
+
+  IN `p_cantidad` int,
+
+  IN `p_costo` double,
+
+  IN `p_inv_antes` int,
+
+  IN `p_inv_despues` int,
+
+  IN `p_fecha_crea` datetime,
+
+  IN `p_usuario_crea` varchar(45),
+
+  IN `p_precio` double,
+
+  IN `p_cod_prod` varchar(20),
+
+  IN `p_entrada_o_salida` varchar(1)
+
 )
-BEGIN
-  UPDATE `kardex` SET
-    `cantidad` = `p_cantidad`,
-    `costo` = `p_costo`,
-    `inv_antes` = `p_inv_antes`,
-    `inv_despues` = `p_inv_despues`,
-    `fecha_crea` = `p_fecha_crea`,
-    `usuario_crea` = `p_usuario_crea`,
-    `precio` = `p_precio`,
-    `cod_prod` = `p_cod_prod`,
-    `entrada_o_salida` = `p_entrada_o_salida`
-  WHERE 
-    (`id_operacion` = `p_id_operacion`);
+BEGIN
+
+  UPDATE `kardex` SET
+
+    `cantidad` = `p_cantidad`,
+
+    `costo` = `p_costo`,
+
+    `inv_antes` = `p_inv_antes`,
+
+    `inv_despues` = `p_inv_despues`,
+
+    `fecha_crea` = `p_fecha_crea`,
+
+    `usuario_crea` = `p_usuario_crea`,
+
+    `precio` = `p_precio`,
+
+    `cod_prod` = `p_cod_prod`,
+
+    `entrada_o_salida` = `p_entrada_o_salida`
+
+  WHERE 
+
+    (`id_operacion` = `p_id_operacion`);
+
 END ;;
 DELIMITER ;
 /*!50003 SET sql_mode              = @saved_sql_mode */ ;
@@ -4258,33 +5962,59 @@ DELIMITER ;
 /*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
 /*!50003 SET sql_mode              = 'STRICT_TRANS_TABLES,NO_AUTO_CREATE_USER,NO_ENGINE_SUBSTITUTION' */ ;
 DELIMITER ;;
-CREATE DEFINER=`VisualStudio`@`%` PROCEDURE `sp_upd_ordenes_de_compra`(
-  IN `p_id_ordencompra` int,
-  IN `p_fecha` date,
-  IN `p_total` double,
-  IN `p_id_proveedor` int,
-  IN `p_ejecutada` tinyint(1),
-  IN `p_cancelada` tinyint(1),
-  IN `p_activa` tinyint(1),
-  IN `p_fecha_crea` datetime,
-  IN `p_fecha_actu` datetime,
-  IN `p_usuario_crea` varchar(45),
-  IN `p_usuario_actu` varchar(45)
+CREATE DEFINER=`VisualStudio`@`%` PROCEDURE `sp_upd_ordenes_de_compra`(
+
+  IN `p_id_ordencompra` int,
+
+  IN `p_fecha` date,
+
+  IN `p_total` double,
+
+  IN `p_id_proveedor` int,
+
+  IN `p_ejecutada` tinyint(1),
+
+  IN `p_cancelada` tinyint(1),
+
+  IN `p_activa` tinyint(1),
+
+  IN `p_fecha_crea` datetime,
+
+  IN `p_fecha_actu` datetime,
+
+  IN `p_usuario_crea` varchar(45),
+
+  IN `p_usuario_actu` varchar(45)
+
 )
-BEGIN
-  UPDATE `ordenes_de_compra` SET
-    `fecha` = `p_fecha`,
-    `total` = `p_total`,
-    `id_proveedor` = `p_id_proveedor`,
-    `ejecutada` = `p_ejecutada`,
-    `cancelada` = `p_cancelada`,
-    `activa` = `p_activa`,
-    `fecha_crea` = `p_fecha_crea`,
-    `fecha_actu` = `p_fecha_actu`,
-    `usuario_crea` = `p_usuario_crea`,
-    `usuario_actu` = `p_usuario_actu`
-  WHERE 
-    (`id_ordencompra` = `p_id_ordencompra`);
+BEGIN
+
+  UPDATE `ordenes_de_compra` SET
+
+    `fecha` = `p_fecha`,
+
+    `total` = `p_total`,
+
+    `id_proveedor` = `p_id_proveedor`,
+
+    `ejecutada` = `p_ejecutada`,
+
+    `cancelada` = `p_cancelada`,
+
+    `activa` = `p_activa`,
+
+    `fecha_crea` = `p_fecha_crea`,
+
+    `fecha_actu` = `p_fecha_actu`,
+
+    `usuario_crea` = `p_usuario_crea`,
+
+    `usuario_actu` = `p_usuario_actu`
+
+  WHERE 
+
+    (`id_ordencompra` = `p_id_ordencompra`);
+
 END ;;
 DELIMITER ;
 /*!50003 SET sql_mode              = @saved_sql_mode */ ;
@@ -4301,23 +6031,39 @@ DELIMITER ;
 /*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
 /*!50003 SET sql_mode              = 'STRICT_TRANS_TABLES,NO_AUTO_CREATE_USER,NO_ENGINE_SUBSTITUTION' */ ;
 DELIMITER ;;
-CREATE DEFINER=`VisualStudio`@`%` PROCEDURE `sp_upd_presentacion_productos`(
-  IN `p_cod_presentacion` int,
-  IN `p_nombre` varchar(45),
-  IN `p_fecha_crea` datetime,
-  IN `p_fecha_actu` datetime,
-  IN `p_usuario_crea` varchar(45),
-  IN `p_usuario_actu` varchar(45)
+CREATE DEFINER=`VisualStudio`@`%` PROCEDURE `sp_upd_presentacion_productos`(
+
+  IN `p_cod_presentacion` int,
+
+  IN `p_nombre` varchar(45),
+
+  IN `p_fecha_crea` datetime,
+
+  IN `p_fecha_actu` datetime,
+
+  IN `p_usuario_crea` varchar(45),
+
+  IN `p_usuario_actu` varchar(45)
+
 )
-BEGIN
-  UPDATE `presentacion_productos` SET
-    `nombre` = `p_nombre`,
-    `fecha_crea` = `p_fecha_crea`,
-    `fecha_actu` = `p_fecha_actu`,
-    `usuario_crea` = `p_usuario_crea`,
-    `usuario_actu` = `p_usuario_actu`
-  WHERE 
-    (`cod_presentacion` = `p_cod_presentacion`);
+BEGIN
+
+  UPDATE `presentacion_productos` SET
+
+    `nombre` = `p_nombre`,
+
+    `fecha_crea` = `p_fecha_crea`,
+
+    `fecha_actu` = `p_fecha_actu`,
+
+    `usuario_crea` = `p_usuario_crea`,
+
+    `usuario_actu` = `p_usuario_actu`
+
+  WHERE 
+
+    (`cod_presentacion` = `p_cod_presentacion`);
+
 END ;;
 DELIMITER ;
 /*!50003 SET sql_mode              = @saved_sql_mode */ ;
@@ -4334,23 +6080,39 @@ DELIMITER ;
 /*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
 /*!50003 SET sql_mode              = 'STRICT_TRANS_TABLES,NO_AUTO_CREATE_USER,NO_ENGINE_SUBSTITUTION' */ ;
 DELIMITER ;;
-CREATE DEFINER=`VisualStudio`@`%` PROCEDURE `sp_upd_privilegios`(
-  IN `p_id_privilegio` int,
-  IN `p_nombre` varchar(45),
-  IN `p_fecha_crea` datetime,
-  IN `p_fecha_actu` datetime,
-  IN `p_usuario_crea` varchar(45),
-  IN `p_usuario_actu` varchar(45)
+CREATE DEFINER=`VisualStudio`@`%` PROCEDURE `sp_upd_privilegios`(
+
+  IN `p_id_privilegio` int,
+
+  IN `p_nombre` varchar(45),
+
+  IN `p_fecha_crea` datetime,
+
+  IN `p_fecha_actu` datetime,
+
+  IN `p_usuario_crea` varchar(45),
+
+  IN `p_usuario_actu` varchar(45)
+
 )
-BEGIN
-  UPDATE `privilegios` SET
-    `nombre` = `p_nombre`,
-    `fecha_crea` = `p_fecha_crea`,
-    `fecha_actu` = `p_fecha_actu`,
-    `usuario_crea` = `p_usuario_crea`,
-    `usuario_actu` = `p_usuario_actu`
-  WHERE 
-    (`id_privilegio` = `p_id_privilegio`);
+BEGIN
+
+  UPDATE `privilegios` SET
+
+    `nombre` = `p_nombre`,
+
+    `fecha_crea` = `p_fecha_crea`,
+
+    `fecha_actu` = `p_fecha_actu`,
+
+    `usuario_crea` = `p_usuario_crea`,
+
+    `usuario_actu` = `p_usuario_actu`
+
+  WHERE 
+
+    (`id_privilegio` = `p_id_privilegio`);
+
 END ;;
 DELIMITER ;
 /*!50003 SET sql_mode              = @saved_sql_mode */ ;
@@ -4367,43 +6129,79 @@ DELIMITER ;
 /*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
 /*!50003 SET sql_mode              = 'STRICT_TRANS_TABLES,NO_AUTO_CREATE_USER,NO_ENGINE_SUBSTITUTION' */ ;
 DELIMITER ;;
-CREATE DEFINER=`VisualStudio`@`%` PROCEDURE `sp_upd_productos`(
-  IN `p_cod_prod` varchar(20),
-  IN `p_existencia` int,
-  IN `p_fecha_venc` date,
-  IN `p_costo` double,
-  IN `p_precio_consumi` double,
-  IN `p_precio_mayor` double,
-  IN `p_nombre` varchar(45),
-  IN `p_cod_presentacion` int,
-  IN `p_cod_categoria` int,
-  IN `p_existencia_min` int,
-  IN `p_existencia_max` int,
-  IN `p_porcentaje_m` int,
-  IN `p_fecha_crea` datetime,
-  IN `p_fecha_actu` datetime,
-  IN `p_usuario_crea` varchar(45),
-  IN `p_usuario_actu` varchar(45)
+CREATE DEFINER=`VisualStudio`@`%` PROCEDURE `sp_upd_productos`(
+
+  IN `p_cod_prod` varchar(20),
+
+  IN `p_existencia` int,
+
+  IN `p_fecha_venc` date,
+
+  IN `p_costo` double,
+
+  IN `p_precio_consumi` double,
+
+  IN `p_precio_mayor` double,
+
+  IN `p_nombre` varchar(45),
+
+  IN `p_cod_presentacion` int,
+
+  IN `p_cod_categoria` int,
+
+  IN `p_existencia_min` int,
+
+  IN `p_existencia_max` int,
+
+  IN `p_porcentaje_m` int,
+
+  IN `p_fecha_crea` datetime,
+
+  IN `p_fecha_actu` datetime,
+
+  IN `p_usuario_crea` varchar(45),
+
+  IN `p_usuario_actu` varchar(45)
+
 )
-BEGIN
-  UPDATE `productos` SET
-    `existencia` = `p_existencia`,
-    `fecha_venc` = `p_fecha_venc`,
-    `costo` = `p_costo`,
-    `precio_consumi` = `p_precio_consumi`,
-    `precio_mayor` = `p_precio_mayor`,
-    `nombre` = `p_nombre`,
-    `cod_presentacion` = `p_cod_presentacion`,
-    `cod_categoria` = `p_cod_categoria`,
-    `existencia_min` = `p_existencia_min`,
-    `existencia_max` = `p_existencia_max`,
-    `porcentaje_m` = `p_porcentaje_m`,
-    `fecha_crea` = `p_fecha_crea`,
-    `fecha_actu` = `p_fecha_actu`,
-    `usuario_crea` = `p_usuario_crea`,
-    `usuario_actu` = `p_usuario_actu`
-  WHERE 
-    (`cod_prod` = `p_cod_prod`);
+BEGIN
+
+  UPDATE `productos` SET
+
+    `existencia` = `p_existencia`,
+
+    `fecha_venc` = `p_fecha_venc`,
+
+    `costo` = `p_costo`,
+
+    `precio_consumi` = `p_precio_consumi`,
+
+    `precio_mayor` = `p_precio_mayor`,
+
+    `nombre` = `p_nombre`,
+
+    `cod_presentacion` = `p_cod_presentacion`,
+
+    `cod_categoria` = `p_cod_categoria`,
+
+    `existencia_min` = `p_existencia_min`,
+
+    `existencia_max` = `p_existencia_max`,
+
+    `porcentaje_m` = `p_porcentaje_m`,
+
+    `fecha_crea` = `p_fecha_crea`,
+
+    `fecha_actu` = `p_fecha_actu`,
+
+    `usuario_crea` = `p_usuario_crea`,
+
+    `usuario_actu` = `p_usuario_actu`
+
+  WHERE 
+
+    (`cod_prod` = `p_cod_prod`);
+
 END ;;
 DELIMITER ;
 /*!50003 SET sql_mode              = @saved_sql_mode */ ;
@@ -4420,29 +6218,51 @@ DELIMITER ;
 /*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
 /*!50003 SET sql_mode              = 'STRICT_TRANS_TABLES,NO_AUTO_CREATE_USER,NO_ENGINE_SUBSTITUTION' */ ;
 DELIMITER ;;
-CREATE DEFINER=`VisualStudio`@`%` PROCEDURE `sp_upd_proveedores`(
-  IN `p_id_proveedor` int,
-  IN `p_direccion` varchar(45),
-  IN `p_telefono` varchar(15),
-  IN `p_nombre` varchar(45),
-  IN `p_contacto` varchar(45),
-  IN `p_fecha_crea` datetime,
-  IN `p_fecha_actu` datetime,
-  IN `p_usuario_crea` varchar(45),
-  IN `p_usuario_actu` varchar(45)
+CREATE DEFINER=`VisualStudio`@`%` PROCEDURE `sp_upd_proveedores`(
+
+  IN `p_id_proveedor` int,
+
+  IN `p_direccion` varchar(45),
+
+  IN `p_telefono` varchar(15),
+
+  IN `p_nombre` varchar(45),
+
+  IN `p_contacto` varchar(45),
+
+  IN `p_fecha_crea` datetime,
+
+  IN `p_fecha_actu` datetime,
+
+  IN `p_usuario_crea` varchar(45),
+
+  IN `p_usuario_actu` varchar(45)
+
 )
-BEGIN
-  UPDATE `proveedores` SET
-    `direccion` = `p_direccion`,
-    `telefono` = `p_telefono`,
-    `nombre` = `p_nombre`,
-    `contacto` = `p_contacto`,
-    `fecha_crea` = `p_fecha_crea`,
-    `fecha_actu` = `p_fecha_actu`,
-    `usuario_crea` = `p_usuario_crea`,
-    `usuario_actu` = `p_usuario_actu`
-  WHERE 
-    (`id_proveedor` = `p_id_proveedor`);
+BEGIN
+
+  UPDATE `proveedores` SET
+
+    `direccion` = `p_direccion`,
+
+    `telefono` = `p_telefono`,
+
+    `nombre` = `p_nombre`,
+
+    `contacto` = `p_contacto`,
+
+    `fecha_crea` = `p_fecha_crea`,
+
+    `fecha_actu` = `p_fecha_actu`,
+
+    `usuario_crea` = `p_usuario_crea`,
+
+    `usuario_actu` = `p_usuario_actu`
+
+  WHERE 
+
+    (`id_proveedor` = `p_id_proveedor`);
+
 END ;;
 DELIMITER ;
 /*!50003 SET sql_mode              = @saved_sql_mode */ ;
@@ -4459,25 +6279,43 @@ DELIMITER ;
 /*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
 /*!50003 SET sql_mode              = 'STRICT_TRANS_TABLES,NO_AUTO_CREATE_USER,NO_ENGINE_SUBSTITUTION' */ ;
 DELIMITER ;;
-CREATE DEFINER=`VisualStudio`@`%` PROCEDURE `sp_upd_telefonos_clientes`(
-  IN `p_id_telefonosclientes` int,
-  IN `p_numero_tel` varchar(15),
-  IN `p_fecha_crea` datetime,
-  IN `p_fecha_actu` datetime,
-  IN `p_usuario_crea` varchar(45),
-  IN `p_usuario_actu` varchar(45),
-  IN `p_id_cliente` int
+CREATE DEFINER=`VisualStudio`@`%` PROCEDURE `sp_upd_telefonos_clientes`(
+
+  IN `p_id_telefonosclientes` int,
+
+  IN `p_numero_tel` varchar(15),
+
+  IN `p_fecha_crea` datetime,
+
+  IN `p_fecha_actu` datetime,
+
+  IN `p_usuario_crea` varchar(45),
+
+  IN `p_usuario_actu` varchar(45),
+
+  IN `p_id_cliente` int
+
 )
-BEGIN
-  UPDATE `telefonos_clientes` SET
-    `numero_tel` = `p_numero_tel`,
-    `fecha_crea` = `p_fecha_crea`,
-    `fecha_actu` = `p_fecha_actu`,
-    `usuario_crea` = `p_usuario_crea`,
-    `usuario_actu` = `p_usuario_actu`
-  WHERE 
-    (`id_telefonosclientes` = `p_id_telefonosclientes`) AND
-    (`id_cliente` = `p_id_cliente`);
+BEGIN
+
+  UPDATE `telefonos_clientes` SET
+
+    `numero_tel` = `p_numero_tel`,
+
+    `fecha_crea` = `p_fecha_crea`,
+
+    `fecha_actu` = `p_fecha_actu`,
+
+    `usuario_crea` = `p_usuario_crea`,
+
+    `usuario_actu` = `p_usuario_actu`
+
+  WHERE 
+
+    (`id_telefonosclientes` = `p_id_telefonosclientes`) AND
+
+    (`id_cliente` = `p_id_cliente`);
+
 END ;;
 DELIMITER ;
 /*!50003 SET sql_mode              = @saved_sql_mode */ ;
@@ -4494,23 +6332,39 @@ DELIMITER ;
 /*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
 /*!50003 SET sql_mode              = 'STRICT_TRANS_TABLES,NO_AUTO_CREATE_USER,NO_ENGINE_SUBSTITUTION' */ ;
 DELIMITER ;;
-CREATE DEFINER=`VisualStudio`@`%` PROCEDURE `sp_upd_tipo_cliente`(
-  IN `p_id_tipocliente` int,
-  IN `p_descripcion` varchar(15),
-  IN `p_fecha_crea` datetime,
-  IN `p_fecha_actu` datetime,
-  IN `p_usuario_crea` varchar(45),
-  IN `p_usuario_actu` varchar(45)
+CREATE DEFINER=`VisualStudio`@`%` PROCEDURE `sp_upd_tipo_cliente`(
+
+  IN `p_id_tipocliente` int,
+
+  IN `p_descripcion` varchar(15),
+
+  IN `p_fecha_crea` datetime,
+
+  IN `p_fecha_actu` datetime,
+
+  IN `p_usuario_crea` varchar(45),
+
+  IN `p_usuario_actu` varchar(45)
+
 )
-BEGIN
-  UPDATE `tipo_cliente` SET
-    `descripcion` = `p_descripcion`,
-    `fecha_crea` = `p_fecha_crea`,
-    `fecha_actu` = `p_fecha_actu`,
-    `usuario_crea` = `p_usuario_crea`,
-    `usuario_actu` = `p_usuario_actu`
-  WHERE 
-    (`id_tipocliente` = `p_id_tipocliente`);
+BEGIN
+
+  UPDATE `tipo_cliente` SET
+
+    `descripcion` = `p_descripcion`,
+
+    `fecha_crea` = `p_fecha_crea`,
+
+    `fecha_actu` = `p_fecha_actu`,
+
+    `usuario_crea` = `p_usuario_crea`,
+
+    `usuario_actu` = `p_usuario_actu`
+
+  WHERE 
+
+    (`id_tipocliente` = `p_id_tipocliente`);
+
 END ;;
 DELIMITER ;
 /*!50003 SET sql_mode              = @saved_sql_mode */ ;
@@ -4527,25 +6381,43 @@ DELIMITER ;
 /*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
 /*!50003 SET sql_mode              = 'STRICT_TRANS_TABLES,NO_AUTO_CREATE_USER,NO_ENGINE_SUBSTITUTION' */ ;
 DELIMITER ;;
-CREATE DEFINER=`VisualStudio`@`%` PROCEDURE `sp_upd_tipo_transacciones`(
-  IN `p_id_tipotran` int,
-  IN `p_nombre` varchar(45),
-  IN `p_fecha_crea` datetime,
-  IN `p_fecha_actu` datetime,
-  IN `p_usuario_crea` varchar(15),
-  IN `p_usuario_actu` varchar(15),
-  IN `p_entrada_o_salida` varchar(1)
+CREATE DEFINER=`VisualStudio`@`%` PROCEDURE `sp_upd_tipo_transacciones`(
+
+  IN `p_id_tipotran` int,
+
+  IN `p_nombre` varchar(45),
+
+  IN `p_fecha_crea` datetime,
+
+  IN `p_fecha_actu` datetime,
+
+  IN `p_usuario_crea` varchar(15),
+
+  IN `p_usuario_actu` varchar(15),
+
+  IN `p_entrada_o_salida` varchar(1)
+
 )
-BEGIN
-  UPDATE `tipo_transacciones` SET
-    `nombre` = `p_nombre`,
-    `fecha_crea` = `p_fecha_crea`,
-    `fecha_actu` = `p_fecha_actu`,
-    `usuario_crea` = `p_usuario_crea`,
-    `usuario_actu` = `p_usuario_actu`,
-    `entrada_o_salida` = `p_entrada_o_salida`
-  WHERE 
-    (`id_tipotran` = `p_id_tipotran`);
+BEGIN
+
+  UPDATE `tipo_transacciones` SET
+
+    `nombre` = `p_nombre`,
+
+    `fecha_crea` = `p_fecha_crea`,
+
+    `fecha_actu` = `p_fecha_actu`,
+
+    `usuario_crea` = `p_usuario_crea`,
+
+    `usuario_actu` = `p_usuario_actu`,
+
+    `entrada_o_salida` = `p_entrada_o_salida`
+
+  WHERE 
+
+    (`id_tipotran` = `p_id_tipotran`);
+
 END ;;
 DELIMITER ;
 /*!50003 SET sql_mode              = @saved_sql_mode */ ;
@@ -4562,29 +6434,51 @@ DELIMITER ;
 /*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
 /*!50003 SET sql_mode              = 'STRICT_TRANS_TABLES,NO_AUTO_CREATE_USER,NO_ENGINE_SUBSTITUTION' */ ;
 DELIMITER ;;
-CREATE DEFINER=`VisualStudio`@`%` PROCEDURE `sp_upd_usuarios`(
-  IN `p_usuario` varchar(45),
-  IN `p_correo` varchar(45),
-  IN `p_nombre` varchar(45),
-  IN `p_clave` binary,
-  IN `p_key` binary,
-  IN `p_fecha_crea` datetime,
-  IN `p_fecha_actu` datetime,
-  IN `p_usuario_crea` varchar(45),
-  IN `p_usuario_actu` varchar(45)
+CREATE DEFINER=`VisualStudio`@`%` PROCEDURE `sp_upd_usuarios`(
+
+  IN `p_usuario` varchar(45),
+
+  IN `p_correo` varchar(45),
+
+  IN `p_nombre` varchar(45),
+
+  IN `p_clave` binary,
+
+  IN `p_key` binary,
+
+  IN `p_fecha_crea` datetime,
+
+  IN `p_fecha_actu` datetime,
+
+  IN `p_usuario_crea` varchar(45),
+
+  IN `p_usuario_actu` varchar(45)
+
 )
-BEGIN
-  UPDATE `usuarios` SET
-    `correo` = `p_correo`,
-    `nombre` = `p_nombre`,
-    `clave` = `p_clave`,
-    `key` = `p_key`,
-    `fecha_crea` = `p_fecha_crea`,
-    `fecha_actu` = `p_fecha_actu`,
-    `usuario_crea` = `p_usuario_crea`,
-    `usuario_actu` = `p_usuario_actu`
-  WHERE 
-    (`usuario` = `p_usuario`);
+BEGIN
+
+  UPDATE `usuarios` SET
+
+    `correo` = `p_correo`,
+
+    `nombre` = `p_nombre`,
+
+    `clave` = `p_clave`,
+
+    `key` = `p_key`,
+
+    `fecha_crea` = `p_fecha_crea`,
+
+    `fecha_actu` = `p_fecha_actu`,
+
+    `usuario_crea` = `p_usuario_crea`,
+
+    `usuario_actu` = `p_usuario_actu`
+
+  WHERE 
+
+    (`usuario` = `p_usuario`);
+
 END ;;
 DELIMITER ;
 /*!50003 SET sql_mode              = @saved_sql_mode */ ;
@@ -4601,29 +6495,64 @@ DELIMITER ;
 /*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
 /*!50003 SET sql_mode              = 'STRICT_TRANS_TABLES,NO_AUTO_CREATE_USER,NO_ENGINE_SUBSTITUTION' */ ;
 DELIMITER ;;
-CREATE DEFINER=`VisualStudio`@`%` PROCEDURE `sp_upd_usuarios_has_grupos_roles`(
-  IN `p_usuario` varchar(45),
-  IN `p_id_rol` int,
-  IN `p_fecha_crea` datetime,
-  IN `p_fecha_actu` datetime,
-  IN `p_usuario_crea` varchar(45),
-  IN `p_usuario_actu` varchar(45)
+CREATE DEFINER=`VisualStudio`@`%` PROCEDURE `sp_upd_usuarios_has_grupos_roles`(
+
+  IN `p_usuario` varchar(45),
+
+  IN `p_id_rol` int,
+
+  IN `p_fecha_crea` datetime,
+
+  IN `p_fecha_actu` datetime,
+
+  IN `p_usuario_crea` varchar(45),
+
+  IN `p_usuario_actu` varchar(45)
+
 )
-BEGIN
-  UPDATE `usuarios_has_grupos_roles` SET
-    `fecha_crea` = `p_fecha_crea`,
-    `fecha_actu` = `p_fecha_actu`,
-    `usuario_crea` = `p_usuario_crea`,
-    `usuario_actu` = `p_usuario_actu`
-  WHERE 
-    (`usuario` = `p_usuario`) AND
-    (`id_rol` = `p_id_rol`);
+BEGIN
+
+  UPDATE `usuarios_has_grupos_roles` SET
+
+    `fecha_crea` = `p_fecha_crea`,
+
+    `fecha_actu` = `p_fecha_actu`,
+
+    `usuario_crea` = `p_usuario_crea`,
+
+    `usuario_actu` = `p_usuario_actu`
+
+  WHERE 
+
+    (`usuario` = `p_usuario`) AND
+
+    (`id_rol` = `p_id_rol`);
+
 END ;;
 DELIMITER ;
 /*!50003 SET sql_mode              = @saved_sql_mode */ ;
 /*!50003 SET character_set_client  = @saved_cs_client */ ;
 /*!50003 SET character_set_results = @saved_cs_results */ ;
 /*!50003 SET collation_connection  = @saved_col_connection */ ;
+
+--
+-- Final view structure for view `vw_producto`
+--
+
+/*!50001 DROP TABLE IF EXISTS `vw_producto`*/;
+/*!50001 DROP VIEW IF EXISTS `vw_producto`*/;
+/*!50001 SET @saved_cs_client          = @@character_set_client */;
+/*!50001 SET @saved_cs_results         = @@character_set_results */;
+/*!50001 SET @saved_col_connection     = @@collation_connection */;
+/*!50001 SET character_set_client      = utf8 */;
+/*!50001 SET character_set_results     = utf8 */;
+/*!50001 SET collation_connection      = utf8_general_ci */;
+/*!50001 CREATE ALGORITHM=UNDEFINED */
+/*!50013 DEFINER=`root`@`localhost` SQL SECURITY DEFINER */
+/*!50001 VIEW `vw_producto` AS select `productos`.`cod_prod` AS `cod_prod`,`productos`.`existencia` AS `existencia`,`productos`.`fecha_venc` AS `fecha_venc`,`productos`.`costo` AS `costo`,`productos`.`precio_consumi` AS `precio_consumi`,`productos`.`precio_mayor` AS `precio_mayor`,`productos`.`nombre` AS `nombre`,`productos`.`cod_presentacion` AS `cod_presentacion`,`productos`.`cod_categoria` AS `cod_categoria`,`productos`.`existencia_min` AS `existencia_min`,`productos`.`existencia_max` AS `existencia_max`,`productos`.`porcentaje_m` AS `porcentaje_m`,`productos`.`fecha_crea` AS `fecha_crea`,`productos`.`fecha_actu` AS `fecha_actu`,`productos`.`usuario_crea` AS `usuario_crea`,`productos`.`usuario_actu` AS `usuario_actu` from `productos` where (`productos`.`cod_prod` = `getProducto`()) */;
+/*!50001 SET character_set_client      = @saved_cs_client */;
+/*!50001 SET character_set_results     = @saved_cs_results */;
+/*!50001 SET collation_connection      = @saved_col_connection */;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
 /*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
@@ -4634,4 +6563,4 @@ DELIMITER ;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2014-11-18 22:20:12
+-- Dump completed on 2014-11-19 16:55:18
