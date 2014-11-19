@@ -14,6 +14,7 @@ using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Collections.Generic;
+using Pharma.Domain.Entities;
 
 namespace Pharma.Domain
 {
