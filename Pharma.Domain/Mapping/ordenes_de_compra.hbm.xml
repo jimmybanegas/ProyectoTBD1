@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<hibernate-mapping assembly="Pharma.Domain" namespace="Pharma.Domain" xmlns="urn:nhibernate-mapping-2.2">
+<hibernate-mapping assembly="Pharma.Domain" namespace="Pharma.Domain.Entities" xmlns="urn:nhibernate-mapping-2.2">
   <class name="ordenes_de_compra" table="ordenes_de_compra" schema="farmacia">
     <id name="id_ordencompra" type="Int32">
       <column name="id_ordencompra" not-null="true" precision="11" scale="0" sql-type="int" />
@@ -14,14 +14,14 @@
     <property name="id_proveedor" type="Int32">
       <column name="id_proveedor" not-null="true" precision="11" scale="0" sql-type="int" />
     </property>
-    <property name="ejecutada" type="Int32">
-      <column name="ejecutada" not-null="false" precision="11" scale="0" sql-type="int" />
+    <property name="ejecutada" type="Boolean">
+      <column name="ejecutada" not-null="false" precision="1" scale="0" sql-type="tinyint" />
     </property>
-    <property name="cancelada" type="Int32">
-      <column name="cancelada" not-null="false" precision="11" scale="0" sql-type="int" />
+    <property name="cancelada" type="Boolean">
+      <column name="cancelada" not-null="false" precision="1" scale="0" sql-type="tinyint" />
     </property>
-    <property name="activa" type="Int32">
-      <column name="activa" not-null="false" precision="11" scale="0" sql-type="int" />
+    <property name="activa" type="Boolean">
+      <column name="activa" not-null="false" precision="1" scale="0" sql-type="tinyint" />
     </property>
     <property name="fecha_crea" type="DateTime">
       <column name="fecha_crea" not-null="false" sql-type="datetime" />

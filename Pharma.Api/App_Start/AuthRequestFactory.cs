@@ -19,7 +19,7 @@ namespace Pharma.Api
 
         public static UserTokenModel BuildDecryptedRequest(string encryptedToken)
         {
-            var jsonString = Encripter.Decrypt(encryptedToken);
+            string jsonString = Encripter.Decrypt(encryptedToken);
             var decryptedAuthRequest = new JavaScriptSerializer().Deserialize<UserTokenModel>(jsonString);
             return decryptedAuthRequest;
         }

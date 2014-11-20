@@ -1,8 +1,8 @@
 ﻿'use strict';
 angular.module('app.services')
-    .factory('Server', function () {
+    .factory('Server', function() {
         return {
-            get: function () {
+            get: function() {
                 var server = '';
                 if (window.location.host.indexOf('localhost') > -1) {
                     server = 'http://localhost:1367';

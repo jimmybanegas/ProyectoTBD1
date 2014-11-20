@@ -1,17 +1,19 @@
+using Encryptamajig;
+
 namespace Pharma.Api
 {
     public class Encripter
     {
-        const string key = "^#*GSdb38";
+        private const string key = "^#*GSdb38";
 
         public static string Encrypt(string plainText)
         {
-            return Encryptamajig.AesEncryptamajig.Encrypt(plainText, key);
+            return AesEncryptamajig.Encrypt(plainText, key);
         }
 
         public static string Decrypt(string cipherText)
         {
-            return Encryptamajig.AesEncryptamajig.Decrypt(cipherText, key);
+            return AesEncryptamajig.Decrypt(cipherText, key);
         }
     }
 }

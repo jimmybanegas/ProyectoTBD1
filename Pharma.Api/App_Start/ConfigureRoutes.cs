@@ -8,8 +8,8 @@ namespace Pharma.Api
 {
     public class ConfigureRoutes : IBootstrapperTask
     {
-        Type _mvcControllerExample;
-        Type _webApiControllerExample;
+        private Type _mvcControllerExample;
+        private Type _webApiControllerExample;
 
         #region IBootstrapperTask Members
 
@@ -42,12 +42,12 @@ namespace Pharma.Api
             return this;
         }
 
-        void RegisterMvc(RouteCollection routes)
+        private void RegisterMvc(RouteCollection routes)
         {
             routes.MapAttributeRoutes(c => c.AddRoutesFromAssembly(_mvcControllerExample.Assembly));
         }
 
-        void RegisterWebApi(HttpRouteCollection routes)
+        private void RegisterWebApi(HttpRouteCollection routes)
         {
             routes.MapHttpAttributeRoutes(c => c.AddRoutesFromAssembly(_webApiControllerExample.Assembly));
         }

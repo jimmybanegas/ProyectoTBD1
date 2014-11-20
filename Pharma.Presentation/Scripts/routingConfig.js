@@ -1,4 +1,4 @@
-﻿(function (exports) {
+﻿(function(exports) {
 
     var config = {
 
@@ -10,7 +10,8 @@
             'public',
             'user',
             'subcontractor',
-            'admin'],
+            'admin'
+        ],
 
         /*
         Build out all the access levels you want referencing the roles listed above
@@ -28,8 +29,7 @@
             'admin': ['admin']
         }
 
-    }
-
+    };
     exports.userRoles = buildRoles(config.roles);
     exports.accessLevels = buildAccessLevels(config.accessLevels, exports.userRoles);
 
@@ -71,23 +71,20 @@
                     var resultBitMask = '';
 
                     for (var role in userRoles) {
-                        resultBitMask += "1"
+                        resultBitMask += "1";
                     }
                     //accessLevels[level] = parseInt(resultBitMask, 2);
                     accessLevels[level] = {
                         bitMask: parseInt(resultBitMask, 2)
                     };
-                }
-                else console.log("Access Control Error: Could not parse '" + accessLevelDeclarations[level] + "' as access definition for level '" + level + "'")
-
-            }
-            else {
+                } else console.log("Access Control Error: Could not parse '" + accessLevelDeclarations[level] + "' as access definition for level '" + level + "'");
+            } else {
 
                 var resultBitMask = 0;
                 for (var role in accessLevelDeclarations[level]) {
                     if (userRoles.hasOwnProperty(accessLevelDeclarations[level][role]))
-                        resultBitMask = resultBitMask | userRoles[accessLevelDeclarations[level][role]].bitMask
-                    else console.log("Access Control Error: Could not find role '" + accessLevelDeclarations[level][role] + "' in registered roles while building access for '" + level + "'")
+                        resultBitMask = resultBitMask | userRoles[accessLevelDeclarations[level][role]].bitMask;
+                    else console.log("Access Control Error: Could not find role '" + accessLevelDeclarations[level][role] + "' in registered roles while building access for '" + level + "'");
                 }
                 accessLevels[level] = {
                     bitMask: resultBitMask

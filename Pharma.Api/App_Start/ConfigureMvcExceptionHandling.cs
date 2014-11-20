@@ -5,7 +5,7 @@ namespace Pharma.Api
 {
     public class ConfigureMvcExceptionHandling : IBootstrapperTask
     {
-        readonly List<IExceptionFilter> _exceptionFilters = new List<IExceptionFilter>();
+        private readonly List<IExceptionFilter> _exceptionFilters = new List<IExceptionFilter>();
 
         #region IBootstrapperTask Members
 

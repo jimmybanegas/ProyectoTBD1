@@ -6,7 +6,7 @@ namespace Pharma.Api
 {
     public class ConfigureDependencies : IBootstrapperTask
     {
-        readonly ContainerBuilder _containerBuilder;
+        private readonly ContainerBuilder _containerBuilder;
 
         public ConfigureDependencies(ContainerBuilder containerBuilder)
         {
@@ -24,7 +24,6 @@ namespace Pharma.Api
                 .RegisterAssemblyTypes(data, domain)
                 .AsImplementedInterfaces();
             _containerBuilder.Register(c => Mapper.Engine).As<IMappingEngine>();
-
         }
 
         #endregion

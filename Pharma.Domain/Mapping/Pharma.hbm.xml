@@ -1,0 +1,543 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<hibernate-mapping assembly="Pharma.Domain" namespace="Pharma.Domain.Entities" xmlns="urn:nhibernate-mapping-2.2">
+  <sql-query name="sp_del_ajustes" callable="true">
+    <query-param name="p_id_ajuste" type="Int32" />call farmacia.sp_del_ajustes(:p_id_ajuste)</sql-query>
+  <sql-query name="sp_del_categoria_productos" callable="true">
+    <query-param name="p_cod_categoria" type="Int32" />call farmacia.sp_del_categoria_productos(:p_cod_categoria)</sql-query>
+  <sql-query name="sp_del_clientes" callable="true">
+    <query-param name="p_id_cliente" type="Int32" />call farmacia.sp_del_clientes(:p_id_cliente)</sql-query>
+  <sql-query name="sp_del_compras" callable="true">
+    <query-param name="p_id_compra" type="Int32" />call farmacia.sp_del_compras(:p_id_compra)</sql-query>
+  <sql-query name="sp_del_contactos_clientes" callable="true">
+    <query-param name="p_id_contactocliente" type="Int32" />
+    <query-param name="p_nombre" type="String" />
+    <query-param name="p_correo" type="String" />
+    <query-param name="p_telefono" type="String" />
+    <query-param name="p_id_cliente" type="Int32" />call farmacia.sp_del_contactos_clientes(:p_id_contactocliente, :p_nombre, :p_correo, :p_telefono, :p_id_cliente)</sql-query>
+  <sql-query name="sp_del_costo_prod_proveedor" callable="true">
+    <query-param name="p_cod_prod" type="String" />
+    <query-param name="p_id_proveedor" type="Int32" />call farmacia.sp_del_costo_prod_proveedor(:p_cod_prod, :p_id_proveedor)</sql-query>
+  <sql-query name="sp_del_cotizaciones" callable="true">
+    <query-param name="p_id_cotizacion" type="Int32" />call farmacia.sp_del_cotizaciones(:p_id_cotizacion)</sql-query>
+  <sql-query name="sp_del_detalle_ajustes" callable="true">
+    <query-param name="p_num_detalle" type="Int32" />
+    <query-param name="p_id_ajuste" type="Int32" />call farmacia.sp_del_detalle_ajustes(:p_num_detalle, :p_id_ajuste)</sql-query>
+  <sql-query name="sp_del_detalle_compras" callable="true">
+    <query-param name="p_num_detalle" type="Int32" />
+    <query-param name="p_id_compra" type="Int32" />call farmacia.sp_del_detalle_compras(:p_num_detalle, :p_id_compra)</sql-query>
+  <sql-query name="sp_del_detalle_cotizaciones" callable="true">
+    <query-param name="p_num_detalle" type="Int32" />
+    <query-param name="p_id_cotizacion" type="Int32" />call farmacia.sp_del_detalle_cotizaciones(:p_num_detalle, :p_id_cotizacion)</sql-query>
+  <sql-query name="sp_del_detalle_facturas" callable="true">
+    <query-param name="p_num_detalle" type="Int32" />
+    <query-param name="p_num_factura" type="Int32" />call farmacia.sp_del_detalle_facturas(:p_num_detalle, :p_num_factura)</sql-query>
+  <sql-query name="sp_del_detalle_oc" callable="true">
+    <query-param name="p_num_detalle" type="Int32" />
+    <query-param name="p_id_ordencompra" type="Int32" />call farmacia.sp_del_detalle_oc(:p_num_detalle, :p_id_ordencompra)</sql-query>
+  <sql-query name="sp_del_direcciones_clientes" callable="true">
+    <query-param name="p_id_direccioncliente" type="Int32" />
+    <query-param name="p_direccion" type="String" />
+    <query-param name="p_id_cliente" type="Int32" />call farmacia.sp_del_direcciones_clientes(:p_id_direccioncliente, :p_direccion, :p_id_cliente)</sql-query>
+  <sql-query name="sp_del_facturas" callable="true">
+    <query-param name="p_num_factura" type="Int32" />call farmacia.sp_del_facturas(:p_num_factura)</sql-query>
+  <sql-query name="sp_del_grupos_roles" callable="true">
+    <query-param name="p_id_rol" type="Int32" />call farmacia.sp_del_grupos_roles(:p_id_rol)</sql-query>
+  <sql-query name="sp_del_grupos_roles_has_privilegios" callable="true">
+    <query-param name="p_id_rol" type="Int32" />
+    <query-param name="p_id_privilegio" type="Int32" />call farmacia.sp_del_grupos_roles_has_privilegios(:p_id_rol, :p_id_privilegio)</sql-query>
+  <sql-query name="sp_del_kardex" callable="true">
+    <query-param name="p_id_operacion" type="Int32" />call farmacia.sp_del_kardex(:p_id_operacion)</sql-query>
+  <sql-query name="sp_del_ordenes_de_compra" callable="true">
+    <query-param name="p_id_ordencompra" type="Int32" />call farmacia.sp_del_ordenes_de_compra(:p_id_ordencompra)</sql-query>
+  <sql-query name="sp_del_presentacion_productos" callable="true">
+    <query-param name="p_cod_presentacion" type="Int32" />call farmacia.sp_del_presentacion_productos(:p_cod_presentacion)</sql-query>
+  <sql-query name="sp_del_privilegios" callable="true">
+    <query-param name="p_id_privilegio" type="Int32" />call farmacia.sp_del_privilegios(:p_id_privilegio)</sql-query>
+  <sql-query name="sp_del_productos" callable="true">
+    <query-param name="p_cod_prod" type="String" />call farmacia.sp_del_productos(:p_cod_prod)</sql-query>
+  <sql-query name="sp_del_proveedores" callable="true">
+    <query-param name="p_id_proveedor" type="Int32" />call farmacia.sp_del_proveedores(:p_id_proveedor)</sql-query>
+  <sql-query name="sp_del_telefonos_clientes" callable="true">
+    <query-param name="p_id_telefonosclientes" type="Int32" />
+    <query-param name="p_id_cliente" type="Int32" />call farmacia.sp_del_telefonos_clientes(:p_id_telefonosclientes, :p_id_cliente)</sql-query>
+  <sql-query name="sp_del_tipo_cliente" callable="true">
+    <query-param name="p_id_tipocliente" type="Int32" />call farmacia.sp_del_tipo_cliente(:p_id_tipocliente)</sql-query>
+  <sql-query name="sp_del_tipo_transacciones" callable="true">
+    <query-param name="p_id_tipotran" type="Int32" />call farmacia.sp_del_tipo_transacciones(:p_id_tipotran)</sql-query>
+  <sql-query name="sp_del_usuarios" callable="true">
+    <query-param name="p_usuario" type="String" />call farmacia.sp_del_usuarios(:p_usuario)</sql-query>
+  <sql-query name="sp_del_usuarios_has_grupos_roles" callable="true">
+    <query-param name="p_usuario" type="String" />
+    <query-param name="p_id_rol" type="Int32" />call farmacia.sp_del_usuarios_has_grupos_roles(:p_usuario, :p_id_rol)</sql-query>
+  <sql-query name="sp_ins_ajustes" callable="true">
+    <query-param name="p_fecha" type="DateTime" />
+    <query-param name="p_cant_producto" type="Int32" />
+    <query-param name="p_fecha_crea" type="DateTime" />
+    <query-param name="p_fecha_actu" type="DateTime" />
+    <query-param name="p_usuario_crea" type="String" />
+    <query-param name="p_usuario_actu" type="String" />
+    <query-param name="p_id_tipotran" type="Int32" />call farmacia.sp_ins_ajustes(:p_fecha, :p_cant_producto, :p_fecha_crea, :p_fecha_actu, :p_usuario_crea, :p_usuario_actu, :p_id_tipotran)</sql-query>
+  <sql-query name="sp_ins_categoria_productos" callable="true">
+    <query-param name="p_nombre" type="String" />
+    <query-param name="p_fecha_crea" type="DateTime" />
+    <query-param name="p_fecha_actu" type="DateTime" />
+    <query-param name="p_usuario_crea" type="String" />
+    <query-param name="p_usuario_actu" type="String" />call farmacia.sp_ins_categoria_productos(:p_nombre, :p_fecha_crea, :p_fecha_actu, :p_usuario_crea, :p_usuario_actu)</sql-query>
+  <sql-query name="sp_ins_clientes" callable="true">
+    <query-param name="p_nombre" type="String" />
+    <query-param name="p_fecha_crea" type="DateTime" />
+    <query-param name="p_fecha_actu" type="DateTime" />
+    <query-param name="p_usuario_crea" type="String" />
+    <query-param name="p_usuario_actu" type="String" />
+    <query-param name="p_id_tipocliente" type="Int32" />call farmacia.sp_ins_clientes(:p_nombre, :p_fecha_crea, :p_fecha_actu, :p_usuario_crea, :p_usuario_actu, :p_id_tipocliente)</sql-query>
+  <sql-query name="sp_ins_compras" callable="true">
+    <query-param name="p_fecha" type="DateTime" />
+    <query-param name="p_total" type="Double" />
+    <query-param name="p_fecha_crea" type="DateTime" />
+    <query-param name="p_fecha_actu" type="DateTime" />
+    <query-param name="p_usuario_crea" type="String" />
+    <query-param name="p_usuario_actu" type="String" />
+    <query-param name="p_id_proveedor" type="Int32" />call farmacia.sp_ins_compras(:p_fecha, :p_total, :p_fecha_crea, :p_fecha_actu, :p_usuario_crea, :p_usuario_actu, :p_id_proveedor)</sql-query>
+  <sql-query name="sp_ins_contactos_clientes" callable="true">
+    <query-param name="p_nombre" type="String" />
+    <query-param name="p_correo" type="String" />
+    <query-param name="p_telefono" type="String" />
+    <query-param name="p_id_cliente" type="Int32" />
+    <query-param name="p_fecha_crea" type="DateTime" />
+    <query-param name="p_fecha_actu" type="DateTime" />
+    <query-param name="p_usuario_crea" type="String" />
+    <query-param name="p_usuario_actu" type="String" />call farmacia.sp_ins_contactos_clientes(:p_nombre, :p_correo, :p_telefono, :p_id_cliente, :p_fecha_crea, :p_fecha_actu, :p_usuario_crea, :p_usuario_actu)</sql-query>
+  <sql-query name="sp_ins_costo_prod_proveedor" callable="true">
+    <query-param name="p_costo" type="Double" />
+    <query-param name="p_cod_prod" type="String" />
+    <query-param name="p_id_proveedor" type="Int32" />call farmacia.sp_ins_costo_prod_proveedor(:p_costo, :p_cod_prod, :p_id_proveedor)</sql-query>
+  <sql-query name="sp_ins_cotizaciones" callable="true">
+    <query-param name="p_fecha" type="DateTime" />
+    <query-param name="p_total" type="Double" />
+    <query-param name="p_fecha_crea" type="DateTime" />
+    <query-param name="p_fecha_actu" type="DateTime" />
+    <query-param name="p_usuario_crea" type="String" />
+    <query-param name="p_usuario_actu" type="String" />
+    <query-param name="p_id_proveedor" type="Int32" />call farmacia.sp_ins_cotizaciones(:p_fecha, :p_total, :p_fecha_crea, :p_fecha_actu, :p_usuario_crea, :p_usuario_actu, :p_id_proveedor)</sql-query>
+  <sql-query name="sp_ins_detalle_ajustes" callable="true">
+    <query-param name="p_num_detalle" type="Int32" />
+    <query-param name="p_cantidad" type="Int32" />
+    <query-param name="p_id_ajuste" type="Int32" />
+    <query-param name="p_cod_prod" type="String" />call farmacia.sp_ins_detalle_ajustes(:p_num_detalle, :p_cantidad, :p_id_ajuste, :p_cod_prod)</sql-query>
+  <sql-query name="sp_ins_detalle_compras" callable="true">
+    <query-param name="p_num_detalle" type="Int32" />
+    <query-param name="p_cantidad" type="Int32" />
+    <query-param name="p_precio_compra" type="Double" />
+    <query-param name="p_subtotal" type="Double" />
+    <query-param name="p_id_compra" type="Int32" />
+    <query-param name="p_cod_prod" type="String" />call farmacia.sp_ins_detalle_compras(:p_num_detalle, :p_cantidad, :p_precio_compra, :p_subtotal, :p_id_compra, :p_cod_prod)</sql-query>
+  <sql-query name="sp_ins_detalle_cotizaciones" callable="true">
+    <query-param name="p_num_detalle" type="Int32" />
+    <query-param name="p_cantidad" type="Int32" />
+    <query-param name="p_precio_unit" type="Double" />
+    <query-param name="p_id_cotizacion" type="Int32" />
+    <query-param name="p_cod_prod" type="String" />call farmacia.sp_ins_detalle_cotizaciones(:p_num_detalle, :p_cantidad, :p_precio_unit, :p_id_cotizacion, :p_cod_prod)</sql-query>
+  <sql-query name="sp_ins_detalle_facturas" callable="true">
+    <query-param name="p_num_detalle" type="Int32" />
+    <query-param name="p_precio_venta" type="Double" />
+    <query-param name="p_cantidad" type="Int32" />
+    <query-param name="p_subtotal" type="Double" />
+    <query-param name="p_num_factura" type="Int32" />
+    <query-param name="p_cod_prod" type="String" />call farmacia.sp_ins_detalle_facturas(:p_num_detalle, :p_precio_venta, :p_cantidad, :p_subtotal, :p_num_factura, :p_cod_prod)</sql-query>
+  <sql-query name="sp_ins_detalle_oc" callable="true">
+    <query-param name="p_num_detalle" type="Int32" />
+    <query-param name="p_cantidad" type="Int32" />
+    <query-param name="p_subtotal" type="Double" />
+    <query-param name="p_precio_unit" type="Double" />
+    <query-param name="p_id_ordencompra" type="Int32" />
+    <query-param name="p_cod_prod" type="String" />call farmacia.sp_ins_detalle_oc(:p_num_detalle, :p_cantidad, :p_subtotal, :p_precio_unit, :p_id_ordencompra, :p_cod_prod)</sql-query>
+  <sql-query name="sp_ins_direcciones_clientes" callable="true">
+    <query-param name="p_direccion" type="String" />
+    <query-param name="p_id_cliente" type="Int32" />
+    <query-param name="p_fecha_crea" type="DateTime" />
+    <query-param name="p_fecha_actu" type="DateTime" />
+    <query-param name="p_usuario_crea" type="String" />
+    <query-param name="p_usuario_actu" type="String" />call farmacia.sp_ins_direcciones_clientes(:p_direccion, :p_id_cliente, :p_fecha_crea, :p_fecha_actu, :p_usuario_crea, :p_usuario_actu)</sql-query>
+  <sql-query name="sp_ins_facturas" callable="true">
+    <query-param name="p_fecha" type="DateTime" />
+    <query-param name="p_subtotal" type="Double" />
+    <query-param name="p_isv" type="Double" />
+    <query-param name="p_descuento" type="Double" />
+    <query-param name="p_total" type="Double" />
+    <query-param name="p_fecha_crea" type="DateTime" />
+    <query-param name="p_fecha_actu" type="DateTime" />
+    <query-param name="p_usuario_crea" type="String" />
+    <query-param name="p_usuario_actu" type="String" />
+    <query-param name="p_id_cliente" type="Int32" />call farmacia.sp_ins_facturas(:p_fecha, :p_subtotal, :p_isv, :p_descuento, :p_total, :p_fecha_crea, :p_fecha_actu, :p_usuario_crea, :p_usuario_actu, :p_id_cliente)</sql-query>
+  <sql-query name="sp_ins_grupos_roles" callable="true">
+    <query-param name="p_nombre" type="String" />
+    <query-param name="p_fecha_crea" type="DateTime" />
+    <query-param name="p_fecha_actu" type="DateTime" />
+    <query-param name="p_usuario_crea" type="String" />
+    <query-param name="p_usuario_actu" type="String" />call farmacia.sp_ins_grupos_roles(:p_nombre, :p_fecha_crea, :p_fecha_actu, :p_usuario_crea, :p_usuario_actu)</sql-query>
+  <sql-query name="sp_ins_grupos_roles_has_privilegios" callable="true">
+    <query-param name="p_id_rol" type="Int32" />
+    <query-param name="p_id_privilegio" type="Int32" />
+    <query-param name="p_fecha_crea" type="DateTime" />
+    <query-param name="p_fecha_actu" type="DateTime" />
+    <query-param name="p_usuario_crea" type="String" />
+    <query-param name="p_usuario_actu" type="String" />call farmacia.sp_ins_grupos_roles_has_privilegios(:p_id_rol, :p_id_privilegio, :p_fecha_crea, :p_fecha_actu, :p_usuario_crea, :p_usuario_actu)</sql-query>
+  <sql-query name="sp_ins_kardex" callable="true">
+    <query-param name="p_cantidad" type="Int32" />
+    <query-param name="p_costo" type="Double" />
+    <query-param name="p_inv_antes" type="Int32" />
+    <query-param name="p_inv_despues" type="Int32" />
+    <query-param name="p_fecha_crea" type="DateTime" />
+    <query-param name="p_usuario_crea" type="String" />
+    <query-param name="p_precio" type="Double" />
+    <query-param name="p_cod_prod" type="String" />
+    <query-param name="p_entrada_o_salida" type="String" />call farmacia.sp_ins_kardex(:p_cantidad, :p_costo, :p_inv_antes, :p_inv_despues, :p_fecha_crea, :p_usuario_crea, :p_precio, :p_cod_prod, :p_entrada_o_salida)</sql-query>
+  <sql-query name="sp_ins_ordenes_de_compra" callable="true">
+    <query-param name="p_fecha" type="DateTime" />
+    <query-param name="p_total" type="Double" />
+    <query-param name="p_id_proveedor" type="Int32" />
+    <query-param name="p_ejecutada" type="SByte" />
+    <query-param name="p_cancelada" type="SByte" />
+    <query-param name="p_activa" type="SByte" />
+    <query-param name="p_fecha_crea" type="DateTime" />
+    <query-param name="p_fecha_actu" type="DateTime" />
+    <query-param name="p_usuario_crea" type="String" />
+    <query-param name="p_usuario_actu" type="String" />call farmacia.sp_ins_ordenes_de_compra(:p_fecha, :p_total, :p_id_proveedor, :p_ejecutada, :p_cancelada, :p_activa, :p_fecha_crea, :p_fecha_actu, :p_usuario_crea, :p_usuario_actu)</sql-query>
+  <sql-query name="sp_ins_presentacion_productos" callable="true">
+    <query-param name="p_nombre" type="String" />
+    <query-param name="p_fecha_crea" type="DateTime" />
+    <query-param name="p_fecha_actu" type="DateTime" />
+    <query-param name="p_usuario_crea" type="String" />
+    <query-param name="p_usuario_actu" type="String" />call farmacia.sp_ins_presentacion_productos(:p_nombre, :p_fecha_crea, :p_fecha_actu, :p_usuario_crea, :p_usuario_actu)</sql-query>
+  <sql-query name="sp_ins_privilegios" callable="true">
+    <query-param name="p_nombre" type="String" />
+    <query-param name="p_fecha_crea" type="DateTime" />
+    <query-param name="p_fecha_actu" type="DateTime" />
+    <query-param name="p_usuario_crea" type="String" />
+    <query-param name="p_usuario_actu" type="String" />call farmacia.sp_ins_privilegios(:p_nombre, :p_fecha_crea, :p_fecha_actu, :p_usuario_crea, :p_usuario_actu)</sql-query>
+  <sql-query name="sp_ins_productos" callable="true">
+    <query-param name="p_cod_prod" type="String" />
+    <query-param name="p_existencia" type="Int32" />
+    <query-param name="p_fecha_venc" type="DateTime" />
+    <query-param name="p_costo" type="Double" />
+    <query-param name="p_precio_consumi" type="Double" />
+    <query-param name="p_precio_mayor" type="Double" />
+    <query-param name="p_nombre" type="String" />
+    <query-param name="p_cod_presentacion" type="Int32" />
+    <query-param name="p_cod_categoria" type="Int32" />
+    <query-param name="p_existencia_min" type="Int32" />
+    <query-param name="p_existencia_max" type="Int32" />
+    <query-param name="p_porcentaje_m" type="Int32" />
+    <query-param name="p_fecha_crea" type="DateTime" />
+    <query-param name="p_fecha_actu" type="DateTime" />
+    <query-param name="p_usuario_crea" type="String" />
+    <query-param name="p_usuario_actu" type="String" />call farmacia.sp_ins_productos(:p_cod_prod, :p_existencia, :p_fecha_venc, :p_costo, :p_precio_consumi, :p_precio_mayor, :p_nombre, :p_cod_presentacion, :p_cod_categoria, :p_existencia_min, :p_existencia_max, :p_porcentaje_m, :p_fecha_crea, :p_fecha_actu, :p_usuario_crea, :p_usuario_actu)</sql-query>
+  <sql-query name="sp_ins_proveedores" callable="true">
+    <query-param name="p_direccion" type="String" />
+    <query-param name="p_telefono" type="String" />
+    <query-param name="p_nombre" type="String" />
+    <query-param name="p_contacto" type="String" />
+    <query-param name="p_fecha_crea" type="DateTime" />
+    <query-param name="p_fecha_actu" type="DateTime" />
+    <query-param name="p_usuario_crea" type="String" />
+    <query-param name="p_usuario_actu" type="String" />call farmacia.sp_ins_proveedores(:p_direccion, :p_telefono, :p_nombre, :p_contacto, :p_fecha_crea, :p_fecha_actu, :p_usuario_crea, :p_usuario_actu)</sql-query>
+  <sql-query name="sp_ins_telefonos_clientes" callable="true">
+    <query-param name="p_numero_tel" type="String" />
+    <query-param name="p_fecha_crea" type="DateTime" />
+    <query-param name="p_fecha_actu" type="DateTime" />
+    <query-param name="p_usuario_crea" type="String" />
+    <query-param name="p_usuario_actu" type="String" />
+    <query-param name="p_id_cliente" type="Int32" />call farmacia.sp_ins_telefonos_clientes(:p_numero_tel, :p_fecha_crea, :p_fecha_actu, :p_usuario_crea, :p_usuario_actu, :p_id_cliente)</sql-query>
+  <sql-query name="sp_ins_tipo_cliente" callable="true">
+    <query-param name="p_descripcion" type="String" />
+    <query-param name="p_fecha_crea" type="DateTime" />
+    <query-param name="p_fecha_actu" type="DateTime" />
+    <query-param name="p_usuario_crea" type="String" />
+    <query-param name="p_usuario_actu" type="String" />call farmacia.sp_ins_tipo_cliente(:p_descripcion, :p_fecha_crea, :p_fecha_actu, :p_usuario_crea, :p_usuario_actu)</sql-query>
+  <sql-query name="sp_ins_tipo_transacciones" callable="true">
+    <query-param name="p_nombre" type="String" />
+    <query-param name="p_fecha_crea" type="DateTime" />
+    <query-param name="p_fecha_actu" type="DateTime" />
+    <query-param name="p_usuario_crea" type="String" />
+    <query-param name="p_usuario_actu" type="String" />
+    <query-param name="p_entrada_o_salida" type="String" />call farmacia.sp_ins_tipo_transacciones(:p_nombre, :p_fecha_crea, :p_fecha_actu, :p_usuario_crea, :p_usuario_actu, :p_entrada_o_salida)</sql-query>
+  <sql-query name="sp_ins_usuarios" callable="true">
+    <query-param name="p_usuario" type="String" />
+    <query-param name="p_correo" type="String" />
+    <query-param name="p_nombre" type="String" />
+    <query-param name="p_clave" type="Byte" />
+    <query-param name="p_key" type="Byte" />
+    <query-param name="p_fecha_crea" type="DateTime" />
+    <query-param name="p_fecha_actu" type="DateTime" />
+    <query-param name="p_usuario_crea" type="String" />
+    <query-param name="p_usuario_actu" type="String" />call farmacia.sp_ins_usuarios(:p_usuario, :p_correo, :p_nombre, :p_clave, :p_key, :p_fecha_crea, :p_fecha_actu, :p_usuario_crea, :p_usuario_actu)</sql-query>
+  <sql-query name="sp_ins_usuarios_has_grupos_roles" callable="true">
+    <query-param name="p_usuario" type="String" />
+    <query-param name="p_id_rol" type="Int32" />
+    <query-param name="p_fecha_crea" type="DateTime" />
+    <query-param name="p_fecha_actu" type="DateTime" />
+    <query-param name="p_usuario_crea" type="String" />
+    <query-param name="p_usuario_actu" type="String" />call farmacia.sp_ins_usuarios_has_grupos_roles(:p_usuario, :p_id_rol, :p_fecha_crea, :p_fecha_actu, :p_usuario_crea, :p_usuario_actu)</sql-query>
+  <sql-query name="sp_sel_ajustes" callable="true">call farmacia.sp_sel_ajustes()</sql-query>
+  <sql-query name="sp_sel_categoria_productos" callable="true">call farmacia.sp_sel_categoria_productos()</sql-query>
+  <sql-query name="sp_sel_clientes" callable="true">call farmacia.sp_sel_clientes()</sql-query>
+  <sql-query name="sp_sel_compras" callable="true">call farmacia.sp_sel_compras()</sql-query>
+  <sql-query name="sp_sel_contactos_clientes" callable="true">call farmacia.sp_sel_contactos_clientes()</sql-query>
+  <sql-query name="sp_sel_costo_prod_proveedor" callable="true">call farmacia.sp_sel_costo_prod_proveedor()</sql-query>
+  <sql-query name="sp_sel_cotizaciones" callable="true">call farmacia.sp_sel_cotizaciones()</sql-query>
+  <sql-query name="sp_sel_detalle_ajustes" callable="true">call farmacia.sp_sel_detalle_ajustes()</sql-query>
+  <sql-query name="sp_sel_detalle_compras" callable="true">call farmacia.sp_sel_detalle_compras()</sql-query>
+  <sql-query name="sp_sel_detalle_cotizaciones" callable="true">call farmacia.sp_sel_detalle_cotizaciones()</sql-query>
+  <sql-query name="sp_sel_detalle_facturas" callable="true">call farmacia.sp_sel_detalle_facturas()</sql-query>
+  <sql-query name="sp_sel_detalle_oc" callable="true">call farmacia.sp_sel_detalle_oc()</sql-query>
+  <sql-query name="sp_sel_direcciones_clientes" callable="true">call farmacia.sp_sel_direcciones_clientes()</sql-query>
+  <sql-query name="sp_sel_facturas" callable="true">call farmacia.sp_sel_facturas()</sql-query>
+  <sql-query name="sp_sel_grupos_roles" callable="true">call farmacia.sp_sel_grupos_roles()</sql-query>
+  <sql-query name="sp_sel_grupos_roles_has_privilegios" callable="true">call farmacia.sp_sel_grupos_roles_has_privilegios()</sql-query>
+  <sql-query name="sp_sel_kardex" callable="true">call farmacia.sp_sel_kardex()</sql-query>
+  <sql-query name="sp_sel_ordenes_de_compra" callable="true">call farmacia.sp_sel_ordenes_de_compra()</sql-query>
+  <sql-query name="sp_sel_presentacion_productos" callable="true">call farmacia.sp_sel_presentacion_productos()</sql-query>
+  <sql-query name="sp_sel_privilegios" callable="true">call farmacia.sp_sel_privilegios()</sql-query>
+  <sql-query name="sp_sel_productos" callable="true">call farmacia.sp_sel_productos()</sql-query>
+  <sql-query name="sp_sel_proveedores" callable="true">call farmacia.sp_sel_proveedores()</sql-query>
+  <sql-query name="sp_sel_telefonos_clientes" callable="true">call farmacia.sp_sel_telefonos_clientes()</sql-query>
+  <sql-query name="sp_sel_tipo_cliente" callable="true">call farmacia.sp_sel_tipo_cliente()</sql-query>
+  <sql-query name="sp_sel_tipo_transacciones" callable="true">call farmacia.sp_sel_tipo_transacciones()</sql-query>
+  <sql-query name="sp_sel_usuarios" callable="true">call farmacia.sp_sel_usuarios()</sql-query>
+  <sql-query name="sp_sel_usuarios_has_grupos_roles" callable="true">call farmacia.sp_sel_usuarios_has_grupos_roles()</sql-query>
+  <sql-query name="sp_upd_ajustes" callable="true">
+    <query-param name="p_id_ajuste" type="Int32" />
+    <query-param name="p_fecha" type="DateTime" />
+    <query-param name="p_cant_producto" type="Int32" />
+    <query-param name="p_fecha_crea" type="DateTime" />
+    <query-param name="p_fecha_actu" type="DateTime" />
+    <query-param name="p_usuario_crea" type="String" />
+    <query-param name="p_usuario_actu" type="String" />
+    <query-param name="p_id_tipotran" type="Int32" />call farmacia.sp_upd_ajustes(:p_id_ajuste, :p_fecha, :p_cant_producto, :p_fecha_crea, :p_fecha_actu, :p_usuario_crea, :p_usuario_actu, :p_id_tipotran)</sql-query>
+  <sql-query name="sp_upd_categoria_productos" callable="true">
+    <query-param name="p_cod_categoria" type="Int32" />
+    <query-param name="p_nombre" type="String" />
+    <query-param name="p_fecha_crea" type="DateTime" />
+    <query-param name="p_fecha_actu" type="DateTime" />
+    <query-param name="p_usuario_crea" type="String" />
+    <query-param name="p_usuario_actu" type="String" />call farmacia.sp_upd_categoria_productos(:p_cod_categoria, :p_nombre, :p_fecha_crea, :p_fecha_actu, :p_usuario_crea, :p_usuario_actu)</sql-query>
+  <sql-query name="sp_upd_clientes" callable="true">
+    <query-param name="p_id_cliente" type="Int32" />
+    <query-param name="p_nombre" type="String" />
+    <query-param name="p_fecha_crea" type="DateTime" />
+    <query-param name="p_fecha_actu" type="DateTime" />
+    <query-param name="p_usuario_crea" type="String" />
+    <query-param name="p_usuario_actu" type="String" />
+    <query-param name="p_id_tipocliente" type="Int32" />call farmacia.sp_upd_clientes(:p_id_cliente, :p_nombre, :p_fecha_crea, :p_fecha_actu, :p_usuario_crea, :p_usuario_actu, :p_id_tipocliente)</sql-query>
+  <sql-query name="sp_upd_compras" callable="true">
+    <query-param name="p_id_compra" type="Int32" />
+    <query-param name="p_fecha" type="DateTime" />
+    <query-param name="p_total" type="Double" />
+    <query-param name="p_fecha_crea" type="DateTime" />
+    <query-param name="p_fecha_actu" type="DateTime" />
+    <query-param name="p_usuario_crea" type="String" />
+    <query-param name="p_usuario_actu" type="String" />
+    <query-param name="p_id_proveedor" type="Int32" />call farmacia.sp_upd_compras(:p_id_compra, :p_fecha, :p_total, :p_fecha_crea, :p_fecha_actu, :p_usuario_crea, :p_usuario_actu, :p_id_proveedor)</sql-query>
+  <sql-query name="sp_upd_contactos_clientes" callable="true">
+    <query-param name="p_id_contactocliente" type="Int32" />
+    <query-param name="p_nombre" type="String" />
+    <query-param name="p_correo" type="String" />
+    <query-param name="p_telefono" type="String" />
+    <query-param name="p_id_cliente" type="Int32" />
+    <query-param name="p_fecha_crea" type="DateTime" />
+    <query-param name="p_fecha_actu" type="DateTime" />
+    <query-param name="p_usuario_crea" type="String" />
+    <query-param name="p_usuario_actu" type="String" />call farmacia.sp_upd_contactos_clientes(:p_id_contactocliente, :p_nombre, :p_correo, :p_telefono, :p_id_cliente, :p_fecha_crea, :p_fecha_actu, :p_usuario_crea, :p_usuario_actu)</sql-query>
+  <sql-query name="sp_upd_costo_prod_proveedor" callable="true">
+    <query-param name="p_costo" type="Double" />
+    <query-param name="p_cod_prod" type="String" />
+    <query-param name="p_id_proveedor" type="Int32" />call farmacia.sp_upd_costo_prod_proveedor(:p_costo, :p_cod_prod, :p_id_proveedor)</sql-query>
+  <sql-query name="sp_upd_cotizaciones" callable="true">
+    <query-param name="p_id_cotizacion" type="Int32" />
+    <query-param name="p_fecha" type="DateTime" />
+    <query-param name="p_total" type="Double" />
+    <query-param name="p_fecha_crea" type="DateTime" />
+    <query-param name="p_fecha_actu" type="DateTime" />
+    <query-param name="p_usuario_crea" type="String" />
+    <query-param name="p_usuario_actu" type="String" />
+    <query-param name="p_id_proveedor" type="Int32" />call farmacia.sp_upd_cotizaciones(:p_id_cotizacion, :p_fecha, :p_total, :p_fecha_crea, :p_fecha_actu, :p_usuario_crea, :p_usuario_actu, :p_id_proveedor)</sql-query>
+  <sql-query name="sp_upd_detalle_ajustes" callable="true">
+    <query-param name="p_num_detalle" type="Int32" />
+    <query-param name="p_cantidad" type="Int32" />
+    <query-param name="p_id_ajuste" type="Int32" />
+    <query-param name="p_cod_prod" type="String" />call farmacia.sp_upd_detalle_ajustes(:p_num_detalle, :p_cantidad, :p_id_ajuste, :p_cod_prod)</sql-query>
+  <sql-query name="sp_upd_detalle_compras" callable="true">
+    <query-param name="p_num_detalle" type="Int32" />
+    <query-param name="p_cantidad" type="Int32" />
+    <query-param name="p_precio_compra" type="Double" />
+    <query-param name="p_subtotal" type="Double" />
+    <query-param name="p_id_compra" type="Int32" />
+    <query-param name="p_cod_prod" type="String" />call farmacia.sp_upd_detalle_compras(:p_num_detalle, :p_cantidad, :p_precio_compra, :p_subtotal, :p_id_compra, :p_cod_prod)</sql-query>
+  <sql-query name="sp_upd_detalle_cotizaciones" callable="true">
+    <query-param name="p_num_detalle" type="Int32" />
+    <query-param name="p_cantidad" type="Int32" />
+    <query-param name="p_precio_unit" type="Double" />
+    <query-param name="p_id_cotizacion" type="Int32" />
+    <query-param name="p_cod_prod" type="String" />call farmacia.sp_upd_detalle_cotizaciones(:p_num_detalle, :p_cantidad, :p_precio_unit, :p_id_cotizacion, :p_cod_prod)</sql-query>
+  <sql-query name="sp_upd_detalle_facturas" callable="true">
+    <query-param name="p_num_detalle" type="Int32" />
+    <query-param name="p_precio_venta" type="Double" />
+    <query-param name="p_cantidad" type="Int32" />
+    <query-param name="p_subtotal" type="Double" />
+    <query-param name="p_num_factura" type="Int32" />
+    <query-param name="p_cod_prod" type="String" />call farmacia.sp_upd_detalle_facturas(:p_num_detalle, :p_precio_venta, :p_cantidad, :p_subtotal, :p_num_factura, :p_cod_prod)</sql-query>
+  <sql-query name="sp_upd_detalle_oc" callable="true">
+    <query-param name="p_num_detalle" type="Int32" />
+    <query-param name="p_cantidad" type="Int32" />
+    <query-param name="p_subtotal" type="Double" />
+    <query-param name="p_precio_unit" type="Double" />
+    <query-param name="p_id_ordencompra" type="Int32" />
+    <query-param name="p_cod_prod" type="String" />call farmacia.sp_upd_detalle_oc(:p_num_detalle, :p_cantidad, :p_subtotal, :p_precio_unit, :p_id_ordencompra, :p_cod_prod)</sql-query>
+  <sql-query name="sp_upd_direcciones_clientes" callable="true">
+    <query-param name="p_id_direccioncliente" type="Int32" />
+    <query-param name="p_direccion" type="String" />
+    <query-param name="p_id_cliente" type="Int32" />
+    <query-param name="p_fecha_crea" type="DateTime" />
+    <query-param name="p_fecha_actu" type="DateTime" />
+    <query-param name="p_usuario_crea" type="String" />
+    <query-param name="p_usuario_actu" type="String" />call farmacia.sp_upd_direcciones_clientes(:p_id_direccioncliente, :p_direccion, :p_id_cliente, :p_fecha_crea, :p_fecha_actu, :p_usuario_crea, :p_usuario_actu)</sql-query>
+  <sql-query name="sp_upd_facturas" callable="true">
+    <query-param name="p_num_factura" type="Int32" />
+    <query-param name="p_fecha" type="DateTime" />
+    <query-param name="p_subtotal" type="Double" />
+    <query-param name="p_isv" type="Double" />
+    <query-param name="p_descuento" type="Double" />
+    <query-param name="p_total" type="Double" />
+    <query-param name="p_fecha_crea" type="DateTime" />
+    <query-param name="p_fecha_actu" type="DateTime" />
+    <query-param name="p_usuario_crea" type="String" />
+    <query-param name="p_usuario_actu" type="String" />
+    <query-param name="p_id_cliente" type="Int32" />call farmacia.sp_upd_facturas(:p_num_factura, :p_fecha, :p_subtotal, :p_isv, :p_descuento, :p_total, :p_fecha_crea, :p_fecha_actu, :p_usuario_crea, :p_usuario_actu, :p_id_cliente)</sql-query>
+  <sql-query name="sp_upd_grupos_roles" callable="true">
+    <query-param name="p_id_rol" type="Int32" />
+    <query-param name="p_nombre" type="String" />
+    <query-param name="p_fecha_crea" type="DateTime" />
+    <query-param name="p_fecha_actu" type="DateTime" />
+    <query-param name="p_usuario_crea" type="String" />
+    <query-param name="p_usuario_actu" type="String" />call farmacia.sp_upd_grupos_roles(:p_id_rol, :p_nombre, :p_fecha_crea, :p_fecha_actu, :p_usuario_crea, :p_usuario_actu)</sql-query>
+  <sql-query name="sp_upd_grupos_roles_has_privilegios" callable="true">
+    <query-param name="p_id_rol" type="Int32" />
+    <query-param name="p_id_privilegio" type="Int32" />
+    <query-param name="p_fecha_crea" type="DateTime" />
+    <query-param name="p_fecha_actu" type="DateTime" />
+    <query-param name="p_usuario_crea" type="String" />
+    <query-param name="p_usuario_actu" type="String" />call farmacia.sp_upd_grupos_roles_has_privilegios(:p_id_rol, :p_id_privilegio, :p_fecha_crea, :p_fecha_actu, :p_usuario_crea, :p_usuario_actu)</sql-query>
+  <sql-query name="sp_upd_kardex" callable="true">
+    <query-param name="p_id_operacion" type="Int32" />
+    <query-param name="p_cantidad" type="Int32" />
+    <query-param name="p_costo" type="Double" />
+    <query-param name="p_inv_antes" type="Int32" />
+    <query-param name="p_inv_despues" type="Int32" />
+    <query-param name="p_fecha_crea" type="DateTime" />
+    <query-param name="p_usuario_crea" type="String" />
+    <query-param name="p_precio" type="Double" />
+    <query-param name="p_cod_prod" type="String" />
+    <query-param name="p_entrada_o_salida" type="String" />call farmacia.sp_upd_kardex(:p_id_operacion, :p_cantidad, :p_costo, :p_inv_antes, :p_inv_despues, :p_fecha_crea, :p_usuario_crea, :p_precio, :p_cod_prod, :p_entrada_o_salida)</sql-query>
+  <sql-query name="sp_upd_ordenes_de_compra" callable="true">
+    <query-param name="p_id_ordencompra" type="Int32" />
+    <query-param name="p_fecha" type="DateTime" />
+    <query-param name="p_total" type="Double" />
+    <query-param name="p_id_proveedor" type="Int32" />
+    <query-param name="p_ejecutada" type="SByte" />
+    <query-param name="p_cancelada" type="SByte" />
+    <query-param name="p_activa" type="SByte" />
+    <query-param name="p_fecha_crea" type="DateTime" />
+    <query-param name="p_fecha_actu" type="DateTime" />
+    <query-param name="p_usuario_crea" type="String" />
+    <query-param name="p_usuario_actu" type="String" />call farmacia.sp_upd_ordenes_de_compra(:p_id_ordencompra, :p_fecha, :p_total, :p_id_proveedor, :p_ejecutada, :p_cancelada, :p_activa, :p_fecha_crea, :p_fecha_actu, :p_usuario_crea, :p_usuario_actu)</sql-query>
+  <sql-query name="sp_upd_presentacion_productos" callable="true">
+    <query-param name="p_cod_presentacion" type="Int32" />
+    <query-param name="p_nombre" type="String" />
+    <query-param name="p_fecha_crea" type="DateTime" />
+    <query-param name="p_fecha_actu" type="DateTime" />
+    <query-param name="p_usuario_crea" type="String" />
+    <query-param name="p_usuario_actu" type="String" />call farmacia.sp_upd_presentacion_productos(:p_cod_presentacion, :p_nombre, :p_fecha_crea, :p_fecha_actu, :p_usuario_crea, :p_usuario_actu)</sql-query>
+  <sql-query name="sp_upd_privilegios" callable="true">
+    <query-param name="p_id_privilegio" type="Int32" />
+    <query-param name="p_nombre" type="String" />
+    <query-param name="p_fecha_crea" type="DateTime" />
+    <query-param name="p_fecha_actu" type="DateTime" />
+    <query-param name="p_usuario_crea" type="String" />
+    <query-param name="p_usuario_actu" type="String" />call farmacia.sp_upd_privilegios(:p_id_privilegio, :p_nombre, :p_fecha_crea, :p_fecha_actu, :p_usuario_crea, :p_usuario_actu)</sql-query>
+  <sql-query name="sp_upd_productos" callable="true">
+    <query-param name="p_cod_prod" type="String" />
+    <query-param name="p_existencia" type="Int32" />
+    <query-param name="p_fecha_venc" type="DateTime" />
+    <query-param name="p_costo" type="Double" />
+    <query-param name="p_precio_consumi" type="Double" />
+    <query-param name="p_precio_mayor" type="Double" />
+    <query-param name="p_nombre" type="String" />
+    <query-param name="p_cod_presentacion" type="Int32" />
+    <query-param name="p_cod_categoria" type="Int32" />
+    <query-param name="p_existencia_min" type="Int32" />
+    <query-param name="p_existencia_max" type="Int32" />
+    <query-param name="p_porcentaje_m" type="Int32" />
+    <query-param name="p_fecha_crea" type="DateTime" />
+    <query-param name="p_fecha_actu" type="DateTime" />
+    <query-param name="p_usuario_crea" type="String" />
+    <query-param name="p_usuario_actu" type="String" />call farmacia.sp_upd_productos(:p_cod_prod, :p_existencia, :p_fecha_venc, :p_costo, :p_precio_consumi, :p_precio_mayor, :p_nombre, :p_cod_presentacion, :p_cod_categoria, :p_existencia_min, :p_existencia_max, :p_porcentaje_m, :p_fecha_crea, :p_fecha_actu, :p_usuario_crea, :p_usuario_actu)</sql-query>
+  <sql-query name="sp_upd_proveedores" callable="true">
+    <query-param name="p_id_proveedor" type="Int32" />
+    <query-param name="p_direccion" type="String" />
+    <query-param name="p_telefono" type="String" />
+    <query-param name="p_nombre" type="String" />
+    <query-param name="p_contacto" type="String" />
+    <query-param name="p_fecha_crea" type="DateTime" />
+    <query-param name="p_fecha_actu" type="DateTime" />
+    <query-param name="p_usuario_crea" type="String" />
+    <query-param name="p_usuario_actu" type="String" />call farmacia.sp_upd_proveedores(:p_id_proveedor, :p_direccion, :p_telefono, :p_nombre, :p_contacto, :p_fecha_crea, :p_fecha_actu, :p_usuario_crea, :p_usuario_actu)</sql-query>
+  <sql-query name="sp_upd_telefonos_clientes" callable="true">
+    <query-param name="p_id_telefonosclientes" type="Int32" />
+    <query-param name="p_numero_tel" type="String" />
+    <query-param name="p_fecha_crea" type="DateTime" />
+    <query-param name="p_fecha_actu" type="DateTime" />
+    <query-param name="p_usuario_crea" type="String" />
+    <query-param name="p_usuario_actu" type="String" />
+    <query-param name="p_id_cliente" type="Int32" />call farmacia.sp_upd_telefonos_clientes(:p_id_telefonosclientes, :p_numero_tel, :p_fecha_crea, :p_fecha_actu, :p_usuario_crea, :p_usuario_actu, :p_id_cliente)</sql-query>
+  <sql-query name="sp_upd_tipo_cliente" callable="true">
+    <query-param name="p_id_tipocliente" type="Int32" />
+    <query-param name="p_descripcion" type="String" />
+    <query-param name="p_fecha_crea" type="DateTime" />
+    <query-param name="p_fecha_actu" type="DateTime" />
+    <query-param name="p_usuario_crea" type="String" />
+    <query-param name="p_usuario_actu" type="String" />call farmacia.sp_upd_tipo_cliente(:p_id_tipocliente, :p_descripcion, :p_fecha_crea, :p_fecha_actu, :p_usuario_crea, :p_usuario_actu)</sql-query>
+  <sql-query name="sp_upd_tipo_transacciones" callable="true">
+    <query-param name="p_id_tipotran" type="Int32" />
+    <query-param name="p_nombre" type="String" />
+    <query-param name="p_fecha_crea" type="DateTime" />
+    <query-param name="p_fecha_actu" type="DateTime" />
+    <query-param name="p_usuario_crea" type="String" />
+    <query-param name="p_usuario_actu" type="String" />
+    <query-param name="p_entrada_o_salida" type="String" />call farmacia.sp_upd_tipo_transacciones(:p_id_tipotran, :p_nombre, :p_fecha_crea, :p_fecha_actu, :p_usuario_crea, :p_usuario_actu, :p_entrada_o_salida)</sql-query>
+  <sql-query name="sp_upd_usuarios" callable="true">
+    <query-param name="p_usuario" type="String" />
+    <query-param name="p_correo" type="String" />
+    <query-param name="p_nombre" type="String" />
+    <query-param name="p_clave" type="Byte" />
+    <query-param name="p_key" type="Byte" />
+    <query-param name="p_fecha_crea" type="DateTime" />
+    <query-param name="p_fecha_actu" type="DateTime" />
+    <query-param name="p_usuario_crea" type="String" />
+    <query-param name="p_usuario_actu" type="String" />call farmacia.sp_upd_usuarios(:p_usuario, :p_correo, :p_nombre, :p_clave, :p_key, :p_fecha_crea, :p_fecha_actu, :p_usuario_crea, :p_usuario_actu)</sql-query>
+  <sql-query name="sp_upd_usuarios_has_grupos_roles" callable="true">
+    <query-param name="p_usuario" type="String" />
+    <query-param name="p_id_rol" type="Int32" />
+    <query-param name="p_fecha_crea" type="DateTime" />
+    <query-param name="p_fecha_actu" type="DateTime" />
+    <query-param name="p_usuario_crea" type="String" />
+    <query-param name="p_usuario_actu" type="String" />call farmacia.sp_upd_usuarios_has_grupos_roles(:p_usuario, :p_id_rol, :p_fecha_crea, :p_fecha_actu, :p_usuario_crea, :p_usuario_actu)</sql-query>
+  <sql-query name="calcular_precio_consumidor" callable="true">
+    <return-scalar column="return_value" type="Int32" />
+    <query-param name="p_costo" type="Double" />select farmacia.calcular_precio_consumidor(:p_costo) as return_value</sql-query>
+  <sql-query name="calcular_precio_mayorista" callable="true">
+    <return-scalar column="return_value" type="Int32" />
+    <query-param name="p_costo" type="Double" />
+    <query-param name="p_porcentaje" type="Int32" />select farmacia.calcular_precio_mayorista(:p_costo, :p_porcentaje) as return_value</sql-query>
+  <sql-query name="getProducto" callable="true">
+    <return-scalar column="return_value" type="String" />select farmacia.getProducto() as return_value</sql-query>
+</hibernate-mapping>

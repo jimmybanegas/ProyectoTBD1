@@ -10,8 +10,8 @@ namespace Pharma.Api.Controllers
         protected UserTokenModel GetUserTokenModel()
         {
             IEnumerable<string> headerValues = Request.Headers.GetValues("Authorization");
-            var authorizationToken = headerValues.FirstOrDefault();
-            var userTokenModel = AuthRequestFactory.BuildDecryptedRequest(authorizationToken);
+            string authorizationToken = headerValues.FirstOrDefault();
+            UserTokenModel userTokenModel = AuthRequestFactory.BuildDecryptedRequest(authorizationToken);
             return userTokenModel;
         }
     }

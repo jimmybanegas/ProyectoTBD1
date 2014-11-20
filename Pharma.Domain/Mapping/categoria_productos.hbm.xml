@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<hibernate-mapping assembly="Pharma.Domain" namespace="Pharma.Domain" xmlns="urn:nhibernate-mapping-2.2">
+<hibernate-mapping assembly="Pharma.Domain" namespace="Pharma.Domain.Entities" xmlns="urn:nhibernate-mapping-2.2">
   <class name="categoria_productos" table="categoria_productos" schema="farmacia">
     <id name="cod_categoria" type="Int32">
       <column name="cod_categoria" not-null="true" precision="11" scale="0" sql-type="int" />

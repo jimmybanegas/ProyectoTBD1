@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<hibernate-mapping assembly="Pharma.Domain" namespace="Pharma.Domain" xmlns="urn:nhibernate-mapping-2.2">
+<hibernate-mapping assembly="Pharma.Domain" namespace="Pharma.Domain.Entities" xmlns="urn:nhibernate-mapping-2.2">
   <class name="ajustes" table="ajustes" schema="farmacia">
     <id name="id_ajuste" type="Int32">
       <column name="id_ajuste" not-null="true" precision="11" scale="0" sql-type="int" />

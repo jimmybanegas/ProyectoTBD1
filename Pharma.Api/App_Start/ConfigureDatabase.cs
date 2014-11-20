@@ -8,7 +8,7 @@ namespace Pharma.Api
 {
     public class ConfigureDatabase : IBootstrapperTask
     {
-        readonly ContainerBuilder container;
+        private readonly ContainerBuilder container;
 
         public ConfigureDatabase(ContainerBuilder containerBuilder)
         {
@@ -26,22 +26,22 @@ namespace Pharma.Api
                 <ISession>()
                 .InstancePerLifetimeScope()
                 .OnActivating(c =>
-                                  {
-                                      if (!c.Instance.Transaction.IsActive)
-                                          c.Instance.BeginTransaction();
-                                  }
+                {
+                    if (!c.Instance.Transaction.IsActive)
+                        c.Instance.BeginTransaction();
+                }
                 )
                 .OnRelease(c =>
-                               {
-                                   if (c.Transaction.IsActive)
-                                   {
-                                       c.Transaction.Commit();
-                                   }
-                                   c.Dispose();
-                               });
+                {
+                    if (c.Transaction.IsActive)
+                    {
+                        c.Transaction.Commit();
+                    }
+                    c.Dispose();
+                });
 
             container.Register(c =>
-                               new SessionFactoryBuilder(new MappingScheme(), databaseConfiguration).Build())
+                new SessionFactoryBuilder(new MappingScheme(), databaseConfiguration).Build())
                 .SingleInstance()
                 .As<ISessionFactory>();
         }

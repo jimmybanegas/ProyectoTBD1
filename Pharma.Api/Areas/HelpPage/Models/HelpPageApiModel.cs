@@ -6,12 +6,12 @@ using System.Web.Http.Description;
 namespace Pharma.Api.Areas.HelpPage.Models
 {
     /// <summary>
-    /// The model that represents an API displayed on the help page.
+    ///     The model that represents an API displayed on the help page.
     /// </summary>
     public class HelpPageApiModel
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="HelpPageApiModel"/> class.
+        ///     Initializes a new instance of the <see cref="HelpPageApiModel" /> class.
         /// </summary>
         public HelpPageApiModel()
         {
@@ -21,22 +21,22 @@ namespace Pharma.Api.Areas.HelpPage.Models
         }
 
         /// <summary>
-        /// Gets or sets the <see cref="ApiDescription"/> that describes the API.
+        ///     Gets or sets the <see cref="ApiDescription" /> that describes the API.
         /// </summary>
         public ApiDescription ApiDescription { get; set; }
 
         /// <summary>
-        /// Gets the sample requests associated with the API.
+        ///     Gets the sample requests associated with the API.
         /// </summary>
         public IDictionary<MediaTypeHeaderValue, object> SampleRequests { get; private set; }
 
         /// <summary>
-        /// Gets the sample responses associated with the API.
+        ///     Gets the sample responses associated with the API.
         /// </summary>
         public IDictionary<MediaTypeHeaderValue, object> SampleResponses { get; private set; }
 
         /// <summary>
-        /// Gets the error messages associated with this model.
+        ///     Gets the error messages associated with this model.
         /// </summary>
         public Collection<string> ErrorMessages { get; private set; }
     }

@@ -1,9 +1,7 @@
-@using System.Web.Http
-@using Pharma.Api.Areas.HelpPage.Models
-@model HelpPageApiModel
+@model Pharma.Api.Areas.HelpPage.Models.HelpPageApiModel
 
-@{ 
-    var description = Model.ApiDescription;
+@{
+    ApiDescription description = Model.ApiDescription;
     bool hasParameters = description.ParameterDescriptions.Count > 0;
     bool hasRequestSamples = Model.SampleRequests.Count > 0;
     bool hasResponseSamples = Model.SampleResponses.Count > 0;
@@ -36,7 +34,7 @@
 
     @if (hasResponseSamples)
     {
-        <h2>Response Information</h2> 
+        <h2>Response Information</h2>
         <h3>Response body formats</h3>
         @Html.DisplayFor(apiModel => apiModel.SampleResponses, "Samples")
     }

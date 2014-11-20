@@ -1,5 +1,4 @@
-﻿
-<div class="container" ng-init="loadLeagues() ; loadMatches(); loadPredictions()">
+﻿<div class="container" ng-init="loadLeagues() ; loadMatches(); loadPredictions()">
     <div class="row clearfix">
         <br />
         <div class="col-md-2 column">
@@ -77,8 +76,8 @@
                         <div class="col-md-12">
                             <br />
                             <!-- <button class="btn btn-primary pull-right" ng-click="isGuessing()">
-                                  <i class="glyphicon glyphicon-comment" data-toggle="modal" data-target="#t_and_c_m"></i> Predecir
-                              </button>-->
+                                     <i class="glyphicon glyphicon-comment" data-toggle="modal" data-target="#t_and_c_m"></i> Predecir
+                                 </button>-->
                             <a ng-hide="{{partido.IsArchived}}" href="#" ng-click="tempPartido(partido.Id)" data-toggle="modal" data-target="#t_and_c_m" class="btn btn-primary pull-right">Predecir/Editar</a>
                             <p><span class="glyphicon glyphicon-play-circle"></span> {{partido.HorayFecha}} </p>
 
@@ -157,7 +156,7 @@
                             <td>
                                 <!-- {{liga.NombreLiga}}-->
                                 <a href="#" ng-click="loadSuscriptors(liga.Id)" data-toggle="modal" data-target="#t_and_c_d" class="">{{liga.NombreLiga}}</a>
-                               <button ng-click="suscribirse(liga)" class="btn btn-primary pull-right">
+                                <button ng-click="suscribirse(liga)" class="btn btn-primary pull-right">
                                     <i class="glyphicon glyphicon-ok-sign"></i> Suscribirse
                                 </button>
                             </td>
@@ -240,8 +239,8 @@
                             <th>Apellido</th>
                             <th>Acertados</th>
                             <th>Puntaje</th>
-                       </tr>
-                          <tbody>
+                        </tr>
+                        <tbody>
                             <tr ng-repeat="user in posiciones">
                                 <td><strong>{{user.Nombre}}</strong></td>
                                 <td><i>{{user.Apellido}}</i></td>

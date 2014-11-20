@@ -24,7 +24,7 @@ angular.module('app.controllers')
                     return;
                 }
 
-                Account.register($scope.registerModel, function (response) {
+                Account.register($scope.registerModel, function(response) {
                     if (response.Status == 0) {
                         toastr.error(response.Message, "Error", {
                             "closeButton": true,
@@ -40,7 +40,7 @@ angular.module('app.controllers')
                     }
                     if (response.Status == 2) {
                         toastr.success(response.Message);
-                      //  $location.path('/loading');
+                        //  $location.path('/loading');
                         $location.path('/login');
                     }
 

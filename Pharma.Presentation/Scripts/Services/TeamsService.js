@@ -1,8 +1,8 @@
 ﻿'use strict';
 angular.module('app.services')
-    .factory('Team', function ($http, Server, $cookieStore) {
+    .factory('Team', function($http, Server, $cookieStore) {
         return {
-          /*  getAvailableLeagues: function (success, error) {
+            /*  getAvailableLeagues: function (success, error) {
                 $http
                     .get(
                         Server.get() + '/leagues/available', {
@@ -33,5 +33,6 @@ angular.module('app.services')
                     })
                     .error(error);
             }*/
+        
         };
     });

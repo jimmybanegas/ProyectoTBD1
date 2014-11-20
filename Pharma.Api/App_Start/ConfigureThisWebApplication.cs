@@ -7,9 +7,9 @@ namespace Pharma.Api
 {
     public class ConfigureThisWebApplication : IBootstrapperTask
     {
-        readonly ContainerBuilder _containerBuilder;
-        Type _mvcControllerExample;
-        Type _webApiControllerExample;
+        private readonly ContainerBuilder _containerBuilder;
+        private Type _mvcControllerExample;
+        private Type _webApiControllerExample;
 
         public ConfigureThisWebApplication(ContainerBuilder containerBuilder)
         {

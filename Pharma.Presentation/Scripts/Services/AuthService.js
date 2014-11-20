@@ -1,6 +1,6 @@
 ﻿'use strict';
 angular.module('app.services')
-    .factory('Auth', function ($http, $cookieStore, Server) {
+    .factory('Auth', function($http, $cookieStore, Server) {
 
         var accessLevels = routingConfig.accessLevels,
             userRoles = routingConfig.userRoles,
@@ -13,30 +13,30 @@ angular.module('app.services')
         }
 
         return {
-            authorize: function (accessLevel, role) {
+            authorize: function(accessLevel, role) {
                 if (role === undefined) {
                     role = currentUser.role;
                 }
 
                 return accessLevel.bitMask & role.bitMask;
             },
-            isLoggedIn: function (user) {
+            isLoggedIn: function(user) {
                 if (user === undefined) {
                     user = currentUser;
                 }
                 return user.role.title === userRoles.user.title || user.role.title === userRoles.admin.title;
             },
-            register: function (user, success, error) {
-                $http.post('/register', user).success(function (res) {
+            register: function(user, success, error) {
+                $http.post('/register', user).success(function(res) {
 
                     changeUser(res);
                     success(res);
                 }).error(error);
             },
 
-            login: function (user, success, error) {
+            login: function(user, success, error) {
 
-                $http.post(Server.get() + '/login', user).success(function (res) {
+                $http.post(Server.get() + '/login', user).success(function(res) {
 
                     $cookieStore.put('access_token', res.access_token);
                     $cookieStore.put('user', res);
@@ -46,12 +46,12 @@ angular.module('app.services')
                 }).error(error);
             },
 
-            loginByCookie: function (res, success, error) {
+            loginByCookie: function(res, success, error) {
                 changeUser(res);
                 success(res);
             },
 
-            logout: function (success, error) {
+            logout: function(success, error) {
                 //$http.post('/logout').success(function () {
                 changeUser({
                     username: '',
@@ -59,19 +59,19 @@ angular.module('app.services')
                 });
                 $cookieStore.remove('access_token');
                 localStorage.removeItem('res');
-                
+
                 success();
                 //}).error(error);
             },
-            getUserId: function (success, error) {
+            getUserId: function(success, error) {
                 $http
                     .get(
                         Server.get() + '/subcontractor/getUserId',
                         {
                             headers: { 'Authorization': $cookieStore.get('access_token') }
-                        }).success(function (response) {
-                            success(response);
-                        }).error(error);
+                        }).success(function(response) {
+                        success(response);
+                    }).error(error);
             },
             accessLevels: accessLevels,
             userRoles: userRoles,

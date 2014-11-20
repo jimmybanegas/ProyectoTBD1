@@ -1,12 +1,11 @@
 ﻿using DomainDrivenDatabaseDeployer;
 using NHibernate;
-using Pharma.Domain.Entities;
 
 namespace Pharma.DatabaseDeployer
 {
     public class AccountSeeder : IDataSeeder
     {
-        readonly ISession _session;
+        private readonly ISession _session;
 
         public AccountSeeder(ISession session)
         {
@@ -15,8 +14,7 @@ namespace Pharma.DatabaseDeployer
 
         public void Seed()
         {
-
-           /* var account = new Account
+            /* var account = new Account
             {
                 Email = "test@test.com",
                 Name = "Test Name",

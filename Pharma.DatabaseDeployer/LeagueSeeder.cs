@@ -6,7 +6,7 @@ namespace Pharma.DatabaseDeployer
 {
     public class LeagueSeeder : IDataSeeder
     {
-        readonly ISession _session;
+        private readonly ISession _session;
 
         public LeagueSeeder(ISession session)
         {

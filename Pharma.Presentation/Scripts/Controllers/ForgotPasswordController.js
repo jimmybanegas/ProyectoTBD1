@@ -10,7 +10,7 @@ angular.module('app.controllers')
             $scope.resetModel = {};
 
             $scope.ShowMessageForgot = false;
-          
+
             $scope.RecoverPassword = function() {
                 Account.resetPassword($scope.resetModel, function(response) {
                     if (response.Status == 1) {
@@ -20,7 +20,7 @@ angular.module('app.controllers')
                         toastr.success(response.Message);
                         $location.path('/login');
                     }
-                  
+
                 }, function(error) {
 
                 });

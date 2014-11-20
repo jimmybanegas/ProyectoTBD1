@@ -3,14 +3,14 @@ angular.module('app.controllers')
 
     // Path: /login
     .controller('LoginCtrl', [
-       '$scope', '$location', '$window', 'Account', 'Auth', function ($scope, $location, $window, Account, Auth) {
+        '$scope', '$location', '$window', 'Account', 'Auth', function($scope, $location, $window, Account, Auth) {
             $scope.$root.title = 'SportLiga | Sign In';
             // TODO: Authorize a user
-         
+
             $scope.user = {};
 
-            $scope.login = function () {
-                Auth.login($scope.user, function (response) {
+            $scope.login = function() {
+                Auth.login($scope.user, function(response) {
                     if (response.Status == 0) {
                         toastr.error(response.access_token, "Error", {
                             "closeButton": true,
@@ -32,12 +32,12 @@ angular.module('app.controllers')
                         $location.path('/profile-normal');
                     }
                     $scope.isLoading = false;
-                }, function (error) {
+                }, function(error) {
 
                 });
             };
 
-           $scope.$on('$viewContentLoaded', function() {
+            $scope.$on('$viewContentLoaded', function() {
                 $window.ga('send', 'pageview', { 'page': $location.path(), 'title': $scope.$root.title });
             });
 

@@ -8,7 +8,7 @@ namespace Pharma.Data
 {
     public class WriteOnlyRepository : IWriteOnlyRepository
     {
-        readonly ISession _session;
+        private readonly ISession _session;
 
         public WriteOnlyRepository(ISession session)
         {
@@ -23,7 +23,7 @@ namespace Pharma.Data
 
         public void DeleteAll<T>() where T : class, IEntity
         {
-            foreach (var item in _session.QueryOver<T>().List())
+            foreach (T item in _session.QueryOver<T>().List())
             {
                 Delete<T>(item.Id);
             }
@@ -31,8 +31,8 @@ namespace Pharma.Data
 
         public IEnumerable<T> CreateAll<T>(IEnumerable<T> list) where T : IEntity
         {
-            var items = list as List<T> ?? list.ToList();
-            foreach (var item in items)
+            List<T> items = list as List<T> ?? list.ToList();
+            foreach (T item in items)
             {
                 Create(item);
             }
@@ -44,15 +44,13 @@ namespace Pharma.Data
         {
             var itemToDelete = _session.Get<T>(itemId);
             _session.Delete(itemToDelete);
-
         }
 
         public T Update<T>(T itemToUpdate) where T : IEntity
         {
-            var session = _session;
+            ISession session = _session;
             session.Update(itemToUpdate);
             return itemToUpdate;
         }
-
     }
 }

@@ -518,7 +518,7 @@ dd { margin-left: 0; }
         /* 1 */
   
         display: table;
-        /* 2 */  
+        /* 2 */
     }
 
     .dl-horizontal dd:after { clear: both; }
@@ -529,7 +529,7 @@ dd { margin-left: 0; }
         /* 1 */
   
         display: table;
-        /* 2 */  
+        /* 2 */
     }
 
     .dl-horizontal dd:after { clear: both; }

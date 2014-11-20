@@ -1,8 +1,9 @@
 using System.Web.Http;
 using AttributeRouting.Web.Http.WebHost;
 using Pharma.Api;
+using WebActivator;
 
-[assembly: WebActivator.PreApplicationStartMethod(typeof(AttributeRoutingHttpConfig), "Start")]
+[assembly: PreApplicationStartMethod(typeof (AttributeRoutingHttpConfig), "Start")]
 
 namespace Pharma.Api
 {

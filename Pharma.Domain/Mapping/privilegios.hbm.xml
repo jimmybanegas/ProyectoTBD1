@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<hibernate-mapping assembly="Pharma.Domain" namespace="Pharma.Domain" xmlns="urn:nhibernate-mapping-2.2">
+<hibernate-mapping assembly="Pharma.Domain" namespace="Pharma.Domain.Entities" xmlns="urn:nhibernate-mapping-2.2">
   <class name="privilegios" table="privilegios" schema="farmacia">
     <id name="id_privilegio" type="Int32">
       <column name="id_privilegio" not-null="true" precision="11" scale="0" sql-type="int" />
@@ -20,13 +20,11 @@
     <property name="usuario_actu" type="String">
       <column name="usuario_actu" not-null="false" length="45" sql-type="varchar" />
     </property>
-    <set name="grupos_roles" table="grupos_roles_has_privilegios" schema="farmacia" generic="true">
-      <key not-null="true">
-        <column name="id_privilegio" not-null="true" precision="11" scale="0" sql-type="int" />
+    <set name="grupos_roles_has_privilegios" inverse="true" generic="true">
+      <key>
+        <column name="id_privilegio" />
       </key>
-      <many-to-many class="grupos_roles" fetch="join">
-        <column name="id_rol" not-null="true" precision="11" scale="0" sql-type="int" />
-      </many-to-many>
+      <one-to-many class="grupos_roles_has_privilegios" />
     </set>
   </class>
 </hibernate-mapping>

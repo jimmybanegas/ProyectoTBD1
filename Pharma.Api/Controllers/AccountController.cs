@@ -1,17 +1,8 @@
-﻿using System.Net;
-using System.Web;
-using System.Web.Http;
-using AttributeRouting.Web.Mvc;
-using AutoMapper;
-using Pharma.Api.Models;
-using Pharma.Domain.Entities;
-using Pharma.Domain.Services;
-
-namespace Pharma.Api.Controllers
+﻿namespace Pharma.Api.Controllers
 {
     public class AccountController : BaseApiController
     {
-      /*  readonly IReadOnlyRepository _readOnlyRepository;
+        /*  readonly IReadOnlyRepository _readOnlyRepository;
         readonly IWriteOnlyRepository _writeOnlyRepository;
         readonly IMappingEngine _mappingEngine;
 

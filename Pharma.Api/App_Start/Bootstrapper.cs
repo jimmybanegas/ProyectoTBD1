@@ -6,11 +6,11 @@ namespace Pharma.Api
 {
     public class Bootstrapper
     {
-        readonly ContainerBuilder _containerBuilder;
-        readonly List<IBootstrapperTask> _tasks = new List<IBootstrapperTask>();
-        Type _mvcControllerExample;
-        Type _webApiControllerExample;
-        Action<ILifetimeScope> _doAfterContainerIsBuilt;
+        private readonly ContainerBuilder _containerBuilder;
+        private readonly List<IBootstrapperTask> _tasks = new List<IBootstrapperTask>();
+        private Action<ILifetimeScope> _doAfterContainerIsBuilt;
+        private Type _mvcControllerExample;
+        private Type _webApiControllerExample;
 
         public Bootstrapper(ContainerBuilder containerBuilder)
         {
@@ -25,13 +25,13 @@ namespace Pharma.Api
 
         public Bootstrapper WithExampleMvcController<T>()
         {
-            _mvcControllerExample = typeof(T);
+            _mvcControllerExample = typeof (T);
             return this;
         }
 
         public Bootstrapper WithExampleWebApiController<T>()
         {
-            _webApiControllerExample = typeof(T);
+            _webApiControllerExample = typeof (T);
             return this;
         }
 
@@ -44,18 +44,20 @@ namespace Pharma.Api
                 throw new ArgumentException("Please set the WebApi Controller Example.");
 
             var bootstrapperTasks = new List<IBootstrapperTask>
-                                        {   
-                                            new ConfigureThisWebApplication(_containerBuilder).WithExampleMvcController(_mvcControllerExample).WithExampleWebApiController(_webApiControllerExample),
-                                            new ConfigureRoutes().WithExampleMvcController(_mvcControllerExample).WithExampleWebApiController(_webApiControllerExample),
-                                            new ConfigureDatabase(_containerBuilder),
-                                        };
+            {
+                new ConfigureThisWebApplication(_containerBuilder).WithExampleMvcController(_mvcControllerExample)
+                    .WithExampleWebApiController(_webApiControllerExample),
+                new ConfigureRoutes().WithExampleMvcController(_mvcControllerExample)
+                    .WithExampleWebApiController(_webApiControllerExample),
+                new ConfigureDatabase(_containerBuilder),
+            };
 
             bootstrapperTasks.AddRange(_tasks);
             bootstrapperTasks.ForEach(x => x.Run());
             return BuildContainer();
         }
 
-        IContainer BuildContainer()
+        private IContainer BuildContainer()
         {
             IContainer container = _containerBuilder.Build();
             if (_doAfterContainerIsBuilt != null) _doAfterContainerIsBuilt(container);

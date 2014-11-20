@@ -6,7 +6,7 @@ using Pharma.Api.Areas.HelpPage.Models;
 namespace Pharma.Api.Areas.HelpPage.Controllers
 {
     /// <summary>
-    /// The controller that will handle requests for the help page.
+    ///     The controller that will handle requests for the help page.
     /// </summary>
     public class HelpController : Controller
     {

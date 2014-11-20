@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<hibernate-mapping assembly="Pharma.Domain" namespace="Pharma.Domain" xmlns="urn:nhibernate-mapping-2.2">
+<hibernate-mapping assembly="Pharma.Domain" namespace="Pharma.Domain.Entities" xmlns="urn:nhibernate-mapping-2.2">
   <class name="cotizaciones" table="cotizaciones" schema="farmacia">
     <id name="id_cotizacion" type="Int32">
       <column name="id_cotizacion" not-null="true" precision="11" scale="0" sql-type="int" />
@@ -8,8 +8,8 @@
     <property name="fecha" type="DateTime">
       <column name="fecha" not-null="false" sql-type="date" />
     </property>
-    <property name="tota" type="Double">
-      <column name="tota" not-null="false" sql-type="double" />
+    <property name="total" type="Double">
+      <column name="total" not-null="false" sql-type="double" />
     </property>
     <property name="fecha_crea" type="DateTime">
       <column name="fecha_crea" not-null="false" sql-type="datetime" />

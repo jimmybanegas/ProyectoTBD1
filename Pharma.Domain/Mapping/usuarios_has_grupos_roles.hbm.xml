@@ -1,0 +1,31 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<hibernate-mapping assembly="Pharma.Domain" namespace="Pharma.Domain.Entities" xmlns="urn:nhibernate-mapping-2.2">
+  <class name="usuarios_has_grupos_roles" table="usuarios_has_grupos_roles" schema="farmacia">
+    <composite-id>
+      <key-property name="usuario" type="String">
+        <column name="usuario" not-null="true" length="45" sql-type="varchar" />
+      </key-property>
+      <key-property name="id_rol" type="Int32">
+        <column name="id_rol" not-null="true" precision="11" scale="0" sql-type="int" />
+      </key-property>
+    </composite-id>
+    <property name="fecha_crea" type="DateTime">
+      <column name="fecha_crea" not-null="false" sql-type="datetime" />
+    </property>
+    <property name="fecha_actu" type="DateTime">
+      <column name="fecha_actu" not-null="false" sql-type="datetime" />
+    </property>
+    <property name="usuario_crea" type="String">
+      <column name="usuario_crea" not-null="false" length="45" sql-type="varchar" />
+    </property>
+    <property name="usuario_actu" type="String">
+      <column name="usuario_actu" not-null="false" length="45" sql-type="varchar" />
+    </property>
+    <many-to-one name="grupos_roles" class="grupos_roles">
+      <column name="id_rol" not-null="true" precision="11" scale="0" sql-type="int" />
+    </many-to-one>
+    <many-to-one name="usuarios" class="usuarios">
+      <column name="usuario" not-null="true" length="45" sql-type="varchar" />
+    </many-to-one>
+  </class>
+</hibernate-mapping>

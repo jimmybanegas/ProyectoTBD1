@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<hibernate-mapping assembly="Pharma.Domain" namespace="Pharma.Domain" xmlns="urn:nhibernate-mapping-2.2">
+<hibernate-mapping assembly="Pharma.Domain" namespace="Pharma.Domain.Entities" xmlns="urn:nhibernate-mapping-2.2">
   <class name="detalle_compras" table="detalle_compras" schema="farmacia">
     <composite-id>
       <key-property name="num_detalle" type="Int32">
@@ -18,14 +18,14 @@
     <property name="subtotal" type="Double">
       <column name="subtotal" not-null="false" sql-type="double" />
     </property>
-    <property name="cod_prod" type="Int32">
-      <column name="cod_prod" not-null="true" precision="11" scale="0" sql-type="int" />
+    <property name="cod_prod" type="String">
+      <column name="cod_prod" not-null="true" length="20" sql-type="varchar" />
     </property>
     <many-to-one name="compras" class="compras">
       <column name="id_compra" not-null="true" precision="11" scale="0" sql-type="int" />
     </many-to-one>
     <many-to-one name="productos" class="productos">
-      <column name="cod_prod" not-null="true" precision="11" scale="0" sql-type="int" />
+      <column name="cod_prod" not-null="true" length="20" sql-type="varchar" />
     </many-to-one>
   </class>
 </hibernate-mapping>

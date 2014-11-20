@@ -5,16 +5,16 @@ using System.Web;
 using System.Web.Mvc;
 using AttributeRouting.Web.Mvc;
 using AutoMapper;
+using Pharma.Api.Models;
 using Pharma.Domain.Entities;
 using Pharma.Domain.Services;
-using Pharma.Api.Models;
 
 namespace Pharma.Api.Controllers
 {
     public class LeaguesController : BaseApiController
     {
-        readonly IReadOnlyRepository _readOnlyRepository;
-        readonly IMappingEngine _mappingEngine;
+        private readonly IMappingEngine _mappingEngine;
+        private readonly IReadOnlyRepository _readOnlyRepository;
 
         public LeaguesController(IReadOnlyRepository readOnlyRepository, IMappingEngine mappingEngine)
         {
@@ -27,12 +27,12 @@ namespace Pharma.Api.Controllers
         [GET("leagues/available")]
         public List<LeaguesModel> GetAvailableLeagues()
         {
-            var userTokenModel = GetUserTokenModel();
+            UserTokenModel userTokenModel = GetUserTokenModel();
             if (userTokenModel == null)
-                throw new HttpException((int)HttpStatusCode.Unauthorized, "User is not authorized");
+                throw new HttpException((int) HttpStatusCode.Unauthorized, "User is not authorized");
 
-            var leagues = _readOnlyRepository.GetAll<Leagues>().ToList();
-            var leaguesModel = _mappingEngine.Map<List<Leagues>, List<LeaguesModel>>(leagues);
+            List<Leagues> leagues = _readOnlyRepository.GetAll<Leagues>().ToList();
+            List<LeaguesModel> leaguesModel = _mappingEngine.Map<List<Leagues>, List<LeaguesModel>>(leagues);
             return leaguesModel;
         }
 
@@ -41,14 +41,13 @@ namespace Pharma.Api.Controllers
         [GET("leagues/suscribed")]
         public List<LeaguesModel> GetSuscribedLeagues()
         {
-            var userTokenModel = GetUserTokenModel();
+            UserTokenModel userTokenModel = GetUserTokenModel();
             if (userTokenModel == null)
-                throw new HttpException((int)HttpStatusCode.Unauthorized, "User is not authorized");
+                throw new HttpException((int) HttpStatusCode.Unauthorized, "User is not authorized");
 
-         //   var account = _readOnlyRepository.Query<AccountLeagues>(x => x.User.Email == userTokenModel.email).Select(y => y.League);
-         //   var leaguesModel = _mappingEngine.Map<List<Leagues>, List<LeaguesModel>>(account.ToList());
+            //   var account = _readOnlyRepository.Query<AccountLeagues>(x => x.User.Email == userTokenModel.email).Select(y => y.League);
+            //   var leaguesModel = _mappingEngine.Map<List<Leagues>, List<LeaguesModel>>(account.ToList());
             return null;
         }
-
     }
 }

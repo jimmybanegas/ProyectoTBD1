@@ -11,7 +11,7 @@ namespace Pharma.Data
 {
     public class ReadOnlyRepository : IReadOnlyRepository
     {
-        readonly ISession _session;
+        private readonly ISession _session;
 
         public ReadOnlyRepository(ISession session)
         {
@@ -51,13 +51,13 @@ namespace Pharma.Data
 
         public IEnumerable<T> GetAll<T>() where T : IEntity
         {
-            var items = _session.Query<T>();
+            IQueryable<T> items = _session.Query<T>();
             return items;
         }
 
         public IEnumerable<T> Query<T>(Expression<Func<T, bool>> expression) where T : IEntity
         {
-            var session = _session;
+            ISession session = _session;
             return session.Query<T>().Where(expression);
         }
     }
