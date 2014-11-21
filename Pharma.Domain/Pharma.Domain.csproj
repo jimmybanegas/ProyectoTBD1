@@ -39,14 +39,141 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Entities\ajustes.cs" />
+    <Compile Include="Entities\categoria_productos.cs" />
+    <Compile Include="Entities\clientes.cs" />
+    <Compile Include="Entities\compras.cs" />
+    <Compile Include="Entities\contactos_clientes.cs" />
+    <Compile Include="Entities\costo_prod_proveedor.cs" />
+    <Compile Include="Entities\cotizaciones.cs" />
+    <Compile Include="Entities\detalle_ajustes.cs" />
+    <Compile Include="Entities\detalle_compras.cs" />
+    <Compile Include="Entities\detalle_cotizaciones.cs" />
+    <Compile Include="Entities\detalle_facturas.cs" />
+    <Compile Include="Entities\detalle_oc.cs" />
+    <Compile Include="Entities\direcciones_clientes.cs" />
+    <Compile Include="Entities\facturas.cs" />
+    <Compile Include="Entities\grupos_roles.cs" />
+    <Compile Include="Entities\grupos_roles_has_privilegios.cs" />
     <Compile Include="Entities\IEntity.cs" />
+    <Compile Include="Entities\kardex.cs" />
     <Compile Include="Entities\Leagues.cs" />
+    <Compile Include="Entities\ordenes_de_compra.cs" />
+    <Compile Include="Entities\Pharma.Extensions.MethodsExecutor.cs" />
+    <Compile Include="Entities\presentacion_productos.cs" />
+    <Compile Include="Entities\privilegios.cs" />
+    <Compile Include="Entities\productos.cs" />
+    <Compile Include="Entities\proveedores.cs" />
+    <Compile Include="Entities\telefonos_clientes.cs" />
+    <Compile Include="Entities\tipo_cliente.cs" />
+    <Compile Include="Entities\tipo_transacciones.cs" />
+    <Compile Include="Entities\usuarios.cs" />
+    <Compile Include="Entities\usuarios_has_grupos_roles.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Services\IReadOnlyRepository.cs" />
     <Compile Include="Services\IWriteOnlyRepository.cs" />
   </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
-    <Folder Include="Mapping\" />
+    <None Include="Pharma.Diagram1.view">
+      <DependentUpon>Pharma.hbml</DependentUpon>
+    </None>
+    <None Include="Pharma.edps">
+      <DependentUpon>Pharma.hbml</DependentUpon>
+    </None>
+    <None Include="Pharma.hbml">
+      <Generator>DevartHibernateGenerator</Generator>
+      <LastGenOutput>Pharma.info</LastGenOutput>
+    </None>
+    <None Include="Pharma.info">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Pharma.hbml</DependentUpon>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Mapping\ajustes.hbm.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Mapping\categoria_productos.hbm.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Mapping\clientes.hbm.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Mapping\compras.hbm.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Mapping\contactos_clientes.hbm.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Mapping\costo_prod_proveedor.hbm.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Mapping\cotizaciones.hbm.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Mapping\detalle_ajustes.hbm.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Mapping\detalle_compras.hbm.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Mapping\detalle_cotizaciones.hbm.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Mapping\detalle_facturas.hbm.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Mapping\detalle_oc.hbm.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Mapping\direcciones_clientes.hbm.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Mapping\facturas.hbm.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Mapping\grupos_roles.hbm.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Mapping\grupos_roles_has_privilegios.hbm.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Mapping\kardex.hbm.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Mapping\ordenes_de_compra.hbm.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Mapping\presentacion_productos.hbm.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Mapping\privilegios.hbm.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Mapping\productos.hbm.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Mapping\proveedores.hbm.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Mapping\telefonos_clientes.hbm.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Mapping\tipo_cliente.hbm.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Mapping\tipo_transacciones.hbm.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Mapping\usuarios.hbm.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Mapping\usuarios_has_grupos_roles.hbm.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Mapping\Pharma.hbm.xml" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

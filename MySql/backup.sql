@@ -47,6 +47,23 @@ LOCK TABLES `ajustes` WRITE;
 /*!40000 ALTER TABLE `ajustes` DISABLE KEYS */;
 /*!40000 ALTER TABLE `ajustes` ENABLE KEYS */;
 UNLOCK TABLES;
+/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
+/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
+/*!50003 SET @saved_col_connection = @@collation_connection */ ;
+/*!50003 SET character_set_client  = utf8 */ ;
+/*!50003 SET character_set_results = utf8 */ ;
+/*!50003 SET collation_connection  = utf8_general_ci */ ;
+/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
+/*!50003 SET sql_mode              = 'STRICT_TRANS_TABLES,NO_AUTO_CREATE_USER,NO_ENGINE_SUBSTITUTION' */ ;
+DELIMITER ;;
+/*!50003 CREATE*/ /*!50017 DEFINER=`root`@`localhost`*/ /*!50003 TRIGGER `farmacia`.`ajustes_AFTER_UPDATE` AFTER UPDATE ON `ajustes` FOR EACH ROW
+	UPDATE AJUSTES
+		SET fecha_actu = now() */;;
+DELIMITER ;
+/*!50003 SET sql_mode              = @saved_sql_mode */ ;
+/*!50003 SET character_set_client  = @saved_cs_client */ ;
+/*!50003 SET character_set_results = @saved_cs_results */ ;
+/*!50003 SET collation_connection  = @saved_col_connection */ ;
 
 --
 -- Table structure for table `categoria_productos`
@@ -75,6 +92,23 @@ LOCK TABLES `categoria_productos` WRITE;
 INSERT INTO `categoria_productos` VALUES (1,'CATE1','2014-11-18 00:00:00','2014-11-18 00:00:00','JIMMY','JIMMY'),(2,'CATE2','2014-11-18 00:00:00','2014-11-18 00:00:00','JIMMY','JIMMY');
 /*!40000 ALTER TABLE `categoria_productos` ENABLE KEYS */;
 UNLOCK TABLES;
+/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
+/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
+/*!50003 SET @saved_col_connection = @@collation_connection */ ;
+/*!50003 SET character_set_client  = utf8 */ ;
+/*!50003 SET character_set_results = utf8 */ ;
+/*!50003 SET collation_connection  = utf8_general_ci */ ;
+/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
+/*!50003 SET sql_mode              = 'STRICT_TRANS_TABLES,NO_AUTO_CREATE_USER,NO_ENGINE_SUBSTITUTION' */ ;
+DELIMITER ;;
+/*!50003 CREATE*/ /*!50017 DEFINER=`root`@`localhost`*/ /*!50003 TRIGGER `farmacia`.`categoria_productos_AFTER_UPDATE` AFTER UPDATE ON `categoria_productos` FOR EACH ROW
+    UPDATE categoria_productos
+		SET fecha_actu = now() */;;
+DELIMITER ;
+/*!50003 SET sql_mode              = @saved_sql_mode */ ;
+/*!50003 SET character_set_client  = @saved_cs_client */ ;
+/*!50003 SET character_set_results = @saved_cs_results */ ;
+/*!50003 SET collation_connection  = @saved_col_connection */ ;
 
 --
 -- Table structure for table `clientes`
@@ -106,6 +140,23 @@ LOCK TABLES `clientes` WRITE;
 INSERT INTO `clientes` VALUES (2,'JUAN VILLATORO','2014-11-18 00:00:00','2014-11-18 00:00:00','JIMMY_RAMOS','JIMMY_RAMOS',1);
 /*!40000 ALTER TABLE `clientes` ENABLE KEYS */;
 UNLOCK TABLES;
+/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
+/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
+/*!50003 SET @saved_col_connection = @@collation_connection */ ;
+/*!50003 SET character_set_client  = utf8 */ ;
+/*!50003 SET character_set_results = utf8 */ ;
+/*!50003 SET collation_connection  = utf8_general_ci */ ;
+/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
+/*!50003 SET sql_mode              = 'STRICT_TRANS_TABLES,NO_AUTO_CREATE_USER,NO_ENGINE_SUBSTITUTION' */ ;
+DELIMITER ;;
+/*!50003 CREATE*/ /*!50017 DEFINER=`root`@`localhost`*/ /*!50003 TRIGGER `farmacia`.`clientes_AFTER_UPDATE` AFTER UPDATE ON `clientes` FOR EACH ROW
+      UPDATE clientes
+		SET fecha_actu = now() */;;
+DELIMITER ;
+/*!50003 SET sql_mode              = @saved_sql_mode */ ;
+/*!50003 SET character_set_client  = @saved_cs_client */ ;
+/*!50003 SET character_set_results = @saved_cs_results */ ;
+/*!50003 SET collation_connection  = @saved_col_connection */ ;
 
 --
 -- Table structure for table `compras`
@@ -170,6 +221,23 @@ LOCK TABLES `contactos_clientes` WRITE;
 /*!40000 ALTER TABLE `contactos_clientes` DISABLE KEYS */;
 /*!40000 ALTER TABLE `contactos_clientes` ENABLE KEYS */;
 UNLOCK TABLES;
+/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
+/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
+/*!50003 SET @saved_col_connection = @@collation_connection */ ;
+/*!50003 SET character_set_client  = utf8 */ ;
+/*!50003 SET character_set_results = utf8 */ ;
+/*!50003 SET collation_connection  = utf8_general_ci */ ;
+/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
+/*!50003 SET sql_mode              = 'STRICT_TRANS_TABLES,NO_AUTO_CREATE_USER,NO_ENGINE_SUBSTITUTION' */ ;
+DELIMITER ;;
+/*!50003 CREATE*/ /*!50017 DEFINER=`root`@`localhost`*/ /*!50003 TRIGGER `farmacia`.`contactos_clientes_AFTER_UPDATE` AFTER UPDATE ON `contactos_clientes` FOR EACH ROW
+      UPDATE contactos_clientes
+		SET fecha_actu = now() */;;
+DELIMITER ;
+/*!50003 SET sql_mode              = @saved_sql_mode */ ;
+/*!50003 SET character_set_client  = @saved_cs_client */ ;
+/*!50003 SET character_set_results = @saved_cs_results */ ;
+/*!50003 SET collation_connection  = @saved_col_connection */ ;
 
 --
 -- Table structure for table `costo_prod_proveedor`
@@ -469,6 +537,23 @@ LOCK TABLES `direcciones_clientes` WRITE;
 /*!40000 ALTER TABLE `direcciones_clientes` DISABLE KEYS */;
 /*!40000 ALTER TABLE `direcciones_clientes` ENABLE KEYS */;
 UNLOCK TABLES;
+/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
+/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
+/*!50003 SET @saved_col_connection = @@collation_connection */ ;
+/*!50003 SET character_set_client  = utf8 */ ;
+/*!50003 SET character_set_results = utf8 */ ;
+/*!50003 SET collation_connection  = utf8_general_ci */ ;
+/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
+/*!50003 SET sql_mode              = 'STRICT_TRANS_TABLES,NO_AUTO_CREATE_USER,NO_ENGINE_SUBSTITUTION' */ ;
+DELIMITER ;;
+/*!50003 CREATE*/ /*!50017 DEFINER=`root`@`localhost`*/ /*!50003 TRIGGER `farmacia`.`direcciones_clientes_AFTER_UPDATE` AFTER UPDATE ON `direcciones_clientes` FOR EACH ROW
+      UPDATE direcciones_clientes
+		SET fecha_actu = now() */;;
+DELIMITER ;
+/*!50003 SET sql_mode              = @saved_sql_mode */ ;
+/*!50003 SET character_set_client  = @saved_cs_client */ ;
+/*!50003 SET character_set_results = @saved_cs_results */ ;
+/*!50003 SET collation_connection  = @saved_col_connection */ ;
 
 --
 -- Table structure for table `facturas`
@@ -531,6 +616,23 @@ LOCK TABLES `grupos_roles` WRITE;
 /*!40000 ALTER TABLE `grupos_roles` DISABLE KEYS */;
 /*!40000 ALTER TABLE `grupos_roles` ENABLE KEYS */;
 UNLOCK TABLES;
+/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
+/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
+/*!50003 SET @saved_col_connection = @@collation_connection */ ;
+/*!50003 SET character_set_client  = utf8 */ ;
+/*!50003 SET character_set_results = utf8 */ ;
+/*!50003 SET collation_connection  = utf8_general_ci */ ;
+/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
+/*!50003 SET sql_mode              = 'STRICT_TRANS_TABLES,NO_AUTO_CREATE_USER,NO_ENGINE_SUBSTITUTION' */ ;
+DELIMITER ;;
+/*!50003 CREATE*/ /*!50017 DEFINER=`root`@`localhost`*/ /*!50003 TRIGGER `farmacia`.`grupos_roles_AFTER_UPDATE` AFTER UPDATE ON `grupos_roles` FOR EACH ROW
+      UPDATE grupos_roles
+		SET fecha_actu = now() */;;
+DELIMITER ;
+/*!50003 SET sql_mode              = @saved_sql_mode */ ;
+/*!50003 SET character_set_client  = @saved_cs_client */ ;
+/*!50003 SET character_set_results = @saved_cs_results */ ;
+/*!50003 SET collation_connection  = @saved_col_connection */ ;
 
 --
 -- Table structure for table `grupos_roles_has_privilegios`
@@ -562,6 +664,23 @@ LOCK TABLES `grupos_roles_has_privilegios` WRITE;
 /*!40000 ALTER TABLE `grupos_roles_has_privilegios` DISABLE KEYS */;
 /*!40000 ALTER TABLE `grupos_roles_has_privilegios` ENABLE KEYS */;
 UNLOCK TABLES;
+/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
+/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
+/*!50003 SET @saved_col_connection = @@collation_connection */ ;
+/*!50003 SET character_set_client  = utf8 */ ;
+/*!50003 SET character_set_results = utf8 */ ;
+/*!50003 SET collation_connection  = utf8_general_ci */ ;
+/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
+/*!50003 SET sql_mode              = 'STRICT_TRANS_TABLES,NO_AUTO_CREATE_USER,NO_ENGINE_SUBSTITUTION' */ ;
+DELIMITER ;;
+/*!50003 CREATE*/ /*!50017 DEFINER=`root`@`localhost`*/ /*!50003 TRIGGER `farmacia`.`grupos_roles_has_privilegios_AFTER_UPDATE` AFTER UPDATE ON `grupos_roles_has_privilegios` FOR EACH ROW
+      UPDATE grupos_roles_has_privilegios
+		SET fecha_actu = now() */;;
+DELIMITER ;
+/*!50003 SET sql_mode              = @saved_sql_mode */ ;
+/*!50003 SET character_set_client  = @saved_cs_client */ ;
+/*!50003 SET character_set_results = @saved_cs_results */ ;
+/*!50003 SET collation_connection  = @saved_col_connection */ ;
 
 --
 -- Table structure for table `kardex`
@@ -658,6 +777,23 @@ LOCK TABLES `presentacion_productos` WRITE;
 INSERT INTO `presentacion_productos` VALUES (1,'PRESE1','2014-11-18 00:00:00','2014-11-18 00:00:00','JIMMY','JIMMY'),(2,'PRESE2','2014-11-18 00:00:00','2014-11-18 00:00:00','JIMMY','JIMMY');
 /*!40000 ALTER TABLE `presentacion_productos` ENABLE KEYS */;
 UNLOCK TABLES;
+/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
+/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
+/*!50003 SET @saved_col_connection = @@collation_connection */ ;
+/*!50003 SET character_set_client  = utf8 */ ;
+/*!50003 SET character_set_results = utf8 */ ;
+/*!50003 SET collation_connection  = utf8_general_ci */ ;
+/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
+/*!50003 SET sql_mode              = 'STRICT_TRANS_TABLES,NO_AUTO_CREATE_USER,NO_ENGINE_SUBSTITUTION' */ ;
+DELIMITER ;;
+/*!50003 CREATE*/ /*!50017 DEFINER=`root`@`localhost`*/ /*!50003 TRIGGER `farmacia`.`presentacion_productos_AFTER_UPDATE` AFTER UPDATE ON `presentacion_productos` FOR EACH ROW
+     UPDATE presentacion_productos
+		SET fecha_actu = now() */;;
+DELIMITER ;
+/*!50003 SET sql_mode              = @saved_sql_mode */ ;
+/*!50003 SET character_set_client  = @saved_cs_client */ ;
+/*!50003 SET character_set_results = @saved_cs_results */ ;
+/*!50003 SET collation_connection  = @saved_col_connection */ ;
 
 --
 -- Table structure for table `privilegios`
@@ -685,6 +821,23 @@ LOCK TABLES `privilegios` WRITE;
 /*!40000 ALTER TABLE `privilegios` DISABLE KEYS */;
 /*!40000 ALTER TABLE `privilegios` ENABLE KEYS */;
 UNLOCK TABLES;
+/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
+/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
+/*!50003 SET @saved_col_connection = @@collation_connection */ ;
+/*!50003 SET character_set_client  = utf8 */ ;
+/*!50003 SET character_set_results = utf8 */ ;
+/*!50003 SET collation_connection  = utf8_general_ci */ ;
+/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
+/*!50003 SET sql_mode              = 'STRICT_TRANS_TABLES,NO_AUTO_CREATE_USER,NO_ENGINE_SUBSTITUTION' */ ;
+DELIMITER ;;
+/*!50003 CREATE*/ /*!50017 DEFINER=`root`@`localhost`*/ /*!50003 TRIGGER `farmacia`.`privilegios_AFTER_UPDATE` AFTER UPDATE ON `privilegios` FOR EACH ROW
+    UPDATE privilegios
+		SET fecha_actu = now() */;;
+DELIMITER ;
+/*!50003 SET sql_mode              = @saved_sql_mode */ ;
+/*!50003 SET character_set_client  = @saved_cs_client */ ;
+/*!50003 SET character_set_results = @saved_cs_results */ ;
+/*!50003 SET collation_connection  = @saved_col_connection */ ;
 
 --
 -- Table structure for table `productos`
@@ -789,6 +942,23 @@ LOCK TABLES `proveedores` WRITE;
 INSERT INTO `proveedores` VALUES (1,'ANTUNEZ','99201220','PRVEE1','JUAN','2014-11-19 00:00:00','2014-11-19 00:00:00','JUAN','JUAN');
 /*!40000 ALTER TABLE `proveedores` ENABLE KEYS */;
 UNLOCK TABLES;
+/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
+/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
+/*!50003 SET @saved_col_connection = @@collation_connection */ ;
+/*!50003 SET character_set_client  = utf8 */ ;
+/*!50003 SET character_set_results = utf8 */ ;
+/*!50003 SET collation_connection  = utf8_general_ci */ ;
+/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
+/*!50003 SET sql_mode              = 'STRICT_TRANS_TABLES,NO_AUTO_CREATE_USER,NO_ENGINE_SUBSTITUTION' */ ;
+DELIMITER ;;
+/*!50003 CREATE*/ /*!50017 DEFINER=`root`@`localhost`*/ /*!50003 TRIGGER `farmacia`.`proveedores_AFTER_UPDATE` AFTER UPDATE ON `proveedores` FOR EACH ROW
+    UPDATE proveedores
+		SET fecha_actu = now() */;;
+DELIMITER ;
+/*!50003 SET sql_mode              = @saved_sql_mode */ ;
+/*!50003 SET character_set_client  = @saved_cs_client */ ;
+/*!50003 SET character_set_results = @saved_cs_results */ ;
+/*!50003 SET collation_connection  = @saved_col_connection */ ;
 
 --
 -- Table structure for table `telefonos_clientes`
@@ -819,6 +989,23 @@ LOCK TABLES `telefonos_clientes` WRITE;
 /*!40000 ALTER TABLE `telefonos_clientes` DISABLE KEYS */;
 /*!40000 ALTER TABLE `telefonos_clientes` ENABLE KEYS */;
 UNLOCK TABLES;
+/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
+/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
+/*!50003 SET @saved_col_connection = @@collation_connection */ ;
+/*!50003 SET character_set_client  = utf8 */ ;
+/*!50003 SET character_set_results = utf8 */ ;
+/*!50003 SET collation_connection  = utf8_general_ci */ ;
+/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
+/*!50003 SET sql_mode              = 'STRICT_TRANS_TABLES,NO_AUTO_CREATE_USER,NO_ENGINE_SUBSTITUTION' */ ;
+DELIMITER ;;
+/*!50003 CREATE*/ /*!50017 DEFINER=`root`@`localhost`*/ /*!50003 TRIGGER `farmacia`.`telefonos_clientes_AFTER_UPDATE` AFTER UPDATE ON `telefonos_clientes` FOR EACH ROW
+    UPDATE telefonos_clientes
+		SET fecha_actu = now() */;;
+DELIMITER ;
+/*!50003 SET sql_mode              = @saved_sql_mode */ ;
+/*!50003 SET character_set_client  = @saved_cs_client */ ;
+/*!50003 SET character_set_results = @saved_cs_results */ ;
+/*!50003 SET collation_connection  = @saved_col_connection */ ;
 
 --
 -- Table structure for table `tipo_cliente`
@@ -847,6 +1034,23 @@ LOCK TABLES `tipo_cliente` WRITE;
 INSERT INTO `tipo_cliente` VALUES (1,'MINORISTA','2014-11-18 00:00:00','2014-11-18 00:00:00','JIMMY_RAMOS','JIMMY_RAMOS'),(2,'MAYORISTA','2014-11-18 00:00:00','2014-11-18 00:00:00','JIMMY_RAMOS','JIMMY_RAMOS');
 /*!40000 ALTER TABLE `tipo_cliente` ENABLE KEYS */;
 UNLOCK TABLES;
+/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
+/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
+/*!50003 SET @saved_col_connection = @@collation_connection */ ;
+/*!50003 SET character_set_client  = utf8 */ ;
+/*!50003 SET character_set_results = utf8 */ ;
+/*!50003 SET collation_connection  = utf8_general_ci */ ;
+/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
+/*!50003 SET sql_mode              = 'STRICT_TRANS_TABLES,NO_AUTO_CREATE_USER,NO_ENGINE_SUBSTITUTION' */ ;
+DELIMITER ;;
+/*!50003 CREATE*/ /*!50017 DEFINER=`root`@`localhost`*/ /*!50003 TRIGGER `farmacia`.`tipo_cliente_AFTER_UPDATE` AFTER UPDATE ON `tipo_cliente` FOR EACH ROW
+     UPDATE tipo_cliente
+		SET fecha_actu = now() */;;
+DELIMITER ;
+/*!50003 SET sql_mode              = @saved_sql_mode */ ;
+/*!50003 SET character_set_client  = @saved_cs_client */ ;
+/*!50003 SET character_set_results = @saved_cs_results */ ;
+/*!50003 SET collation_connection  = @saved_col_connection */ ;
 
 --
 -- Table structure for table `tipo_transacciones`
@@ -876,6 +1080,23 @@ LOCK TABLES `tipo_transacciones` WRITE;
 INSERT INTO `tipo_transacciones` VALUES (1,'ENTRADA POR COMPRA','2014-11-18 00:00:00','2014-11-18 00:00:00','JIMMY_RAMOS','JIMMY_RAMOS','E'),(2,'SALIDA POR VENTA','2014-11-18 00:00:00','2014-11-18 00:00:00','JIMMY_RAMOS','JIMMY_RAMOS','S'),(3,'SALIDA POR PRODUCTO VENCIDO','2014-11-18 00:00:00','2014-11-18 00:00:00','JIMMY_RAMOS','JIMMY_RAMOS','S'),(4,'CARGA POR SOBRANTE FISICO','2014-11-18 00:00:00','2014-11-18 00:00:00','JIMMY_RAMOS','JIMMY_RAMOS','E'),(5,'DESCARGA POR FALTANTE FISICO','2014-11-18 00:00:00','2014-11-18 00:00:00','JIMMY_RAMOS','JIMMY_RAMOS','E');
 /*!40000 ALTER TABLE `tipo_transacciones` ENABLE KEYS */;
 UNLOCK TABLES;
+/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
+/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
+/*!50003 SET @saved_col_connection = @@collation_connection */ ;
+/*!50003 SET character_set_client  = utf8 */ ;
+/*!50003 SET character_set_results = utf8 */ ;
+/*!50003 SET collation_connection  = utf8_general_ci */ ;
+/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
+/*!50003 SET sql_mode              = 'STRICT_TRANS_TABLES,NO_AUTO_CREATE_USER,NO_ENGINE_SUBSTITUTION' */ ;
+DELIMITER ;;
+/*!50003 CREATE*/ /*!50017 DEFINER=`root`@`localhost`*/ /*!50003 TRIGGER `farmacia`.`tipo_transacciones_AFTER_UPDATE` AFTER UPDATE ON `tipo_transacciones` FOR EACH ROW
+      UPDATE tipo_transacciones
+		SET fecha_actu = now() */;;
+DELIMITER ;
+/*!50003 SET sql_mode              = @saved_sql_mode */ ;
+/*!50003 SET character_set_client  = @saved_cs_client */ ;
+/*!50003 SET character_set_results = @saved_cs_results */ ;
+/*!50003 SET collation_connection  = @saved_col_connection */ ;
 
 --
 -- Table structure for table `usuarios`
@@ -906,6 +1127,23 @@ LOCK TABLES `usuarios` WRITE;
 /*!40000 ALTER TABLE `usuarios` DISABLE KEYS */;
 /*!40000 ALTER TABLE `usuarios` ENABLE KEYS */;
 UNLOCK TABLES;
+/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
+/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
+/*!50003 SET @saved_col_connection = @@collation_connection */ ;
+/*!50003 SET character_set_client  = utf8 */ ;
+/*!50003 SET character_set_results = utf8 */ ;
+/*!50003 SET collation_connection  = utf8_general_ci */ ;
+/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
+/*!50003 SET sql_mode              = 'STRICT_TRANS_TABLES,NO_AUTO_CREATE_USER,NO_ENGINE_SUBSTITUTION' */ ;
+DELIMITER ;;
+/*!50003 CREATE*/ /*!50017 DEFINER=`root`@`localhost`*/ /*!50003 TRIGGER `farmacia`.`usuarios_AFTER_UPDATE` AFTER UPDATE ON `usuarios` FOR EACH ROW
+      UPDATE usuarios
+		SET fecha_actu = now() */;;
+DELIMITER ;
+/*!50003 SET sql_mode              = @saved_sql_mode */ ;
+/*!50003 SET character_set_client  = @saved_cs_client */ ;
+/*!50003 SET character_set_results = @saved_cs_results */ ;
+/*!50003 SET collation_connection  = @saved_col_connection */ ;
 
 --
 -- Table structure for table `usuarios_has_grupos_roles`
@@ -937,6 +1175,146 @@ LOCK TABLES `usuarios_has_grupos_roles` WRITE;
 /*!40000 ALTER TABLE `usuarios_has_grupos_roles` DISABLE KEYS */;
 /*!40000 ALTER TABLE `usuarios_has_grupos_roles` ENABLE KEYS */;
 UNLOCK TABLES;
+/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
+/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
+/*!50003 SET @saved_col_connection = @@collation_connection */ ;
+/*!50003 SET character_set_client  = utf8 */ ;
+/*!50003 SET character_set_results = utf8 */ ;
+/*!50003 SET collation_connection  = utf8_general_ci */ ;
+/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
+/*!50003 SET sql_mode              = 'STRICT_TRANS_TABLES,NO_AUTO_CREATE_USER,NO_ENGINE_SUBSTITUTION' */ ;
+DELIMITER ;;
+/*!50003 CREATE*/ /*!50017 DEFINER=`root`@`localhost`*/ /*!50003 TRIGGER `farmacia`.`usuarios_has_grupos_roles_AFTER_UPDATE` AFTER UPDATE ON `usuarios_has_grupos_roles` FOR EACH ROW
+      UPDATE usuarios_has_grupos_roles
+		SET fecha_actu = now() */;;
+DELIMITER ;
+/*!50003 SET sql_mode              = @saved_sql_mode */ ;
+/*!50003 SET character_set_client  = @saved_cs_client */ ;
+/*!50003 SET character_set_results = @saved_cs_results */ ;
+/*!50003 SET collation_connection  = @saved_col_connection */ ;
+
+--
+-- Temporary table structure for view `vw_ajustes_detalle`
+--
+
+DROP TABLE IF EXISTS `vw_ajustes_detalle`;
+/*!50001 DROP VIEW IF EXISTS `vw_ajustes_detalle`*/;
+SET @saved_cs_client     = @@character_set_client;
+SET character_set_client = utf8;
+/*!50001 CREATE TABLE `vw_ajustes_detalle` (
+  `id_ajuste` tinyint NOT NULL,
+  `fecha` tinyint NOT NULL,
+  `num_detalle` tinyint NOT NULL,
+  `cantidad` tinyint NOT NULL,
+  `cod_prod` tinyint NOT NULL,
+  `nombre` tinyint NOT NULL,
+  `id_tipotran` tinyint NOT NULL,
+  `nombre_tran` tinyint NOT NULL,
+  `entrada_o_salida` tinyint NOT NULL
+) ENGINE=MyISAM */;
+SET character_set_client = @saved_cs_client;
+
+--
+-- Temporary table structure for view `vw_compras_detalle`
+--
+
+DROP TABLE IF EXISTS `vw_compras_detalle`;
+/*!50001 DROP VIEW IF EXISTS `vw_compras_detalle`*/;
+SET @saved_cs_client     = @@character_set_client;
+SET character_set_client = utf8;
+/*!50001 CREATE TABLE `vw_compras_detalle` (
+  `id_compra` tinyint NOT NULL,
+  `fecha` tinyint NOT NULL,
+  `num_detalle` tinyint NOT NULL,
+  `cantidad` tinyint NOT NULL,
+  `precio_compra` tinyint NOT NULL,
+  `subtotal` tinyint NOT NULL,
+  `cod_prod` tinyint NOT NULL,
+  `nombre` tinyint NOT NULL
+) ENGINE=MyISAM */;
+SET character_set_client = @saved_cs_client;
+
+--
+-- Temporary table structure for view `vw_costo_proveedor`
+--
+
+DROP TABLE IF EXISTS `vw_costo_proveedor`;
+/*!50001 DROP VIEW IF EXISTS `vw_costo_proveedor`*/;
+SET @saved_cs_client     = @@character_set_client;
+SET character_set_client = utf8;
+/*!50001 CREATE TABLE `vw_costo_proveedor` (
+  `costo` tinyint NOT NULL,
+  `cod_prod` tinyint NOT NULL,
+  `nombre` tinyint NOT NULL,
+  `id_proveedor` tinyint NOT NULL,
+  `nombre_provee` tinyint NOT NULL
+) ENGINE=MyISAM */;
+SET character_set_client = @saved_cs_client;
+
+--
+-- Temporary table structure for view `vw_cotizaciones_provee_producto`
+--
+
+DROP TABLE IF EXISTS `vw_cotizaciones_provee_producto`;
+/*!50001 DROP VIEW IF EXISTS `vw_cotizaciones_provee_producto`*/;
+SET @saved_cs_client     = @@character_set_client;
+SET character_set_client = utf8;
+/*!50001 CREATE TABLE `vw_cotizaciones_provee_producto` (
+  `id_cotizacion` tinyint NOT NULL,
+  `fecha` tinyint NOT NULL,
+  `total` tinyint NOT NULL,
+  `cantidad` tinyint NOT NULL,
+  `precio_unit` tinyint NOT NULL,
+  `nombre` tinyint NOT NULL,
+  `cod_prod` tinyint NOT NULL,
+  `costo` tinyint NOT NULL,
+  `id_proveedor` tinyint NOT NULL,
+  `nombre_provee` tinyint NOT NULL
+) ENGINE=MyISAM */;
+SET character_set_client = @saved_cs_client;
+
+--
+-- Temporary table structure for view `vw_facturas_con_detalles`
+--
+
+DROP TABLE IF EXISTS `vw_facturas_con_detalles`;
+/*!50001 DROP VIEW IF EXISTS `vw_facturas_con_detalles`*/;
+SET @saved_cs_client     = @@character_set_client;
+SET character_set_client = utf8;
+/*!50001 CREATE TABLE `vw_facturas_con_detalles` (
+  `num_factura` tinyint NOT NULL,
+  `fecha` tinyint NOT NULL,
+  `total` tinyint NOT NULL,
+  `num_detalle` tinyint NOT NULL,
+  `cantidad` tinyint NOT NULL,
+  `cod_prod` tinyint NOT NULL,
+  `nombre` tinyint NOT NULL,
+  `id_cliente` tinyint NOT NULL,
+  `nombre01` tinyint NOT NULL
+) ENGINE=MyISAM */;
+SET character_set_client = @saved_cs_client;
+
+--
+-- Temporary table structure for view `vw_oc_activas`
+--
+
+DROP TABLE IF EXISTS `vw_oc_activas`;
+/*!50001 DROP VIEW IF EXISTS `vw_oc_activas`*/;
+SET @saved_cs_client     = @@character_set_client;
+SET character_set_client = utf8;
+/*!50001 CREATE TABLE `vw_oc_activas` (
+  `id_ordencompra` tinyint NOT NULL,
+  `fecha` tinyint NOT NULL,
+  `total` tinyint NOT NULL,
+  `id_proveedor` tinyint NOT NULL,
+  `nombre_provee` tinyint NOT NULL,
+  `activa` tinyint NOT NULL,
+  `cod_prod` tinyint NOT NULL,
+  `cantidad` tinyint NOT NULL,
+  `precio_unit` tinyint NOT NULL,
+  `nombre_prod` tinyint NOT NULL
+) ENGINE=MyISAM */;
+SET character_set_client = @saved_cs_client;
 
 --
 -- Temporary table structure for view `vw_producto`
@@ -963,6 +1341,25 @@ SET character_set_client = utf8;
   `fecha_actu` tinyint NOT NULL,
   `usuario_crea` tinyint NOT NULL,
   `usuario_actu` tinyint NOT NULL
+) ENGINE=MyISAM */;
+SET character_set_client = @saved_cs_client;
+
+--
+-- Temporary table structure for view `vw_usuarios_permisos`
+--
+
+DROP TABLE IF EXISTS `vw_usuarios_permisos`;
+/*!50001 DROP VIEW IF EXISTS `vw_usuarios_permisos`*/;
+SET @saved_cs_client     = @@character_set_client;
+SET character_set_client = utf8;
+/*!50001 CREATE TABLE `vw_usuarios_permisos` (
+  `usuario` tinyint NOT NULL,
+  `correo` tinyint NOT NULL,
+  `nombre` tinyint NOT NULL,
+  `id_rol` tinyint NOT NULL,
+  `nombre_rol` tinyint NOT NULL,
+  `id_privilegio` tinyint NOT NULL,
+  `nombre_priv` tinyint NOT NULL
 ) ENGINE=MyISAM */;
 SET character_set_client = @saved_cs_client;
 
@@ -6536,6 +6933,120 @@ DELIMITER ;
 /*!50003 SET collation_connection  = @saved_col_connection */ ;
 
 --
+-- Final view structure for view `vw_ajustes_detalle`
+--
+
+/*!50001 DROP TABLE IF EXISTS `vw_ajustes_detalle`*/;
+/*!50001 DROP VIEW IF EXISTS `vw_ajustes_detalle`*/;
+/*!50001 SET @saved_cs_client          = @@character_set_client */;
+/*!50001 SET @saved_cs_results         = @@character_set_results */;
+/*!50001 SET @saved_col_connection     = @@collation_connection */;
+/*!50001 SET character_set_client      = utf8 */;
+/*!50001 SET character_set_results     = utf8 */;
+/*!50001 SET collation_connection      = utf8_general_ci */;
+/*!50001 CREATE ALGORITHM=UNDEFINED */
+/*!50013 DEFINER=`VisualStudio`@`%` SQL SECURITY DEFINER */
+/*!50001 VIEW `vw_ajustes_detalle` AS select `ajustes`.`id_ajuste` AS `id_ajuste`,`ajustes`.`fecha` AS `fecha`,`detalle_ajustes`.`num_detalle` AS `num_detalle`,`detalle_ajustes`.`cantidad` AS `cantidad`,`detalle_ajustes`.`cod_prod` AS `cod_prod`,`productos`.`nombre` AS `nombre`,`ajustes`.`id_tipotran` AS `id_tipotran`,`tipo_transacciones`.`nombre` AS `nombre_tran`,`tipo_transacciones`.`entrada_o_salida` AS `entrada_o_salida` from (((`detalle_ajustes` left join `ajustes` on((`detalle_ajustes`.`id_ajuste` = `ajustes`.`id_ajuste`))) left join `productos` on((`detalle_ajustes`.`cod_prod` = `productos`.`cod_prod`))) join `tipo_transacciones`) */;
+/*!50001 SET character_set_client      = @saved_cs_client */;
+/*!50001 SET character_set_results     = @saved_cs_results */;
+/*!50001 SET collation_connection      = @saved_col_connection */;
+
+--
+-- Final view structure for view `vw_compras_detalle`
+--
+
+/*!50001 DROP TABLE IF EXISTS `vw_compras_detalle`*/;
+/*!50001 DROP VIEW IF EXISTS `vw_compras_detalle`*/;
+/*!50001 SET @saved_cs_client          = @@character_set_client */;
+/*!50001 SET @saved_cs_results         = @@character_set_results */;
+/*!50001 SET @saved_col_connection     = @@collation_connection */;
+/*!50001 SET character_set_client      = utf8 */;
+/*!50001 SET character_set_results     = utf8 */;
+/*!50001 SET collation_connection      = utf8_general_ci */;
+/*!50001 CREATE ALGORITHM=UNDEFINED */
+/*!50013 DEFINER=`VisualStudio`@`%` SQL SECURITY DEFINER */
+/*!50001 VIEW `vw_compras_detalle` AS select `compras`.`id_compra` AS `id_compra`,`compras`.`fecha` AS `fecha`,`detalle_compras`.`num_detalle` AS `num_detalle`,`detalle_compras`.`cantidad` AS `cantidad`,`detalle_compras`.`precio_compra` AS `precio_compra`,`detalle_compras`.`subtotal` AS `subtotal`,`detalle_compras`.`cod_prod` AS `cod_prod`,`productos`.`nombre` AS `nombre` from ((`detalle_compras` left join `compras` on((`detalle_compras`.`id_compra` = `compras`.`id_compra`))) left join `productos` on((`detalle_compras`.`cod_prod` = `productos`.`cod_prod`))) */;
+/*!50001 SET character_set_client      = @saved_cs_client */;
+/*!50001 SET character_set_results     = @saved_cs_results */;
+/*!50001 SET collation_connection      = @saved_col_connection */;
+
+--
+-- Final view structure for view `vw_costo_proveedor`
+--
+
+/*!50001 DROP TABLE IF EXISTS `vw_costo_proveedor`*/;
+/*!50001 DROP VIEW IF EXISTS `vw_costo_proveedor`*/;
+/*!50001 SET @saved_cs_client          = @@character_set_client */;
+/*!50001 SET @saved_cs_results         = @@character_set_results */;
+/*!50001 SET @saved_col_connection     = @@collation_connection */;
+/*!50001 SET character_set_client      = utf8 */;
+/*!50001 SET character_set_results     = utf8 */;
+/*!50001 SET collation_connection      = utf8_general_ci */;
+/*!50001 CREATE ALGORITHM=UNDEFINED */
+/*!50013 DEFINER=`VisualStudio`@`%` SQL SECURITY DEFINER */
+/*!50001 VIEW `vw_costo_proveedor` AS select `costo_prod_proveedor`.`costo` AS `costo`,`costo_prod_proveedor`.`cod_prod` AS `cod_prod`,`productos`.`nombre` AS `nombre`,`costo_prod_proveedor`.`id_proveedor` AS `id_proveedor`,`proveedores`.`nombre` AS `nombre_provee` from ((`costo_prod_proveedor` left join `productos` on((`costo_prod_proveedor`.`cod_prod` = `productos`.`cod_prod`))) left join `proveedores` on((`costo_prod_proveedor`.`id_proveedor` = `proveedores`.`id_proveedor`))) */;
+/*!50001 SET character_set_client      = @saved_cs_client */;
+/*!50001 SET character_set_results     = @saved_cs_results */;
+/*!50001 SET collation_connection      = @saved_col_connection */;
+
+--
+-- Final view structure for view `vw_cotizaciones_provee_producto`
+--
+
+/*!50001 DROP TABLE IF EXISTS `vw_cotizaciones_provee_producto`*/;
+/*!50001 DROP VIEW IF EXISTS `vw_cotizaciones_provee_producto`*/;
+/*!50001 SET @saved_cs_client          = @@character_set_client */;
+/*!50001 SET @saved_cs_results         = @@character_set_results */;
+/*!50001 SET @saved_col_connection     = @@collation_connection */;
+/*!50001 SET character_set_client      = utf8 */;
+/*!50001 SET character_set_results     = utf8 */;
+/*!50001 SET collation_connection      = utf8_general_ci */;
+/*!50001 CREATE ALGORITHM=UNDEFINED */
+/*!50013 DEFINER=`VisualStudio`@`%` SQL SECURITY DEFINER */
+/*!50001 VIEW `vw_cotizaciones_provee_producto` AS select `cotizaciones`.`id_cotizacion` AS `id_cotizacion`,`cotizaciones`.`fecha` AS `fecha`,`cotizaciones`.`total` AS `total`,`detalle_cotizaciones`.`cantidad` AS `cantidad`,`detalle_cotizaciones`.`precio_unit` AS `precio_unit`,`productos`.`nombre` AS `nombre`,`detalle_cotizaciones`.`cod_prod` AS `cod_prod`,`detalle_cotizaciones`.`precio_unit` AS `costo`,`cotizaciones`.`id_proveedor` AS `id_proveedor`,`proveedores`.`nombre` AS `nombre_provee` from (((`detalle_cotizaciones` left join `cotizaciones` on((`detalle_cotizaciones`.`id_cotizacion` = `cotizaciones`.`id_cotizacion`))) left join `productos` on((`detalle_cotizaciones`.`cod_prod` = `productos`.`cod_prod`))) join `proveedores`) */;
+/*!50001 SET character_set_client      = @saved_cs_client */;
+/*!50001 SET character_set_results     = @saved_cs_results */;
+/*!50001 SET collation_connection      = @saved_col_connection */;
+
+--
+-- Final view structure for view `vw_facturas_con_detalles`
+--
+
+/*!50001 DROP TABLE IF EXISTS `vw_facturas_con_detalles`*/;
+/*!50001 DROP VIEW IF EXISTS `vw_facturas_con_detalles`*/;
+/*!50001 SET @saved_cs_client          = @@character_set_client */;
+/*!50001 SET @saved_cs_results         = @@character_set_results */;
+/*!50001 SET @saved_col_connection     = @@collation_connection */;
+/*!50001 SET character_set_client      = utf8 */;
+/*!50001 SET character_set_results     = utf8 */;
+/*!50001 SET collation_connection      = utf8_general_ci */;
+/*!50001 CREATE ALGORITHM=UNDEFINED */
+/*!50013 DEFINER=`VisualStudio`@`%` SQL SECURITY DEFINER */
+/*!50001 VIEW `vw_facturas_con_detalles` AS select `facturas`.`num_factura` AS `num_factura`,`facturas`.`fecha` AS `fecha`,`facturas`.`total` AS `total`,`detalle_facturas`.`num_detalle` AS `num_detalle`,`detalle_facturas`.`cantidad` AS `cantidad`,`detalle_facturas`.`cod_prod` AS `cod_prod`,`productos`.`nombre` AS `nombre`,`facturas`.`id_cliente` AS `id_cliente`,`clientes`.`nombre` AS `nombre01` from (((`detalle_facturas` left join `facturas` on((`detalle_facturas`.`num_factura` = `facturas`.`num_factura`))) left join `productos` on((`detalle_facturas`.`cod_prod` = `productos`.`cod_prod`))) join `clientes`) order by `detalle_facturas`.`num_detalle` */;
+/*!50001 SET character_set_client      = @saved_cs_client */;
+/*!50001 SET character_set_results     = @saved_cs_results */;
+/*!50001 SET collation_connection      = @saved_col_connection */;
+
+--
+-- Final view structure for view `vw_oc_activas`
+--
+
+/*!50001 DROP TABLE IF EXISTS `vw_oc_activas`*/;
+/*!50001 DROP VIEW IF EXISTS `vw_oc_activas`*/;
+/*!50001 SET @saved_cs_client          = @@character_set_client */;
+/*!50001 SET @saved_cs_results         = @@character_set_results */;
+/*!50001 SET @saved_col_connection     = @@collation_connection */;
+/*!50001 SET character_set_client      = utf8 */;
+/*!50001 SET character_set_results     = utf8 */;
+/*!50001 SET collation_connection      = utf8_general_ci */;
+/*!50001 CREATE ALGORITHM=UNDEFINED */
+/*!50013 DEFINER=`VisualStudio`@`%` SQL SECURITY DEFINER */
+/*!50001 VIEW `vw_oc_activas` AS select `ordenes_de_compra`.`id_ordencompra` AS `id_ordencompra`,`ordenes_de_compra`.`fecha` AS `fecha`,`ordenes_de_compra`.`total` AS `total`,`ordenes_de_compra`.`id_proveedor` AS `id_proveedor`,`proveedores`.`nombre` AS `nombre_provee`,`ordenes_de_compra`.`activa` AS `activa`,`detalle_oc`.`cod_prod` AS `cod_prod`,`detalle_oc`.`cantidad` AS `cantidad`,`detalle_oc`.`precio_unit` AS `precio_unit`,`productos`.`nombre` AS `nombre_prod` from (((`detalle_oc` left join `ordenes_de_compra` on((`detalle_oc`.`id_ordencompra` = `ordenes_de_compra`.`id_ordencompra`))) left join `productos` on((`detalle_oc`.`cod_prod` = `productos`.`cod_prod`))) join `proveedores`) where (`ordenes_de_compra`.`activa` = 1) */;
+/*!50001 SET character_set_client      = @saved_cs_client */;
+/*!50001 SET character_set_results     = @saved_cs_results */;
+/*!50001 SET collation_connection      = @saved_col_connection */;
+
+--
 -- Final view structure for view `vw_producto`
 --
 
@@ -6553,6 +7064,25 @@ DELIMITER ;
 /*!50001 SET character_set_client      = @saved_cs_client */;
 /*!50001 SET character_set_results     = @saved_cs_results */;
 /*!50001 SET collation_connection      = @saved_col_connection */;
+
+--
+-- Final view structure for view `vw_usuarios_permisos`
+--
+
+/*!50001 DROP TABLE IF EXISTS `vw_usuarios_permisos`*/;
+/*!50001 DROP VIEW IF EXISTS `vw_usuarios_permisos`*/;
+/*!50001 SET @saved_cs_client          = @@character_set_client */;
+/*!50001 SET @saved_cs_results         = @@character_set_results */;
+/*!50001 SET @saved_col_connection     = @@collation_connection */;
+/*!50001 SET character_set_client      = utf8 */;
+/*!50001 SET character_set_results     = utf8 */;
+/*!50001 SET collation_connection      = utf8_general_ci */;
+/*!50001 CREATE ALGORITHM=UNDEFINED */
+/*!50013 DEFINER=`VisualStudio`@`%` SQL SECURITY DEFINER */
+/*!50001 VIEW `vw_usuarios_permisos` AS select `usuarios`.`usuario` AS `usuario`,`usuarios`.`correo` AS `correo`,`usuarios`.`nombre` AS `nombre`,`usuarios_has_grupos_roles`.`id_rol` AS `id_rol`,`grupos_roles`.`nombre` AS `nombre_rol`,`grupos_roles_has_privilegios`.`id_privilegio` AS `id_privilegio`,`privilegios`.`nombre` AS `nombre_priv` from ((((`usuarios_has_grupos_roles` left join `usuarios` on((`usuarios_has_grupos_roles`.`usuario` = `usuarios`.`usuario`))) left join `grupos_roles` on((`usuarios_has_grupos_roles`.`id_rol` = `grupos_roles`.`id_rol`))) join `grupos_roles_has_privilegios`) join `privilegios`) */;
+/*!50001 SET character_set_client      = @saved_cs_client */;
+/*!50001 SET character_set_results     = @saved_cs_results */;
+/*!50001 SET collation_connection      = @saved_col_connection */;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
 /*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
@@ -6563,4 +7093,4 @@ DELIMITER ;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2014-11-19 16:55:18
+-- Dump completed on 2014-11-20 19:29:48
