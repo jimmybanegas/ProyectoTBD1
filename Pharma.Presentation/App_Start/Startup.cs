@@ -9,7 +9,7 @@ using Microsoft.Owin;
 using Microsoft.Owin.Security.Cookies;
 using Owin;
 
-namespace App.Pharma.Presentation
+namespace Pharma.Presentation
 {
     public partial class Startup
     {

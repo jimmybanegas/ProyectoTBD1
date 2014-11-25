@@ -6,7 +6,7 @@
 
 using System.Web.Optimization;
 
-namespace App.Pharma.Presentation
+namespace Pharma.Presentation
 {
     public class BundleConfig
     {

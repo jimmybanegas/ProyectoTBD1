@@ -140,66 +140,6 @@
     <Content Include="Global.asax" />
     <Content Include="Content\toastr.less" />
     <Content Include="Content\bootstrap.css.map" />
-    <None Include="Images\ac-milan.png" />
-    <None Include="Images\ajax_amsterdam.png" />
-    <None Include="Images\alemana.jpg" />
-    <None Include="Images\arsenal.png" />
-    <None Include="Images\as_roma.gif" />
-    <None Include="Images\as-monaco.png" />
-    <None Include="Images\auxerre.png" />
-    <None Include="Images\bayer-leverkusen.png" />
-    <None Include="Images\bayern-munich.png" />
-    <None Include="Images\belga.jpg" />
-    <None Include="Images\benfica.png" />
-    <None Include="Images\bilbao.jpg" />
-    <None Include="Images\borussia_dortmund.png" />
-    <None Include="Images\chelsea.png" />
-    <None Include="Images\deportivo.gif" />
-    <None Include="Images\escudo-atletico-de-madrid.png" />
-    <None Include="Images\escudo-barcelona.png" />
-    <None Include="Images\escudo-madrid.png" />
-    <None Include="Images\espanyol_rcd.gif" />
-    <None Include="Images\española.jpg" />
-    <None Include="Images\everton_fc.png" />
-    <None Include="Images\fc_porto.jpg" />
-    <None Include="Images\finlandesa.jpg" />
-    <None Include="Images\fiorentina.png" />
-    <None Include="Images\francesa.jpg" />
-    <None Include="Images\girondins-de-burdeos.jpg" />
-    <None Include="Images\hamburgo.jpg" />
-    <None Include="Images\hertha-bsc.jpg" />
-    <None Include="Images\holandesa.jpg" />
-    <None Include="Images\inglesa.jpg" />
-    <None Include="Images\intermilan.png" />
-    <None Include="Images\italiana.jpg" />
-    <None Include="Images\juventus.png" />
-    <None Include="Images\liverpool.jpg" />
-    <None Include="Images\manchester-city.png" />
-    <None Include="Images\manchester-united.png" />
-    <None Include="Images\newcastle.jpg" />
-    <None Include="Images\olympique_lyon.png" />
-    <None Include="Images\olympique-marsella.png" />
-    <None Include="Images\palermo-escudo.jpg" />
-    <None Include="Images\portuguesa.jpg" />
-    <None Include="Images\psg.gif" />
-    <None Include="Images\psv.jpg" />
-    <None Include="Images\rennes.gif" />
-    <None Include="Images\rusa.jpg" />
-    <None Include="Images\sampdoria.jpg" />
-    <None Include="Images\schalke-04.png" />
-    <None Include="Images\sevilla_fc.gif" />
-    <Content Include="Images\Soccer2.jpg" />
-    <None Include="Images\sporting_clube_de_portugal.png" />
-    <None Include="Images\ss_lazio.png" />
-    <None Include="Images\stuttgart-fc.png" />
-    <None Include="Images\suiza.jpg" />
-    <None Include="Images\udinese.png" />
-    <None Include="Images\uefa.jpg" />
-    <None Include="Images\valenciacf.jpg" />
-    <None Include="Images\villareal.png" />
-    <None Include="Images\werder-bremen.png" />
-    <None Include="Images\west-ham.png" />
-    <None Include="Images\wolfsburgo.gif" />
     <Content Include="Scripts\controllers.js" />
     <Content Include="Scripts\controllers.spec.js">
       <DependentUpon>controllers.js</DependentUpon>
@@ -590,7 +530,6 @@
     <Content Include="Views\_PageStart.cshtml" />
     <Content Include="Views\About.cshtml" />
     <Content Include="Views\Register.cshtml" />
-    <Content Include="Views\forgot-password.cshtml" />
     <Content Include="Views\profile.cshtml" />
     <Content Include="Views\league.cshtml" />
     <Content Include="Views\newLeague.cshtml" />
@@ -623,6 +562,7 @@
     <Compile Include="Startup.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="Images\" />
     <Folder Include="Views\Shared\" />
   </ItemGroup>
   <ItemGroup>
@@ -632,6 +572,7 @@
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
