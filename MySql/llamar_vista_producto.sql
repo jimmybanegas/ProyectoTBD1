@@ -1,1 +1,0 @@
-select s.* from (select @p1:='005-A' p) parm , vw_producto s;
