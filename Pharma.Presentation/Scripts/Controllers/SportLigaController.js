@@ -29,147 +29,17 @@ angular.module('app.controllers')
         $scope.suscriptores = [];
         $scope.posiciones = [];
 
-        $scope.loadLeagues = function () {
-            SportLiga.getAvailableLeagues(function (ligas) {
-                $scope.ligas = ligas;
-            }, function (error) {
-                alert('error loading available leagues');
-            });
-
-            SportLiga.getSuscribedLeagues(function (misLigas) {
-                $scope.misLigas = misLigas;
-            }, function (error) {
-                alert('error loading available leagues');
-            });
-        };
-
+    
        
-          $scope.loadTeams = function () {
-            SportLiga.getAvailableTeams(function (teams) {
-                $scope.teams = teams;
-                $scope.FilterTeams = [];
-                for (var i = 0; i < $scope.teams.length; i++) {
-                    if ($scope.teams[i].Liga.toString() === $stateParams.id) {
-                        $scope.FilterTeams.push($scope.teams[i]);
-                    }
-                }
-            }, function (error) {
-                alert('error loading available teams');
-            });
-        };
 
-        $scope.loadMatches = function () {
-            SportLiga.getAvailableMatches(function (partidos) {
-                $scope.partidos = partidos;
 
-                $scope.PartidosFiltrados = [];
-                for (var i = 0; i < $scope.partidos.length; i++) {
-                    if ($scope.partidos[i].League === parseInt($stateParams.id)) {
-                        $scope.PartidosFiltrados.push($scope.partidos[i]);
-                    }
-                }
-            }, function (error) {
-                alert('error loading available matchess');
-            });
+    
 
-            SportLiga.getSuscribedMatches(function (misPartidos) {
-                $scope.misPartidos = misPartidos;
-            }, function (error) {
-                alert('error loading available matches');
-            });
-        };
+    
 
-        $scope.loadPredictions = function () {
-            SportLiga.getAvailablePredictions(function (misPredicciones) {
-                $scope.misPredicciones = misPredicciones;
-            }, function (error) {
-                alert('error loading available predictions');
-            });
-        };
-
-        $scope.loadSuscriptors = function (Id) {
-            SportLiga.getSuscriptors(Id,function (suscriptores) {
-                $scope.suscriptores = suscriptores;
-            }, function (error) {
-                alert('error loading available suscriptors');
-            });
-        };
-
-        $scope.loadPositions = function () {
-            SportLiga.getPositions(function (posiciones) {
-                $scope.posiciones = posiciones;
-            }, function (error) {
-                alert('error loading available posicions');
-            });
-        };
-
-        
-        $scope.getPrediction = function (id) {
-            for (var i = 0; i < $scope.misPredicciones.length; i++)
-                if ($scope.misPredicciones[i].Partido === id)
-                    return $scope.misPredicciones[i];
-        };
-
-       $scope.getTeam = function(id) {
-            for (var i = 0; i < $scope.teams.length; i++)
-                if ($scope.teams[i].Id === id)
-                    return $scope.teams[i];
-        };
-        
-        $scope.setParametro = function(idLiga) {
-            $scope.parametro = idLiga;
-        };
-
-        $scope.getTeamPorLiga = function() {
-            $scope.equipos = [];
-            for (var i = 0; i < $scope.teams.length; i++) {
-                if ($scope.teams[i].Liga === parseInt($stateParams.id)) {
-                    $scope.equipos.push($scope.teams[i]);
-                }
-            }
-            return $scope.equipos;
-        };
-
-        $scope.getTeamsPorLiga = function(id) {
-            $scope.equipos = [];
-            for (var i = 0; i < $scope.teams.length; i++) {
-                if ($scope.teams[i].Id === id) {
-                    $scope.equipos.push($scope.teams[i]);
-                }
-            }
-            return $scope.equipos;
-        };
-      
-        $scope.getLiga = function (id) {
-            for (var i = 0; i < $scope.misLigas.length; i++)
-                if ($scope.misLigas[i].Id === id)
-                    return $scope.misLigas[i];
-        };
-
-        $scope.getLigaPorParam = function() {
-            $scope.loadLeagues();
-            for (var i = 0; i < $scope.ligas.length; i++) {
-                if ($scope.ligas[i].Id === parseInt($stateParams.id))
-                    return $scope.ligas[i];
-            }
-            return null;
-        };
         
       
-        $scope.Match = {};
-        $scope.inicio2 = function (id) {
-            $scope.FilterTeamsSelect = [];
-            $scope.loadTeams();
-
-            for (var i = 0; i < $scope.teams.length; i++) {
-                if (parseInt($scope.teams[i].Liga) === parseInt(id)) {
-                    $scope.FilterTeamsSelect.push($scope.teams[i]);
-                }
-            }
-            $scope.Match.Team1 = $scope.FilterTeamsSelect[0];
-            $scope.Match.Team2 = $scope.FilterTeamsSelect[0];
-        };
-
+     
         $scope.suscribirse = function(liga) {
             SportLiga.addSuscription(liga.Id,localStorage.getItem('res'), function (response) {
 
@@ -379,21 +249,7 @@ angular.module('app.controllers')
             });
         };
 
-        $scope.EditLeague = {};
-     /*   $scope.idAnt = "";
-        //    $scope.EditLeague.Id = "";
-        $scope.nombreAnt = "";
-        //  $scope.EditLeague.NombreLiga = "";
-        $scope.logoAnt = "";
-        //    $scope.EditLeague.Logo = "";
-        $scope.sitioAnt = "";
-        //       $scope.EditLeague.SitioWeb = "";
-        $scope.estadoAnt = "";
-        //     $scope.EditLeague.IsArchived = "";
-        $scope.cantAnt = "";
-        //     $scope.EditLeague.CantEquipos = "";
-        $scope.paisAnt = "";
-        //  $scope.EditLeague.PaisLiga = "";*/
+ 
 
         $scope.editLeague = function (liga) {
             //   var ligaPorEditar = $scope.getLigaPorParam();
@@ -592,36 +448,6 @@ angular.module('app.controllers')
 
         };
 
-
-        //Controlar la la parte de las ligas, suscripcion
-        $(document).on('click', '.panel-heading span.clickable', function(e) {
-            var $this = $(this);
-            if (!$this.hasClass('panel-collapsed')) {
-                $this.parents('.panel').find('.panel-body').slideUp();
-                $this.addClass('panel-collapsed');
-                $this.find('i').removeClass('glyphicon-minus').addClass('glyphicon-plus');
-            } else {
-                $this.parents('.panel').find('.panel-body').slideDown();
-                $this.removeClass('panel-collapsed');
-                $this.find('i').removeClass('glyphicon-plus').addClass('glyphicon-minus');
-            }
-        });
-        $(document).on('click', '.panel div.clickable', function(e) {
-            var $this = $(this);
-            if (!$this.hasClass('panel-collapsed')) {
-                $this.parents('.panel').find('.panel-body').slideUp();
-                $this.addClass('panel-collapsed');
-                $this.find('i').removeClass('glyphicon-minus').addClass('glyphicon-plus');
-            } else {
-                $this.parents('.panel').find('.panel-body').slideDown();
-                $this.removeClass('panel-collapsed');
-                $this.find('i').removeClass('glyphicon-plus').addClass('glyphicon-minus');
-            }
-        });
-        $(document).ready(function() {
-            $('.panel-heading span.clickable').click();
-            $('.panel div.clickable').click();
-        });
 
     }
 ]);

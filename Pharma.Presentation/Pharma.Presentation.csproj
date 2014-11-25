@@ -149,7 +149,6 @@
     <Content Include="Scripts\Controllers\ForgotPasswordController.js" />
     <Content Include="Scripts\Controllers\HomeController.js" />
     <Content Include="Scripts\Controllers\LoginController.js" />
-    <Content Include="Scripts\Controllers\MatchesController.js" />
     <Content Include="Scripts\Controllers\ProfileController.js" />
     <Content Include="Scripts\Controllers\RegisterController.js" />
     <Content Include="Scripts\Controllers\SportLigaController.js" />
@@ -516,27 +515,23 @@
     </Content>
     <Content Include="robots.txt" />
     <Content Include="Views\Index.css" />
-    <Content Include="Views\matches.css" />
     <Content Include="Views\profile-normal.css" />
     <Content Include="Views\profile.css" />
-    <Content Include="Views\Login.css" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
     </Content>
-    <Content Include="Views\Login.cshtml" />
     <Content Include="Views\Index.cshtml" />
     <Content Include="Views\404.cshtml" />
     <Content Include="Views\_Layout.cshtml" />
     <Content Include="Views\_PageStart.cshtml" />
     <Content Include="Views\About.cshtml" />
-    <Content Include="Views\Register.cshtml" />
     <Content Include="Views\profile.cshtml" />
-    <Content Include="Views\league.cshtml" />
-    <Content Include="Views\newLeague.cshtml" />
     <Content Include="Views\profile-normal.cshtml" />
-    <Content Include="Views\editLeague.cshtml" />
-    <Content Include="Views\matches.cshtml" />
-    <Content Include="Views\listMatches.cshtml" />
+    <Content Include="Views\facturacion.cshtml" />
+    <Content Include="Views\compras.cshtml" />
+    <Content Include="Views\inventarios.cshtml" />
+    <Content Include="Views\parametros.cshtml" />
+    <Content Include="Views\sistema.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

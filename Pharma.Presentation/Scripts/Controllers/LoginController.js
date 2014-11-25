@@ -23,7 +23,7 @@ angular.module('app.controllers')
                         $scope.user = {};
                     }
                     if (response.Status == 1) {
-                        toastr.success("Bienvenido a SportLiga");
+                        toastr.success("Bienvenido a Farmacia La Mejor");
                     }
 
                     if (response.role.title === 'admin') {
