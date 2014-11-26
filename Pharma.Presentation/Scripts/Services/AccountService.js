@@ -1,7 +1,7 @@
 ﻿'use strict';
 
-angular.module('app.services', [])
-    .factory('AccountServices', ['$http', function ($http) {
+angular.module('app.services')
+    .factory('AccountServices', function ($http) {
 
     var account = {};
 
@@ -23,4 +23,4 @@ angular.module('app.services', [])
     };
     return account;
 
-}]);
+    });

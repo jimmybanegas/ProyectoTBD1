@@ -2,7 +2,7 @@
 angular.module('app.controllers')
     // Path: /
     .controller('HomeCtrl', [
-        '$scope', '$location', '$window', 'AccountServices', function ($scope, $location, $window, AccountServices) {
+        '$scope', '$location', '$window', 'AccountServices', function ($scope, $location, $window, AccountService) {
             $scope.$root.title = 'Farmacia La Mejor';
 
             $scope.hasError = false;
@@ -17,7 +17,7 @@ angular.module('app.controllers')
 
             // TODO: Authorize a user
             $scope.login = function () {
-                AccountServices
+                AccountService
                     .login($scope.loginModel)
                     .success(function (data, status, headers, config) {
                         $window.sessionStorage.token = data.Token;
@@ -40,8 +40,8 @@ angular.module('app.controllers')
                                 "showMethod": "slideDown",
                                 "hideMethod": "fadeOut"
                             });
-                            $location.path('/loading');
-                            $location.path('/organization');
+                           // $location.path('/loading');
+                            $location.path('/facturacion');
                         }
                     })
                     .error(function (data, status, headers, config) {
@@ -54,17 +54,17 @@ angular.module('app.controllers')
                 //$location.path('/');
             };
 
-            $scope.goToRegister = function () {
+          /*  $scope.goToRegister = function () {
                 $location.path('/register');
-            };
+            };*/
 
             $scope.goToLogin = function () {
-                $location.path('/login');
+                $location.path('/');
 
             };
 
             $scope.register = function () {
-                AccountServices
+                AccountService
                     .register($scope.registerModel)
                     .success(function (data, status, headers, config) {
                         console.log(data);
@@ -93,7 +93,7 @@ angular.module('app.controllers')
             };
 
             $scope.restorePassword = function () {
-                AccountServices.restorePassword($scope.restoreModel)
+                AccountService.restorePassword($scope.restoreModel)
                     .success(function (data, status, headers, config) {
                         console.log(data);
                         if (data.Status == 1) {
@@ -101,7 +101,7 @@ angular.module('app.controllers')
                         }
                         if (data.Status == 2) {
                             toastr.success(data.Message);
-                            $location.path('/loading');
+                          //  $location.path('/loading');
                             $scope.goToLogin();
                         }
                     })

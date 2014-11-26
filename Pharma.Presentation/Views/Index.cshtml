@@ -30,13 +30,13 @@
                             <form class="omb_loginForm" ng-submit="login()">
                                 <div class=" input-group">
                                     <span class="input-group-addon"><i class="fa fa-user"></i></span>
-                                    <input type="email" class="form-control" ng-model="user.Email" placeholder="Correo electrónico" required>
+                                    <input type="email" class="form-control" ng-model="loginModel.Email" placeholder="Correo electrónico" required>
                                 </div>
                                 <span class="help-block"></span>
 
                                 <div class="input-group">
                                     <span class="input-group-addon"><i class="fa fa-lock"></i></span>
-                                    <input type="password" class="form-control" ng-model="user.Contrasena" placeholder="Contraseña" required>
+                                    <input type="password" class="form-control" ng-model="loginModel.Password" placeholder="Contraseña" required>
                                 </div>
                                 <span class="help-block">             </span>
                                 <button class="btn btn-lg btn-primary btn-block" type="submit">Ingresar</button>
