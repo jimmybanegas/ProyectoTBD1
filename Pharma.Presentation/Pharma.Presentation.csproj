@@ -145,13 +145,15 @@
       <DependentUpon>controllers.js</DependentUpon>
     </Content>
     <Content Include="Scripts\Controllers\AboutController.js" />
-    <Content Include="Scripts\Controllers\AccountController.js" />
+    <Content Include="Scripts\Controllers\ComprasController.js" />
     <Content Include="Scripts\Controllers\Error404Controller.js" />
+    <Content Include="Scripts\Controllers\FacturacionController.js" />
     <Content Include="Scripts\Controllers\ForgotPasswordController.js" />
     <Content Include="Scripts\Controllers\HomeController.js" />
-    <Content Include="Scripts\Controllers\LoginController.js" />
-    <Content Include="Scripts\Controllers\ProfileController.js" />
+    <Content Include="Scripts\Controllers\InventariosController.js" />
+    <Content Include="Scripts\Controllers\ParametrosController.js" />
     <Content Include="Scripts\Controllers\RegisterController.js" />
+    <Content Include="Scripts\Controllers\SistemaController.js" />
     <Content Include="Scripts\Controllers\SportLigaController.js" />
     <Content Include="Scripts\directives.js" />
     <Content Include="Scripts\directives.spec.js">
@@ -166,14 +168,15 @@
     <Content Include="Scripts\services.spec.js">
       <DependentUpon>services.js</DependentUpon>
     </Content>
-    <Content Include="Scripts\Services\AccountService.js" />
-    <Content Include="Scripts\Services\AccountServices - copia.js" />
+    <Content Include="Scripts\Services\AccountServices.js" />
     <Content Include="Scripts\Services\AuthService.js" />
+    <Content Include="Scripts\Services\ComprasService.js" />
+    <Content Include="Scripts\Services\FacturacionService.js" />
+    <Content Include="Scripts\Services\InventariosService.js" />
     <Content Include="Scripts\Services\LeaguesService.js" />
-    <Content Include="Scripts\Services\MatchesService.js" />
-    <Content Include="Scripts\Services\PredecitionsService.js" />
+    <Content Include="Scripts\Services\ParametrosService.js" />
     <Content Include="Scripts\Services\ServerService.js" />
-    <Content Include="Scripts\Services\TeamsService.js" />
+    <Content Include="Scripts\Services\SistemaService.js" />
     <Content Include="Scripts\toastr.js" />
     <Content Include="Scripts\toastr.min.js" />
     <Content Include="Scripts\vendor\angular-csp.css" />

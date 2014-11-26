@@ -31,102 +31,72 @@ angular.module('app', ['ngCookies', 'ui.router', 'app.filters', 'app.services', 
                     templateUrl: '/views/about',
                     controller: 'AboutCtrl'
                 })
-                .state('login', {
-                    url: '/login',
-                    layout: 'basic',
-                    templateUrl: '/views/login',
-                    controller: 'LoginCtrl'
-                })
-                //ESTADO DE REGISTRO
-                .state('register', {
-                    url: '/register',
-                    layout: 'basic',
-                    templateUrl: '/views/register',
-                    controller: 'RegisterCtrl'
-                })
-                //ESTADO DE RECUPERAR LA CLAVE
                 .state('ForgotPassword', {
-                    url: '/forgot-password',
-                    layout: 'basic',
-                    templateUrl: '/views/forgot-password',
-                    controller: 'ForgotPasswordCtrl'
+                        url: '/forgot-password',
+                        layout: 'basic',
+                        templateUrl: '/views/forgot-password',
+                        controller: 'ForgotPasswordCtrl'
                 })
-
-//Esta es la seccion de los estados para usuario ADMINISTRADOR Acceder a mi perfil
-                .state('Profile', {
-                    url: '/profile',
-                    layout: 'basic',
-                    templateUrl: '/views/profile',
-                    controller: 'LeagueCtrl'
+                .state('Facturacion', {
+                       url: '/facturacion',
+                       layout: 'basic',
+                       templateUrl: '/views/facturacion',
+                       controller: 'FacturacionCtrl'
                 })
-                //Acceder a la liga
-                .state('League', {
-                    url: '/league/:id',
-                    layout: 'basic',
-                    templateUrl: '/views/league',
-                    controller: 'LeagueCtrl'
+                .state('Compras', {
+                       url: '/compras',
+                       layout: 'basic',
+                       templateUrl: '/views/compras',
+                       controller: 'ComprasCtrl'
                 })
-                //Agregar nueva Liga
-                .state('NewLeague', {
-                    url: '/newLeague',
-                    layout: 'basic',
-                    templateUrl: '/views/newLeague',
-                    controller: 'LeagueCtrl'
+                .state('Inventarios', {
+                      url: '/inventarios',
+                      layout: 'basic',
+                      templateUrl: '/views/inventarios',
+                      controller: 'InventariosCtrl'
                 })
-                //Editar Liga
-                .state('EditLeague', {
-                    url: '/editLeague/:id',
-                    layout: 'basic',
-                    templateUrl: '/views/editLeague',
-                    controller: 'LeagueCtrl'
+                .state('Parametros', {
+                     url: '/parametros',
+                     layout: 'basic',
+                     templateUrl: '/views/parametros',
+                     controller: 'ParametrosCtrl'
                 })
-                //Nuevo partido, y editarlo
-                .state('Matches', {
-                    url: '/matches',
-                    layout: 'basic',
-                    templateUrl: '/views/matches',
-                    controller: 'LeagueCtrl'
-                })
-                //Ver juegos por liga, listado
-                .state('ListMatches', {
-                    url: '/listMatches/:id',
-                    layout: 'basic',
-                    templateUrl: '/views/listMatches',
-                    controller: 'LeagueCtrl'
-                })
-
-
-                //Esta es la seccion de los estados para usuario MORTAL 
-                .state('ProfileNormal', {
-                    url: '/profile-normal',
-                    layout: 'basic',
-                    templateUrl: '/views/profile-normal',
-                    controller: 'LeagueCtrl'
-                })
+                .state('Sistema', {
+                     url: '/compras',
+                     layout: 'basic',
+                     templateUrl: '/views/sistema',
+                     controller: 'SistemaCtrl'
+                 })
                 .state('otherwise', {
                     url: '*path',
                     templateUrl: '/views/404',
                     controller: 'Error404Ctrl'
                 });
 
+
             $locationProvider.html5Mode(true);
 
+<<<<<<< HEAD
             $httpProvider.interceptors.push(function($q, $location) {
+=======
+           /* $httpProvider.interceptors.push(function ($q, $location) {
+>>>>>>> JimmyDesign
                 return {
                     'responseError': function(response) {
                         if (response.status === 401 || response.status === 403) {
-                            $location.path('/login');
+                            $location.path('/');
                         }
                         return $q.reject(response);
                     }
                 };
-            });
+            });*/
 
         }
     ])
 
-    // Gets executed after the injector is created and are used to kickstart the application. Only instances and constants
+     // Gets executed after the injector is created and are used to kickstart the application. Only instances and constants
     // can be injected here. This is to prevent further system configuration during application run time.
+<<<<<<< HEAD
     .run([
         '$templateCache', '$rootScope', '$state', '$stateParams', 'Auth', function($templateCache, $rootScope, $state, $stateParams, Auth) {
 
@@ -154,12 +124,23 @@ angular.module('app', ['ngCookies', 'ui.router', 'app.filters', 'app.services', 
                     }
                 }
             });
+=======
+    .run(['$templateCache', '$rootScope', '$state', '$stateParams', function ($templateCache, $rootScope, $state, $stateParams) {
+>>>>>>> JimmyDesign
 
-            $rootScope.$on('$stateChangeSuccess', function(event, toState) {
+        // <ui-view> contains a pre-rendered template for the current view
+        // caching it will prevent a round-trip to a server at the first page load
+        var view = angular.element('#ui-view');
+        $templateCache.put(view.data('tmpl-url'), view.html());
 
-                // Sets the layout name, which can be used to display different layouts (header, footer etc.)
-                // based on which page the user is located
-                $rootScope.layout = toState.layout;
-            });
-        }
-    ]);
+        // Allows to retrieve UI Router state information from inside templates
+        $rootScope.$state = $state;
+        $rootScope.$stateParams = $stateParams;
+
+        $rootScope.$on('$stateChangeSuccess', function (event, toState) {
+
+            // Sets the layout name, which can be used to display different layouts (header, footer etc.)
+            // based on which page the user is located
+            $rootScope.layout = toState.layout;
+        });
+    }]);

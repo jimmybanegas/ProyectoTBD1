@@ -5,10 +5,10 @@ angular.module('app.services', [])
 
     var account = {};
 
-    var baseRemoteUrl = "http://minitrelloclapi.apphb.com/";
+    //var baseRemoteUrl = "http://XXXX.apphb.com/";
     var baseLocalUrl = "http://localhost:1416";
 
-    var baseUrl = baseRemoteUrl;
+    var baseUrl = baseLocalUrl;
 
     account.login = function(model) {
         return $http.post(baseUrl + '/login', model);
