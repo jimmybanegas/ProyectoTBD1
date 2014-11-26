@@ -30,16 +30,6 @@ angular.module('app.controllers')
         $scope.posiciones = [];
 
     
-       
-
-
-    
-
-    
-
-        
-      
-     
         $scope.suscribirse = function(liga) {
             SportLiga.addSuscription(liga.Id,localStorage.getItem('res'), function (response) {
 

@@ -3,8 +3,8 @@ angular.module('app.controllers')
 
     // Path: /register
     .controller('RegisterCtrl', [
-        '$scope', '$location', '$window', 'Account', function($scope, $location, $window, Account) {
-            $scope.$root.title = 'SportLiga | Register';
+        '$scope', '$location', '$window', 'AccountServices', function ($scope, $location, $window, AccountServices) {
+            $scope.$root.title = 'Register';
             // TODO: Register a new user
             $scope.login = function() {
                 $location.path('/login');
@@ -24,7 +24,7 @@ angular.module('app.controllers')
                     return;
                 }
 
-                Account.register($scope.registerModel, function (response) {
+                AccountServices.register($scope.registerModel, function (response) {
                     if (response.Status == 0) {
                         toastr.error(response.Message, "Error", {
                             "closeButton": true,

@@ -3,7 +3,7 @@ angular.module('app.controllers')
 
     // Path: /forgot-password
     .controller('ForgotPasswordCtrl', [
-        '$scope', '$location', '$window', 'Account', function($scope, $location, $window, Account) {
+        '$scope', '$location', '$window', 'AccountServices', function ($scope, $location, $window, AccountServices) {
             $scope.$root.title = 'SportLiga | Recuperar password';
             // TODO: Forgot password
 
@@ -12,7 +12,7 @@ angular.module('app.controllers')
             $scope.ShowMessageForgot = false;
           
             $scope.RecoverPassword = function() {
-                Account.resetPassword($scope.resetModel, function(response) {
+                AccountServices.resetPassword($scope.resetModel, function (response) {
                     if (response.Status == 1) {
                         toastr.warning(response.Message, { "closeButton": true, });
                     }
