@@ -2,6 +2,7 @@
 angular.module('app.controllers')
 
 // Path: /league
+<<<<<<< HEAD
     .controller('LeagueCtrl', [
         '$scope', '$location', '$window', '$stateParams', 'SportLiga', 'Auth', function($scope, $location, $window, $stateParams, SportLiga, Auth) {
             $scope.$root.title = 'SportLiga | Liga';
@@ -154,6 +155,70 @@ angular.module('app.controllers')
                 }
                 return null;
             };
+=======
+.controller('LeagueCtrl', [
+    '$scope','$location','$window','$stateParams','SportLiga','Auth',function($scope, $location, $window, $stateParams,SportLiga,Auth) {
+        $scope.$root.title = 'SportLiga | Liga';
+
+        $scope.go = function(path) {
+            $location.path(path);
+        };
+
+        $scope.logout = function () {
+            Auth.logout();
+        };
+  
+        $scope.parametro = 0;
+
+        $scope.teams = [];
+        $scope.FilterTeams = [];
+        $scope.ligas = [];
+        $scope.misLigas = [];
+        $scope.ligasRecomendadas = [];
+        $scope.ligaAEditar = {};
+        $scope.partidos = [];
+        $scope.PartidosFiltrados = [];
+        $scope.misPartidos = [];
+        $scope.misPredicciones = [];
+        $scope.suscriptores = [];
+        $scope.posiciones = [];
+
+    
+       
+
+
+    
+
+    
+
+        
+      
+     
+        $scope.suscribirse = function(liga) {
+            SportLiga.addSuscription(liga.Id,localStorage.getItem('res'), function (response) {
+
+                if (response.Status == 0) {
+                    toastr.error(response.Message, "Error", {
+                        "closeButton": true,
+                        "positionClass": "toast-bottom-full-width",
+                        "showEasing": "swing",
+                        "hideEasing": "swing",
+                        "showMethod": "slideDown",
+                        "hideMethod": "fadeOut"
+                    });
+                }
+                if (response.Status == 1) {
+                    toastr.success(response.Message);
+                    $scope.loadLeagues();
+                    $scope.loadMatches();
+                    $scope.Suscripcion = {};
+                }
+            }, function (error) {
+                $scope.ShowMessage = false;
+            });
+
+        };
+>>>>>>> JimmyDesign
 
 
             $scope.Match = {};
@@ -334,6 +399,7 @@ angular.module('app.controllers')
             //Edicion de la liga
             $scope.Liga = {};
 
+<<<<<<< HEAD
             $scope.addNewLeague = function() {
                 SportLiga.addLeague($scope.Liga, function(response) {
                     if (response.Status == 0) {
@@ -393,6 +459,9 @@ angular.module('app.controllers')
         //     $scope.EditLeague.CantEquipos = "";
         $scope.paisAnt = "";
         //  $scope.EditLeague.PaisLiga = "";*/
+=======
+ 
+>>>>>>> JimmyDesign
 
             $scope.editLeague = function(liga) {
                 //   var ligaPorEditar = $scope.getLigaPorParam();
@@ -622,5 +691,13 @@ angular.module('app.controllers')
                 $('.panel div.clickable').click();
             });
 
+<<<<<<< HEAD
         }
     ]);
+=======
+        };
+
+
+    }
+]);
+>>>>>>> JimmyDesign

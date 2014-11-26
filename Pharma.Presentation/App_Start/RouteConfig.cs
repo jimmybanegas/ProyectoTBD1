@@ -7,7 +7,7 @@
 using System.Web.Routing;
 using App.Pharma.Presentation.Routing;
 
-namespace App.Pharma.Presentation
+namespace Pharma.Presentation
 {
     public class RouteConfig
     {

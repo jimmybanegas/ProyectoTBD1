@@ -8,7 +8,7 @@ using System.Web;
 using System.Web.Optimization;
 using System.Web.Routing;
 
-namespace App.Pharma.Presentation
+namespace Pharma.Presentation
 {
     public class Application : HttpApplication
     {

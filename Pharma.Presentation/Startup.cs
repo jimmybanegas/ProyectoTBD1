@@ -4,13 +4,13 @@
 // </copyright>
 // --------------------------------------------------------------------------------------------------------------------
 
-using App.Pharma.Presentation;
 using Microsoft.Owin;
 using Owin;
+using Pharma.Presentation;
 
 [assembly: OwinStartup(typeof (Startup))]
 
-namespace App.Pharma.Presentation
+namespace Pharma.Presentation
 {
     public partial class Startup
     {
