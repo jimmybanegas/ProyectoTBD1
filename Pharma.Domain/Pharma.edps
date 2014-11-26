@@ -25,6 +25,7 @@
         <File Name="presentacion_productos.cs" Project="Pharma.Domain" ProjectFolder="Entities" />
         <File Name="privilegios.cs" Project="Pharma.Domain" ProjectFolder="Entities" />
         <File Name="productos.cs" Project="Pharma.Domain" ProjectFolder="Entities" />
+        <File Name="productos_has_categoria_productos.cs" Project="Pharma.Domain" ProjectFolder="Entities" />
         <File Name="proveedores.cs" Project="Pharma.Domain" ProjectFolder="Entities" />
         <File Name="telefonos_clientes.cs" Project="Pharma.Domain" ProjectFolder="Entities" />
         <File Name="tipo_cliente.cs" Project="Pharma.Domain" ProjectFolder="Entities" />
@@ -32,34 +33,6 @@
         <File Name="usuarios.cs" Project="Pharma.Domain" ProjectFolder="Entities" />
         <File Name="usuarios_has_grupos_roles.cs" Project="Pharma.Domain" ProjectFolder="Entities" />
         <File Name="Pharma.Extensions.MethodsExecutor.cs" Project="Pharma.Domain" ProjectFolder="Entities" />
-        <File Name="ajustes.hbm.xml" Project="Pharma.Domain" ProjectFolder="Mapping" />
-        <File Name="categoria_productos.hbm.xml" Project="Pharma.Domain" ProjectFolder="Mapping" />
-        <File Name="clientes.hbm.xml" Project="Pharma.Domain" ProjectFolder="Mapping" />
-        <File Name="compras.hbm.xml" Project="Pharma.Domain" ProjectFolder="Mapping" />
-        <File Name="contactos_clientes.hbm.xml" Project="Pharma.Domain" ProjectFolder="Mapping" />
-        <File Name="costo_prod_proveedor.hbm.xml" Project="Pharma.Domain" ProjectFolder="Mapping" />
-        <File Name="cotizaciones.hbm.xml" Project="Pharma.Domain" ProjectFolder="Mapping" />
-        <File Name="detalle_ajustes.hbm.xml" Project="Pharma.Domain" ProjectFolder="Mapping" />
-        <File Name="detalle_compras.hbm.xml" Project="Pharma.Domain" ProjectFolder="Mapping" />
-        <File Name="detalle_cotizaciones.hbm.xml" Project="Pharma.Domain" ProjectFolder="Mapping" />
-        <File Name="detalle_facturas.hbm.xml" Project="Pharma.Domain" ProjectFolder="Mapping" />
-        <File Name="detalle_oc.hbm.xml" Project="Pharma.Domain" ProjectFolder="Mapping" />
-        <File Name="direcciones_clientes.hbm.xml" Project="Pharma.Domain" ProjectFolder="Mapping" />
-        <File Name="facturas.hbm.xml" Project="Pharma.Domain" ProjectFolder="Mapping" />
-        <File Name="grupos_roles.hbm.xml" Project="Pharma.Domain" ProjectFolder="Mapping" />
-        <File Name="grupos_roles_has_privilegios.hbm.xml" Project="Pharma.Domain" ProjectFolder="Mapping" />
-        <File Name="kardex.hbm.xml" Project="Pharma.Domain" ProjectFolder="Mapping" />
-        <File Name="ordenes_de_compra.hbm.xml" Project="Pharma.Domain" ProjectFolder="Mapping" />
-        <File Name="presentacion_productos.hbm.xml" Project="Pharma.Domain" ProjectFolder="Mapping" />
-        <File Name="privilegios.hbm.xml" Project="Pharma.Domain" ProjectFolder="Mapping" />
-        <File Name="productos.hbm.xml" Project="Pharma.Domain" ProjectFolder="Mapping" />
-        <File Name="proveedores.hbm.xml" Project="Pharma.Domain" ProjectFolder="Mapping" />
-        <File Name="telefonos_clientes.hbm.xml" Project="Pharma.Domain" ProjectFolder="Mapping" />
-        <File Name="tipo_cliente.hbm.xml" Project="Pharma.Domain" ProjectFolder="Mapping" />
-        <File Name="tipo_transacciones.hbm.xml" Project="Pharma.Domain" ProjectFolder="Mapping" />
-        <File Name="usuarios.hbm.xml" Project="Pharma.Domain" ProjectFolder="Mapping" />
-        <File Name="usuarios_has_grupos_roles.hbm.xml" Project="Pharma.Domain" ProjectFolder="Mapping" />
-        <File Name="Pharma.hbm.xml" Project="Pharma.Domain" ProjectFolder="Mapping" />
       </GeneratedFiles>
     </Generation>
     <generator class="assigned" />
@@ -134,13 +107,13 @@
         </ed:Property>
         <ed:Property Name="XmlMappingOutput" Type="EntityDeveloper.TemplateEngine.OutputInfo, EntityDeveloper.Common, Version=5.7.480.0, Culture=neutral, PublicKeyToken=09af7300eec23701">
           <OutputInfo xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
-            <Project>Pharma.Domain</Project>
-            <ProjectFolder>Mapping</ProjectFolder>
+            <Project />
+            <ProjectFolder />
             <DestinationFolder />
           </OutputInfo>
         </ed:Property>
         <ed:Property Name="XmlMappingAction" Type="EntityDeveloper.MetadataArtifactProcessing, EntityDeveloper.Orm.Common, Version=5.7.480.0, Culture=neutral, PublicKeyToken=09af7300eec23701">
-          <MetadataArtifactProcessing>EmbedInOutputAssembly</MetadataArtifactProcessing>
+          <MetadataArtifactProcessing>DoNotGenerateMappingFiles</MetadataArtifactProcessing>
         </ed:Property>
         <ed:Property Name="XmlMappingFilePerClass" Type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
           <boolean>true</boolean>

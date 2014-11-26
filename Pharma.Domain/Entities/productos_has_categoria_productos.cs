@@ -19,9 +19,9 @@ namespace Pharma.Domain.Entities
 {
 
     /// <summary>
-    /// There are no comments for Pharma.Domain.Entities.facturas, Pharma.Domain in the schema.
+    /// There are no comments for Pharma.Domain.Entities.productos_has_categoria_productos, Pharma.Domain in the schema.
     /// </summary>
-    public partial class facturas {
+    public partial class productos_has_categoria_productos {
     
         #region Extensibility Method Definitions
         
@@ -29,22 +29,45 @@ namespace Pharma.Domain.Entities
         /// There are no comments for OnCreated in the schema.
         /// </summary>
         partial void OnCreated();
+
+        public override bool Equals(object obj)
+        {
+          productos_has_categoria_productos toCompare = obj as productos_has_categoria_productos;
+          if (toCompare == null)
+          {
+            return false;
+          }
+
+          if (!Object.Equals(this.cod_prod, toCompare.cod_prod))
+            return false;
+          if (!Object.Equals(this.cod_categoria, toCompare.cod_categoria))
+            return false;
+          
+          return true;
+        }
+
+        public override int GetHashCode()
+        {
+          int hashCode = 13;
+          hashCode = (hashCode * 7) + cod_prod.GetHashCode();
+          hashCode = (hashCode * 7) + cod_categoria.GetHashCode();
+          return hashCode;
+        }
         
         #endregion
         /// <summary>
-        /// There are no comments for facturas constructor in the schema.
+        /// There are no comments for productos_has_categoria_productos constructor in the schema.
         /// </summary>
-        public facturas()
+        public productos_has_categoria_productos()
         {
-            this.detalle_facturas = new HashSet<detalle_facturas>();
             OnCreated();
         }
 
     
         /// <summary>
-        /// There are no comments for num_factura in the schema.
+        /// There are no comments for cod_prod in the schema.
         /// </summary>
-        public virtual int num_factura
+        public virtual string cod_prod
         {
             get;
             set;
@@ -52,49 +75,9 @@ namespace Pharma.Domain.Entities
 
     
         /// <summary>
-        /// There are no comments for fecha in the schema.
+        /// There are no comments for cod_categoria in the schema.
         /// </summary>
-        public virtual System.Nullable<System.DateTime> fecha
-        {
-            get;
-            set;
-        }
-
-    
-        /// <summary>
-        /// There are no comments for subtotal in the schema.
-        /// </summary>
-        public virtual System.Nullable<double> subtotal
-        {
-            get;
-            set;
-        }
-
-    
-        /// <summary>
-        /// There are no comments for isv in the schema.
-        /// </summary>
-        public virtual System.Nullable<double> isv
-        {
-            get;
-            set;
-        }
-
-    
-        /// <summary>
-        /// There are no comments for descuento in the schema.
-        /// </summary>
-        public virtual System.Nullable<double> descuento
-        {
-            get;
-            set;
-        }
-
-    
-        /// <summary>
-        /// There are no comments for total in the schema.
-        /// </summary>
-        public virtual System.Nullable<double> total
+        public virtual int cod_categoria
         {
             get;
             set;
@@ -142,9 +125,9 @@ namespace Pharma.Domain.Entities
 
     
         /// <summary>
-        /// There are no comments for id_cliente in the schema.
+        /// There are no comments for categoria_productos in the schema.
         /// </summary>
-        public virtual int id_cliente
+        public virtual categoria_productos categoria_productos
         {
             get;
             set;
@@ -152,19 +135,9 @@ namespace Pharma.Domain.Entities
 
     
         /// <summary>
-        /// There are no comments for clientes in the schema.
+        /// There are no comments for productos in the schema.
         /// </summary>
-        public virtual clientes clientes
-        {
-            get;
-            set;
-        }
-
-    
-        /// <summary>
-        /// There are no comments for detalle_facturas in the schema.
-        /// </summary>
-        public virtual ISet<detalle_facturas> detalle_facturas
+        public virtual productos productos
         {
             get;
             set;

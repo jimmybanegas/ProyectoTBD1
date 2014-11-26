@@ -22,15 +22,11 @@ namespace Pharma.DatabaseDeployer
 
             DomainDrivenDatabaseDeployer.DatabaseDeployer dd = null;
 
-            /*  ISessionFactory sessionFactory = new SessionFactoryBuilder(new MappingScheme(), databaseConfiguration)
+            ISessionFactory sessionFactory = new SessionFactoryBuilder(new MappingScheme(), databaseConfiguration)
                 .Build(cfg =>
                 {
                     dd = new DomainDrivenDatabaseDeployer.DatabaseDeployer(cfg);
-
-                });*/
-
-            ISessionFactory sessionFactory = new SessionFactoryBuilder(new MappingScheme(), databaseConfiguration)
-                .Build(cfg => { dd = new DomainDrivenDatabaseDeployer.DatabaseDeployer(cfg); });
+                });
 
             Console.WriteLine("");
             Console.WriteLine("Database dropped.");

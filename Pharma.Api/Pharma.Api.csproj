@@ -234,6 +234,9 @@
     <Compile Include="Areas\HelpPage\SampleGeneration\SampleDirection.cs" />
     <Compile Include="Areas\HelpPage\SampleGeneration\TextSample.cs" />
     <Compile Include="Areas\HelpPage\XmlDocumentationProvider.cs" />
+    <Compile Include="Controllers\AccountControllerHelpers\EncryptServices.cs" />
+    <Compile Include="Controllers\AccountControllerHelpers\RegisterValidator.cs" />
+    <Compile Include="Controllers\AccountControllerHelpers\RestorePassEmailValidator.cs" />
     <Compile Include="Controllers\BaseApiController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\AccountController.cs" />
@@ -244,10 +247,17 @@
     </Compile>
     <Compile Include="Models\AccountLoginModel.cs" />
     <Compile Include="Models\AccountRegisterModel.cs" />
+    <Compile Include="Models\AccountRegisterResponseModel.cs" />
+    <Compile Include="Models\AccountUpdateModel.cs" />
+    <Compile Include="Models\AuthenticationModel.cs" />
     <Compile Include="Models\AuthModel.cs" />
+    <Compile Include="Models\ChangePassModel.cs" />
     <Compile Include="Models\CreatedAccountModel.cs" />
     <Compile Include="Models\LeaguesModel.cs" />
+    <Compile Include="Models\RestorePasswordResponseModel.cs" />
     <Compile Include="Models\RoleModel.cs" />
+    <Compile Include="Models\SessionsModel.cs" />
+    <Compile Include="Models\UpdateAccountResponseModel.cs" />
     <Compile Include="Models\UserTokenModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
