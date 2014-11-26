@@ -145,6 +145,7 @@
       <DependentUpon>controllers.js</DependentUpon>
     </Content>
     <Content Include="Scripts\Controllers\AboutController.js" />
+    <Content Include="Scripts\Controllers\AccountController.js" />
     <Content Include="Scripts\Controllers\Error404Controller.js" />
     <Content Include="Scripts\Controllers\ForgotPasswordController.js" />
     <Content Include="Scripts\Controllers\HomeController.js" />
@@ -166,6 +167,7 @@
       <DependentUpon>services.js</DependentUpon>
     </Content>
     <Content Include="Scripts\Services\AccountService.js" />
+    <Content Include="Scripts\Services\AccountServices - copia.js" />
     <Content Include="Scripts\Services\AuthService.js" />
     <Content Include="Scripts\Services\LeaguesService.js" />
     <Content Include="Scripts\Services\MatchesService.js" />
