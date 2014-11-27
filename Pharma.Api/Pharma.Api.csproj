@@ -208,7 +208,6 @@
   <ItemGroup>
     <Compile Include="App_Start\AttributeRoutingConfig.cs" />
     <Compile Include="App_Start\AttributeRoutingHttpConfig.cs" />
-    <Compile Include="App_Start\AuthRequestFactory.cs" />
     <Compile Include="App_Start\Bootstrapper.cs" />
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\ConfigureAutomapper.cs" />
@@ -241,10 +240,13 @@
     <Compile Include="Controllers\AccountControllerHelpers\MailgunServices.cs" />
     <Compile Include="Controllers\AccountControllerHelpers\RegisterValidator.cs" />
     <Compile Include="Controllers\AccountControllerHelpers\RestorePassEmailValidator.cs" />
-    <Compile Include="Controllers\BaseApiController.cs" />
+    <Compile Include="Controllers\ComprasController.cs" />
+    <Compile Include="Controllers\FacturacionController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\AccountController.cs" />
-    <Compile Include="Controllers\LeaguesController.cs" />
+    <Compile Include="Controllers\InventariosController.cs" />
+    <Compile Include="Controllers\ParametrosController.cs" />
+    <Compile Include="Controllers\SistemaController.cs" />
     <Compile Include="Controllers\ValuesController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -254,15 +256,12 @@
     <Compile Include="Models\AccountRegisterResponseModel.cs" />
     <Compile Include="Models\AccountUpdateModel.cs" />
     <Compile Include="Models\AuthenticationModel.cs" />
-    <Compile Include="Models\AuthModel.cs" />
     <Compile Include="Models\ChangePassModel.cs" />
     <Compile Include="Models\CreatedAccountModel.cs" />
-    <Compile Include="Models\LeaguesModel.cs" />
     <Compile Include="Models\RestorePasswordResponseModel.cs" />
     <Compile Include="Models\RoleModel.cs" />
     <Compile Include="Models\SessionsModel.cs" />
     <Compile Include="Models\UpdateAccountResponseModel.cs" />
-    <Compile Include="Models\UserTokenModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

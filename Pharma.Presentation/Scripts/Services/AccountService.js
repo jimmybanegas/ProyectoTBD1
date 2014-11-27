@@ -22,6 +22,9 @@ angular.module('app.services')
             account.restorePassword = function(model) {
                 return $http.put(baseUrl + '/login', model);
             };
+
+        
+
             return account;
 
         }

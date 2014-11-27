@@ -169,7 +169,6 @@
       <DependentUpon>services.js</DependentUpon>
     </Content>
     <Content Include="Scripts\Services\AccountService.js" />
-    <Content Include="Scripts\Services\AuthService.js" />
     <Content Include="Scripts\Services\ComprasService.js" />
     <Content Include="Scripts\Services\FacturacionService.js" />
     <Content Include="Scripts\Services\InventariosService.js" />

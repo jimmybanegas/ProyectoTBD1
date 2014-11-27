@@ -10,23 +10,12 @@ using Pharma.Domain.Services;
 
 namespace Pharma.Api.Controllers
 {
-    public class AccountController : BaseApiController
+    public class AccountController : ApiController
     {
         readonly IReadOnlyRepository _readOnlyRepository;
         readonly IWriteOnlyRepository _writeOnlyRepository;
         readonly IMappingEngine _mappingEngine;
-       // readonly IRegisterValidator<AccountRegisterModel> _registerValidator;
-      //  readonly IRegisterValidator<ChangePassModel> _restoreValidator;
-        
-      /*  public AccountController(IReadOnlyRepository readOnlyRepository, IWriteOnlyRepository writeOnlyRepository,
-            IMappingEngine mappingEngine, IRegisterValidator<AccountRegisterModel> registerValidator, IRegisterValidator<ChangePassModel> restoresValidator)
-        {
-            _readOnlyRepository = readOnlyRepository;
-            _writeOnlyRepository = writeOnlyRepository;
-            _mappingEngine = mappingEngine;
-          //  _registerValidator = registerValidator;
-            //_restoreValidator = restoresValidator;
-        }*/
+    
         public AccountController(IReadOnlyRepository readOnlyRepository, IWriteOnlyRepository writeOnlyRepository,
          IMappingEngine mappingEngine)
         {

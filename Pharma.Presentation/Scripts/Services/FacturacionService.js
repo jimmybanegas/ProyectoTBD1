@@ -10,17 +10,10 @@ angular.module('app.services', [])
 
         var baseUrl = baseLocalUrl;
 
-        account.login = function (model) {
-            return $http.post(baseUrl + '/login', model);
+        account.getPermissionsForLoggedUser = function () {
+            return $http.get(baseUrl + '/permissions/' + $window.sessionStorage.token);
         };
-
-        account.register = function (model) {
-            return $http.post(baseUrl + '/register', model);
-        };
-
-        account.restorePassword = function (model) {
-            return $http.put(baseUrl + '/login', model);
-        };
+        
         return account;
 
     }]);
