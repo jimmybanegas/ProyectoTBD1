@@ -55,7 +55,6 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="ItemNotFoundException.cs" />
     <Compile Include="MappingScheme.cs" />
     <Compile Include="ConnectionStrings.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

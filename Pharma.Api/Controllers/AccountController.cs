@@ -1,9 +1,10 @@
 ﻿using System;
 using System.Linq;
+using System.Web;
+using System.Web;
 using System.Web.Http;
-using AttributeRouting.Web.Http;
+using AttributeRouting.Web.Mvc;
 using AutoMapper;
-using MiniTrello.Api.Models;
 using Pharma.Api.Controllers.AccountControllerHelpers;
 using Pharma.Api.Models;
 using Pharma.Domain.Entities;
@@ -16,20 +17,30 @@ namespace Pharma.Api.Controllers
         readonly IReadOnlyRepository _readOnlyRepository;
         readonly IWriteOnlyRepository _writeOnlyRepository;
         readonly IMappingEngine _mappingEngine;
-        readonly IRegisterValidator<AccountRegisterModel> _registerValidator;
-        readonly IRegisterValidator<ChangePassModel> _restoreValidator;
+       // readonly IRegisterValidator<AccountRegisterModel> _registerValidator;
+      //  readonly IRegisterValidator<ChangePassModel> _restoreValidator;
         
-        public AccountController(IReadOnlyRepository readOnlyRepository, IWriteOnlyRepository writeOnlyRepository,
+      /*  public AccountController(IReadOnlyRepository readOnlyRepository, IWriteOnlyRepository writeOnlyRepository,
             IMappingEngine mappingEngine, IRegisterValidator<AccountRegisterModel> registerValidator, IRegisterValidator<ChangePassModel> restoresValidator)
         {
             _readOnlyRepository = readOnlyRepository;
             _writeOnlyRepository = writeOnlyRepository;
             _mappingEngine = mappingEngine;
-            _registerValidator = registerValidator;
-            _restoreValidator = restoresValidator;
+          //  _registerValidator = registerValidator;
+            //_restoreValidator = restoresValidator;
+        }*/
+        public AccountController(IReadOnlyRepository readOnlyRepository, IWriteOnlyRepository writeOnlyRepository,
+         IMappingEngine mappingEngine)
+        {
+            _readOnlyRepository = readOnlyRepository;
+            _writeOnlyRepository = writeOnlyRepository;
+            _mappingEngine = mappingEngine;
+            //  _registerValidator = registerValidator;
+            //_restoreValidator = restoresValidator;
         }
 
         [HttpPost]
+        [AcceptVerbs("POST", "HEAD")]
         [POST("login")]
         public AuthenticationModel Login([FromBody] AccountLoginModel model)
         {
@@ -105,7 +116,7 @@ namespace Pharma.Api.Controllers
             return sessionToReturn;
         }
 
-        [POST("register")]
+    /*    [POST("register")]
         public AccountRegisterResponseModel Register([FromBody] AccountRegisterModel model)
         {   
             var validateMessage = _registerValidator.Validate(model);
@@ -163,7 +174,7 @@ namespace Pharma.Api.Controllers
                 {
                     SendSimpleMessage(accountCreated.FirstName, accountCreated.LastName, accountCreated.Email, model.Password);
                     return new AccountRegisterResponseModel(accountCreated.Email, accountCreated.FirstName, 2);
-                }*/
+                }
                 return new AccountRegisterResponseModel()
                 {
                     Message = "Hubo un error al guardar el usuario",
@@ -275,7 +286,7 @@ namespace Pharma.Api.Controllers
                 Message = "No existe ningun usuario registrado en MiniTrello | Web con ese correo",
                 Status = 1
             };
-        }
+        }*/
 
     }
 }

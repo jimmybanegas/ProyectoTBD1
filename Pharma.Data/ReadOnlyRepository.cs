@@ -22,10 +22,10 @@ namespace Pharma.Data
         {
             T item = _session.QueryOver<T>().Where(query).List().FirstOrDefault();
 
-            if (item == null)
-            {
-                throw new ItemNotFoundException<T>();
-            }
+            /* if (item == null)
+             {
+                 throw new ItemNotFoundException<T>();
+             }*/
 
             return item;
         }
@@ -40,10 +40,10 @@ namespace Pharma.Data
         {
             var item = _session.Get<T>(id);
 
-            if (item == null)
-            {
-                throw new ItemNotFoundException<T>(id);
-            }
+            /*    if (item == null)
+                {
+                    throw new ItemNotFoundException<T>(id);
+                }*/
 
             return item;
         }
@@ -60,5 +60,6 @@ namespace Pharma.Data
             ISession session = _session;
             return session.Query<T>().Where(expression);
         }
+
     }
 }

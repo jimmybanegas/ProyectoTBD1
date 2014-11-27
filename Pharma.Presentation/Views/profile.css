@@ -1,0 +1,198 @@
+﻿body { background: #EAEAEA; }
+
+.user-details {
+    padding: 0;
+    position: relative;
+}
+
+/*.user-details .user-image {position: relative;  z-index: 1; width: 100%; text-align: center;}*/
+
+.user-details .user-image {
+    padding-top: 35px;
+    position: absolute;
+    top: 55px;
+    width: 100%;
+    z-index: 0;
+}
+
+.user-image img {
+    clear: both;
+    margin: auto;
+    position: relative;
+}
+
+.user-details .user-info-block {
+    background: rgb(255, 255, 255);
+    padding-top: 35px;
+    position: absolute;
+    top: 55px;
+    width: 100%;
+    z-index: 0;
+}
+
+.user-info-block .user-heading {
+    margin: 10px 0 0;
+    text-align: center;
+    width: 100%;
+}
+
+.user-info-block .navigation {
+    border-bottom: 1px solid #428BCA;
+    border-top: 1px solid #428BCA;
+    float: left;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    width: 100%;
+}
+
+.navigation li {
+    float: left;
+    margin: 0;
+    padding: 0;
+}
+
+.navigation li a {
+    float: left;
+    padding: 20px 30px;
+}
+
+.navigation li.active a {
+    background: #428BCA;
+    color: #fff;
+}
+
+.user-info-block .user-body {
+    float: left;
+    padding: 5%;
+    width: 90%;
+}
+
+.user-body .tab-content > div {
+    float: left;
+    width: 100%;
+}
+
+.user-body .tab-content h4 {
+    color: #333;
+    margin: 10px 0;
+    width: 100%;
+}
+
+/* Special class on .container surrounding .navbar, used for positioning it into place. */
+
+.navbar-wrapper {
+    left: 0;
+    margin-top: 20px;
+    position: absolute;
+    right: 0;
+    top: 0;
+    z-index: 20;
+}
+
+/* Flip around the padding for proper display in narrow viewports */
+
+.navbar-wrapper .container {
+    padding-left: 0;
+    padding-right: 0;
+}
+
+.navbar-wrapper .navbar {
+    padding-left: 15px;
+    padding-right: 15px;
+}
+
+.navbar-content {
+    padding: 15px;
+    padding-bottom: 0px;
+    width: 320px;
+}
+
+.navbar-content:before, .navbar-content:after {
+    content: "";
+    display: table;
+    line-height: 0;
+}
+
+.navbar-nav.navbar-right:last-child { margin-right: 15px !important; }
+
+.navbar-footer { background-color: #DDD; }
+
+.navbar-footer-content { padding: 15px 15px 15px 15px; }
+
+.dropdown-menu {
+    overflow: hidden;
+    padding: 0px;
+}
+
+.games-schedule .well {
+    background-color: #fafbfc;
+    border: 1px #e7e7e7 solid;
+    border-radius: 0px;
+    border-top: 2px #1761a6 solid;
+    padding: 0 10px 0 10px;
+}
+
+.games-schedule .col-md-2 { padding: 5px; }
+
+.games-schedule-title {
+    background-color: #1761a6;
+    color: #ffffff;
+    margin-bottom: 10px;
+    padding: 5px;
+}
+
+.games-schedule-title h5 {
+    font-size: 18px;
+    margin: 3px 0 3px 0;
+    text-align: center;
+}
+
+.games-schedule-items {
+    margin-bottom: 15px;
+    padding: 5px;
+}
+
+.last-item { margin-bottom: 0px; }
+
+.games-team { margin-bottom: 12px; }
+
+.games-team h4 {
+    border: 1px #c8d8e7 dotted;
+    color: #59a1e8;
+    margin-top: 20px;
+    padding: 5px;
+    text-align: center;
+    width: 100%;
+}
+
+.games-team img {
+    border-bottom: 2px #6b9fd3 solid;
+    margin-bottom: 3px;
+}
+
+.games-team span {
+    color: #de6c10;
+    font-size: 13px;
+}
+
+.games-dash {
+    border: none;
+    border-top: 1px #95b3d0 dotted;
+}
+
+.games-info p {
+    color: #0a2948;
+    line-height: 20px;
+    margin: 0;
+    padding: 0;
+}
+
+.games-schedule-footer {
+    background-color: #1761a6;
+    color: #ffffff;
+    font-size: 10px;
+    padding: 5px;
+}
+
+.games-schedule-footer p { margin: 0; }
