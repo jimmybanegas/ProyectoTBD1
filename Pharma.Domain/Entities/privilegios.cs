@@ -10,7 +10,7 @@
 
 using System.Collections.Generic;
 
-namespace Pharma.Domain.Entities
+namespace Pharma.Domain.Entities 
 {
 
     /// <summary>
@@ -104,6 +104,7 @@ namespace Pharma.Domain.Entities
             get;
             set;
         }
+
     }
 
 }

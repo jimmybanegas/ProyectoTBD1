@@ -1,7 +1,5 @@
 ﻿using System;
 using System.Linq;
-using System.Web;
-using System.Web;
 using System.Web.Http;
 using AttributeRouting.Web.Mvc;
 using AutoMapper;
@@ -35,8 +33,6 @@ namespace Pharma.Api.Controllers
             _readOnlyRepository = readOnlyRepository;
             _writeOnlyRepository = writeOnlyRepository;
             _mappingEngine = mappingEngine;
-            //  _registerValidator = registerValidator;
-            //_restoreValidator = restoresValidator;
         }
 
         [HttpPost]
@@ -116,15 +112,15 @@ namespace Pharma.Api.Controllers
             return sessionToReturn;
         }
 
-    /*    [POST("register")]
+       [POST("register")]
         public AccountRegisterResponseModel Register([FromBody] AccountRegisterModel model)
         {   
-            var validateMessage = _registerValidator.Validate(model);
-            if (!String.IsNullOrEmpty(validateMessage))
+           // var validateMessage = _registerValidator.Validate(model);
+            if (String.IsNullOrEmpty(model.Email))
             {
                 return new AccountRegisterResponseModel()
                 {
-                    Message = validateMessage,
+                    Message = "Datos incorrectos",
                     Status = 1
                 };
             }
@@ -141,38 +137,11 @@ namespace Pharma.Api.Controllers
                 account.EncryptKey = encryptObj.myRijndael.Key;
                 account.EncryptIV = encryptObj.myRijndael.IV;
                 
-               /* //AccountSeeder(accountCreated);
-                var initboard = new Board() { Title = "Welcome Board"};
-                var lanes = Builder<Lane>.CreateListOfSize(3).Build();
-                lanes[0].Title = "To Do";
-                lanes[0].IsArchived = false;
-                lanes[1].Title = "Doing";
-                lanes[1].IsArchived = false;
-                lanes[2].Title = "Done";
-                lanes[2].IsArchived = false;
-                foreach (var lane in lanes)
-                {
-                    _writeOnlyRepository.Create(lane);
-                }
-                initboard.AddLane(lanes[0]);
-                initboard.AddLane(lanes[1]);
-                initboard.AddLane(lanes[2]);
-                _writeOnlyRepository.Create(initboard);
-
-
-                var organization = new Organization() { Title = "My Boards", Description = "Default Organization" };
-                organization.AddBoard(initboard);
-                _writeOnlyRepository.Create(organization);
-
-                account.AddOrganization(organization);
                 Account accountCreated = _writeOnlyRepository.Create(account);
-
-                initboard.Administrator = accountCreated;
-                _writeOnlyRepository.Update(initboard);
                 
                 if (accountCreated != null)
                 {
-                    SendSimpleMessage(accountCreated.FirstName, accountCreated.LastName, accountCreated.Email, model.Password);
+                   // SendSimpleMessage(accountCreated.FirstName, accountCreated.LastName, accountCreated.Email, model.Password);
                     return new AccountRegisterResponseModel(accountCreated.Email, accountCreated.FirstName, 2);
                 }
                 return new AccountRegisterResponseModel()
@@ -184,7 +153,7 @@ namespace Pharma.Api.Controllers
             return new AccountRegisterResponseModel(model.Email, model.FirstName, 0);
         }
 
-     
+     /*
         
         [AcceptVerbs("PUT")]
         [PUT("/organization/updateprofile/{accesstoken}")]

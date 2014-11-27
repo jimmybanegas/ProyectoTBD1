@@ -537,6 +537,7 @@
     <Content Include="Views\inventarios.cshtml" />
     <Content Include="Views\parametros.cshtml" />
     <Content Include="Views\sistema.cshtml" />
+    <Content Include="Views\Register.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

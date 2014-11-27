@@ -51,32 +51,11 @@ angular.module('app.controllers')
                         $scope.hasError = true;
                         $scope.message = 'Error: Invalid User or Password';
                     });
-                //$location.path('/');
-              /*  AccountServices
-                     .login($scope.loginModel,function (response) {
-
-                    if (response.Status == 0) {
-                        toastr.error(response.Message, "Error", {
-                            "closeButton": true,
-                            "positionClass": "toast-bottom-full-width",
-                            "showEasing": "swing",
-                            "hideEasing": "swing",
-                            "showMethod": "slideDown",
-                            "hideMethod": "fadeOut"
-                        });
-                    }
-                    if (response.Status == 1) {
-                        toastr.success(response.Message);
-                     
-                    }
-                }, function (error) {
-                    $scope.ShowMessage = false;
-                });*/
             };
 
-          /*  $scope.goToRegister = function () {
+            $scope.goToRegister = function () {
                 $location.path('/register');
-            };*/
+            };
 
             $scope.goToLogin = function () {
                 $location.path('/');

@@ -25,6 +25,12 @@ angular.module('app', ['ngCookies', 'ui.router', 'app.filters', 'app.services', 
                     controller: 'HomeCtrl'
 
                 })
+                .state('Register', {
+                    url: '/register',
+                    templateUrl: '/views/register',
+                    controller: 'HomeCtrl'
+
+                })
                 .state('about', {
                     url: '/about',
                     templateUrl: '/views/about',

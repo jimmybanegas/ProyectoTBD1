@@ -67,7 +67,6 @@
     <Compile Include="Entities\grupos_roles_has_privilegios.cs" />
     <Compile Include="Entities\IEntity.cs" />
     <Compile Include="Entities\kardex.cs" />
-    <Compile Include="Entities\Leagues.cs" />
     <Compile Include="Entities\ordenes_de_compra.cs" />
     <Compile Include="Entities\Pharma.Extensions.MethodsExecutor.cs" />
     <Compile Include="Entities\presentacion_productos.cs" />

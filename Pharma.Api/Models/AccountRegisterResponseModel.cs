@@ -1,4 +1,4 @@
-﻿namespace MiniTrello.Api.Models
+﻿namespace Pharma.Api.Models
 {
     public class AccountRegisterResponseModel
     {

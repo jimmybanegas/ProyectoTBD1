@@ -2,12 +2,12 @@
 
 angular.module('app.services')
     .factory('AccountServices', [
-        '$http', function($http) {
+        '$http', function ($http, Server) {
 
             var account = {};
 
             //var baseRemoteUrl = "http://XXXX.apphb.com/";
-            var baseLocalUrl = "http://localhost:1367";
+            var baseLocalUrl = "http://localhost:1368";
 
             var baseUrl = baseLocalUrl;
 
@@ -27,37 +27,3 @@ angular.module('app.services')
         }
     ]);
     
-/*.factory('AccountServices', function ($http, Server) {
-    return {
-
-        login: function (loginModel, success, error) {
-            $http
-                .post(
-                     Server.get() + '/login', loginModel)
-                .success(function (response) {
-                    success(response);
-                })
-                .error(error);
-        },
-        register: function (registerModel, success, error) {
-            $http
-                .post(
-                     Server.get() + '/register', registerModel)
-                .success(function (response) {
-                    success(response);
-                })
-                .error(error);
-        },
-
-        resetPassword: function (resetPassModel, success, error) {
-            $http
-                .post(
-                     Server.get() + '/resetpassword', resetPassModel)
-                .success(function (response) {
-                    success(response);
-                })
-                .error(error);
-        }
-
-    };
-});*/

@@ -14,7 +14,7 @@ namespace Pharma.Api
             //Ex: Mapper.CreateMap<SomeType, SomeOtherType>().ReverseMap();
             //   Mapper.CreateMap<AccountRegisterModel, Account>().ReverseMap();
             //   Mapper.CreateMap<CreatedAccountModel, Account>().ReverseMap();
-            Mapper.CreateMap<Leagues, LeaguesModel>().ReverseMap();
+          //  Mapper.CreateMap<Leagues, LeaguesModel>().ReverseMap();
             Mapper.CreateMap<Account, AccountLoginModel>().ReverseMap();
             Mapper.CreateMap<Account, AccountRegisterModel>().ReverseMap();
           //  Mapper.CreateMap<Account, AccountRegisterResponseModel>().ReverseMap();
