@@ -30,11 +30,11 @@ namespace Pharma.DatabaseDeployer
 
             Console.WriteLine("");
             Console.WriteLine("Database dropped.");
-            dd.Drop();
+            //dd.Drop();
             Thread.Sleep(1000);
 
             dd.Create();
-            Console.WriteLine("");
+          //  Console.WriteLine("");
             Console.WriteLine("Database created.");
 
             ISession session = sessionFactory.OpenSession();
@@ -42,9 +42,9 @@ namespace Pharma.DatabaseDeployer
             {
                 dd.Seed(new List<IDataSeeder>
                 {
-                    new LeagueSeeder(session),
+                   /* new LeagueSeeder(session),
                     new AccountSeeder(session),
-                    new AccountLeaguesSeeder(session)
+                    new AccountLeaguesSeeder(session)*/
                 });
                 tx.Commit();
             }

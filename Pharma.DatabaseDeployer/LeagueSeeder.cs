@@ -1,6 +1,5 @@
 ﻿using DomainDrivenDatabaseDeployer;
 using NHibernate;
-using Pharma.Domain.Entities;
 
 namespace Pharma.DatabaseDeployer
 {
@@ -15,7 +14,7 @@ namespace Pharma.DatabaseDeployer
 
         public void Seed()
         {
-            var ligaBbva = new Leagues
+          /*  var ligaBbva = new Leagues
             {
                 Name = "Liga BBVA"
             };
@@ -34,7 +33,7 @@ namespace Pharma.DatabaseDeployer
                 Name = "Seria A"
             };
 
-            _session.Save(ligaItaliana);
+            _session.Save(ligaItaliana);*/
         }
     }
 }

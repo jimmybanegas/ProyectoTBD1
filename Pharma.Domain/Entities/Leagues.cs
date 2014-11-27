@@ -1,6 +1,6 @@
 namespace Pharma.Domain.Entities
 {
-    public class Leagues : IEntity
+    public class Leagues 
     {
         public virtual string Name { get; set; }
         public virtual long Id { get; set; }

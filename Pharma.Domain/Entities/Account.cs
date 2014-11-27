@@ -11,7 +11,6 @@
         public virtual byte[] EncryptKey { get; set; }
         public virtual byte[] EncryptIV { get; set; }
         public virtual bool IsArchived { get; set; }
-
-      
+ 
     }
 }

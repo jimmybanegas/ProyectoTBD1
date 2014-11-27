@@ -10,7 +10,6 @@ namespace Pharma.Domain.Entities
         public virtual DateTime ExpirationTime { get; set; }
         public virtual string Token { get; set; }
         public virtual bool IsArchived { get; set; }
-
-
+        
     }
 }

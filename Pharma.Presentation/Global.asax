@@ -1,1 +1,0 @@
-﻿<%@ Application Codebehind="Global.asax.cs" Inherits="Pharma.Presentation.Application" Language="C#" %>
