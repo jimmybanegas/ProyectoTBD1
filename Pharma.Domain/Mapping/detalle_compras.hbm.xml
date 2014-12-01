@@ -1,0 +1,31 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<hibernate-mapping assembly="Pharma.Domain" namespace="Pharma.Domain.Entities" xmlns="urn:nhibernate-mapping-2.2">
+  <class name="detalle_compras" table="detalle_compras" schema="farmacia">
+    <composite-id>
+      <key-property name="num_detalle" type="Int32">
+        <column name="num_detalle" not-null="true" precision="11" scale="0" sql-type="int" />
+      </key-property>
+      <key-property name="id_compra" type="Int32">
+        <column name="id_compra" not-null="true" precision="11" scale="0" sql-type="int" />
+      </key-property>
+    </composite-id>
+    <property name="cantidad" type="Int32">
+      <column name="cantidad" not-null="false" precision="11" scale="0" sql-type="int" />
+    </property>
+    <property name="precio_compra" type="Double">
+      <column name="precio_compra" not-null="false" sql-type="double" />
+    </property>
+    <property name="subtotal" type="Double">
+      <column name="subtotal" not-null="false" sql-type="double" />
+    </property>
+    <property name="cod_prod" type="String">
+      <column name="cod_prod" not-null="true" length="20" sql-type="varchar" />
+    </property>
+    <many-to-one name="compras" class="compras">
+      <column name="id_compra" not-null="true" precision="11" scale="0" sql-type="int" />
+    </many-to-one>
+    <many-to-one name="productos" class="productos">
+      <column name="cod_prod" not-null="true" length="20" sql-type="varchar" />
+    </many-to-one>
+  </class>
+</hibernate-mapping>

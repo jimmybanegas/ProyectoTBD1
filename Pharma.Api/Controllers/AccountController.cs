@@ -3,6 +3,7 @@ using System.Linq;
 using System.Web.Http;
 using AttributeRouting.Web.Mvc;
 using AutoMapper;
+using NHibernate;
 using Pharma.Api.Controllers.AccountControllerHelpers;
 using Pharma.Api.Models;
 using Pharma.Domain.Entities;
@@ -15,13 +16,15 @@ namespace Pharma.Api.Controllers
         readonly IReadOnlyRepository _readOnlyRepository;
         readonly IWriteOnlyRepository _writeOnlyRepository;
         readonly IMappingEngine _mappingEngine;
+        readonly ISession _session;
     
         public AccountController(IReadOnlyRepository readOnlyRepository, IWriteOnlyRepository writeOnlyRepository,
-         IMappingEngine mappingEngine)
+         IMappingEngine mappingEngine, ISession session)
         {
             _readOnlyRepository = readOnlyRepository;
             _writeOnlyRepository = writeOnlyRepository;
             _mappingEngine = mappingEngine;
+            _session = session;
         }
 
         [HttpPost]
@@ -127,7 +130,20 @@ namespace Pharma.Api.Controllers
                 account.EncryptIV = encryptObj.myRijndael.IV;
                 
                 Account accountCreated = _writeOnlyRepository.Create(account);
+
+                var mod = new Proc()
+                {
+                    descripcion = "prueba",
+                    fecha_crea = DateTime.Now,
+                    fecha_actu = DateTime.Now,
+                    usuario_crea = "jimmybanegas93",
+                    usuario_actu = "jimmybanegas93"
+                };
                 
+                var tipo = _mappingEngine.Map<Proc, tipo_cliente>(mod);
+
+                PharmaMethodsExecutor.sp_ins_tipo_cliente(_session,tipo.descripcion,tipo.fecha_actu,tipo.fecha_crea,tipo.usuario_actu,tipo.usuario_crea);
+             
                 if (accountCreated != null)
                 {
                    // SendSimpleMessage(accountCreated.FirstName, accountCreated.LastName, accountCreated.Email, model.Password);
@@ -138,6 +154,7 @@ namespace Pharma.Api.Controllers
                     Message = "Hubo un error al guardar el usuario",
                     Status = 0
                 };
+               
             }
             return new AccountRegisterResponseModel(model.Email, model.FirstName, 0);
         }

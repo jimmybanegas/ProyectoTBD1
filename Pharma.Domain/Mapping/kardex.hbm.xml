@@ -1,0 +1,39 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<hibernate-mapping assembly="Pharma.Domain" namespace="Pharma.Domain.Entities" xmlns="urn:nhibernate-mapping-2.2">
+  <class name="kardex" table="kardex" schema="farmacia">
+    <id name="id_operacion" type="Int32">
+      <column name="id_operacion" not-null="true" precision="11" scale="0" sql-type="int" />
+      <generator class="identity" />
+    </id>
+    <property name="cantidad" type="Int32">
+      <column name="cantidad" not-null="false" precision="11" scale="0" sql-type="int" />
+    </property>
+    <property name="costo" type="Double">
+      <column name="costo" not-null="false" sql-type="double" />
+    </property>
+    <property name="inv_antes" type="Int32">
+      <column name="inv_antes" not-null="false" precision="11" scale="0" sql-type="int" />
+    </property>
+    <property name="inv_despues" type="Int32">
+      <column name="inv_despues" not-null="false" precision="11" scale="0" sql-type="int" />
+    </property>
+    <property name="fecha_crea" type="DateTime">
+      <column name="fecha_crea" not-null="false" sql-type="datetime" />
+    </property>
+    <property name="usuario_crea" type="String">
+      <column name="usuario_crea" not-null="false" length="45" sql-type="varchar" />
+    </property>
+    <property name="precio" type="Double">
+      <column name="precio" not-null="false" sql-type="double" />
+    </property>
+    <property name="cod_prod" type="String">
+      <column name="cod_prod" not-null="true" length="20" sql-type="varchar" />
+    </property>
+    <property name="entrada_o_salida" type="String">
+      <column name="entrada_o_salida" not-null="false" length="1" sql-type="varchar" />
+    </property>
+    <many-to-one name="productos" class="productos">
+      <column name="cod_prod" not-null="true" length="20" sql-type="varchar" />
+    </many-to-one>
+  </class>
+</hibernate-mapping>

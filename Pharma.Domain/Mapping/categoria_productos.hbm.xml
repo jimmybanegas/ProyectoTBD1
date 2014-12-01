@@ -1,0 +1,30 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<hibernate-mapping assembly="Pharma.Domain" namespace="Pharma.Domain.Entities" xmlns="urn:nhibernate-mapping-2.2">
+  <class name="categoria_productos" table="categoria_productos" schema="farmacia">
+    <id name="cod_categoria" type="Int32">
+      <column name="cod_categoria" not-null="true" precision="11" scale="0" sql-type="int" />
+      <generator class="identity" />
+    </id>
+    <property name="nombre" type="String">
+      <column name="nombre" not-null="false" length="45" sql-type="varchar" />
+    </property>
+    <property name="fecha_crea" type="DateTime">
+      <column name="fecha_crea" not-null="false" sql-type="datetime" />
+    </property>
+    <property name="fecha_actu" type="DateTime">
+      <column name="fecha_actu" not-null="false" sql-type="datetime" />
+    </property>
+    <property name="usuario_crea" type="String">
+      <column name="usuario_crea" not-null="false" length="45" sql-type="varchar" />
+    </property>
+    <property name="usuario_actu" type="String">
+      <column name="usuario_actu" not-null="false" length="45" sql-type="varchar" />
+    </property>
+    <set name="productos_has_categoria_productos" inverse="true" generic="true">
+      <key>
+        <column name="cod_categoria" />
+      </key>
+      <one-to-many class="productos_has_categoria_productos" />
+    </set>
+  </class>
+</hibernate-mapping>

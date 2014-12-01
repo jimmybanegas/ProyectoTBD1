@@ -258,6 +258,7 @@
     <Compile Include="Models\AuthenticationModel.cs" />
     <Compile Include="Models\ChangePassModel.cs" />
     <Compile Include="Models\CreatedAccountModel.cs" />
+    <Compile Include="Models\Proc.cs" />
     <Compile Include="Models\RestorePasswordResponseModel.cs" />
     <Compile Include="Models\RoleModel.cs" />
     <Compile Include="Models\SessionsModel.cs" />
