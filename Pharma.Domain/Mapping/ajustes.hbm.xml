@@ -1,6 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <hibernate-mapping assembly="Pharma.Domain" namespace="Pharma.Domain.Entities" xmlns="urn:nhibernate-mapping-2.2">
-  <class name="ajustes" table="ajustes" schema="farmacia">
+  <class name="Pharma.Domain.Entities.ajustes, Pharma.Domain" table="ajustes" schema="farmacia">
     <id name="id_ajuste" type="Int32">
       <column name="id_ajuste" not-null="true" precision="11" scale="0" sql-type="int" />
       <generator class="identity" />
@@ -26,14 +26,14 @@
     <property name="id_tipotran" type="Int32">
       <column name="id_tipotran" not-null="true" precision="11" scale="0" sql-type="int" />
     </property>
-    <many-to-one name="tipo_transacciones" class="tipo_transacciones">
+    <many-to-one name="tipo_transacciones" class="Pharma.Domain.Entities.tipo_transacciones, Pharma.Domain">
       <column name="id_tipotran" not-null="true" precision="11" scale="0" sql-type="int" />
     </many-to-one>
     <set name="detalle_ajustes" inverse="true" generic="true">
       <key>
         <column name="id_ajuste" />
       </key>
-      <one-to-many class="detalle_ajustes" />
+      <one-to-many class="Pharma.Domain.Entities.detalle_ajustes, Pharma.Domain" />
     </set>
   </class>
 </hibernate-mapping>

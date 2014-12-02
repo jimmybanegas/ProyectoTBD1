@@ -82,9 +82,6 @@
     <Compile Include="Services\IWriteOnlyRepository.cs" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Mapping\ajustes.hbm.xml" />
-  </ItemGroup>
-  <ItemGroup>
     <None Include="packages.config" />
     <None Include="Pharma.Diagram1.view">
       <DependentUpon>Pharma.hbml</DependentUpon>
@@ -92,10 +89,10 @@
     <None Include="Pharma.edps">
       <DependentUpon>Pharma.hbml</DependentUpon>
     </None>
-    <None Include="Pharma.hbml">
+    <EmbeddedResource Include="Pharma.hbml">
       <Generator>DevartHibernateGenerator</Generator>
       <LastGenOutput>Pharma.info</LastGenOutput>
-    </None>
+    </EmbeddedResource>
     <None Include="Pharma.info">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -103,73 +100,35 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Mapping\categoria_productos.hbm.xml" />
-  </ItemGroup>
-  <ItemGroup>
-    <EmbeddedResource Include="Mapping\clientes.hbm.xml" />
-  </ItemGroup>
-  <ItemGroup>
-    <EmbeddedResource Include="Mapping\compras.hbm.xml" />
-  </ItemGroup>
-  <ItemGroup>
-    <EmbeddedResource Include="Mapping\contactos_clientes.hbm.xml" />
-  </ItemGroup>
-  <ItemGroup>
-    <EmbeddedResource Include="Mapping\costo_prod_proveedor.hbm.xml" />
-  </ItemGroup>
-  <ItemGroup>
-    <EmbeddedResource Include="Mapping\cotizaciones.hbm.xml" />
-  </ItemGroup>
-  <ItemGroup>
-    <EmbeddedResource Include="Mapping\detalle_ajustes.hbm.xml" />
-  </ItemGroup>
-  <ItemGroup>
-    <EmbeddedResource Include="Mapping\detalle_compras.hbm.xml" />
-  </ItemGroup>
-  <ItemGroup>
-    <EmbeddedResource Include="Mapping\detalle_cotizaciones.hbm.xml" />
-  </ItemGroup>
-  <ItemGroup>
-    <EmbeddedResource Include="Mapping\detalle_facturas.hbm.xml" />
-  </ItemGroup>
-  <ItemGroup>
-    <EmbeddedResource Include="Mapping\detalle_oc.hbm.xml" />
-  </ItemGroup>
-  <ItemGroup>
-    <EmbeddedResource Include="Mapping\direcciones_clientes.hbm.xml" />
-  </ItemGroup>
-  <ItemGroup>
-    <EmbeddedResource Include="Mapping\facturas.hbm.xml" />
-  </ItemGroup>
-  <ItemGroup>
-    <EmbeddedResource Include="Mapping\kardex.hbm.xml" />
-  </ItemGroup>
-  <ItemGroup>
-    <EmbeddedResource Include="Mapping\ordenes_de_compra.hbm.xml" />
-  </ItemGroup>
-  <ItemGroup>
-    <EmbeddedResource Include="Mapping\presentacion_productos.hbm.xml" />
-  </ItemGroup>
-  <ItemGroup>
-    <EmbeddedResource Include="Mapping\productos.hbm.xml" />
-  </ItemGroup>
-  <ItemGroup>
-    <EmbeddedResource Include="Mapping\productos_has_categoria_productos.hbm.xml" />
-  </ItemGroup>
-  <ItemGroup>
-    <EmbeddedResource Include="Mapping\proveedores.hbm.xml" />
-  </ItemGroup>
-  <ItemGroup>
-    <EmbeddedResource Include="Mapping\telefonos_clientes.hbm.xml" />
-  </ItemGroup>
-  <ItemGroup>
-    <EmbeddedResource Include="Mapping\tipo_transacciones.hbm.xml" />
-  </ItemGroup>
-  <ItemGroup>
     <EmbeddedResource Include="Mapping\Pharma.hbm.xml" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Entities\tipo_cliente.hbm.xml" />
+    <EmbeddedResource Include="Mapping\tipo_cliente.hbm.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Mapping\ajustes.hbm.xml" />
+    <EmbeddedResource Include="Mapping\categoria_productos.hbm.xml" />
+    <EmbeddedResource Include="Mapping\clientes.hbm.xml" />
+    <EmbeddedResource Include="Mapping\compras.hbm.xml" />
+    <EmbeddedResource Include="Mapping\contactos_clientes.hbm.xml" />
+    <EmbeddedResource Include="Mapping\costo_prod_proveedor.hbm.xml" />
+    <EmbeddedResource Include="Mapping\cotizaciones.hbm.xml" />
+    <EmbeddedResource Include="Mapping\detalle_ajustes.hbm.xml" />
+    <EmbeddedResource Include="Mapping\detalle_compras.hbm.xml" />
+    <EmbeddedResource Include="Mapping\detalle_cotizaciones.hbm.xml" />
+    <EmbeddedResource Include="Mapping\detalle_facturas.hbm.xml" />
+    <EmbeddedResource Include="Mapping\detalle_oc.hbm.xml" />
+    <EmbeddedResource Include="Mapping\direcciones_clientes.hbm.xml" />
+    <EmbeddedResource Include="Mapping\facturas.hbm.xml" />
+    <EmbeddedResource Include="Mapping\kardex.hbm.xml" />
+    <EmbeddedResource Include="Mapping\ordenes_de_compra.hbm.xml" />
+    <EmbeddedResource Include="Mapping\presentacion_productos.hbm.xml" />
+    <EmbeddedResource Include="Mapping\productos.hbm.xml" />
+    <EmbeddedResource Include="Mapping\productos_has_categoria_productos.hbm.xml" />
+    <EmbeddedResource Include="Mapping\proveedores.hbm.xml" />
+    <EmbeddedResource Include="Mapping\sessions.hbm.xml" />
+    <EmbeddedResource Include="Mapping\telefonos_clientes.hbm.xml" />
+    <EmbeddedResource Include="Mapping\tipo_transacciones.hbm.xml" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

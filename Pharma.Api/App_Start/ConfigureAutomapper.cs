@@ -3,6 +3,7 @@ using NHibernate.Cfg.MappingSchema;
 using Pharma.Api.Models;
 using Pharma.Domain.Entities;
 
+
 namespace Pharma.Api
 {
     public class ConfigureAutomapper : IBootstrapperTask
@@ -18,7 +19,7 @@ namespace Pharma.Api
           //  Mapper.CreateMap<Leagues, LeaguesModel>().ReverseMap();
             Mapper.CreateMap<Account, AccountLoginModel>().ReverseMap();
             Mapper.CreateMap<Account, AccountRegisterModel>().ReverseMap();
-           //Mapper.CreateMap<tipo_cliente,Pharma.Domain.Entities>().ReverseMap();
+          //  Mapper.CreateMap<>().ReverseMap();
           //  Mapper.CreateMap<Account, AccountRegisterResponseModel>().ReverseMap();
             Mapper.CreateMap<Sessions, SessionsModel>().ReverseMap();
         }

@@ -106,7 +106,19 @@ namespace Pharma.Api.Controllers
 
        [POST("register")]
         public AccountRegisterResponseModel Register([FromBody] AccountRegisterModel model)
-        {   
+        {
+            var mod = new Proc()
+            {
+                descripcion = "prueba",
+                fecha_crea = DateTime.Now,
+                fecha_actu = DateTime.Now,
+                usuario_crea = "jimmybanegas93",
+                usuario_actu = "jimmybanegas93"
+            };
+
+            //  var tipo = _mappingEngine.Map<Proc, tipo_cliente>(mod);
+
+            PharmaMethodsExecutor.sp_ins_tipo_cliente(_session, mod.descripcion, mod.fecha_actu, mod.fecha_crea, mod.usuario_actu, mod.usuario_crea);
            // var validateMessage = _registerValidator.Validate(model);
             if (String.IsNullOrEmpty(model.Email))
             {
@@ -130,19 +142,7 @@ namespace Pharma.Api.Controllers
                 account.EncryptIV = encryptObj.myRijndael.IV;
                 
                 Account accountCreated = _writeOnlyRepository.Create(account);
-
-               var mod = new Proc()
-                {
-                    descripcion = "prueba",
-                    fecha_crea = DateTime.Now,
-                    fecha_actu = DateTime.Now,
-                    usuario_crea = "jimmybanegas93",
-                    usuario_actu = "jimmybanegas93"
-                };
-                
-              //  var tipo = _mappingEngine.Map<Proc, tipo_cliente>(mod);
-
-                PharmaMethodsExecutor.sp_ins_tipo_cliente(_session,mod.descripcion,mod.fecha_actu,mod.fecha_crea,mod.usuario_actu,mod.usuario_crea);
+          
              
                 if (accountCreated != null)
                 {

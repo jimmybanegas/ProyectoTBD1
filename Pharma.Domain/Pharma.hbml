@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <hibernate-mapping assembly="Pharma.Domain" namespace="Pharma.Domain.Entities" p1:Guid="1aa99b1d-a5b9-4622-aa51-b1a86dcc160d" xmlns:p1="http://devart.com/schemas/EntityDeveloper/1.0" xmlns="urn:nhibernate-mapping-2.2">
-  <class name="ajustes" table="ajustes" schema="farmacia" p1:Guid="1b333866-6f14-403c-bd04-840b6f198bb3">
+  <class name="Pharma.Domain.Entities.ajustes, Pharma.Domain" table="ajustes" schema="farmacia" p1:Guid="1b333866-6f14-403c-bd04-840b6f198bb3">
     <id name="id_ajuste" type="Int32" p1:ValidateRequired="True" p1:Guid="b82865a4-0259-47e6-83e4-c325d308e8be">
       <column name="id_ajuste" not-null="true" precision="11" scale="0" sql-type="int" p1:unicode="false" />
       <generator class="identity" />
@@ -26,17 +26,17 @@
     <property name="id_tipotran" type="Int32" p1:ValidateRequired="True" p1:Guid="085a8054-6828-4fd3-b28c-b3b9cbc0d3af">
       <column name="id_tipotran" not-null="true" precision="11" scale="0" sql-type="int" p1:unicode="false" />
     </property>
-    <many-to-one name="tipo_transacciones" class="tipo_transacciones" p1:AssociationGuid="352997f7-7e10-46f0-8afa-1101404afeeb" p1:Guid="a6c0aec1-cd21-4949-83ae-3db85bce00fc">
+    <many-to-one name="tipo_transacciones" class="Pharma.Domain.Entities.tipo_transacciones, Pharma.Domain" p1:AssociationGuid="352997f7-7e10-46f0-8afa-1101404afeeb" p1:Guid="a6c0aec1-cd21-4949-83ae-3db85bce00fc">
       <column name="id_tipotran" not-null="true" precision="11" scale="0" sql-type="int" p1:unicode="false" />
     </many-to-one>
     <set name="detalle_ajustes" inverse="true" generic="true" p1:AssociationGuid="d3b7741b-e038-4d8e-bbc4-dca166608b69" p1:Guid="240e0d8e-b820-4376-bcb7-7b1f4acc6e65">
       <key>
         <column name="id_ajuste" />
       </key>
-      <one-to-many class="detalle_ajustes" />
+      <one-to-many class="Pharma.Domain.Entities.detalle_ajustes, Pharma.Domain" />
     </set>
   </class>
-  <class name="categoria_productos" table="categoria_productos" schema="farmacia" p1:Guid="ec1f4c28-9bcb-466a-bfc3-64b7bbf1b4c2">
+  <class name="Pharma.Domain.Entities.categoria_productos, Pharma.Domain" table="categoria_productos" schema="farmacia" p1:Guid="ec1f4c28-9bcb-466a-bfc3-64b7bbf1b4c2">
     <id name="cod_categoria" type="Int32" p1:ValidateRequired="True" p1:Guid="afd7f84b-c673-4ee4-89b7-966d55b209bf">
       <column name="cod_categoria" not-null="true" precision="11" scale="0" sql-type="int" p1:unicode="false" />
       <generator class="identity" />
@@ -60,10 +60,10 @@
       <key>
         <column name="cod_categoria" />
       </key>
-      <one-to-many class="productos_has_categoria_productos" />
+      <one-to-many class="Pharma.Domain.Entities.productos_has_categoria_productos, Pharma.Domain" />
     </set>
   </class>
-  <class name="clientes" table="clientes" schema="farmacia" p1:Guid="77b4d7f7-2682-4ce6-bcd0-84cfb6fac980">
+  <class name="Pharma.Domain.Entities.clientes, Pharma.Domain" table="clientes" schema="farmacia" p1:Guid="77b4d7f7-2682-4ce6-bcd0-84cfb6fac980">
     <id name="id_cliente" type="Int32" p1:ValidateRequired="True" p1:Guid="956ea3be-986d-4428-a4b6-66d6a37bbf00">
       <column name="id_cliente" not-null="true" precision="11" scale="0" sql-type="int" p1:unicode="false" />
       <generator class="identity" />
@@ -86,35 +86,35 @@
     <property name="id_tipocliente" type="Int32" p1:ValidateRequired="True" p1:Guid="b6edd26b-9a90-4621-836c-63147f1e11a2">
       <column name="id_tipocliente" not-null="true" precision="11" scale="0" sql-type="int" p1:unicode="false" />
     </property>
-    <many-to-one name="tipo_cliente" class="tipo_cliente" p1:AssociationGuid="8034c171-d4b1-4cdf-abf7-dd300bc7942b" p1:Guid="bb402b14-41d6-4aab-9286-5981dc8ea97a">
+    <many-to-one name="tipo_cliente" class="Pharma.Domain.Entities.tipo_cliente, Pharma.Domain" p1:AssociationGuid="8034c171-d4b1-4cdf-abf7-dd300bc7942b" p1:Guid="bb402b14-41d6-4aab-9286-5981dc8ea97a">
       <column name="id_tipocliente" not-null="true" precision="11" scale="0" sql-type="int" p1:unicode="false" />
     </many-to-one>
     <set name="contactos_clientes" inverse="true" generic="true" p1:AssociationGuid="eb96332e-77fb-4939-82a3-cf859f37af4e" p1:Guid="446639fa-9afe-4b80-856c-a4b49837a523">
       <key>
         <column name="id_cliente" />
       </key>
-      <one-to-many class="contactos_clientes" />
+      <one-to-many class="Pharma.Domain.Entities.contactos_clientes, Pharma.Domain" />
     </set>
     <set name="direcciones_clientes" inverse="true" generic="true" p1:AssociationGuid="d582e25b-337b-4639-90d5-c50b4249a96b" p1:Guid="8a95f182-1cb8-45f9-8f6f-12763e727265">
       <key>
         <column name="id_cliente" />
       </key>
-      <one-to-many class="direcciones_clientes" />
+      <one-to-many class="Pharma.Domain.Entities.direcciones_clientes, Pharma.Domain" />
     </set>
     <set name="facturas" inverse="true" generic="true" p1:AssociationGuid="42bafdae-34f7-4622-9307-25f4ac2c3c3b" p1:Guid="f263fb91-dc96-41fd-8ba6-353221e56e10">
       <key>
         <column name="id_cliente" />
       </key>
-      <one-to-many class="facturas" />
+      <one-to-many class="Pharma.Domain.Entities.facturas, Pharma.Domain" />
     </set>
     <set name="telefonos_clientes" inverse="true" generic="true" p1:AssociationGuid="434d0e77-b59d-44d4-9ae9-e157156a8e48" p1:Guid="be88d15f-5627-4acf-88cf-25c19f2ce63e">
       <key>
         <column name="id_cliente" />
       </key>
-      <one-to-many class="telefonos_clientes" />
+      <one-to-many class="Pharma.Domain.Entities.telefonos_clientes, Pharma.Domain" />
     </set>
   </class>
-  <class name="compras" table="compras" schema="farmacia" p1:Guid="bc7399ef-f609-4a59-ac79-95b984204fd7">
+  <class name="Pharma.Domain.Entities.compras, Pharma.Domain" table="compras" schema="farmacia" p1:Guid="bc7399ef-f609-4a59-ac79-95b984204fd7">
     <id name="id_compra" type="Int32" p1:ValidateRequired="True" p1:Guid="c939e539-bbcb-40a0-8bb8-beeeba841183">
       <column name="id_compra" not-null="true" precision="11" scale="0" sql-type="int" p1:unicode="false" />
       <generator class="identity" />
@@ -140,17 +140,17 @@
     <property name="id_proveedor" type="Int32" p1:ValidateRequired="True" p1:Guid="9e206a3d-22bf-4bb3-a977-0b3dde95d450">
       <column name="id_proveedor" not-null="true" precision="11" scale="0" sql-type="int" p1:unicode="false" />
     </property>
-    <many-to-one name="proveedores" class="proveedores" p1:AssociationGuid="a23c679c-8ba7-4383-8548-07983568c030" p1:Guid="01480fa3-64be-4a68-a588-6c20c8087fb2">
+    <many-to-one name="proveedores" class="Pharma.Domain.Entities.proveedores, Pharma.Domain" p1:AssociationGuid="a23c679c-8ba7-4383-8548-07983568c030" p1:Guid="01480fa3-64be-4a68-a588-6c20c8087fb2">
       <column name="id_proveedor" not-null="true" precision="11" scale="0" sql-type="int" p1:unicode="false" />
     </many-to-one>
     <set name="detalle_compras" inverse="true" generic="true" p1:AssociationGuid="e53f3059-9085-411b-82bb-d2388dc331dc" p1:Guid="86809da7-8536-47e2-a4f5-3d835bad4867">
       <key>
         <column name="id_compra" />
       </key>
-      <one-to-many class="detalle_compras" />
+      <one-to-many class="Pharma.Domain.Entities.detalle_compras, Pharma.Domain" />
     </set>
   </class>
-  <class name="contactos_clientes" table="contactos_clientes" schema="farmacia" p1:Guid="0d18869d-4ebe-4aec-a28e-46d805df8f06">
+  <class name="Pharma.Domain.Entities.contactos_clientes, Pharma.Domain" table="contactos_clientes" schema="farmacia" p1:Guid="0d18869d-4ebe-4aec-a28e-46d805df8f06">
     <composite-id>
       <key-property name="id_contactocliente" type="Int32" p1:ValidateRequired="True" p1:Guid="bb131cb8-83cf-47f7-bab4-d912a5255702">
         <column name="id_contactocliente" not-null="true" precision="11" scale="0" sql-type="int" p1:unicode="false" />
@@ -180,11 +180,11 @@
     <property name="usuario_actu" type="String" p1:nullable="true" p1:ValidateMaxLength="45" p1:ValidateRequired="False" p1:Guid="576330fa-ef39-4eee-bf31-20a12ea0c9b3">
       <column name="usuario_actu" not-null="false" length="45" sql-type="varchar" p1:unicode="true" />
     </property>
-    <many-to-one name="clientes" class="clientes" p1:AssociationGuid="eb96332e-77fb-4939-82a3-cf859f37af4e" p1:Guid="0f98a5fd-659f-40bd-9480-f0d9053543d7">
+    <many-to-one name="clientes" class="Pharma.Domain.Entities.clientes, Pharma.Domain" p1:AssociationGuid="eb96332e-77fb-4939-82a3-cf859f37af4e" p1:Guid="0f98a5fd-659f-40bd-9480-f0d9053543d7">
       <column name="id_cliente" not-null="true" precision="11" scale="0" sql-type="int" p1:unicode="false" />
     </many-to-one>
   </class>
-  <class name="costo_prod_proveedor" table="costo_prod_proveedor" schema="farmacia" p1:Guid="29149c7d-532c-4018-bf63-dd5903fa0ab3">
+  <class name="Pharma.Domain.Entities.costo_prod_proveedor, Pharma.Domain" table="costo_prod_proveedor" schema="farmacia" p1:Guid="29149c7d-532c-4018-bf63-dd5903fa0ab3">
     <composite-id>
       <key-property name="cod_prod" type="String" p1:ValidateMaxLength="20" p1:ValidateRequired="True" p1:Guid="530ef84f-fd4a-43e4-89e9-418070ab1dc3">
         <column name="cod_prod" not-null="true" length="20" sql-type="varchar" p1:unicode="true" />
@@ -196,14 +196,14 @@
     <property name="costo" type="Double" p1:ValidateRequired="True" p1:Guid="78547fb5-bee7-4741-921e-03313530c2ff">
       <column name="costo" not-null="true" sql-type="double" p1:unicode="false" />
     </property>
-    <many-to-one name="productos" class="productos" p1:AssociationGuid="11cf4d31-06b9-4848-8c0f-3bad01151319" p1:Guid="dfbc6105-c4ba-4964-9195-31a1f4849e58">
+    <many-to-one name="productos" class="Pharma.Domain.Entities.productos, Pharma.Domain" p1:AssociationGuid="11cf4d31-06b9-4848-8c0f-3bad01151319" p1:Guid="dfbc6105-c4ba-4964-9195-31a1f4849e58">
       <column name="cod_prod" not-null="true" length="20" sql-type="varchar" p1:unicode="true" />
     </many-to-one>
-    <many-to-one name="proveedores" class="proveedores" p1:AssociationGuid="8ade62ff-da7b-42bb-98e7-badbb491d6e2" p1:Guid="191116f3-bbcc-4f40-bfb8-56da41a2ca6c">
+    <many-to-one name="proveedores" class="Pharma.Domain.Entities.proveedores, Pharma.Domain" p1:AssociationGuid="8ade62ff-da7b-42bb-98e7-badbb491d6e2" p1:Guid="191116f3-bbcc-4f40-bfb8-56da41a2ca6c">
       <column name="id_proveedor" not-null="true" precision="11" scale="0" sql-type="int" p1:unicode="false" />
     </many-to-one>
   </class>
-  <class name="cotizaciones" table="cotizaciones" schema="farmacia" p1:Guid="1c2dc5a5-840e-4a08-b169-2e45b182f073">
+  <class name="Pharma.Domain.Entities.cotizaciones, Pharma.Domain" table="cotizaciones" schema="farmacia" p1:Guid="1c2dc5a5-840e-4a08-b169-2e45b182f073">
     <id name="id_cotizacion" type="Int32" p1:ValidateRequired="True" p1:Guid="3d225d0a-9e1f-4d81-a33b-b1464e34d330">
       <column name="id_cotizacion" not-null="true" precision="11" scale="0" sql-type="int" p1:unicode="false" />
       <generator class="identity" />
@@ -229,17 +229,17 @@
     <property name="id_proveedor" type="Int32" p1:ValidateRequired="True" p1:Guid="06934935-e0a8-49de-8cd6-a600122ca055">
       <column name="id_proveedor" not-null="true" precision="11" scale="0" sql-type="int" p1:unicode="false" />
     </property>
-    <many-to-one name="proveedores" class="proveedores" p1:AssociationGuid="752d3d4b-8e42-444b-b0b2-8517a54a0144" p1:Guid="027ced81-f296-4ace-81a2-5cb03cfcaf2c">
+    <many-to-one name="proveedores" class="Pharma.Domain.Entities.proveedores, Pharma.Domain" p1:AssociationGuid="752d3d4b-8e42-444b-b0b2-8517a54a0144" p1:Guid="027ced81-f296-4ace-81a2-5cb03cfcaf2c">
       <column name="id_proveedor" not-null="true" precision="11" scale="0" sql-type="int" p1:unicode="false" />
     </many-to-one>
     <set name="detalle_cotizaciones" inverse="true" generic="true" p1:AssociationGuid="7caa3c5c-c2d6-4cf5-a63e-7610fe6e622a" p1:Guid="34575dd2-8734-404c-bbe9-13c159cc7836">
       <key>
         <column name="id_cotizacion" />
       </key>
-      <one-to-many class="detalle_cotizaciones" />
+      <one-to-many class="Pharma.Domain.Entities.detalle_cotizaciones, Pharma.Domain" />
     </set>
   </class>
-  <class name="detalle_ajustes" table="detalle_ajustes" schema="farmacia" p1:Guid="3041f09d-38e7-44a6-8c8d-92c0b3e779b0">
+  <class name="Pharma.Domain.Entities.detalle_ajustes, Pharma.Domain" table="detalle_ajustes" schema="farmacia" p1:Guid="3041f09d-38e7-44a6-8c8d-92c0b3e779b0">
     <composite-id>
       <key-property name="num_detalle" type="Int32" p1:ValidateRequired="True" p1:Guid="9f5afdb1-daaf-4769-a5e3-cf58d3cff1d3">
         <column name="num_detalle" not-null="true" precision="11" scale="0" sql-type="int" p1:unicode="false" />
@@ -254,14 +254,14 @@
     <property name="cod_prod" type="String" p1:ValidateMaxLength="20" p1:ValidateRequired="True" p1:Guid="488ef901-90c2-4b6e-9338-2b721970750a">
       <column name="cod_prod" not-null="true" length="20" sql-type="varchar" p1:unicode="true" />
     </property>
-    <many-to-one name="ajustes" class="ajustes" p1:AssociationGuid="d3b7741b-e038-4d8e-bbc4-dca166608b69" p1:Guid="39d35413-5ba3-4aa7-b320-1022bf5bf6c2">
+    <many-to-one name="ajustes" class="Pharma.Domain.Entities.ajustes, Pharma.Domain" p1:AssociationGuid="d3b7741b-e038-4d8e-bbc4-dca166608b69" p1:Guid="39d35413-5ba3-4aa7-b320-1022bf5bf6c2">
       <column name="id_ajuste" not-null="true" precision="11" scale="0" sql-type="int" p1:unicode="false" />
     </many-to-one>
-    <many-to-one name="productos" class="productos" p1:AssociationGuid="971b8b71-8bcf-488a-b1a3-163ddf11a41c" p1:Guid="b17bf53d-0d59-458e-ac72-64613d271fc0">
+    <many-to-one name="productos" class="Pharma.Domain.Entities.productos, Pharma.Domain" p1:AssociationGuid="971b8b71-8bcf-488a-b1a3-163ddf11a41c" p1:Guid="b17bf53d-0d59-458e-ac72-64613d271fc0">
       <column name="cod_prod" not-null="true" length="20" sql-type="varchar" p1:unicode="true" />
     </many-to-one>
   </class>
-  <class name="detalle_compras" table="detalle_compras" schema="farmacia" p1:Guid="cba82c32-16f7-488b-b325-fa1b6f155943">
+  <class name="Pharma.Domain.Entities.detalle_compras, Pharma.Domain" table="detalle_compras" schema="farmacia" p1:Guid="cba82c32-16f7-488b-b325-fa1b6f155943">
     <composite-id>
       <key-property name="num_detalle" type="Int32" p1:ValidateRequired="True" p1:Guid="05b3e6f4-d7f1-46bd-a9fa-d4835f246d7b">
         <column name="num_detalle" not-null="true" precision="11" scale="0" sql-type="int" p1:unicode="false" />
@@ -282,14 +282,14 @@
     <property name="cod_prod" type="String" p1:ValidateMaxLength="20" p1:ValidateRequired="True" p1:Guid="0bb6f44b-f3a0-4fa7-b970-cf22d6d93256">
       <column name="cod_prod" not-null="true" length="20" sql-type="varchar" p1:unicode="true" />
     </property>
-    <many-to-one name="compras" class="compras" p1:AssociationGuid="e53f3059-9085-411b-82bb-d2388dc331dc" p1:Guid="aa1b9334-50d5-48d5-b0fd-1855dc2817d1">
+    <many-to-one name="compras" class="Pharma.Domain.Entities.compras, Pharma.Domain" p1:AssociationGuid="e53f3059-9085-411b-82bb-d2388dc331dc" p1:Guid="aa1b9334-50d5-48d5-b0fd-1855dc2817d1">
       <column name="id_compra" not-null="true" precision="11" scale="0" sql-type="int" p1:unicode="false" />
     </many-to-one>
-    <many-to-one name="productos" class="productos" p1:AssociationGuid="0362d4a0-47b9-4d39-b1a1-edd4adf298c0" p1:Guid="ce555114-075e-4a20-9780-9a73f09ab84d">
+    <many-to-one name="productos" class="Pharma.Domain.Entities.productos, Pharma.Domain" p1:AssociationGuid="0362d4a0-47b9-4d39-b1a1-edd4adf298c0" p1:Guid="ce555114-075e-4a20-9780-9a73f09ab84d">
       <column name="cod_prod" not-null="true" length="20" sql-type="varchar" p1:unicode="true" />
     </many-to-one>
   </class>
-  <class name="detalle_cotizaciones" table="detalle_cotizaciones" schema="farmacia" p1:Guid="2b0119d4-6322-4773-9f5d-5e7249c6c8c5">
+  <class name="Pharma.Domain.Entities.detalle_cotizaciones, Pharma.Domain" table="detalle_cotizaciones" schema="farmacia" p1:Guid="2b0119d4-6322-4773-9f5d-5e7249c6c8c5">
     <composite-id>
       <key-property name="num_detalle" type="Int32" p1:ValidateRequired="True" p1:Guid="b4f78aa3-68dc-46c7-b7ae-8d5281fb5d7e">
         <column name="num_detalle" not-null="true" precision="11" scale="0" sql-type="int" p1:unicode="false" />
@@ -307,14 +307,14 @@
     <property name="cod_prod" type="String" p1:ValidateMaxLength="20" p1:ValidateRequired="True" p1:Guid="d68b92fb-e53b-4269-9a16-02714dc10a4f">
       <column name="cod_prod" not-null="true" length="20" sql-type="varchar" p1:unicode="true" />
     </property>
-    <many-to-one name="cotizaciones" class="cotizaciones" p1:AssociationGuid="7caa3c5c-c2d6-4cf5-a63e-7610fe6e622a" p1:Guid="ac2a052d-9d69-4525-9f7a-9ea6165c0a17">
+    <many-to-one name="cotizaciones" class="Pharma.Domain.Entities.cotizaciones, Pharma.Domain" p1:AssociationGuid="7caa3c5c-c2d6-4cf5-a63e-7610fe6e622a" p1:Guid="ac2a052d-9d69-4525-9f7a-9ea6165c0a17">
       <column name="id_cotizacion" not-null="true" precision="11" scale="0" sql-type="int" p1:unicode="false" />
     </many-to-one>
-    <many-to-one name="productos" class="productos" p1:AssociationGuid="2957b7f8-4cdf-41f9-97da-56c2fb033885" p1:Guid="b68d3c18-4de8-4c15-aba6-ee1e63dcfd0d">
+    <many-to-one name="productos" class="Pharma.Domain.Entities.productos, Pharma.Domain" p1:AssociationGuid="2957b7f8-4cdf-41f9-97da-56c2fb033885" p1:Guid="b68d3c18-4de8-4c15-aba6-ee1e63dcfd0d">
       <column name="cod_prod" not-null="true" length="20" sql-type="varchar" p1:unicode="true" />
     </many-to-one>
   </class>
-  <class name="detalle_facturas" table="detalle_facturas" schema="farmacia" p1:Guid="e353d8e0-1c01-4ee9-bed1-31756cc57436">
+  <class name="Pharma.Domain.Entities.detalle_facturas, Pharma.Domain" table="detalle_facturas" schema="farmacia" p1:Guid="e353d8e0-1c01-4ee9-bed1-31756cc57436">
     <composite-id>
       <key-property name="num_detalle" type="Int32" p1:ValidateRequired="True" p1:Guid="e268caf8-271f-442a-bdda-99716dab4ec9">
         <column name="num_detalle" not-null="true" precision="11" scale="0" sql-type="int" p1:unicode="false" />
@@ -335,14 +335,14 @@
     <property name="cod_prod" type="String" p1:ValidateMaxLength="20" p1:ValidateRequired="True" p1:Guid="541d6cad-d1ba-4fa9-aac8-3efaeada6fee">
       <column name="cod_prod" not-null="true" length="20" sql-type="varchar" p1:unicode="true" />
     </property>
-    <many-to-one name="facturas" class="facturas" p1:AssociationGuid="dfb32d0f-cdac-42e6-b4e1-5b52beb1f72f" p1:Guid="9c2efadf-a52f-450f-a256-145790ead9f6">
+    <many-to-one name="facturas" class="Pharma.Domain.Entities.facturas, Pharma.Domain" p1:AssociationGuid="dfb32d0f-cdac-42e6-b4e1-5b52beb1f72f" p1:Guid="9c2efadf-a52f-450f-a256-145790ead9f6">
       <column name="num_factura" not-null="true" precision="11" scale="0" sql-type="int" p1:unicode="false" />
     </many-to-one>
-    <many-to-one name="productos" class="productos" p1:AssociationGuid="5f61eb94-27d2-4f65-9d85-8581b43e2ba8" p1:Guid="e3012102-ef7d-4143-a85d-e79a4d9755d8">
+    <many-to-one name="productos" class="Pharma.Domain.Entities.productos, Pharma.Domain" p1:AssociationGuid="5f61eb94-27d2-4f65-9d85-8581b43e2ba8" p1:Guid="e3012102-ef7d-4143-a85d-e79a4d9755d8">
       <column name="cod_prod" not-null="true" length="20" sql-type="varchar" p1:unicode="true" />
     </many-to-one>
   </class>
-  <class name="detalle_oc" table="detalle_oc" schema="farmacia" p1:Guid="98afb625-757d-40d3-810c-8ba9469ee70a">
+  <class name="Pharma.Domain.Entities.detalle_oc, Pharma.Domain" table="detalle_oc" schema="farmacia" p1:Guid="98afb625-757d-40d3-810c-8ba9469ee70a">
     <composite-id>
       <key-property name="num_detalle" type="Int32" p1:ValidateRequired="True" p1:Guid="33f55815-c4e3-4e5d-85a3-2ffba42b6494">
         <column name="num_detalle" not-null="true" precision="11" scale="0" sql-type="int" p1:unicode="false" />
@@ -363,14 +363,14 @@
     <property name="cod_prod" type="String" p1:ValidateMaxLength="20" p1:ValidateRequired="True" p1:Guid="9733c51a-0f18-422b-9c6e-2e296994029d">
       <column name="cod_prod" not-null="true" length="20" sql-type="varchar" p1:unicode="true" />
     </property>
-    <many-to-one name="ordenes_de_compra" class="ordenes_de_compra" p1:AssociationGuid="a2554c72-b610-4adc-92aa-7e5a92607fbb" p1:Guid="14967446-5206-4c02-8c76-49240a7b4302">
+    <many-to-one name="ordenes_de_compra" class="Pharma.Domain.Entities.ordenes_de_compra, Pharma.Domain" p1:AssociationGuid="a2554c72-b610-4adc-92aa-7e5a92607fbb" p1:Guid="14967446-5206-4c02-8c76-49240a7b4302">
       <column name="id_ordencompra" not-null="true" precision="11" scale="0" sql-type="int" p1:unicode="false" />
     </many-to-one>
-    <many-to-one name="productos" class="productos" p1:AssociationGuid="fc5f9705-9661-4283-885c-764c1f23359b" p1:Guid="56c8837b-0bfe-416c-9845-360e2f31e17d">
+    <many-to-one name="productos" class="Pharma.Domain.Entities.productos, Pharma.Domain" p1:AssociationGuid="fc5f9705-9661-4283-885c-764c1f23359b" p1:Guid="56c8837b-0bfe-416c-9845-360e2f31e17d">
       <column name="cod_prod" not-null="true" length="20" sql-type="varchar" p1:unicode="true" />
     </many-to-one>
   </class>
-  <class name="direcciones_clientes" table="direcciones_clientes" schema="farmacia" p1:Guid="abad2320-b6ef-4fe4-993a-47806d024ee4">
+  <class name="Pharma.Domain.Entities.direcciones_clientes, Pharma.Domain" table="direcciones_clientes" schema="farmacia" p1:Guid="abad2320-b6ef-4fe4-993a-47806d024ee4">
     <composite-id>
       <key-property name="id_direccioncliente" type="Int32" p1:ValidateRequired="True" p1:Guid="a45b5166-4ec5-4b3b-8889-124991a2e187">
         <column name="id_direccioncliente" not-null="true" precision="11" scale="0" sql-type="int" p1:unicode="false" />
@@ -394,11 +394,11 @@
     <property name="usuario_actu" type="String" p1:nullable="true" p1:ValidateMaxLength="45" p1:ValidateRequired="False" p1:Guid="e495c2e9-f9e9-44a7-a90f-4d990be5c911">
       <column name="usuario_actu" not-null="false" length="45" sql-type="varchar" p1:unicode="true" />
     </property>
-    <many-to-one name="clientes" class="clientes" p1:AssociationGuid="d582e25b-337b-4639-90d5-c50b4249a96b" p1:Guid="3edddb8b-4c23-4533-af1c-5daba3eaa0af">
+    <many-to-one name="clientes" class="Pharma.Domain.Entities.clientes, Pharma.Domain" p1:AssociationGuid="d582e25b-337b-4639-90d5-c50b4249a96b" p1:Guid="3edddb8b-4c23-4533-af1c-5daba3eaa0af">
       <column name="id_cliente" not-null="true" precision="11" scale="0" sql-type="int" p1:unicode="false" />
     </many-to-one>
   </class>
-  <class name="facturas" table="facturas" schema="farmacia" p1:Guid="078105d7-3da1-41e3-8f8c-8ad11fc18039">
+  <class name="Pharma.Domain.Entities.facturas, Pharma.Domain" table="facturas" schema="farmacia" p1:Guid="078105d7-3da1-41e3-8f8c-8ad11fc18039">
     <id name="num_factura" type="Int32" p1:ValidateRequired="True" p1:Guid="04574ef6-de92-4684-9114-f5abbaa2dd99">
       <column name="num_factura" not-null="true" precision="11" scale="0" sql-type="int" p1:unicode="false" />
       <generator class="identity" />
@@ -433,17 +433,17 @@
     <property name="id_cliente" type="Int32" p1:ValidateRequired="True" p1:Guid="58fbb8b3-cf2d-4223-aae7-258804553f77">
       <column name="id_cliente" not-null="true" precision="11" scale="0" sql-type="int" p1:unicode="false" />
     </property>
-    <many-to-one name="clientes" class="clientes" p1:AssociationGuid="42bafdae-34f7-4622-9307-25f4ac2c3c3b" p1:Guid="f9830cfe-7467-491c-979a-62901b7a6b89">
+    <many-to-one name="clientes" class="Pharma.Domain.Entities.clientes, Pharma.Domain" p1:AssociationGuid="42bafdae-34f7-4622-9307-25f4ac2c3c3b" p1:Guid="f9830cfe-7467-491c-979a-62901b7a6b89">
       <column name="id_cliente" not-null="true" precision="11" scale="0" sql-type="int" p1:unicode="false" />
     </many-to-one>
     <set name="detalle_facturas" inverse="true" generic="true" p1:AssociationGuid="dfb32d0f-cdac-42e6-b4e1-5b52beb1f72f" p1:Guid="5fee050a-26a4-4d21-9c24-837452904c9a">
       <key>
         <column name="num_factura" />
       </key>
-      <one-to-many class="detalle_facturas" />
+      <one-to-many class="Pharma.Domain.Entities.detalle_facturas, Pharma.Domain" />
     </set>
   </class>
-  <class name="kardex" table="kardex" schema="farmacia" p1:Guid="129fda7a-5cb5-4648-b04b-33f1246847b8">
+  <class name="Pharma.Domain.Entities.kardex, Pharma.Domain" table="kardex" schema="farmacia" p1:Guid="129fda7a-5cb5-4648-b04b-33f1246847b8">
     <id name="id_operacion" type="Int32" p1:ValidateRequired="True" p1:Guid="f1807407-3765-44c6-ae42-cd414982f4e7">
       <column name="id_operacion" not-null="true" precision="11" scale="0" sql-type="int" p1:unicode="false" />
       <generator class="identity" />
@@ -475,11 +475,11 @@
     <property name="entrada_o_salida" type="String" p1:nullable="true" p1:ValidateMaxLength="1" p1:ValidateRequired="False" p1:Guid="952267ce-398e-4b0f-a9cb-a10998a867b8">
       <column name="entrada_o_salida" not-null="false" length="1" sql-type="varchar" p1:unicode="true" />
     </property>
-    <many-to-one name="productos" class="productos" p1:AssociationGuid="36866266-ff7b-4999-8c83-ea131c54e3b3" p1:Guid="96492508-204f-4708-ba71-b7185e2b8b20">
+    <many-to-one name="productos" class="Pharma.Domain.Entities.productos, Pharma.Domain" p1:AssociationGuid="36866266-ff7b-4999-8c83-ea131c54e3b3" p1:Guid="96492508-204f-4708-ba71-b7185e2b8b20">
       <column name="cod_prod" not-null="true" length="20" sql-type="varchar" p1:unicode="true" />
     </many-to-one>
   </class>
-  <class name="ordenes_de_compra" table="ordenes_de_compra" schema="farmacia" p1:Guid="b5c72f54-9a34-436c-8bae-a51b8adcd40b">
+  <class name="Pharma.Domain.Entities.ordenes_de_compra, Pharma.Domain" table="ordenes_de_compra" schema="farmacia" p1:Guid="b5c72f54-9a34-436c-8bae-a51b8adcd40b">
     <id name="id_ordencompra" type="Int32" p1:ValidateRequired="True" p1:Guid="c868b5c6-1e3f-424c-9bec-7d71e59ef8b2">
       <column name="id_ordencompra" not-null="true" precision="11" scale="0" sql-type="int" p1:unicode="false" />
       <generator class="identity" />
@@ -514,17 +514,17 @@
     <property name="usuario_actu" type="String" p1:nullable="true" p1:ValidateMaxLength="45" p1:ValidateRequired="False" p1:Guid="560a226a-60bb-4859-b76d-cf9321bda5a1">
       <column name="usuario_actu" not-null="false" length="45" sql-type="varchar" p1:unicode="true" />
     </property>
-    <many-to-one name="proveedores" class="proveedores" p1:AssociationGuid="b2f9b909-feb1-451a-8398-4ccf53c866f5" p1:Guid="e647410b-29d4-4991-b549-73a2eadcb556">
+    <many-to-one name="proveedores" class="Pharma.Domain.Entities.proveedores, Pharma.Domain" p1:AssociationGuid="b2f9b909-feb1-451a-8398-4ccf53c866f5" p1:Guid="e647410b-29d4-4991-b549-73a2eadcb556">
       <column name="id_proveedor" not-null="true" precision="11" scale="0" sql-type="int" p1:unicode="false" />
     </many-to-one>
     <set name="detalle_ocs" inverse="true" generic="true" p1:AssociationGuid="a2554c72-b610-4adc-92aa-7e5a92607fbb" p1:Guid="fbf6b1f4-243b-4106-8766-3eeb99dfd7e1">
       <key>
         <column name="id_ordencompra" />
       </key>
-      <one-to-many class="detalle_oc" />
+      <one-to-many class="Pharma.Domain.Entities.detalle_oc, Pharma.Domain" />
     </set>
   </class>
-  <class name="presentacion_productos" table="presentacion_productos" schema="farmacia" p1:Guid="02c3b251-428c-495c-8c6a-d2c93db590f0">
+  <class name="Pharma.Domain.Entities.presentacion_productos, Pharma.Domain" table="presentacion_productos" schema="farmacia" p1:Guid="02c3b251-428c-495c-8c6a-d2c93db590f0">
     <id name="cod_presentacion" type="Int32" p1:ValidateRequired="True" p1:Guid="07b2c792-5391-438a-8ae0-41a3629cce25">
       <column name="cod_presentacion" not-null="true" precision="11" scale="0" sql-type="int" p1:unicode="false" />
       <generator class="identity" />
@@ -548,10 +548,10 @@
       <key>
         <column name="cod_presentacion" />
       </key>
-      <one-to-many class="productos" />
+      <one-to-many class="Pharma.Domain.Entities.productos, Pharma.Domain" />
     </set>
   </class>
-  <class name="productos" table="productos" schema="farmacia" p1:Guid="fca59c7a-1c42-4f5a-bb10-e8df31f0b059">
+  <class name="Pharma.Domain.Entities.productos, Pharma.Domain" table="productos" schema="farmacia" p1:Guid="fca59c7a-1c42-4f5a-bb10-e8df31f0b059">
     <id name="cod_prod" type="String" p1:ValidateMaxLength="20" p1:ValidateRequired="True" p1:Guid="59a6d32a-ed31-42c8-90b9-ae7c45723f6c">
       <column name="cod_prod" not-null="true" length="20" sql-type="varchar" p1:unicode="true" />
     </id>
@@ -597,59 +597,59 @@
     <property name="usuario_actu" type="String" p1:nullable="true" p1:ValidateMaxLength="45" p1:ValidateRequired="False" p1:Guid="1d42e59e-2a8a-4cce-8283-f5f33416037f">
       <column name="usuario_actu" not-null="false" length="45" sql-type="varchar" p1:unicode="true" />
     </property>
-    <many-to-one name="presentacion_productos" class="presentacion_productos" p1:AssociationGuid="c74d4ed4-bf9c-41ef-beb8-b9a50e4630d5" p1:Guid="05ee8fce-cf6c-4b47-bb63-d6c080989525">
+    <many-to-one name="presentacion_productos" class="Pharma.Domain.Entities.presentacion_productos, Pharma.Domain" p1:AssociationGuid="c74d4ed4-bf9c-41ef-beb8-b9a50e4630d5" p1:Guid="05ee8fce-cf6c-4b47-bb63-d6c080989525">
       <column name="cod_presentacion" not-null="false" precision="11" scale="0" sql-type="int" p1:unicode="false" />
     </many-to-one>
     <set name="costo_prod_proveedors" inverse="true" generic="true" p1:AssociationGuid="11cf4d31-06b9-4848-8c0f-3bad01151319" p1:Guid="69fc32c1-18c8-462f-8050-46cc0e155978">
       <key>
         <column name="cod_prod" />
       </key>
-      <one-to-many class="costo_prod_proveedor" />
+      <one-to-many class="Pharma.Domain.Entities.costo_prod_proveedor, Pharma.Domain" />
     </set>
     <set name="detalle_ajustes" inverse="true" generic="true" p1:AssociationGuid="971b8b71-8bcf-488a-b1a3-163ddf11a41c" p1:Guid="cc948cd0-9a98-4421-b4dd-2529cdbd01fa">
       <key>
         <column name="cod_prod" />
       </key>
-      <one-to-many class="detalle_ajustes" />
+      <one-to-many class="Pharma.Domain.Entities.detalle_ajustes, Pharma.Domain" />
     </set>
     <set name="detalle_compras" inverse="true" generic="true" p1:AssociationGuid="0362d4a0-47b9-4d39-b1a1-edd4adf298c0" p1:Guid="be5ec4cd-5094-464e-a36b-20c7b5fb7ed6">
       <key>
         <column name="cod_prod" />
       </key>
-      <one-to-many class="detalle_compras" />
+      <one-to-many class="Pharma.Domain.Entities.detalle_compras, Pharma.Domain" />
     </set>
     <set name="detalle_cotizaciones" inverse="true" generic="true" p1:AssociationGuid="2957b7f8-4cdf-41f9-97da-56c2fb033885" p1:Guid="24ae08ab-6744-4081-92f7-6fbd1ac9a8e8">
       <key>
         <column name="cod_prod" />
       </key>
-      <one-to-many class="detalle_cotizaciones" />
+      <one-to-many class="Pharma.Domain.Entities.detalle_cotizaciones, Pharma.Domain" />
     </set>
     <set name="detalle_facturas" inverse="true" generic="true" p1:AssociationGuid="5f61eb94-27d2-4f65-9d85-8581b43e2ba8" p1:Guid="6577436f-0e19-44ff-8e9b-7a2032481e87">
       <key>
         <column name="cod_prod" />
       </key>
-      <one-to-many class="detalle_facturas" />
+      <one-to-many class="Pharma.Domain.Entities.detalle_facturas, Pharma.Domain" />
     </set>
     <set name="detalle_ocs" inverse="true" generic="true" p1:AssociationGuid="fc5f9705-9661-4283-885c-764c1f23359b" p1:Guid="37b3248c-04d9-4023-8893-8e47f99b1d3d">
       <key>
         <column name="cod_prod" />
       </key>
-      <one-to-many class="detalle_oc" />
+      <one-to-many class="Pharma.Domain.Entities.detalle_oc, Pharma.Domain" />
     </set>
     <set name="kardexes" inverse="true" generic="true" p1:AssociationGuid="36866266-ff7b-4999-8c83-ea131c54e3b3" p1:Guid="06501ff6-5c5b-4e54-9831-6a8188b693f2">
       <key>
         <column name="cod_prod" />
       </key>
-      <one-to-many class="kardex" />
+      <one-to-many class="Pharma.Domain.Entities.kardex, Pharma.Domain" />
     </set>
     <set name="productos_has_categoria_productos" inverse="true" generic="true" p1:AssociationGuid="cce9ecc1-bd17-4fe2-8058-f09e6a03d3e1" p1:Guid="372b3b30-cd70-445d-89ed-fc7107be3422">
       <key>
         <column name="cod_prod" />
       </key>
-      <one-to-many class="productos_has_categoria_productos" />
+      <one-to-many class="Pharma.Domain.Entities.productos_has_categoria_productos, Pharma.Domain" />
     </set>
   </class>
-  <class name="productos_has_categoria_productos" table="productos_has_categoria_productos" schema="farmacia" p1:Guid="d6bebfd4-a180-4faf-8a47-698207e5878c">
+  <class name="Pharma.Domain.Entities.productos_has_categoria_productos, Pharma.Domain" table="productos_has_categoria_productos" schema="farmacia" p1:Guid="d6bebfd4-a180-4faf-8a47-698207e5878c">
     <composite-id>
       <key-property name="cod_prod" type="String" p1:ValidateMaxLength="20" p1:ValidateRequired="True" p1:Guid="cd2d9f48-00e5-473b-871e-b4d1002d2196">
         <column name="cod_prod" not-null="true" length="20" sql-type="varchar" p1:unicode="true" />
@@ -670,14 +670,14 @@
     <property name="usuario_actu" type="String" p1:nullable="true" p1:ValidateMaxLength="45" p1:ValidateRequired="False" p1:Guid="671b2f1b-a8d1-4c7e-94ac-44ac9ad05f43">
       <column name="usuario_actu" not-null="false" length="45" sql-type="varchar" p1:unicode="true" />
     </property>
-    <many-to-one name="categoria_productos" class="categoria_productos" p1:AssociationGuid="bf837b53-4254-496e-ade9-51ef7a6af666" p1:Guid="68ab99e2-3410-4e95-938d-f99f1ab281bc">
+    <many-to-one name="categoria_productos" class="Pharma.Domain.Entities.categoria_productos, Pharma.Domain" p1:AssociationGuid="bf837b53-4254-496e-ade9-51ef7a6af666" p1:Guid="68ab99e2-3410-4e95-938d-f99f1ab281bc">
       <column name="cod_categoria" not-null="true" precision="11" scale="0" sql-type="int" p1:unicode="false" />
     </many-to-one>
-    <many-to-one name="productos" class="productos" p1:AssociationGuid="cce9ecc1-bd17-4fe2-8058-f09e6a03d3e1" p1:Guid="e6477e6a-5be7-4286-b295-e39fd2a567ef">
+    <many-to-one name="productos" class="Pharma.Domain.Entities.productos, Pharma.Domain" p1:AssociationGuid="cce9ecc1-bd17-4fe2-8058-f09e6a03d3e1" p1:Guid="e6477e6a-5be7-4286-b295-e39fd2a567ef">
       <column name="cod_prod" not-null="true" length="20" sql-type="varchar" p1:unicode="true" />
     </many-to-one>
   </class>
-  <class name="proveedores" table="proveedores" schema="farmacia" p1:Guid="dddeb224-4f36-4a37-9587-0a1008c3bf13">
+  <class name="Pharma.Domain.Entities.proveedores, Pharma.Domain" table="proveedores" schema="farmacia" p1:Guid="dddeb224-4f36-4a37-9587-0a1008c3bf13">
     <id name="id_proveedor" type="Int32" p1:ValidateRequired="True" p1:Guid="f7bf3fdf-1969-4277-b2b6-04b3aaa15197">
       <column name="id_proveedor" not-null="true" precision="11" scale="0" sql-type="int" p1:unicode="false" />
       <generator class="identity" />
@@ -710,25 +710,25 @@
       <key>
         <column name="id_proveedor" />
       </key>
-      <one-to-many class="compras" />
+      <one-to-many class="Pharma.Domain.Entities.compras, Pharma.Domain" />
     </set>
     <set name="costo_prod_proveedors" inverse="true" generic="true" p1:AssociationGuid="8ade62ff-da7b-42bb-98e7-badbb491d6e2" p1:Guid="122c8bdb-8c5b-4246-8aef-0eacf9940f56">
       <key>
         <column name="id_proveedor" />
       </key>
-      <one-to-many class="costo_prod_proveedor" />
+      <one-to-many class="Pharma.Domain.Entities.costo_prod_proveedor, Pharma.Domain" />
     </set>
     <set name="cotizaciones" inverse="true" generic="true" p1:AssociationGuid="752d3d4b-8e42-444b-b0b2-8517a54a0144" p1:Guid="4342c204-7fea-4bb4-8606-309d9f10c14e">
       <key>
         <column name="id_proveedor" />
       </key>
-      <one-to-many class="cotizaciones" />
+      <one-to-many class="Pharma.Domain.Entities.cotizaciones, Pharma.Domain" />
     </set>
     <set name="ordenes_de_compras" inverse="true" generic="true" p1:AssociationGuid="b2f9b909-feb1-451a-8398-4ccf53c866f5" p1:Guid="51bf61eb-92a0-47ce-b997-88d0522643e7">
       <key>
         <column name="id_proveedor" />
       </key>
-      <one-to-many class="ordenes_de_compra" />
+      <one-to-many class="Pharma.Domain.Entities.ordenes_de_compra, Pharma.Domain" />
     </set>
   </class>
   <class name="sessions" table="sessions" schema="farmacia" p1:Guid="3692d676-9f30-498d-845d-c14261551e70">
@@ -752,7 +752,7 @@
       <column name="User_id" not-null="false" precision="20" scale="0" sql-type="bigint" p1:unicode="false" />
     </property>
   </class>
-  <class name="telefonos_clientes" table="telefonos_clientes" schema="farmacia" p1:Guid="cdb5e28d-9340-47e5-a808-e24c209cd293">
+  <class name="Pharma.Domain.Entities.telefonos_clientes, Pharma.Domain" table="telefonos_clientes" schema="farmacia" p1:Guid="cdb5e28d-9340-47e5-a808-e24c209cd293">
     <composite-id>
       <key-property name="id_telefonosclientes" type="Int32" p1:ValidateRequired="True" p1:Guid="c841077a-ded3-417f-8eb2-0c4e432e720d">
         <column name="id_telefonosclientes" not-null="true" precision="11" scale="0" sql-type="int" p1:unicode="false" />
@@ -776,11 +776,11 @@
     <property name="usuario_actu" type="String" p1:nullable="true" p1:ValidateMaxLength="45" p1:ValidateRequired="False" p1:Guid="81e2225a-946f-45c0-9e5b-4b2feabf820e">
       <column name="usuario_actu" not-null="false" length="45" sql-type="varchar" p1:unicode="true" />
     </property>
-    <many-to-one name="clientes" class="clientes" p1:AssociationGuid="434d0e77-b59d-44d4-9ae9-e157156a8e48" p1:Guid="74979118-97cb-4406-be9b-b156487ceba5">
+    <many-to-one name="clientes" class="Pharma.Domain.Entities.clientes, Pharma.Domain" p1:AssociationGuid="434d0e77-b59d-44d4-9ae9-e157156a8e48" p1:Guid="74979118-97cb-4406-be9b-b156487ceba5">
       <column name="id_cliente" not-null="true" precision="11" scale="0" sql-type="int" p1:unicode="false" />
     </many-to-one>
   </class>
-  <class name="tipo_cliente" table="tipo_cliente" schema="farmacia" p1:Guid="480b9d0c-84fb-4499-8493-0c62e1808658">
+  <class name="Pharma.Domain.Entities.tipo_cliente, Pharma.Domain" table="tipo_cliente" schema="farmacia" p1:Guid="480b9d0c-84fb-4499-8493-0c62e1808658">
     <id name="id_tipocliente" type="Int32" p1:ValidateRequired="True" p1:Guid="b7f27f47-7707-419f-9b9d-49826ef4afc0">
       <column name="id_tipocliente" not-null="true" precision="11" scale="0" sql-type="int" p1:unicode="false" />
       <generator class="identity" />
@@ -804,10 +804,10 @@
       <key>
         <column name="id_tipocliente" />
       </key>
-      <one-to-many class="clientes" />
+      <one-to-many class="Pharma.Domain.Entities.clientes, Pharma.Domain" />
     </set>
   </class>
-  <class name="tipo_transacciones" table="tipo_transacciones" schema="farmacia" p1:Guid="e48c26cc-7e2b-4d1e-97f6-ef5b6d52aba5">
+  <class name="Pharma.Domain.Entities.tipo_transacciones, Pharma.Domain" table="tipo_transacciones" schema="farmacia" p1:Guid="e48c26cc-7e2b-4d1e-97f6-ef5b6d52aba5">
     <id name="id_tipotran" type="Int32" p1:ValidateRequired="True" p1:Guid="827d2e85-108d-40bb-b363-f1f27b17c230">
       <column name="id_tipotran" not-null="true" precision="11" scale="0" sql-type="int" p1:unicode="false" />
       <generator class="identity" />
@@ -834,7 +834,7 @@
       <key>
         <column name="id_tipotran" />
       </key>
-      <one-to-many class="ajustes" />
+      <one-to-many class="Pharma.Domain.Entities.ajustes, Pharma.Domain" />
     </set>
   </class>
   <sql-query name="sp_del_ajustes" p1:procedure="farmacia.sp_del_ajustes" callable="true" p1:Guid="3b6b8099-ecea-4680-8ad3-20a18d133af9">

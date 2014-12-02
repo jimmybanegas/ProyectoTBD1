@@ -517,9 +517,6 @@
       <SubType>Designer</SubType>
     </Content>
     <Content Include="robots.txt" />
-    <Content Include="Views\Index.css" />
-    <Content Include="Views\profile-normal.css" />
-    <Content Include="Views\profile.css" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
     </Content>
@@ -528,14 +525,13 @@
     <Content Include="Views\_Layout.cshtml" />
     <Content Include="Views\_PageStart.cshtml" />
     <Content Include="Views\About.cshtml" />
-    <Content Include="Views\profile.cshtml" />
-    <Content Include="Views\profile-normal.cshtml" />
     <Content Include="Views\facturacion.cshtml" />
     <Content Include="Views\compras.cshtml" />
     <Content Include="Views\inventarios.cshtml" />
     <Content Include="Views\parametros.cshtml" />
     <Content Include="Views\sistema.cshtml" />
     <Content Include="Views\Register.cshtml" />
+    <Content Include="Views\facturar.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

@@ -74,8 +74,8 @@
       <Name>Pharma.Data</Name>
     </ProjectReference>
     <ProjectReference Include="..\Pharma.Domain\Pharma.Domain.csproj">
-      <Project>{82DCDBA5-4E13-4FD4-AE3F-3F56074F43F3}</Project>
-      <Name>PrediLiga.Domain</Name>
+      <Project>{82dcdba5-4e13-4fd4-ae3f-3f56074f43f3}</Project>
+      <Name>Pharma.Domain</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

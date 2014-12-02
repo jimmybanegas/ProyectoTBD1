@@ -48,6 +48,12 @@ angular.module('app', ['ngCookies', 'ui.router', 'app.filters', 'app.services', 
                        templateUrl: '/views/facturacion',
                        controller: 'FacturacionCtrl'
                 })
+                .state('Facturar', {
+                     url: '/facturar',
+                     layout: 'basic',
+                     templateUrl: '/views/factur',
+                     controller: 'FacturacionCtrl'
+                 })
                 .state('Compras', {
                        url: '/compras',
                        layout: 'basic',

@@ -1,6 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <hibernate-mapping assembly="Pharma.Domain" namespace="Pharma.Domain.Entities" xmlns="urn:nhibernate-mapping-2.2">
-  <class name="proveedores" table="proveedores" schema="farmacia">
+  <class name="Pharma.Domain.Entities.proveedores, Pharma.Domain" table="proveedores" schema="farmacia">
     <id name="id_proveedor" type="Int32">
       <column name="id_proveedor" not-null="true" precision="11" scale="0" sql-type="int" />
       <generator class="identity" />
@@ -33,25 +33,25 @@
       <key>
         <column name="id_proveedor" />
       </key>
-      <one-to-many class="compras" />
+      <one-to-many class="Pharma.Domain.Entities.compras, Pharma.Domain" />
     </set>
     <set name="costo_prod_proveedors" inverse="true" generic="true">
       <key>
         <column name="id_proveedor" />
       </key>
-      <one-to-many class="costo_prod_proveedor" />
+      <one-to-many class="Pharma.Domain.Entities.costo_prod_proveedor, Pharma.Domain" />
     </set>
     <set name="cotizaciones" inverse="true" generic="true">
       <key>
         <column name="id_proveedor" />
       </key>
-      <one-to-many class="cotizaciones" />
+      <one-to-many class="Pharma.Domain.Entities.cotizaciones, Pharma.Domain" />
     </set>
     <set name="ordenes_de_compras" inverse="true" generic="true">
       <key>
         <column name="id_proveedor" />
       </key>
-      <one-to-many class="ordenes_de_compra" />
+      <one-to-many class="Pharma.Domain.Entities.ordenes_de_compra, Pharma.Domain" />
     </set>
   </class>
 </hibernate-mapping>

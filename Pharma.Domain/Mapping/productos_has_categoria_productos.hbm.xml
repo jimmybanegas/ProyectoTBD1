@@ -1,6 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <hibernate-mapping assembly="Pharma.Domain" namespace="Pharma.Domain.Entities" xmlns="urn:nhibernate-mapping-2.2">
-  <class name="productos_has_categoria_productos" table="productos_has_categoria_productos" schema="farmacia">
+  <class name="Pharma.Domain.Entities.productos_has_categoria_productos, Pharma.Domain" table="productos_has_categoria_productos" schema="farmacia">
     <composite-id>
       <key-property name="cod_prod" type="String">
         <column name="cod_prod" not-null="true" length="20" sql-type="varchar" />
@@ -21,10 +21,10 @@
     <property name="usuario_actu" type="String">
       <column name="usuario_actu" not-null="false" length="45" sql-type="varchar" />
     </property>
-    <many-to-one name="categoria_productos" class="categoria_productos">
+    <many-to-one name="categoria_productos" class="Pharma.Domain.Entities.categoria_productos, Pharma.Domain">
       <column name="cod_categoria" not-null="true" precision="11" scale="0" sql-type="int" />
     </many-to-one>
-    <many-to-one name="productos" class="productos">
+    <many-to-one name="productos" class="Pharma.Domain.Entities.productos, Pharma.Domain">
       <column name="cod_prod" not-null="true" length="20" sql-type="varchar" />
     </many-to-one>
   </class>

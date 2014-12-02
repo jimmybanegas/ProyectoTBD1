@@ -1,6 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <hibernate-mapping assembly="Pharma.Domain" namespace="Pharma.Domain.Entities" xmlns="urn:nhibernate-mapping-2.2">
-  <class name="clientes" table="clientes" schema="farmacia">
+  <class name="Pharma.Domain.Entities.clientes, Pharma.Domain" table="clientes" schema="farmacia">
     <id name="id_cliente" type="Int32">
       <column name="id_cliente" not-null="true" precision="11" scale="0" sql-type="int" />
       <generator class="identity" />
@@ -23,32 +23,32 @@
     <property name="id_tipocliente" type="Int32">
       <column name="id_tipocliente" not-null="true" precision="11" scale="0" sql-type="int" />
     </property>
-    <many-to-one name="tipo_cliente" class="tipo_cliente">
+    <many-to-one name="tipo_cliente" class="Pharma.Domain.Entities.tipo_cliente, Pharma.Domain">
       <column name="id_tipocliente" not-null="true" precision="11" scale="0" sql-type="int" />
     </many-to-one>
     <set name="contactos_clientes" inverse="true" generic="true">
       <key>
         <column name="id_cliente" />
       </key>
-      <one-to-many class="contactos_clientes" />
+      <one-to-many class="Pharma.Domain.Entities.contactos_clientes, Pharma.Domain" />
     </set>
     <set name="direcciones_clientes" inverse="true" generic="true">
       <key>
         <column name="id_cliente" />
       </key>
-      <one-to-many class="direcciones_clientes" />
+      <one-to-many class="Pharma.Domain.Entities.direcciones_clientes, Pharma.Domain" />
     </set>
     <set name="facturas" inverse="true" generic="true">
       <key>
         <column name="id_cliente" />
       </key>
-      <one-to-many class="facturas" />
+      <one-to-many class="Pharma.Domain.Entities.facturas, Pharma.Domain" />
     </set>
     <set name="telefonos_clientes" inverse="true" generic="true">
       <key>
         <column name="id_cliente" />
       </key>
-      <one-to-many class="telefonos_clientes" />
+      <one-to-many class="Pharma.Domain.Entities.telefonos_clientes, Pharma.Domain" />
     </set>
   </class>
 </hibernate-mapping>

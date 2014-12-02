@@ -1,6 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <hibernate-mapping assembly="Pharma.Domain" namespace="Pharma.Domain.Entities" xmlns="urn:nhibernate-mapping-2.2">
-  <class name="presentacion_productos" table="presentacion_productos" schema="farmacia">
+  <class name="Pharma.Domain.Entities.presentacion_productos, Pharma.Domain" table="presentacion_productos" schema="farmacia">
     <id name="cod_presentacion" type="Int32">
       <column name="cod_presentacion" not-null="true" precision="11" scale="0" sql-type="int" />
       <generator class="identity" />
@@ -24,7 +24,7 @@
       <key>
         <column name="cod_presentacion" />
       </key>
-      <one-to-many class="productos" />
+      <one-to-many class="Pharma.Domain.Entities.productos, Pharma.Domain" />
     </set>
   </class>
 </hibernate-mapping>
