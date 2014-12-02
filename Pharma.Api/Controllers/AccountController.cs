@@ -131,7 +131,7 @@ namespace Pharma.Api.Controllers
                 
                 Account accountCreated = _writeOnlyRepository.Create(account);
 
-                var mod = new Proc()
+               var mod = new Proc()
                 {
                     descripcion = "prueba",
                     fecha_crea = DateTime.Now,
@@ -140,9 +140,9 @@ namespace Pharma.Api.Controllers
                     usuario_actu = "jimmybanegas93"
                 };
                 
-                var tipo = _mappingEngine.Map<Proc, tipo_cliente>(mod);
+              //  var tipo = _mappingEngine.Map<Proc, tipo_cliente>(mod);
 
-                PharmaMethodsExecutor.sp_ins_tipo_cliente(_session,tipo.descripcion,tipo.fecha_actu,tipo.fecha_crea,tipo.usuario_actu,tipo.usuario_crea);
+                PharmaMethodsExecutor.sp_ins_tipo_cliente(_session,mod.descripcion,mod.fecha_actu,mod.fecha_crea,mod.usuario_actu,mod.usuario_crea);
              
                 if (accountCreated != null)
                 {

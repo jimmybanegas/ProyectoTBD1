@@ -1,6 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <EntityDeveloper Version="5.7.480.0">
-  <ModelSettings xmlns:ed="http://devart.com/schemas/EntityDeveloper/1.0" ConnectionStringInAppConfig="False" DetectTPTInheritance="True" IncludeForeignKeysInModel="true">
+  <ModelSettings xmlns:ed="http://devart.com/schemas/EntityDeveloper/1.0" ConnectionStringInAppConfig="False" TargetFramework="Net45" DetectTPTInheritance="True" IncludeForeignKeysInModel="true">
     <Connection ConnectionString="persistsecurityinfo=True;server=localhost;user id=VisualStudio;password=tb1.admin;database=farmacia" Provider="MySql.Data.MySqlClient" />
     <Generation>
       <GeneratedFiles>
