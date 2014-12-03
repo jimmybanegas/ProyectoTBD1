@@ -14,11 +14,6 @@ namespace Pharma.Data
         {
             get
             {
-             /*  AutoPersistenceModel autoPersistenceModel = AutoMap.Assemblies(typeof (IEntity).Assembly)
-                    .Where(t => typeof (IEntity).IsAssignableFrom(t))
-                    //.UseOverridesFromAssemblyOf<CompanyAutoMappingOverride>()
-                    //.IncludeBase<LessonActionBase>()
-                    .Conventions.Add(DefaultCascade.All());*/
                 
                 AutoPersistenceModel autoPersistenceModel = AutoMap.Assembly(System.Reflection.Assembly.GetCallingAssembly())
                    

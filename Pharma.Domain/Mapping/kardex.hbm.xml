@@ -1,6 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <hibernate-mapping assembly="Pharma.Domain" namespace="Pharma.Domain.Entities" xmlns="urn:nhibernate-mapping-2.2">
-  <class name="Pharma.Domain.Entities.kardex, Pharma.Domain" table="kardex" schema="farmacia">
+  <class name="kardex" table="kardex" schema="farmacia">
     <id name="id_operacion" type="Int32">
       <column name="id_operacion" not-null="true" precision="11" scale="0" sql-type="int" />
       <generator class="identity" />
@@ -32,7 +32,7 @@
     <property name="entrada_o_salida" type="String">
       <column name="entrada_o_salida" not-null="false" length="1" sql-type="varchar" />
     </property>
-    <many-to-one name="productos" class="Pharma.Domain.Entities.productos, Pharma.Domain">
+    <many-to-one name="productos" class="productos">
       <column name="cod_prod" not-null="true" length="20" sql-type="varchar" />
     </many-to-one>
   </class>

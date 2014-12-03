@@ -19,9 +19,9 @@ namespace Pharma.Domain.Entities
 {
 
     /// <summary>
-    /// There are no comments for Pharma.Domain.Entities.cotizaciones, Pharma.Domain in the schema.
+    /// There are no comments for Pharma.Domain.Entities.grupos_roles_has_privilegios, Pharma.Domain in the schema.
     /// </summary>
-    public partial class cotizaciones {
+    public partial class grupos_roles_has_privilegios {
     
         #region Extensibility Method Definitions
         
@@ -29,22 +29,45 @@ namespace Pharma.Domain.Entities
         /// There are no comments for OnCreated in the schema.
         /// </summary>
         partial void OnCreated();
+
+        public override bool Equals(object obj)
+        {
+          grupos_roles_has_privilegios toCompare = obj as grupos_roles_has_privilegios;
+          if (toCompare == null)
+          {
+            return false;
+          }
+
+          if (!Object.Equals(this.id_rol, toCompare.id_rol))
+            return false;
+          if (!Object.Equals(this.id_privilegio, toCompare.id_privilegio))
+            return false;
+          
+          return true;
+        }
+
+        public override int GetHashCode()
+        {
+          int hashCode = 13;
+          hashCode = (hashCode * 7) + id_rol.GetHashCode();
+          hashCode = (hashCode * 7) + id_privilegio.GetHashCode();
+          return hashCode;
+        }
         
         #endregion
         /// <summary>
-        /// There are no comments for cotizaciones constructor in the schema.
+        /// There are no comments for grupos_roles_has_privilegios constructor in the schema.
         /// </summary>
-        public cotizaciones()
+        public grupos_roles_has_privilegios()
         {
-            this.detalle_cotizaciones = new HashSet<detalle_cotizaciones>();
             OnCreated();
         }
 
     
         /// <summary>
-        /// There are no comments for id_cotizacion in the schema.
+        /// There are no comments for id_rol in the schema.
         /// </summary>
-        public virtual int id_cotizacion
+        public virtual int id_rol
         {
             get;
             set;
@@ -52,19 +75,9 @@ namespace Pharma.Domain.Entities
 
     
         /// <summary>
-        /// There are no comments for fecha in the schema.
+        /// There are no comments for id_privilegio in the schema.
         /// </summary>
-        public virtual DateTime? fecha
-        {
-            get;
-            set;
-        }
-
-    
-        /// <summary>
-        /// There are no comments for total in the schema.
-        /// </summary>
-        public virtual double? total
+        public virtual int id_privilegio
         {
             get;
             set;
@@ -112,9 +125,9 @@ namespace Pharma.Domain.Entities
 
     
         /// <summary>
-        /// There are no comments for id_proveedor in the schema.
+        /// There are no comments for grupos_roles in the schema.
         /// </summary>
-        public virtual int id_proveedor
+        public virtual grupos_roles grupos_roles
         {
             get;
             set;
@@ -122,19 +135,9 @@ namespace Pharma.Domain.Entities
 
     
         /// <summary>
-        /// There are no comments for proveedores in the schema.
+        /// There are no comments for privilegios in the schema.
         /// </summary>
-        public virtual proveedores proveedores
-        {
-            get;
-            set;
-        }
-
-    
-        /// <summary>
-        /// There are no comments for detalle_cotizaciones in the schema.
-        /// </summary>
-        public virtual ISet<detalle_cotizaciones> detalle_cotizaciones
+        public virtual privilegios privilegios
         {
             get;
             set;

@@ -19,9 +19,9 @@ namespace Pharma.Domain.Entities
 {
 
     /// <summary>
-    /// There are no comments for Pharma.Domain.Entities.cotizaciones, Pharma.Domain in the schema.
+    /// There are no comments for Pharma.Domain.Entities.privilegios, Pharma.Domain in the schema.
     /// </summary>
-    public partial class cotizaciones {
+    public partial class privilegios {
     
         #region Extensibility Method Definitions
         
@@ -32,19 +32,20 @@ namespace Pharma.Domain.Entities
         
         #endregion
         /// <summary>
-        /// There are no comments for cotizaciones constructor in the schema.
+        /// There are no comments for privilegios constructor in the schema.
         /// </summary>
-        public cotizaciones()
+        public privilegios()
         {
-            this.detalle_cotizaciones = new HashSet<detalle_cotizaciones>();
+            this.grupos_roles_has_privilegios = new HashSet<grupos_roles_has_privilegios>();
+            this.submodulos = new HashSet<submodulos>();
             OnCreated();
         }
 
     
         /// <summary>
-        /// There are no comments for id_cotizacion in the schema.
+        /// There are no comments for id_privilegio in the schema.
         /// </summary>
-        public virtual int id_cotizacion
+        public virtual int id_privilegio
         {
             get;
             set;
@@ -52,19 +53,9 @@ namespace Pharma.Domain.Entities
 
     
         /// <summary>
-        /// There are no comments for fecha in the schema.
+        /// There are no comments for nombre in the schema.
         /// </summary>
-        public virtual DateTime? fecha
-        {
-            get;
-            set;
-        }
-
-    
-        /// <summary>
-        /// There are no comments for total in the schema.
-        /// </summary>
-        public virtual double? total
+        public virtual string nombre
         {
             get;
             set;
@@ -112,9 +103,9 @@ namespace Pharma.Domain.Entities
 
     
         /// <summary>
-        /// There are no comments for id_proveedor in the schema.
+        /// There are no comments for grupos_roles_has_privilegios in the schema.
         /// </summary>
-        public virtual int id_proveedor
+        public virtual ISet<grupos_roles_has_privilegios> grupos_roles_has_privilegios
         {
             get;
             set;
@@ -122,19 +113,9 @@ namespace Pharma.Domain.Entities
 
     
         /// <summary>
-        /// There are no comments for proveedores in the schema.
+        /// There are no comments for submodulos in the schema.
         /// </summary>
-        public virtual proveedores proveedores
-        {
-            get;
-            set;
-        }
-
-    
-        /// <summary>
-        /// There are no comments for detalle_cotizaciones in the schema.
-        /// </summary>
-        public virtual ISet<detalle_cotizaciones> detalle_cotizaciones
+        public virtual ISet<submodulos> submodulos
         {
             get;
             set;

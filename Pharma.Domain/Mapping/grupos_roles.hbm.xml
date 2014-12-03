@@ -1,8 +1,8 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <hibernate-mapping assembly="Pharma.Domain" namespace="Pharma.Domain.Entities" xmlns="urn:nhibernate-mapping-2.2">
-  <class name="tipo_transacciones" table="tipo_transacciones" schema="farmacia">
-    <id name="id_tipotran" type="Int32">
-      <column name="id_tipotran" not-null="true" precision="11" scale="0" sql-type="int" />
+  <class name="grupos_roles" table="grupos_roles" schema="farmacia">
+    <id name="id_rol" type="Int32">
+      <column name="id_rol" not-null="true" precision="11" scale="0" sql-type="int" />
       <generator class="identity" />
     </id>
     <property name="nombre" type="String">
@@ -15,19 +15,22 @@
       <column name="fecha_actu" not-null="false" sql-type="datetime" />
     </property>
     <property name="usuario_crea" type="String">
-      <column name="usuario_crea" not-null="false" length="15" sql-type="varchar" />
+      <column name="usuario_crea" not-null="false" length="45" sql-type="varchar" />
     </property>
     <property name="usuario_actu" type="String">
-      <column name="usuario_actu" not-null="false" length="15" sql-type="varchar" />
+      <column name="usuario_actu" not-null="false" length="45" sql-type="varchar" />
     </property>
-    <property name="entrada_o_salida" type="String">
-      <column name="entrada_o_salida" not-null="false" length="1" sql-type="varchar" />
-    </property>
-    <set name="ajustes" inverse="true" generic="true">
+    <set name="account_has_grupos_roles" inverse="true" generic="true">
       <key>
-        <column name="id_tipotran" />
+        <column name="id_rol" />
       </key>
-      <one-to-many class="ajustes" />
+      <one-to-many class="account_has_grupos_roles" />
+    </set>
+    <set name="grupos_roles_has_privilegios" inverse="true" generic="true">
+      <key>
+        <column name="id_rol" />
+      </key>
+      <one-to-many class="grupos_roles_has_privilegios" />
     </set>
   </class>
 </hibernate-mapping>

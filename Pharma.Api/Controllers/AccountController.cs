@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Web.Http;
 using AttributeRouting.Web.Mvc;
@@ -35,9 +36,13 @@ namespace Pharma.Api.Controllers
         public AuthenticationModel Login([FromBody] AccountLoginModel model)
         {
             var encryptObj = new EncryptServices();
-            Account account =
-                _readOnlyRepository.First<Account>(
-                    account1 => account1.Email == model.Email);
+         /*   account account =
+                _readOnlyRepository.First<account>(
+                    account1 => account1.Email == model.Email);*/
+
+            var account = _session.QueryOver<account>().Where(c => c.Email == model.Email)
+                .SingleOrDefault<account>();
+          
             
             if (account != null)
             {
@@ -50,20 +55,34 @@ namespace Pharma.Api.Controllers
                         Token = "Clave incorrecta"
                     };
                 }
-                string token = "";
-                TimeSpan availabletime = new TimeSpan();
-                var session =
-                    _readOnlyRepository.Query<Sessions>(sessions1 => sessions1.User.Email == account.Email)
+                var token = "";
+
+                var availabletime = new TimeSpan();
+
+                var session = _session.QueryOver<sessions>()
+                    .OrderBy(x => x.ExpirationTime).Desc
+                    .JoinQueryOver(e => e.account)
+                    // .WhereRestrictionOn(c => c.account.Email).IsLike(account.Email)
+                    .Where(k => k.Email == account.Email).Take(1)
+                    .SingleOrDefault<sessions>();
+
+            /*    var session =
+                    _readOnlyRepository.Query<sessions>(sessions1 => sessions1.user.Email == account.Email)
                         .OrderByDescending(x => x.ExpirationTime)
                         .FirstOrDefault();
+             */
                 if (session == null || session.ExpirationTime < DateTime.Now)
                 {
-                    Sessions newsession = SetSessionsModel(account);
-                    Sessions newsessionCreated = _writeOnlyRepository.Create(newsession);
+                    var newsession = SetSessionsModel(account);
+
+                    //sessions newsessionCreated = _writeOnlyRepository.Create(newsession);
+
+                    var  newsessionCreated = _session.Save(newsession);
+
                     if (newsessionCreated != null)
                     {
-                        token = newsessionCreated.Token;
-                        availabletime = (newsessionCreated.ExpirationTime.Subtract(newsessionCreated.LoginDate));
+                        token = newsession.Token;
+                        availabletime = (newsession.ExpirationTime.Subtract(newsession.LoginDate));
                     }
                     else
                     {
@@ -93,93 +112,53 @@ namespace Pharma.Api.Controllers
             };
         }
 
-        private Sessions SetSessionsModel(Account account)
+        private sessions SetSessionsModel(account account)
         {
             var sessionLoging = new SessionsModel
             {
-                User = account,
+                Account =  account,
                 LoginDate = DateTime.Now,
                 ExpirationTime = DateTime.Now.AddHours(2),
                 Token = Guid.NewGuid().ToString()
             };
-            Sessions sessionToReturn = _mappingEngine.Map<SessionsModel, Sessions>(sessionLoging);
+            sessions sessionToReturn = _mappingEngine.Map<SessionsModel, sessions>(sessionLoging);
             return sessionToReturn;
         }
 
        [POST("register")]
         public AccountRegisterResponseModel Register([FromBody] AccountRegisterModel model)
         {
-            var mod = new Proc()
-            {
-                descripcion = "pruebaDOS",
-                fecha_crea = DateTime.Now,
-                fecha_actu = DateTime.Now,
-                usuario_crea = "jimmybanegas93",
-                usuario_actu = "jimmybanegas93"
-            };
-
-            //  var tipo = _mappingEngine.Map<Proc, tipo_cliente>(mod);
-           
+    
            var personNameList =_session.CreateSQLQuery("CALL sp_sel_tipo_cliente")
             .SetResultTransformer(Transformers.AliasToBean<tipo_cliente>())
             .List<tipo_cliente>()
             .ToList();
 
-          /* var inser = _session.GetNamedQuery("sp_ins_tipo_cliente")
-               .SetString("p_descripcion", mod.descripcion)
-               .SetDateTime("p_fecha_crea", mod.fecha_actu)
-               .SetDateTime("p_fecha_actu", mod.fecha_actu)
-               .SetString("p_usuario_crea", mod.usuario_actu)
-               .SetString("p_usuario_actu", mod.usuario_actu)
-               .SetResultTransformer(
-                        Transformers.AliasToBean(typeof (tipo_cliente)))
-                .UniqueResult<tipo_cliente>();
-           */
-         /*  var var = _session.CreateSQLQuery("CALL sp_ins_tipo_cliente:p_descripcion,:p_fecha_crea,:p_fecha_actu,:p_usuario_crea,:p_usuario_actu")
-               .AddEntity(typeof(tipo_cliente))
-               .SetParameter("p_descripcion", mod.descripcion)
-               .SetParameter("p_fecha_crea", mod.fecha_actu)
-               .SetParameter("p_fecha_actu", mod.fecha_actu)
-               .SetParameter("p_usuario_crea", mod.usuario_actu)
-               .SetParameter("p_usuario_actu", mod.usuario_actu);*/
-         
-
-
-             /* NHibernate.IQuery query = _session.CreateSQLQuery(
-	            "CALL GetStocks(:stockCode)")
-	        .AddEntity(Stock.class)
-	        .SetParameter("stockCode", "7277");*/
- 
-
-           PharmaMethodsExecutor.sp_ins_tipo_cliente(_session, mod.descripcion, mod.fecha_actu, mod.fecha_crea, mod.usuario_actu, mod.usuario_crea);
-           PharmaMethodsExecutor.sp_del_tipo_cliente(_session,6);
-           
-          /* var team = new categoria_productos
-           {
-               nombre = "nhiber",
-               fecha_crea = mod.fecha_crea,
-               fecha_actu = mod.fecha_actu,
-               usuario_crea = mod.usuario_actu,
-               usuario_actu = mod.usuario_crea
-           };
-
-           _session.Save(team);*/
+        //   PharmaMethodsExecutor.sp_ins_tipo_cliente(_session, mod.descripcion, mod.fecha_actu, mod.fecha_crea, mod.usuario_actu, mod.usuario_crea);
+          // PharmaMethodsExecutor.sp_del_tipo_cliente(_session,6);
+    
         
            // var validateMessage = _registerValidator.Validate(model);
-         /*   if (String.IsNullOrEmpty(model.Email))
+            if (String.IsNullOrEmpty(model.Email))
             {
-                return new AccountRegisterResponseModel()
+                return new AccountRegisterResponseModel
                 {
                     Message = "Datos incorrectos",
                     Status = 1
                 };
             }
-            var accountExist =
+           /* var accountExist =
                 _readOnlyRepository.First<Account>(
-                    account1 => account1.Email == model.Email);
+                    account1 => account1.Email == model.Email);*/
+
+            var accountExist = _session.QueryOver<account>().Where(c => c.Email == model.Email)
+                            .SingleOrDefault<account>();
+
+
             if (accountExist == null)
             {
-                Account account = _mappingEngine.Map<AccountRegisterModel, Account>(model);
+                var account = _mappingEngine.Map<AccountRegisterModel, account>(model);
+
                 var encryptObj = new EncryptServices();
                 encryptObj.GenerateKeys();
                 account.Password = encryptObj.EncryptStringToBytes(account.Password, encryptObj.myRijndael.Key,
@@ -187,23 +166,25 @@ namespace Pharma.Api.Controllers
                 account.EncryptKey = encryptObj.myRijndael.Key;
                 account.EncryptIV = encryptObj.myRijndael.IV;
                 
-                Account accountCreated = _writeOnlyRepository.Create(account);
-          
+               // account accountCreated = _writeOnlyRepository.Create(account);
+
+                var accountCreated = _session.Save(account);
              
-           if (accountCreated != null)
+                if (accountCreated != null)
                 {
                    // SendSimpleMessage(accountCreated.FirstName, accountCreated.LastName, accountCreated.Email, model.Password);
-                    return new AccountRegisterResponseModel(accountCreated.Email, accountCreated.FirstName, 2);
+                    return new AccountRegisterResponseModel(account.Email, account.FirstName, 2);
                 }
+                return new AccountRegisterResponseModel()
+                {
+                    Message = "Hubo un error al guardar el usuario",
+                    Status = 0
+                };
             
                
-            }*/
-          //  return new AccountRegisterResponseModel(model.Email, model.FirstName, 0);
-            return new AccountRegisterResponseModel()
-            {
-                Message = "Hubo un error al guardar el usuario",
-                Status = 0
-            };
+            }
+           return new AccountRegisterResponseModel(model.Email, model.FirstName, 0);
+          
         }
 
      /*

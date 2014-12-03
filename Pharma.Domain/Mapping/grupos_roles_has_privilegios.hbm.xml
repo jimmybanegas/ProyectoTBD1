@@ -1,12 +1,12 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <hibernate-mapping assembly="Pharma.Domain" namespace="Pharma.Domain.Entities" xmlns="urn:nhibernate-mapping-2.2">
-  <class name="productos_has_categoria_productos" table="productos_has_categoria_productos" schema="farmacia">
+  <class name="grupos_roles_has_privilegios" table="grupos_roles_has_privilegios" schema="farmacia">
     <composite-id>
-      <key-property name="cod_prod" type="String">
-        <column name="cod_prod" not-null="true" length="20" sql-type="varchar" />
+      <key-property name="id_rol" type="Int32">
+        <column name="id_rol" not-null="true" precision="11" scale="0" sql-type="int" />
       </key-property>
-      <key-property name="cod_categoria" type="Int32">
-        <column name="cod_categoria" not-null="true" precision="11" scale="0" sql-type="int" />
+      <key-property name="id_privilegio" type="Int32">
+        <column name="id_privilegio" not-null="true" precision="11" scale="0" sql-type="int" />
       </key-property>
     </composite-id>
     <property name="fecha_crea" type="DateTime">
@@ -21,11 +21,11 @@
     <property name="usuario_actu" type="String">
       <column name="usuario_actu" not-null="false" length="45" sql-type="varchar" />
     </property>
-    <many-to-one name="categoria_productos" class="categoria_productos">
-      <column name="cod_categoria" not-null="true" precision="11" scale="0" sql-type="int" />
+    <many-to-one name="grupos_roles" class="grupos_roles">
+      <column name="id_rol" not-null="true" precision="11" scale="0" sql-type="int" />
     </many-to-one>
-    <many-to-one name="productos" class="productos">
-      <column name="cod_prod" not-null="true" length="20" sql-type="varchar" />
+    <many-to-one name="privilegios" class="privilegios">
+      <column name="id_privilegio" not-null="true" precision="11" scale="0" sql-type="int" />
     </many-to-one>
   </class>
 </hibernate-mapping>

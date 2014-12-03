@@ -1,0 +1,27 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<hibernate-mapping assembly="Pharma.Domain" namespace="Pharma.Domain.Entities" xmlns="urn:nhibernate-mapping-2.2">
+  <class name="sessions" table="sessions" schema="farmacia">
+    <id name="Id" type="Int64">
+      <column name="Id" not-null="true" precision="20" scale="0" sql-type="bigint" />
+      <generator class="identity" />
+    </id>
+    <property name="LoginDate" type="DateTime">
+      <column name="LoginDate" not-null="false" sql-type="datetime" />
+    </property>
+    <property name="ExpirationTime" type="DateTime">
+      <column name="ExpirationTime" not-null="false" sql-type="datetime" />
+    </property>
+    <property name="Token" type="String">
+      <column name="Token" not-null="false" length="255" sql-type="varchar" />
+    </property>
+    <property name="IsArchived" type="Boolean">
+      <column name="IsArchived" not-null="false" precision="1" scale="0" sql-type="tinyint" />
+    </property>
+    <!--<property name="User_id" type="Int64">
+      <column name="User_id" not-null="false" precision="20" scale="0" sql-type="bigint" />
+    </property>-->
+    <many-to-one name="account" class="account">
+      <column name="User_id" not-null="false" precision="20" scale="0" sql-type="bigint" />
+    </many-to-one>
+  </class>
+</hibernate-mapping>

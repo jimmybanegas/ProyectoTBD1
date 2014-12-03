@@ -1,6 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <hibernate-mapping assembly="Pharma.Domain" namespace="Pharma.Domain.Entities" xmlns="urn:nhibernate-mapping-2.2">
-  <class name="Pharma.Domain.Entities.facturas, Pharma.Domain" table="facturas" schema="farmacia">
+  <class name="facturas" table="facturas" schema="farmacia">
     <id name="num_factura" type="Int32">
       <column name="num_factura" not-null="true" precision="11" scale="0" sql-type="int" />
       <generator class="identity" />
@@ -35,14 +35,14 @@
     <property name="id_cliente" type="Int32">
       <column name="id_cliente" not-null="true" precision="11" scale="0" sql-type="int" />
     </property>
-    <many-to-one name="clientes" class="Pharma.Domain.Entities.clientes, Pharma.Domain">
+    <many-to-one name="clientes" class="clientes">
       <column name="id_cliente" not-null="true" precision="11" scale="0" sql-type="int" />
     </many-to-one>
     <set name="detalle_facturas" inverse="true" generic="true">
       <key>
         <column name="num_factura" />
       </key>
-      <one-to-many class="Pharma.Domain.Entities.detalle_facturas, Pharma.Domain" />
+      <one-to-many class="detalle_facturas" />
     </set>
   </class>
 </hibernate-mapping>

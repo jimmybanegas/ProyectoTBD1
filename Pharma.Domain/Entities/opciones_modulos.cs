@@ -19,9 +19,9 @@ namespace Pharma.Domain.Entities
 {
 
     /// <summary>
-    /// There are no comments for Pharma.Domain.Entities.cotizaciones, Pharma.Domain in the schema.
+    /// There are no comments for Pharma.Domain.Entities.opciones_modulos, Pharma.Domain in the schema.
     /// </summary>
-    public partial class cotizaciones {
+    public partial class opciones_modulos {
     
         #region Extensibility Method Definitions
         
@@ -32,19 +32,18 @@ namespace Pharma.Domain.Entities
         
         #endregion
         /// <summary>
-        /// There are no comments for cotizaciones constructor in the schema.
+        /// There are no comments for opciones_modulos constructor in the schema.
         /// </summary>
-        public cotizaciones()
+        public opciones_modulos()
         {
-            this.detalle_cotizaciones = new HashSet<detalle_cotizaciones>();
             OnCreated();
         }
 
     
         /// <summary>
-        /// There are no comments for id_cotizacion in the schema.
+        /// There are no comments for id_opcion in the schema.
         /// </summary>
-        public virtual int id_cotizacion
+        public virtual int id_opcion
         {
             get;
             set;
@@ -52,9 +51,9 @@ namespace Pharma.Domain.Entities
 
     
         /// <summary>
-        /// There are no comments for fecha in the schema.
+        /// There are no comments for nombre in the schema.
         /// </summary>
-        public virtual DateTime? fecha
+        public virtual string nombre
         {
             get;
             set;
@@ -62,9 +61,9 @@ namespace Pharma.Domain.Entities
 
     
         /// <summary>
-        /// There are no comments for total in the schema.
+        /// There are no comments for id_submodulo in the schema.
         /// </summary>
-        public virtual double? total
+        public virtual int id_submodulo
         {
             get;
             set;
@@ -112,29 +111,9 @@ namespace Pharma.Domain.Entities
 
     
         /// <summary>
-        /// There are no comments for id_proveedor in the schema.
+        /// There are no comments for submodulos in the schema.
         /// </summary>
-        public virtual int id_proveedor
-        {
-            get;
-            set;
-        }
-
-    
-        /// <summary>
-        /// There are no comments for proveedores in the schema.
-        /// </summary>
-        public virtual proveedores proveedores
-        {
-            get;
-            set;
-        }
-
-    
-        /// <summary>
-        /// There are no comments for detalle_cotizaciones in the schema.
-        /// </summary>
-        public virtual ISet<detalle_cotizaciones> detalle_cotizaciones
+        public virtual submodulos submodulos
         {
             get;
             set;

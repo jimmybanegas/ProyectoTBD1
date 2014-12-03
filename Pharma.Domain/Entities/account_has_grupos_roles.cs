@@ -19,9 +19,9 @@ namespace Pharma.Domain.Entities
 {
 
     /// <summary>
-    /// There are no comments for Pharma.Domain.Entities.cotizaciones, Pharma.Domain in the schema.
+    /// There are no comments for Pharma.Domain.Entities.account_has_grupos_roles, Pharma.Domain in the schema.
     /// </summary>
-    public partial class cotizaciones {
+    public partial class account_has_grupos_roles {
     
         #region Extensibility Method Definitions
         
@@ -29,22 +29,45 @@ namespace Pharma.Domain.Entities
         /// There are no comments for OnCreated in the schema.
         /// </summary>
         partial void OnCreated();
+
+        public override bool Equals(object obj)
+        {
+          account_has_grupos_roles toCompare = obj as account_has_grupos_roles;
+          if (toCompare == null)
+          {
+            return false;
+          }
+
+          if (!Object.Equals(this.Id, toCompare.Id))
+            return false;
+          if (!Object.Equals(this.id_rol, toCompare.id_rol))
+            return false;
+          
+          return true;
+        }
+
+        public override int GetHashCode()
+        {
+          int hashCode = 13;
+          hashCode = (hashCode * 7) + Id.GetHashCode();
+          hashCode = (hashCode * 7) + id_rol.GetHashCode();
+          return hashCode;
+        }
         
         #endregion
         /// <summary>
-        /// There are no comments for cotizaciones constructor in the schema.
+        /// There are no comments for account_has_grupos_roles constructor in the schema.
         /// </summary>
-        public cotizaciones()
+        public account_has_grupos_roles()
         {
-            this.detalle_cotizaciones = new HashSet<detalle_cotizaciones>();
             OnCreated();
         }
 
     
         /// <summary>
-        /// There are no comments for id_cotizacion in the schema.
+        /// There are no comments for Id in the schema.
         /// </summary>
-        public virtual int id_cotizacion
+        public virtual long Id
         {
             get;
             set;
@@ -52,19 +75,9 @@ namespace Pharma.Domain.Entities
 
     
         /// <summary>
-        /// There are no comments for fecha in the schema.
+        /// There are no comments for id_rol in the schema.
         /// </summary>
-        public virtual DateTime? fecha
-        {
-            get;
-            set;
-        }
-
-    
-        /// <summary>
-        /// There are no comments for total in the schema.
-        /// </summary>
-        public virtual double? total
+        public virtual int id_rol
         {
             get;
             set;
@@ -74,7 +87,7 @@ namespace Pharma.Domain.Entities
         /// <summary>
         /// There are no comments for fecha_crea in the schema.
         /// </summary>
-        public virtual DateTime? fecha_crea
+        public virtual DateTime fecha_crea
         {
             get;
             set;
@@ -84,7 +97,7 @@ namespace Pharma.Domain.Entities
         /// <summary>
         /// There are no comments for fecha_actu in the schema.
         /// </summary>
-        public virtual DateTime? fecha_actu
+        public virtual DateTime fecha_actu
         {
             get;
             set;
@@ -112,9 +125,9 @@ namespace Pharma.Domain.Entities
 
     
         /// <summary>
-        /// There are no comments for id_proveedor in the schema.
+        /// There are no comments for account in the schema.
         /// </summary>
-        public virtual int id_proveedor
+        public virtual account account
         {
             get;
             set;
@@ -122,19 +135,9 @@ namespace Pharma.Domain.Entities
 
     
         /// <summary>
-        /// There are no comments for proveedores in the schema.
+        /// There are no comments for grupos_roles in the schema.
         /// </summary>
-        public virtual proveedores proveedores
-        {
-            get;
-            set;
-        }
-
-    
-        /// <summary>
-        /// There are no comments for detalle_cotizaciones in the schema.
-        /// </summary>
-        public virtual ISet<detalle_cotizaciones> detalle_cotizaciones
+        public virtual grupos_roles grupos_roles
         {
             get;
             set;
