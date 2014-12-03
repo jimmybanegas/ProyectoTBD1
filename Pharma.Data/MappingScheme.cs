@@ -14,12 +14,12 @@ namespace Pharma.Data
         {
             get
             {
-                /*AutoPersistenceModel autoPersistenceModel = AutoMap.Assemblies(typeof (IEntity).Assembly)
+             /*  AutoPersistenceModel autoPersistenceModel = AutoMap.Assemblies(typeof (IEntity).Assembly)
                     .Where(t => typeof (IEntity).IsAssignableFrom(t))
                     //.UseOverridesFromAssemblyOf<CompanyAutoMappingOverride>()
                     //.IncludeBase<LessonActionBase>()
                     .Conventions.Add(DefaultCascade.All());*/
-
+                
                 AutoPersistenceModel autoPersistenceModel = AutoMap.Assembly(System.Reflection.Assembly.GetCallingAssembly())
                    
                    .Where(t => t.Namespace == "Pharma.Domain.Entities")
@@ -27,9 +27,10 @@ namespace Pharma.Data
                     //.UseOverridesFromAssemblyOf<CompanyAutoMappingOverride>()
                     //.IncludeBase<LessonActionBase>()
                    .Conventions.Add(DefaultCascade.All());
-                   
 
-                return x => x.AutoMappings.Add(autoPersistenceModel);
+
+                //return x => x.AutoMappings.Add(autoPersistenceModel);
+                return x => x.HbmMappings.AddFromAssemblyOf<PharmaMethodsExecutor>();
             }
         }
     }

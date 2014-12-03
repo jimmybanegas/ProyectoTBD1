@@ -3,7 +3,9 @@ using System.Linq;
 using System.Web.Http;
 using AttributeRouting.Web.Mvc;
 using AutoMapper;
+using Microsoft.Ajax.Utilities;
 using NHibernate;
+using NHibernate.Transform;
 using Pharma.Api.Controllers.AccountControllerHelpers;
 using Pharma.Api.Models;
 using Pharma.Domain.Entities;
@@ -109,7 +111,7 @@ namespace Pharma.Api.Controllers
         {
             var mod = new Proc()
             {
-                descripcion = "prueba",
+                descripcion = "pruebaDOS",
                 fecha_crea = DateTime.Now,
                 fecha_actu = DateTime.Now,
                 usuario_crea = "jimmybanegas93",
@@ -117,10 +119,54 @@ namespace Pharma.Api.Controllers
             };
 
             //  var tipo = _mappingEngine.Map<Proc, tipo_cliente>(mod);
+           
+           var personNameList =_session.CreateSQLQuery("CALL sp_sel_tipo_cliente")
+            .SetResultTransformer(Transformers.AliasToBean<tipo_cliente>())
+            .List<tipo_cliente>()
+            .ToList();
 
-            PharmaMethodsExecutor.sp_ins_tipo_cliente(_session, mod.descripcion, mod.fecha_actu, mod.fecha_crea, mod.usuario_actu, mod.usuario_crea);
+          /* var inser = _session.GetNamedQuery("sp_ins_tipo_cliente")
+               .SetString("p_descripcion", mod.descripcion)
+               .SetDateTime("p_fecha_crea", mod.fecha_actu)
+               .SetDateTime("p_fecha_actu", mod.fecha_actu)
+               .SetString("p_usuario_crea", mod.usuario_actu)
+               .SetString("p_usuario_actu", mod.usuario_actu)
+               .SetResultTransformer(
+                        Transformers.AliasToBean(typeof (tipo_cliente)))
+                .UniqueResult<tipo_cliente>();
+           */
+         /*  var var = _session.CreateSQLQuery("CALL sp_ins_tipo_cliente:p_descripcion,:p_fecha_crea,:p_fecha_actu,:p_usuario_crea,:p_usuario_actu")
+               .AddEntity(typeof(tipo_cliente))
+               .SetParameter("p_descripcion", mod.descripcion)
+               .SetParameter("p_fecha_crea", mod.fecha_actu)
+               .SetParameter("p_fecha_actu", mod.fecha_actu)
+               .SetParameter("p_usuario_crea", mod.usuario_actu)
+               .SetParameter("p_usuario_actu", mod.usuario_actu);*/
+         
+
+
+             /* NHibernate.IQuery query = _session.CreateSQLQuery(
+	            "CALL GetStocks(:stockCode)")
+	        .AddEntity(Stock.class)
+	        .SetParameter("stockCode", "7277");*/
+ 
+
+           PharmaMethodsExecutor.sp_ins_tipo_cliente(_session, mod.descripcion, mod.fecha_actu, mod.fecha_crea, mod.usuario_actu, mod.usuario_crea);
+           PharmaMethodsExecutor.sp_del_tipo_cliente(_session,6);
+           
+          /* var team = new categoria_productos
+           {
+               nombre = "nhiber",
+               fecha_crea = mod.fecha_crea,
+               fecha_actu = mod.fecha_actu,
+               usuario_crea = mod.usuario_actu,
+               usuario_actu = mod.usuario_crea
+           };
+
+           _session.Save(team);*/
+        
            // var validateMessage = _registerValidator.Validate(model);
-            if (String.IsNullOrEmpty(model.Email))
+         /*   if (String.IsNullOrEmpty(model.Email))
             {
                 return new AccountRegisterResponseModel()
                 {
@@ -144,19 +190,20 @@ namespace Pharma.Api.Controllers
                 Account accountCreated = _writeOnlyRepository.Create(account);
           
              
-                if (accountCreated != null)
+           if (accountCreated != null)
                 {
                    // SendSimpleMessage(accountCreated.FirstName, accountCreated.LastName, accountCreated.Email, model.Password);
                     return new AccountRegisterResponseModel(accountCreated.Email, accountCreated.FirstName, 2);
                 }
-                return new AccountRegisterResponseModel()
-                {
-                    Message = "Hubo un error al guardar el usuario",
-                    Status = 0
-                };
+            
                
-            }
-            return new AccountRegisterResponseModel(model.Email, model.FirstName, 0);
+            }*/
+          //  return new AccountRegisterResponseModel(model.Email, model.FirstName, 0);
+            return new AccountRegisterResponseModel()
+            {
+                Message = "Hubo un error al guardar el usuario",
+                Status = 0
+            };
         }
 
      /*

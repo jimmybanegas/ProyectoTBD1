@@ -126,7 +126,6 @@
     <EmbeddedResource Include="Mapping\productos.hbm.xml" />
     <EmbeddedResource Include="Mapping\productos_has_categoria_productos.hbm.xml" />
     <EmbeddedResource Include="Mapping\proveedores.hbm.xml" />
-    <EmbeddedResource Include="Mapping\sessions.hbm.xml" />
     <EmbeddedResource Include="Mapping\telefonos_clientes.hbm.xml" />
     <EmbeddedResource Include="Mapping\tipo_transacciones.hbm.xml" />
   </ItemGroup>
