@@ -1,86 +1,116 @@
 ﻿@{
-    Layout = null;
+    PageData["title"] = "Farmacia La Mejor";
 }
 
-<!doctype html>
+<link href="~/Views/css/facturar.css" rel="stylesheet">
 <html>
 <head>
-    <meta charset="utf-8">
-    <title>Invoice</title>
-    <link rel="stylesheet" href="style.css">
-    <link rel="license" href="http://www.opensource.org/licenses/mit-license/">
-    <script src="script.js"></script>
+    <title>Facturar</title>
 </head>
-<body>
-    <header>
-        <h1>Invoice</h1>
-        <address contenteditable>
-            <p>Jonathan Neal</p>
-            <p>101 E. Chapman Ave<br>Orange, CA 92866</p>
-            <p>(800) 555-1234</p>
-        </address>
-        <span><img alt="" src="logo.png"><input type="file" accept="image/*"></span>
-    </header>
-    <article>
-        <h1>Recipient</h1>
-        <address contenteditable>
-            <p>Some Company<br>c/o Some Guy</p>
-        </address>
-        <table class="meta">
+<body >
+    <div id="css">
+        <link href="~/Content/bootstrap.css" rel="stylesheet">
+    </div>
+    <div class="container" width="800px" id="invoice">
+        <table class="table">
             <tr>
-                <th><span contenteditable>Invoice #</span></th>
-                <td><span contenteditable>101138</span></td>
+                <td align="center" style="background-color:#357EBD;color:#FFF" colspan="2">
+                    Farmacia La Mejor -- FACTURA
+                </td>
             </tr>
             <tr>
-                <th><span contenteditable>Date</span></th>
-                <td><span contenteditable>January 1, 2012</span></td>
-            </tr>
-            <tr>
-                <th><span contenteditable>Amount Due</span></th>
-                <td><span id="prefix" contenteditable>$</span><span>600.00</span></td>
+                <td>
+                    <h4>Factura #<input type="text" id="invoice_number" ng-model="invoice.invoice_number" /></h4>
+                    <h4>Factura #<input type="text" id="invoice_number" ng-model="fecha" /></h4>
+                    <div >
+                        {{fecha | date:'yyyy-MM-dd'}}
+                    </div>
+                </td>
+                <td align="right">
+                    <input type='file' id="imgInp" />
+                    <img ng-hide="logoRemoved" id="company_logo" src="~/Images/logo.png" alt="your image" width="100" />
+                </td>
             </tr>
         </table>
-        <table class="inventory">
-            <thead>
-                <tr>
-                    <th><span contenteditable>Item</span></th>
-                    <th><span contenteditable>Description</span></th>
-                    <th><span contenteditable>Rate</span></th>
-                    <th><span contenteditable>Quantity</span></th>
-                    <th><span contenteditable>Price</span></th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <td><a class="cut">-</a><span contenteditable>Front End Consultation</span></td>
-                    <td><span contenteditable>Experience Review</span></td>
-                    <td><span data-prefix>$</span><span contenteditable>150.00</span></td>
-                    <td><span contenteditable>4</span></td>
-                    <td><span data-prefix>$</span><span>600.00</span></td>
-                </tr>
-            </tbody>
-        </table>
-        <a class="add">+</a>
-        <table class="balance">
+        <table class="table">
             <tr>
-                <th><span contenteditable>Total</span></th>
-                <td><span data-prefix>$</span><span>600.00</span></td>
-            </tr>
-            <tr>
-                <th><span contenteditable>Amount Paid</span></th>
-                <td><span data-prefix>$</span><span contenteditable>0.00</span></td>
-            </tr>
-            <tr>
-                <th><span contenteditable>Balance Due</span></th>
-                <td><span data-prefix>$</span><span>600.00</span></td>
+                <td>
+                    <div class="infos">
+                        <div><strong><input type="text" ng-model="invoice.customer_info.name" /></strong></div>
+                        <div><input type="text" ng-model="invoice.customer_info.web_link" /></div>
+                        <div><input type="text" ng-model="invoice.customer_info.address1" /></div>
+                    </div>
+                </td>
+                <td align="right">
+                    <div class="align-right">
+                        <div><strong>Farmacia La Mejor</strong></div>
+                        <div>San Pedro Sula, Honduras</div>
+                    </div>
+                </td>
             </tr>
         </table>
-    </article>
-    <aside>
-        <h1><span contenteditable>Additional Notes</span></h1>
-        <div contenteditable>
-            <p>A finance charge of 1.5% will be made on unpaid balances after 30 days.</p>
+        <table class="table table-striped" align="center">
+            <tr>
+                <th></th>
+                <th>Descripcion</th>
+                <th>Cant</th>
+                <th>Precio</th>
+                <th style="text-align:right;">Total</th>
+
+            </tr>
+            <tr ng:repeat="item in invoice.items" style="display: none" jq:animate="dropdown;250">
+                <td><a href ng-hide="printMode" ng-click="removeItem(item)" class="btn btn-danger">[X]</a></td>
+                <td><input ng:model="item.description" placeholder="Descripcion"></td>
+                <td><input ng:model="item.qty" value="1" size="4" ng:required ng:validate="integer" placeholder="qty"></td>
+                <td><input ng:model="item.cost" value="0.00" ng:required ng:validate="number" size="6" placeholder="cost"></td>
+                <td align="right">{{item.cost * item.qty | currency}}</td>
+
+            </tr>
+            <tr ng-hide="printMode">
+                <td colspan="5"><a class="btn btn-primary" href ng:click="addItem()">Agregar</a></td>
+            </tr>
+            <tr>
+                <td colspan="4" align="right">
+                    Sub Total
+                </td>
+                <td align="right">
+                    {{invoice_sub_total() | currency}}
+                </td>
+            </tr>
+            <tr>
+                <td colspan="4" align="right">
+                    Tax(%): <input ng:model="invoice.tax" ng:validate="number" style="width:43px">
+                </td>
+                <td align="right">
+                    {{calculate_tax() | currency}}
+                </td>
+            </tr>
+            <tr>
+                <td colspan="4" align="right">
+                    Grand Total:
+                </td>
+                <td align="right">
+                    {{calculate_grand_total() | currency}}
+                </td>
+            </tr>
+        </table>
+        <div class="noPrint">
+            <!--<a href="#" class="btn btn-primary" ng-show="printMode" ng-click="printInfo()">Print</a>-->
+            <a href="#" class="btn btn-primary" ng-click="clearLocalStorage()">Guardar</a>
+            <a href="#" class="btn btn-primary" ng-click="clearLocalStorage()">Limpiar</a>
+            <!--<a href="#" class="btn btn-primary" ng-hide="printMode" ng-click="printMode = true;">Turn On Print Mode</a>
+            <a href="#" class="btn btn-primary" ng-show="printMode" ng-click="printMode = false;">Turn Off Print Mode</a>-->
         </div>
-    </aside>
+    </div>
+
+    <div ng-hide="printMode" class="copy noPrint">
+        <!-- <a href="http://jasdeep.ca/?utm_source=angular_invoicing">Jasdeep Singh</a> &
+            <a href="http://github.com/manpreetrules">Manpreet Singh</a>
+            Made with
+            <span class="love">&#9829;</span> in Toronto by
+            <a href="http://metawarelabs.com/?utm_source=angular_invoicing">Metaware Labs Inc.</a>-->
+    </div>
+    <script src="~/Scripts/vendor/jquery-2.0.3.js"></script>
+    <script src="~/Scripts/vendor/bootstrap.min.js"></script>
 </body>
 </html>

@@ -140,6 +140,7 @@
     <Content Include="Global.asax" />
     <Content Include="Content\toastr.less" />
     <Content Include="Content\bootstrap.css.map" />
+    <Content Include="Images\logo.png" />
     <Content Include="Scripts\controllers.js" />
     <Content Include="Scripts\controllers.spec.js">
       <DependentUpon>controllers.js</DependentUpon>
@@ -158,6 +159,7 @@
     <Content Include="Scripts\directives.spec.js">
       <DependentUpon>directives.js</DependentUpon>
     </Content>
+    <Content Include="Scripts\Directives\AppVersion.js" />
     <Content Include="Scripts\filters.js" />
     <Content Include="Scripts\filters.spec.js">
       <DependentUpon>filters.js</DependentUpon>
@@ -171,7 +173,6 @@
     <Content Include="Scripts\Services\ComprasService.js" />
     <Content Include="Scripts\Services\FacturacionService.js" />
     <Content Include="Scripts\Services\InventariosService.js" />
-    <Content Include="Scripts\Services\LeaguesService.js" />
     <Content Include="Scripts\Services\ParametrosService.js" />
     <Content Include="Scripts\Services\ServerService.js" />
     <Content Include="Scripts\Services\SistemaService.js" />
@@ -182,6 +183,7 @@
     <Content Include="Scripts\vendor\angular-ui-router.min.js" />
     <Content Include="Scripts\vendor\bootstrap.js" />
     <Content Include="Scripts\vendor\bootstrap.min.js" />
+    <Content Include="Scripts\vendor\example.js" />
     <Content Include="Scripts\vendor\i18n\angular-locale_af-na.js" />
     <Content Include="Scripts\vendor\i18n\angular-locale_af-za.js" />
     <Content Include="Scripts\vendor\i18n\angular-locale_af.js" />
@@ -508,6 +510,9 @@
     <Content Include="Scripts\vendor\jquery-2.0.3.min.map" />
     <None Include="Scripts\_references.js" />
     <Content Include="Scripts\app.js" />
+    <Content Include="Views\css\facturar.css" />
+    <Content Include="Views\css\print.css" />
+    <Content Include="Views\css\style.css" />
     <Content Include="Views\Jasmine\SpecRunner.cshtml" />
     <Content Include="apple-touch-icon-precomposed.png" />
     <Content Include="crossdomain.xml" />
@@ -557,7 +562,6 @@
     <Compile Include="Startup.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Images\" />
     <Folder Include="Views\Shared\" />
   </ItemGroup>
   <ItemGroup>

@@ -1,9 +1,9 @@
 ﻿'use strict';
 
-angular.module('app.services', [])
+angular.module('app.services')
     .factory('Sistema', ['$http', function ($http) {
 
-        var account = {};
+      /*  var account = {};
 
         //var baseRemoteUrl = "http://XXXX.apphb.com/";
         var baseLocalUrl = "http://localhost:1416";
@@ -22,5 +22,5 @@ angular.module('app.services', [])
             return $http.put(baseUrl + '/login', model);
         };
         return account;
-
+        */
     }]);

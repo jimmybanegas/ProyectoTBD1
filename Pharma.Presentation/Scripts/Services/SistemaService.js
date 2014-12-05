@@ -1,6 +1,6 @@
 ﻿'use strict';
 
-angular.module('app.services', [])
+angular.module('app.services')
     .factory('Sistema', ['$http', function ($http) {
 
         var account = {};

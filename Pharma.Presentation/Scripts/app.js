@@ -1,7 +1,7 @@
 ﻿'use strict';
 
 // Declares how the application should be bootstrapped. See: http://docs.angularjs.org/guide/module
-angular.module('app', ['ngCookies', 'ui.router', 'app.filters', 'app.services', 'app.directives', 'app.controllers'])
+angular.module('app', ['ui.router', 'app.filters', 'app.services', 'app.directives', 'app.controllers'])
 
     // Gets executed during the provider registrations and configuration phase. Only providers and constants can be
     // injected here. This is to prevent accidental instantiation of services before they have been fully configured.
@@ -36,13 +36,7 @@ angular.module('app', ['ngCookies', 'ui.router', 'app.filters', 'app.services', 
                     templateUrl: '/views/about',
                     controller: 'AboutCtrl'
                 })
-                .state('ForgotPassword', {
-                        url: '/forgot-password',
-                        layout: 'basic',
-                        templateUrl: '/views/forgot-password',
-                        controller: 'ForgotPasswordCtrl'
-                })
-                .state('Facturacion', {
+              .state('Facturacion', {
                        url: '/facturacion',
                        layout: 'basic',
                        templateUrl: '/views/facturacion',
@@ -51,7 +45,7 @@ angular.module('app', ['ngCookies', 'ui.router', 'app.filters', 'app.services', 
                 .state('Facturar', {
                      url: '/facturar',
                      layout: 'basic',
-                     templateUrl: '/views/factur',
+                     templateUrl: '/views/facturar',
                      controller: 'FacturacionCtrl'
                  })
                 .state('Compras', {

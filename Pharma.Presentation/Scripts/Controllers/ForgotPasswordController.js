@@ -4,7 +4,7 @@ angular.module('app.controllers')
     // Path: /forgot-password
     .controller('ForgotPasswordCtrl', [
         '$scope', '$location', '$window', 'AccountServices', function ($scope, $location, $window, AccountServices) {
-            $scope.$root.title = 'SportLiga | Recuperar password';
+         /*   $scope.$root.title = 'SportLiga | Recuperar password';
             // TODO: Forgot password
 
             $scope.resetModel = {};
@@ -25,6 +25,6 @@ angular.module('app.controllers')
 
                 });
             };
-
+            */
         }
     ]);
