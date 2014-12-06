@@ -21,9 +21,8 @@
             <tr>
                 <td>
                     <h4>Factura #<input type="text" id="invoice_number" ng-model="invoice.invoice_number" /></h4>
-                    <h4>Factura #<input type="text" id="invoice_number" ng-model="fecha" /></h4>
                     <div >
-                        {{fecha | date:'yyyy-MM-dd'}}
+                        <strong> {{fecha | date:'dd-MM-yyyy'}}</strong>
                     </div>
                 </td>
                 <td align="right">
@@ -36,9 +35,9 @@
             <tr>
                 <td>
                     <div class="infos">
-                        <div><strong><input type="text" ng-model="invoice.customer_info.name" /></strong></div>
-                        <div><input type="text" ng-model="invoice.customer_info.web_link" /></div>
-                        <div><input type="text" ng-model="invoice.customer_info.address1" /></div>
+                        <div><strong><input type="text" ng-model="sample_invoice.customer_info.name" /></strong></div>
+                        <div><input type="text" ng-model="sample_invoice.customer_info.web_link" /></div>
+                        <div><input type="text" ng-model="sample_invoice.customer_info.address1" /></div>
                     </div>
                 </td>
                 <td align="right">
@@ -58,8 +57,8 @@
                 <th style="text-align:right;">Total</th>
 
             </tr>
-            <tr ng:repeat="item in invoice.items" style="display: none" jq:animate="dropdown;250">
-                <td><a href ng-hide="printMode" ng-click="removeItem(item)" class="btn btn-danger">[X]</a></td>
+            <tr ng:repeat="item in sample_invoice.items" >
+                <td><a href ng-hide="" ng-click="removeItem(item)" class="btn btn-danger">[X]</a></td>
                 <td><input ng:model="item.description" placeholder="Descripcion"></td>
                 <td><input ng:model="item.qty" value="1" size="4" ng:required ng:validate="integer" placeholder="qty"></td>
                 <td><input ng:model="item.cost" value="0.00" ng:required ng:validate="number" size="6" placeholder="cost"></td>
@@ -79,7 +78,7 @@
             </tr>
             <tr>
                 <td colspan="4" align="right">
-                    Tax(%): <input ng:model="invoice.tax" ng:validate="number" style="width:43px">
+                    Tax(%): <input ng:model="sample_invoice.tax" ng:validate="number" style="width:43px">
                 </td>
                 <td align="right">
                     {{calculate_tax() | currency}}

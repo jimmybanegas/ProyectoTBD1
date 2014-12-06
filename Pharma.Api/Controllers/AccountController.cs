@@ -36,79 +36,66 @@ namespace Pharma.Api.Controllers
         public AuthenticationModel Login([FromBody] AccountLoginModel model)
         {
             var encryptObj = new EncryptServices();
-         /*   account account =
-                _readOnlyRepository.First<account>(
-                    account1 => account1.Email == model.Email);*/
-
+      
             var account = _session.QueryOver<account>().Where(c => c.Email == model.Email)
                 .SingleOrDefault<account>();
-          
-            
-            if (account != null)
-            {
-                if (account.Password !=
+
+
+            if (account == null)
+                return new AuthenticationModel()
+                {
+                    Status = 0,
+                    Token = "Lo sentimos, No existe un usuario con ese Email"
+                };
+            if (account.Password !=
                 encryptObj.EncryptStringToBytes(model.Password, account.EncryptKey, account.EncryptIV))
+            {
+                return new AuthenticationModel()
+                {
+                    Status = 0,
+                    Token = "Clave incorrecta"
+                };
+            }
+            var token = "";
+
+            var availabletime = new TimeSpan();
+
+            var session = _session.QueryOver<sessions>()
+                .OrderBy(x => x.ExpirationTime).Desc
+                .JoinQueryOver(e => e.account)
+                .Where(k => k.Email == account.Email).Take(1)
+                .SingleOrDefault<sessions>();
+
+            if (session == null || session.ExpirationTime < DateTime.Now)
+            {
+                var newsession = SetSessionsModel(account);
+
+                var  newsessionCreated = _session.Save(newsession);
+
+                if (newsessionCreated != null)
+                {
+                    token = newsession.Token;
+                    availabletime = (newsession.ExpirationTime.Subtract(newsession.LoginDate));
+                }
+                else
                 {
                     return new AuthenticationModel()
                     {
-                        Status = 0,
-                        Token = "Clave incorrecta"
+                        Status = 1,
+                        Token = "Acceso Denegado: No se puede conectar al servidor, Intentelo Mas Tarde!"
                     };
                 }
-                var token = "";
-
-                var availabletime = new TimeSpan();
-
-                var session = _session.QueryOver<sessions>()
-                    .OrderBy(x => x.ExpirationTime).Desc
-                    .JoinQueryOver(e => e.account)
-                    // .WhereRestrictionOn(c => c.account.Email).IsLike(account.Email)
-                    .Where(k => k.Email == account.Email).Take(1)
-                    .SingleOrDefault<sessions>();
-
-            /*    var session =
-                    _readOnlyRepository.Query<sessions>(sessions1 => sessions1.user.Email == account.Email)
-                        .OrderByDescending(x => x.ExpirationTime)
-                        .FirstOrDefault();
-             */
-                if (session == null || session.ExpirationTime < DateTime.Now)
-                {
-                    var newsession = SetSessionsModel(account);
-
-                    //sessions newsessionCreated = _writeOnlyRepository.Create(newsession);
-
-                    var  newsessionCreated = _session.Save(newsession);
-
-                    if (newsessionCreated != null)
-                    {
-                        token = newsession.Token;
-                        availabletime = (newsession.ExpirationTime.Subtract(newsession.LoginDate));
-                    }
-                    else
-                    {
-                        return new AuthenticationModel()
-                        {
-                            Status = 1,
-                            Token = "Acceso Denegado: No se puede conectar al servidor, Intentelo Mas Tarde!"
-                        };
-                    }
-                }
-                else if (session.ExpirationTime > DateTime.Now)
-                {
-                    token = session.Token;
-                    availabletime = (session.ExpirationTime.Subtract(DateTime.Now));
-                }
-                return new AuthenticationModel()
-                {
-                    Status = 2,
-                    Token = token,
-                    AvailableTime = availabletime
-                };
+            }
+            else if (session.ExpirationTime > DateTime.Now)
+            {
+                token = session.Token;
+                availabletime = (session.ExpirationTime.Subtract(DateTime.Now));
             }
             return new AuthenticationModel()
             {
-                Status = 0,
-                Token = "Lo sentimos, No existe un usuario con ese Email"
+                Status = 2,
+                Token = token,
+                AvailableTime = availabletime
             };
         }
 
@@ -121,7 +108,7 @@ namespace Pharma.Api.Controllers
                 ExpirationTime = DateTime.Now.AddHours(2),
                 Token = Guid.NewGuid().ToString()
             };
-            sessions sessionToReturn = _mappingEngine.Map<SessionsModel, sessions>(sessionLoging);
+            var sessionToReturn = _mappingEngine.Map<SessionsModel, sessions>(sessionLoging);
             return sessionToReturn;
         }
 
@@ -147,9 +134,6 @@ namespace Pharma.Api.Controllers
                     Status = 1
                 };
             }
-           /* var accountExist =
-                _readOnlyRepository.First<Account>(
-                    account1 => account1.Email == model.Email);*/
 
             var accountExist = _session.QueryOver<account>().Where(c => c.Email == model.Email)
                             .SingleOrDefault<account>();
@@ -166,8 +150,6 @@ namespace Pharma.Api.Controllers
                 account.EncryptKey = encryptObj.myRijndael.Key;
                 account.EncryptIV = encryptObj.myRijndael.IV;
                 
-               // account accountCreated = _writeOnlyRepository.Create(account);
-
                 var accountCreated = _session.Save(account);
              
                 if (accountCreated != null)
@@ -186,6 +168,8 @@ namespace Pharma.Api.Controllers
            return new AccountRegisterResponseModel(model.Email, model.FirstName, 0);
           
         }
+
+     
 
      /*
         

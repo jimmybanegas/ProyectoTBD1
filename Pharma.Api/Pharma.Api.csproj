@@ -252,15 +252,40 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\AccountLoginModel.cs" />
+    <Compile Include="Models\AccountModel.cs" />
     <Compile Include="Models\AccountRegisterModel.cs" />
     <Compile Include="Models\AccountRegisterResponseModel.cs" />
+    <Compile Include="Models\AccountRolesModel.cs" />
     <Compile Include="Models\AccountUpdateModel.cs" />
+    <Compile Include="Models\AjustesModel.cs" />
     <Compile Include="Models\AuthenticationModel.cs" />
+    <Compile Include="Models\CategoriasModel.cs" />
     <Compile Include="Models\ChangePassModel.cs" />
+    <Compile Include="Models\ClientesModel.cs" />
+    <Compile Include="Models\ComprasModel.cs" />
+    <Compile Include="Models\ContactosClientesModel.cs" />
+    <Compile Include="Models\CotizacionesModel.cs" />
     <Compile Include="Models\CreatedAccountModel.cs" />
+    <Compile Include="Models\DetalleAjustesModel.cs" />
+    <Compile Include="Models\DetalleComprasModel.cs" />
+    <Compile Include="Models\DetalleCotizacionesModel.cs" />
+    <Compile Include="Models\DetalleFacturasModel.cs" />
+    <Compile Include="Models\DetalleOcModel.cs" />
+    <Compile Include="Models\DireccionesClientesModel.cs" />
+    <Compile Include="Models\FacturasModel.cs" />
+    <Compile Include="Models\KardexModel.cs" />
+    <Compile Include="Models\OrdenesCompraModel.cs" />
+    <Compile Include="Models\PresentacionModel.cs" />
+    <Compile Include="Models\PrivilegiosDeRolesModel.cs" />
+    <Compile Include="Models\PrivilegiosModel.cs" />
+    <Compile Include="Models\ProductosModel.cs" />
+    <Compile Include="Models\ProveedoresModel.cs" />
     <Compile Include="Models\RestorePasswordResponseModel.cs" />
-    <Compile Include="Models\RoleModel.cs" />
+    <Compile Include="Models\RolesModel.cs" />
     <Compile Include="Models\SessionsModel.cs" />
+    <Compile Include="Models\TelefonosClientesModel.cs" />
+    <Compile Include="Models\TipoClienteModel.cs" />
+    <Compile Include="Models\TipoTranModel.cs" />
     <Compile Include="Models\UpdateAccountResponseModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
