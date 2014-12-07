@@ -32,13 +32,20 @@ namespace Pharma.Api.Controllers
 
         [HttpGet]
         [AcceptVerbs("GET", "HEAD")]
-        [GET("productos/available")]
-        public List<ProductosModel> GetAvailableProducts()
+        [GET("productos/available/{accesstoken}")]
+        public List<ProductosModel> GetAvailableProducts(string accesstoken)
         {
+          
+            var sessions = _session.QueryOver<sessions>().Where(c => c.Token == accesstoken)
+             .SingleOrDefault<sessions>();
+
+            var account = sessions.account;
+
+            if (account == null) return null;
             var productsList = _session.CreateSQLQuery("CALL sp_sel_productos")
-             .SetResultTransformer(Transformers.AliasToBean<productos>())
-             .List<productos>()
-             .ToList();
+                .SetResultTransformer(Transformers.AliasToBean<productos>())
+                .List<productos>()
+                .ToList();
 
             var prod = _mappingEngine.Map<List<productos>, List<ProductosModel>>(productsList);
 
@@ -48,9 +55,15 @@ namespace Pharma.Api.Controllers
 
         [HttpGet]
         [AcceptVerbs("GET", "HEAD")]
-        [GET("clientes/available")]
-        public List<ClientesModel> GetAvailableClientes()
+        [GET("clientes/available/{accesstoken}")]
+        public List<ClientesModel> GetAvailableClientes(string accesstoken)
         {
+            var sessions = _session.QueryOver<sessions>().Where(c => c.Token == accesstoken)
+           .SingleOrDefault<sessions>();
+
+            var account = sessions.account;
+
+            if (account == null) return null;
             var clientesList = _session.CreateSQLQuery("CALL sp_sel_productos")
              .SetResultTransformer(Transformers.AliasToBean<clientes>())
              .List<clientes>()

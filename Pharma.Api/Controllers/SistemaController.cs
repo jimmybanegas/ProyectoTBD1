@@ -31,9 +31,15 @@ namespace Pharma.Api.Controllers
 
         [HttpGet]
         [AcceptVerbs("GET", "HEAD")]
-        [GET("usuarios/available")]
-        public List<AccountModel> GetAvailableKardex()
+        [GET("usuarios/available/{accesstoken}")]
+        public List<AccountModel> GetAvailableKardex(string accesstoken)
         {
+            var sessions = _session.QueryOver<sessions>().Where(c => c.Token == accesstoken)
+             .SingleOrDefault<sessions>();
+
+            var account = sessions.account;
+
+            if (account == null) return null;
             var accountList = _session.CreateSQLQuery("CALL sp_sel_account")
              .SetResultTransformer(Transformers.AliasToBean<account>())
              .List<account>()

@@ -31,9 +31,15 @@ namespace Pharma.Api.Controllers
 
         [HttpGet]
         [AcceptVerbs("GET", "HEAD")]
-        [GET("ajustes/available")]
-        public List<AjustesModel> GetAvailableAjustes()
+        [GET("ajustes/available/{accesstoken}")]
+        public List<AjustesModel> GetAvailableAjustes(string accesstoken)
         {
+            var sessions = _session.QueryOver<sessions>().Where(c => c.Token == accesstoken)
+            .SingleOrDefault<sessions>();
+
+            var account = sessions.account;
+
+            if (account == null) return null;
             var ajustesList = _session.CreateSQLQuery("CALL sp_sel_ajustes")
              .SetResultTransformer(Transformers.AliasToBean<ajustes>())
              .List<ajustes>()
@@ -46,9 +52,15 @@ namespace Pharma.Api.Controllers
 
         [HttpGet]
         [AcceptVerbs("GET", "HEAD")]
-        [GET("kardex/available")]
-        public List<KardexModel> GetAvailableKardex()
+        [GET("kardex/available/{accesstoken}")]
+        public List<KardexModel> GetAvailableKardex(string accesstoken)
         {
+            var sessions = _session.QueryOver<sessions>().Where(c => c.Token == accesstoken)
+            .SingleOrDefault<sessions>();
+
+            var account = sessions.account;
+
+            if (account == null) return null;
             var kardexList = _session.CreateSQLQuery("CALL sp_sel_kardex")
              .SetResultTransformer(Transformers.AliasToBean<kardex>())
              .List<kardex>()
@@ -58,9 +70,6 @@ namespace Pharma.Api.Controllers
 
             return kard;
         }
-
-
-
 
     }
 }

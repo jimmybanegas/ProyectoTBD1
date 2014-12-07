@@ -31,10 +31,17 @@ namespace Pharma.Api.Controllers
 
         [HttpGet]
         [AcceptVerbs("GET", "HEAD")]
-        [GET("tipos_clientes/available")]
-        public List<TipoClienteModel> GetAvailableTiposClientes()
+        [GET("tipos_clientes/available/{accesstoken}")]
+        public List<TipoClienteModel> GetAvailableTiposClientes(string accesstoken)
         {
-            var tiposClientesList = _session.CreateSQLQuery("CALL sp_sel_tipo_cliente")
+
+            var sessions = _session.QueryOver<sessions>().Where(c => c.Token == accesstoken)
+             .SingleOrDefault<sessions>();
+
+            var account = sessions.account;
+
+            if (account == null) return null; 
+              var tiposClientesList = _session.CreateSQLQuery("CALL sp_sel_tipo_cliente")
              .SetResultTransformer(Transformers.AliasToBean<tipo_cliente>())
              .List<tipo_cliente>()
              .ToList();
@@ -46,10 +53,16 @@ namespace Pharma.Api.Controllers
 
         [HttpGet]
         [AcceptVerbs("GET", "HEAD")]
-        [GET("categorias/available")]
-        public List<CategoriasModel> GetAvailableCategoriasProductos()
+        [GET("categorias/available/{accesstoken}")]
+        public List<CategoriasModel> GetAvailableCategoriasProductos(string accesstoken)
         {
-            var categoriasList = _session.CreateSQLQuery("CALL sp_sel_categoria_productos")
+            var sessions = _session.QueryOver<sessions>().Where(c => c.Token == accesstoken)
+             .SingleOrDefault<sessions>();
+
+            var account = sessions.account;
+
+            if (account == null) return null;
+              var categoriasList = _session.CreateSQLQuery("CALL sp_sel_categoria_productos")
              .SetResultTransformer(Transformers.AliasToBean<categoria_productos>())
              .List<categoria_productos>()
              .ToList();
@@ -61,9 +74,15 @@ namespace Pharma.Api.Controllers
 
         [HttpGet]
         [AcceptVerbs("GET", "HEAD")]
-        [GET("presentaciones/available")]
-        public List<PresentacionModel> GetAvailablePresentacionesProductos()
+        [GET("presentaciones/available/{accesstoken}")]
+        public List<PresentacionModel> GetAvailablePresentacionesProductos(string accesstoken)
         {
+            var sessions = _session.QueryOver<sessions>().Where(c => c.Token == accesstoken)
+             .SingleOrDefault<sessions>();
+
+            var account = sessions.account;
+
+            if (account == null) return null;
             var presentacionesList = _session.CreateSQLQuery("CALL sp_sel_presentacion_productos")
              .SetResultTransformer(Transformers.AliasToBean<presentacion_productos>())
              .List<presentacion_productos>()
@@ -76,9 +95,15 @@ namespace Pharma.Api.Controllers
 
         [HttpGet]
         [AcceptVerbs("GET", "HEAD")]
-        [GET("tipo_transacciones/available")]
-        public List<TipoTranModel> GetAvailableTipoTransacciones()
+        [GET("tipo_transacciones/available/{accesstoken}")]
+        public List<TipoTranModel> GetAvailableTipoTransacciones(string accesstoken)
         {
+            var sessions = _session.QueryOver<sessions>().Where(c => c.Token == accesstoken)
+             .SingleOrDefault<sessions>();
+
+            var account = sessions.account;
+
+            if (account == null) return null;
             var tranList = _session.CreateSQLQuery("CALL sp_sel_tipo_transacciones")
              .SetResultTransformer(Transformers.AliasToBean<tipo_transacciones>())
              .List<tipo_transacciones>()

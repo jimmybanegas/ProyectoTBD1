@@ -6,7 +6,6 @@ angular.module('app.services')
 
             var account = {};
 
-            //var baseRemoteUrl = "http://XXXX.apphb.com/";
             var baseLocalUrl = "http://localhost:1368";
 
             var baseUrl = baseLocalUrl;

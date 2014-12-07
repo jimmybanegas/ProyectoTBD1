@@ -31,9 +31,15 @@ namespace Pharma.Api.Controllers
 
         [HttpGet]
         [AcceptVerbs("GET", "HEAD")]
-        [GET("proveedores/available")]
-        public List<ProveedoresModel> GetAvailableProveedores()
+        [GET("proveedores/available/{accesstoken}")]
+        public List<ProveedoresModel> GetAvailableProveedores(string accesstoken)
         {
+            var sessions = _session.QueryOver<sessions>().Where(c => c.Token == accesstoken)
+            .SingleOrDefault<sessions>();
+
+            var account = sessions.account;
+
+            if (account == null) return null;
             var proveeList = _session.CreateSQLQuery("CALL sp_sel_proveedores")
              .SetResultTransformer(Transformers.AliasToBean<proveedores>())
              .List<proveedores>()
@@ -46,9 +52,15 @@ namespace Pharma.Api.Controllers
 
         [HttpGet]
         [AcceptVerbs("GET", "HEAD")]
-        [GET("compras/available")]
-        public List<ComprasModel> GetAvailableCompras()
+        [GET("compras/available/{accesstoken}")]
+        public List<ComprasModel> GetAvailableCompras(string accesstoken)
         {
+            var sessions = _session.QueryOver<sessions>().Where(c => c.Token == accesstoken)
+            .SingleOrDefault<sessions>();
+
+            var account = sessions.account;
+
+            if (account == null) return null;
             var comprasList = _session.CreateSQLQuery("CALL sp_sel_compras")
              .SetResultTransformer(Transformers.AliasToBean<compras>())
              .List<compras>()
@@ -61,9 +73,15 @@ namespace Pharma.Api.Controllers
 
         [HttpGet]
         [AcceptVerbs("GET", "HEAD")]
-        [GET("cotizaciones/available")]
-        public List<CotizacionesModel> GetAvailableCotizaciones()
+        [GET("cotizaciones/available/{accesstoken}")]
+        public List<CotizacionesModel> GetAvailableCotizaciones(string accesstoken)
         {
+            var sessions = _session.QueryOver<sessions>().Where(c => c.Token == accesstoken)
+            .SingleOrDefault<sessions>();
+
+            var account = sessions.account;
+
+            if (account == null) return null;
             var cotizacionesList = _session.CreateSQLQuery("CALL sp_sel_cotizaciones")
              .SetResultTransformer(Transformers.AliasToBean<cotizaciones>())
              .List<cotizaciones>()
@@ -77,9 +95,15 @@ namespace Pharma.Api.Controllers
 
         [HttpGet]
         [AcceptVerbs("GET", "HEAD")]
-        [GET("ordenes/available")]
-        public List<OrdenesCompraModel> GetAvailableOc()
+        [GET("ordenes/available/{accesstoken}")]
+        public List<OrdenesCompraModel> GetAvailableOc(string accesstoken)
         {
+            var sessions = _session.QueryOver<sessions>().Where(c => c.Token == accesstoken)
+            .SingleOrDefault<sessions>();
+
+            var account = sessions.account;
+
+            if (account == null) return null;
             var ordenesList = _session.CreateSQLQuery("CALL sp_sel_ordenes_de_compra")
              .SetResultTransformer(Transformers.AliasToBean<ordenes_de_compra>())
              .List<ordenes_de_compra>()

@@ -3,17 +3,17 @@
 angular.module('app.services')
     .factory('Facturacion', ['$http', function ($http) {
 
-       /* var account = {};
+        var account = {};
 
-        //var baseRemoteUrl = "http://XXXX.apphb.com/";
-        var baseLocalUrl = "http://localhost:1416";
+        var baseLocalUrl = "http://localhost:1368";
 
         var baseUrl = baseLocalUrl;
 
-        account.getPermissionsForLoggedUser = function () {
-            return $http.get(baseUrl + '/permissions/' + $window.sessionStorage.token);
+   
+        account.getLanesForLoggedUser = function (boardId) {
+            return $http.get(baseUrl + '/lanes/' + boardId + '/' + $window.sessionStorage.token);
         };
         
-        return account;*/
+        return account;
 
     }]);
