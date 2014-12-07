@@ -1,26 +1,22 @@
 ﻿'use strict';
 
 angular.module('app.services')
-    .factory('Inventarios', ['$http', function ($http) {
+    .factory('Inventarios', ['$http', '$window', function ($http, $window) {
 
-        var account = {};
+        var inventario = {};
 
-        //var baseRemoteUrl = "http://XXXX.apphb.com/";
-        var baseLocalUrl = "http://localhost:1416";
+        var baseLocalUrl = "http://localhost:1368";
 
         var baseUrl = baseLocalUrl;
 
-        account.login = function (model) {
-            return $http.post(baseUrl + '/login', model);
+        inventario.getAjustes = function () {
+            return $http.get(baseUrl + '/ajustes/available/' + '/' + $window.sessionStorage.token);
         };
 
-        account.register = function (model) {
-            return $http.post(baseUrl + '/register', model);
+        inventario.getKardex = function () {
+            return $http.get(baseUrl + '/kardex/available/' + '/' + $window.sessionStorage.token);
         };
 
-        account.restorePassword = function (model) {
-            return $http.put(baseUrl + '/login', model);
-        };
-        return account;
+        return inventario;
 
     }]);

@@ -1,26 +1,30 @@
 ﻿'use strict';
 
 angular.module('app.services')
-    .factory('Parametros', ['$http', function ($http) {
+    .factory('Parametros', ['$http', '$window', function ($http, $window) {
 
-        var account = {};
+        var parametro = {};
 
-        //var baseRemoteUrl = "http://XXXX.apphb.com/";
-        var baseLocalUrl = "http://localhost:1416";
+        var baseLocalUrl = "http://localhost:1368";
 
         var baseUrl = baseLocalUrl;
 
-        account.login = function (model) {
-            return $http.post(baseUrl + '/login', model);
+        parametro.getTiposClientes = function () {
+            return $http.get(baseUrl + '/tipos_clientes/available/' + '/' + $window.sessionStorage.token);
         };
 
-        account.register = function (model) {
-            return $http.post(baseUrl + '/register', model);
+        parametro.getCategoriasProductos = function () {
+            return $http.get(baseUrl + '/categorias/available/' + '/' + $window.sessionStorage.token);
         };
 
-        account.restorePassword = function (model) {
-            return $http.put(baseUrl + '/login', model);
+        parametro.getPresentacionesProductos = function () {
+            return $http.get(baseUrl + '/presentaciones/available/' + '/' + $window.sessionStorage.token);
         };
-        return account;
+
+        parametro.getTiposTransacciones = function () {
+            return $http.get(baseUrl + '/tipo_transacciones/available/' + '/' + $window.sessionStorage.token);
+        };
+
+        return parametro;
 
     }]);

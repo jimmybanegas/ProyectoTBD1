@@ -1,26 +1,19 @@
 ﻿'use strict';
 
 angular.module('app.services')
-    .factory('Sistema', ['$http', function ($http) {
+    .factory('Sistema', ['$http', '$window', function ($http, $window) {
 
-        var account = {};
+        var sistema = {};
 
-        //var baseRemoteUrl = "http://XXXX.apphb.com/";
-        var baseLocalUrl = "http://localhost:1416";
+        var baseLocalUrl = "http://localhost:1368";
 
         var baseUrl = baseLocalUrl;
 
-        account.login = function (model) {
-            return $http.post(baseUrl + '/login', model);
+        sistema.getUsuarios = function () {
+            return $http.get(baseUrl + '/usuarios/available/' + '/' + $window.sessionStorage.token);
         };
 
-        account.register = function (model) {
-            return $http.post(baseUrl + '/register', model);
-        };
-
-        account.restorePassword = function (model) {
-            return $http.put(baseUrl + '/login', model);
-        };
-        return account;
+      
+        return sistema;
 
     }]);

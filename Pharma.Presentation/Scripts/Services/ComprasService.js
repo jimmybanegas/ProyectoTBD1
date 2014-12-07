@@ -1,26 +1,38 @@
 ﻿'use strict';
 
 angular.module('app.services')
-    .factory('Sistema', ['$http', function ($http) {
+    .factory('Compras', ['$http', '$window', function ($http, $window) {
 
-      /*  var account = {};
+        var compras = {};
 
-        //var baseRemoteUrl = "http://XXXX.apphb.com/";
-        var baseLocalUrl = "http://localhost:1416";
+        var baseLocalUrl = "http://localhost:1368";
 
         var baseUrl = baseLocalUrl;
 
-        account.login = function (model) {
-            return $http.post(baseUrl + '/login', model);
+        compras.getProveedores = function () {
+            return $http.get(baseUrl + '/proveedores/available/' + '/' + $window.sessionStorage.token);
         };
 
-        account.register = function (model) {
-            return $http.post(baseUrl + '/register', model);
+        compras.getCompras = function () {
+            return $http.get(baseUrl + '/compras/available/' + '/' + $window.sessionStorage.token);
         };
 
-        account.restorePassword = function (model) {
-            return $http.put(baseUrl + '/login', model);
+        compras.getProductos = function () {
+            return $http.get(baseUrl + '/productos/available/' + '/' + $window.sessionStorage.token);
         };
-        return account;
-        */
+
+        compras.getCotizaciones = function () {
+            return $http.get(baseUrl + '/cotizaciones/available/' + '/' + $window.sessionStorage.token);
+        };
+
+        compras.getOrdenes = function () {
+            return $http.get(baseUrl + '/ordenes/available/' + '/' + $window.sessionStorage.token);
+        };
+
+         /*  compras.getCotizaciones = function () {
+            return $http.get(baseUrl + '/cotizaciones/available/' + '/' + $window.sessionStorage.token);
+        };*/
+
+     
+        return compras;
     }]);

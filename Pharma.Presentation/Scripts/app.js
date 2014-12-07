@@ -67,7 +67,7 @@ angular.module('app', ['ui.router', 'app.filters', 'app.services', 'app.directiv
                      controller: 'ParametrosCtrl'
                 })
                 .state('Sistema', {
-                     url: '/compras',
+                     url: '/sistema',
                      layout: 'basic',
                      templateUrl: '/views/sistema',
                      controller: 'SistemaCtrl'
