@@ -4,9 +4,10 @@ using System.Linq;
 using System.Net;
 using System.Web;
 using System.Web.Http;
-using AttributeRouting.Web.Http;
+using AttributeRouting.Web.Mvc;
 using AutoMapper;
 using NHibernate;
+using NHibernate.Impl;
 using NHibernate.Transform;
 using Pharma.Api.Models;
 using Pharma.Domain.Entities;
@@ -68,9 +69,10 @@ namespace Pharma.Api.Controllers
         public List<ClientesModel> GetAvailableClientes(string accesstoken)
         {
             var sessions = _session.QueryOver<sessions>().Where(c => c.Token == accesstoken)
-           .SingleOrDefault<sessions>();
+             .SingleOrDefault<sessions>();
 
-            var account = sessions.account;
+            if (sessions == null) return null;
+                var account = sessions.account;
 
             if (account == null) return null;
             var clientesList = _session.CreateSQLQuery("CALL sp_sel_clientes")
@@ -91,6 +93,25 @@ namespace Pharma.Api.Controllers
             return client;
         }
 
+        [HttpPost]
+        [AcceptVerbs("POST", "HEAD")]
+        [POST("guardarFactura")]
+        public RestorePasswordResponseModel guardarFactura([FromBody] FacturasModel model)
+        {
+           /* var sessions = _session.QueryOver<sessions>().Where(c => c.Token == accesstoken)
+             .SingleOrDefault<sessions>();
+
+            if (sessions == null) return null;
+                var account = sessions.account;
+
+            if (account == null) return null;*/
+
+            return new RestorePasswordResponseModel()
+            {
+                Message = "Grabada",
+                Status = 2
+            };
+        }
 
     }
 }

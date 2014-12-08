@@ -37,7 +37,8 @@ namespace Pharma.Api.Controllers
             var sessions = _session.QueryOver<sessions>().Where(c => c.Token == accesstoken)
              .SingleOrDefault<sessions>();
 
-            var account = sessions.account;
+            if (sessions == null) return null;
+                var account = sessions.account;
 
             if (account == null) return null;
             var accountList = _session.CreateSQLQuery("CALL sp_sel_account")

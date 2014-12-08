@@ -60,8 +60,8 @@
                 <th>Precio</th>
                 <th style="text-align:right;">Total</th>
             </tr>
-            <tr ng:repeat="item in sample_invoice.items">
-                <td><a  ng-click="removeItem(item)" class="btn btn-danger">[X]</a></td>
+            <tr ng:repeat="item in sample_invoice.detalle_facturas">
+                <td><a ng-click="removeItem(item)" class="btn btn-danger">[X]</a></td>
                 <td><input ng:model="item.cod_prod" placeholder="Codigo"></td>
                 <td><input ng:model="item.description" placeholder="Descripcion"></td>
                 <td><input ng:model="item.qty" value="1" size="4" ng:required ng:validate="integer" placeholder="qty"></td>
@@ -99,7 +99,7 @@
         </table>
         <div class="noPrint">
             <!--<a href="#" class="btn btn-primary" ng-show="printMode" ng-click="printInfo()">Print</a>-->
-            <a href="#" class="btn btn-primary" ng-click="clearLocalStorage()">Guardar</a>
+            <a href="#" class="btn btn-primary" ng-click="guardarFactura()">Guardar</a>
             <a href="#" class="btn btn-primary" ng-click="clearLocalStorage()">Limpiar</a>
             <!--<a href="#" class="btn btn-primary" ng-hide="printMode" ng-click="printMode = true;">Turn On Print Mode</a>
             <a href="#" class="btn btn-primary" ng-show="printMode" ng-click="printMode = false;">Turn Off Print Mode</a>-->
@@ -126,15 +126,17 @@
                 <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
                 <h4 class="modal-title" id="myModalLabel1"><strong class="label label-primary">Productos</strong></h4>
                 <div class="modal-body">
-                   <table class="table table-bordered">
-                        <tr>
-                            <th>Código <input type="text" class="" placeholder="Buscar por codigo" ng-model="buscar.cod_prod"></th>
-                            <th>Nombre <input type="text" class="" placeholder="Buscar por nombre" ng-model="buscar.nombre"></th>
-                            <th>Precio Consumidor</th>
-                            <th>Precio Mayorista</th>
-                        </tr>
-                         
-                        <tbody>
+                    <table class="table table-bordered">
+                       
+                            <tr>
+                                <th>Código <input type="text" class="" placeholder="Buscar por codigo" ng-model="buscar.cod_prod"></th>
+                                <th>Nombre <input type="text" class="" placeholder="Buscar por nombre" ng-model="buscar.nombre"></th>
+                                <th>Precio Consumidor</th>
+                                <th>Precio Mayorista</th>
+                            </tr>
+                    
+                      
+                        <tbody >
                             <tr ng-repeat="producto in productos | filter:buscar">
                                 <td ng-dblclick="addItem(producto)"><strong>{{producto.cod_prod}}</strong></td>
                                 <td><i>{{producto.nombre}}</i></td>

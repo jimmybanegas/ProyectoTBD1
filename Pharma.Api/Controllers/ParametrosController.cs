@@ -38,7 +38,8 @@ namespace Pharma.Api.Controllers
             var sessions = _session.QueryOver<sessions>().Where(c => c.Token == accesstoken)
              .SingleOrDefault<sessions>();
 
-            var account = sessions.account;
+            if (sessions == null) return null;
+                var account = sessions.account;
 
             if (account == null) return null; 
               var tiposClientesList = _session.CreateSQLQuery("CALL sp_sel_tipo_cliente")
@@ -59,6 +60,7 @@ namespace Pharma.Api.Controllers
             var sessions = _session.QueryOver<sessions>().Where(c => c.Token == accesstoken)
              .SingleOrDefault<sessions>();
 
+            if (sessions == null) return null;
             var account = sessions.account;
 
             if (account == null) return null;
@@ -80,6 +82,7 @@ namespace Pharma.Api.Controllers
             var sessions = _session.QueryOver<sessions>().Where(c => c.Token == accesstoken)
              .SingleOrDefault<sessions>();
 
+            if (sessions == null) return null;
             var account = sessions.account;
 
             if (account == null) return null;
@@ -101,6 +104,7 @@ namespace Pharma.Api.Controllers
             var sessions = _session.QueryOver<sessions>().Where(c => c.Token == accesstoken)
              .SingleOrDefault<sessions>();
 
+            if (sessions == null) return null;
             var account = sessions.account;
 
             if (account == null) return null;

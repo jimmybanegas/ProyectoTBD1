@@ -7,8 +7,7 @@ namespace Pharma.Api.Models
     public class FacturasModel
     {
         public int num_factura { get; set; }
-
-
+        
 
         /// There are no comments for fecha in the schema.
 
@@ -73,9 +72,7 @@ namespace Pharma.Api.Models
         /// There are no comments for clientes in the schema.
 
         public clientes clientes { get; set; }
-
-
-
+        
         /// There are no comments for detalle_facturas in the schema.
 
         public ICollection<DetalleFacturasModel> detalle_facturas { get; set; }
