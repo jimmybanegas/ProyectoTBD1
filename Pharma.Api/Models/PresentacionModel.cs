@@ -38,10 +38,5 @@ namespace Pharma.Api.Models
 
         public string usuario_actu { get; set; }
 
-
-
-        /// There are no comments for productos in the schema.
-
-        public ICollection<ProductosModel> productos { get; set; }
     }
 }

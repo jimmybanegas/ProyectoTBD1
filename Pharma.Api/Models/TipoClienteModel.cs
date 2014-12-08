@@ -40,12 +40,5 @@ namespace Pharma.Api.Models
         /// There are no comments for usuario_actu in the schema.
 
         public string usuario_actu { get; set; }
-
-
-
-
-        /// There are no comments for clientes in the schema.
-
-        public ICollection<ClientesModel> clientes { get; set; }
     }
 }

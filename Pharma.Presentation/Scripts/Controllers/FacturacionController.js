@@ -5,7 +5,6 @@ angular.module('app.controllers')
         '$scope', '$location', '$window', 'Facturacion', function ($scope, $location, $window, Facturacion) {
 
         $scope.$root.title = 'Facturacion';
-        // TODO: Forgot password
 
         $scope.logoRemoved = false;
 
@@ -13,19 +12,27 @@ angular.module('app.controllers')
 
         $scope.fecha = new Date();
             
-
         $scope.sample_invoice = {
             tax: 15.00,
             invoice_number: 10,
-            customer_info: { name: "Mr. John Doe", web_link: "John Doe Designs Inc.", address1: "1 Infinite Loop", address2: "Cupertino, California, US", postal: "90210" },
-            company_info: { name: "Metaware Labs", web_link: "www.metawarelabs.com", address1: "123 Yonge Street", address2: "Toronto, ON, Canada", postal: "M5S 1B6" },
-            items: [{ qty: 10, description: 'Gadget', cost: 9.95 }]
+            customer_info: { },
+            items: []
         };
 
-        $scope.addItem = function () {
-            $scope.sample_invoice.items.push({ qty: 0, cost: 0, description: "" });
-        }
+        $scope.addItem = function (producto) {
+            var costo;
+            if ($scope.sample_invoice.customer_info.tipo == "CONSUMIDOR")
+                costo = producto.precio_consumi;
+            else
+                costo = producto.precio_mayor;
 
+            $scope.sample_invoice.items.push({ cod_prod: producto.cod_prod ,description: producto.nombre, qty: 1, cost: costo });
+        }
+        
+        $scope.addCliente = function (cliente) {
+            $scope.sample_invoice.customer_info = {};
+            $scope.sample_invoice.customer_info = { id_cliente: cliente.id_cliente, nombre: cliente.nombre, tipo: cliente.tipo_cliente.descripcion };
+        }
 
         $scope.showLogo = function () {
             $scope.logoRemoved = false;
@@ -61,6 +68,41 @@ angular.module('app.controllers')
                 $scope.sample_invoice = "";
             }
         }
+
+        $scope.productos = [];
+
+        $scope.getProductos = function () {
+
+            Facturacion
+                .getProductos()
+                .success(function (data, status, headers, config) {
+                    $scope.productos = data;
+                    console.log(data);
+                })
+                .error(function (data, status, headers, config) {
+                    console.log(data);
+                });
+        };
+        
+        $scope.clientes = [];
+
+        $scope.getClientes = function () {
+
+            Facturacion
+                .getClientes()
+                .success(function (data, status, headers, config) {
+                    $scope.clientes = data;
+                    console.log(data);
+                })
+                .error(function (data, status, headers, config) {
+                    console.log(data);
+                });
+        };
+
+
+        $scope.$on('$viewContentLoaded', function () {
+            $window.ga('send', 'pageview', { 'page': $location.path(), 'title': $scope.$root.title });
+        });
        
     }
 ]);

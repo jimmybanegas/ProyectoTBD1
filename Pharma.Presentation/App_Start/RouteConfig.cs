@@ -5,7 +5,7 @@
 // --------------------------------------------------------------------------------------------------------------------
 
 using System.Web.Routing;
-using App.Pharma.Presentation.Routing;
+using Pharma.Presentation.Routing;
 
 namespace Pharma.Presentation
 {

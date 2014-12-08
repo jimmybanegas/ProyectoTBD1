@@ -36,16 +36,25 @@ namespace Pharma.Api.Controllers
         public List<ProductosModel> GetAvailableProducts(string accesstoken)
         {
           
-            var sessions = _session.QueryOver<sessions>().Where(c => c.Token == accesstoken)
+            var sessions = _session.QueryOver<sessions>().Where(c => c.Token == accesstoken).And(c=>c.ExpirationTime >= DateTime.Now)
              .SingleOrDefault<sessions>();
 
-            var account = sessions.account;
+            if (sessions == null) return null;
+                var account = sessions.account;
 
             if (account == null) return null;
-            var productsList = _session.CreateSQLQuery("CALL sp_sel_productos")
+                 var productsList = _session.CreateSQLQuery("CALL sp_sel_productos")
                 .SetResultTransformer(Transformers.AliasToBean<productos>())
                 .List<productos>()
                 .ToList();
+
+            /*foreach (var productose in productsList)
+            {
+                var productose1 = productose;
+                productose.presentacion_productos = _session.QueryOver<presentacion_productos>()
+                    .Where(c => c.cod_presentacion == productose1.cod_presentacion)
+                    .SingleOrDefault<presentacion_productos>();
+            }*/
 
             var prod = _mappingEngine.Map<List<productos>, List<ProductosModel>>(productsList);
 
@@ -64,10 +73,18 @@ namespace Pharma.Api.Controllers
             var account = sessions.account;
 
             if (account == null) return null;
-            var clientesList = _session.CreateSQLQuery("CALL sp_sel_productos")
+            var clientesList = _session.CreateSQLQuery("CALL sp_sel_clientes")
              .SetResultTransformer(Transformers.AliasToBean<clientes>())
              .List<clientes>()
              .ToList();
+
+            foreach (var cliente in clientesList)
+            {
+                var cliente1 = cliente;
+                cliente.tipo_cliente = _session.QueryOver<tipo_cliente>()
+                    .Where(c => c.id_tipocliente == cliente1.id_tipocliente)
+                    .SingleOrDefault<tipo_cliente>();
+            }
 
             var client = _mappingEngine.Map<List<clientes>, List<ClientesModel>>(clientesList);
 

@@ -7,6 +7,11 @@ angular.module('app.controllers')
 
             $scope.hasError = false;
             $scope.errorMessage = '';
+
+            $scope.logout = function() {
+                delete $window.sessionStorage.token;
+            }
+
             $scope.isLogged = function () {
                 return $window.sessionStorage.token != null;
             };

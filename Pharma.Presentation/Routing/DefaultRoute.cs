@@ -6,7 +6,7 @@
 
 using System.Web.Routing;
 
-namespace App.Pharma.Presentation.Routing
+namespace Pharma.Presentation.Routing
 {
     public class DefaultRoute : Route
     {

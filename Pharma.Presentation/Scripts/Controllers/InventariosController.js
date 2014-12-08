@@ -8,6 +8,8 @@ angular.module('app.controllers')
             // TODO: Forgot password
 
 
-
+            $scope.$on('$viewContentLoaded', function () {
+                $window.ga('send', 'pageview', { 'page': $location.path(), 'title': $scope.$root.title });
+            });
         }
     ]);

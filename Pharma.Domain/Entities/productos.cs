@@ -121,7 +121,7 @@ namespace Pharma.Domain.Entities
         /// <summary>
         /// There are no comments for cod_presentacion in the schema.
         /// </summary>
-        public virtual int? cod_presentacion
+        public virtual int cod_presentacion
         {
             get;
             set;

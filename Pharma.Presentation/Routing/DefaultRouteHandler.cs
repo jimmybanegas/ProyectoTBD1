@@ -9,7 +9,7 @@ using System.Web;
 using System.Web.Routing;
 using System.Web.WebPages;
 
-namespace App.Pharma.Presentation.Routing
+namespace Pharma.Presentation.Routing
 {
     public class DefaultRouteHandler : IRouteHandler
     {

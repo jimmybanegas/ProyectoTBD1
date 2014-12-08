@@ -16,7 +16,6 @@ angular.module('app', ['ui.router', 'app.filters', 'app.services', 'app.directiv
           $httpProvider.defaults.headers.patch = { 'Content-Type': 'application/json' };
           $httpProvider.defaults.headers.get = { 'Content-Type': 'application/json' };
 
-    //      var access = routingConfig.accessLevels;
 
             $stateProvider
                 .state('home', {
@@ -80,17 +79,6 @@ angular.module('app', ['ui.router', 'app.filters', 'app.services', 'app.directiv
 
 
             $locationProvider.html5Mode(true);
-
-           /* $httpProvider.interceptors.push(function ($q, $location) {
-                return {
-                    'responseError': function (response) {
-                        if (response.status === 401 || response.status === 403) {
-                            $location.path('/');
-                        }
-                        return $q.reject(response);
-                    }
-                };
-            });*/
 
         }
     ])
