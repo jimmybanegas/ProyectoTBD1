@@ -1,0 +1,45 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<hibernate-mapping assembly="Pharma.Domain" namespace="Pharma.Domain" xmlns="urn:nhibernate-mapping-2.2">
+  <class name="KardexOperation" table="KardexOperations">
+    <id name="OperationId" type="Int32">
+      <column name="OperationId" not-null="true" precision="10" scale="0" />
+      <generator class="guid" />
+    </id>
+    <property name="OperationName" type="String">
+      <column name="OperationName" default="NULL" not-null="false" length="25" />
+    </property>
+    <property name="ProductCost" type="Single">
+      <column name="ProductCost" default="NULL" not-null="false" precision="24" />
+    </property>
+    <property name="PreviousExistence" type="Int32">
+      <column name="PreviousExistence" default="NULL" not-null="false" precision="10" scale="0" />
+    </property>
+    <property name="NewExistence" type="Int32">
+      <column name="NewExistence" default="NULL" not-null="false" precision="10" scale="0" />
+    </property>
+    <property name="ProductPrice" type="Single">
+      <column name="ProductPrice" default="NULL" not-null="false" precision="24" />
+    </property>
+    <property name="Quantity" type="Int32">
+      <column name="Quantity" default="NULL" not-null="false" precision="10" scale="0" />
+    </property>
+    <property name="CreationDate" type="DateTime">
+      <column name="CreationDate" default="NULL" not-null="false" />
+    </property>
+    <property name="ModifyDate" type="DateTime">
+      <column name="ModifyDate" default="NULL" not-null="false" />
+    </property>
+    <property name="OperationDate" type="DateTime">
+      <column name="OperationDate" default="NULL" not-null="false" />
+    </property>
+    <property name="CreatedByUser" type="String">
+      <column name="CreatedByUser" default="NULL" not-null="false" length="25" />
+    </property>
+    <property name="ModifiedByUser" type="String">
+      <column name="ModifiedByUser" default="NULL" not-null="false" length="25" />
+    </property>
+    <many-to-one name="Product" class="Product">
+      <column name="ProductId" not-null="true" precision="10" scale="0" />
+    </many-to-one>
+  </class>
+</hibernate-mapping>

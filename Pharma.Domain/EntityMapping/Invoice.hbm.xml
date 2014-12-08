@@ -1,0 +1,42 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<hibernate-mapping assembly="Pharma.Domain" namespace="Pharma.Domain" xmlns="urn:nhibernate-mapping-2.2">
+  <class name="Invoice" table="Invoices">
+    <id name="InvoiceId" type="Int32">
+      <column name="InvoiceId" not-null="true" precision="10" scale="0" />
+      <generator class="identity" />
+    </id>
+    <property name="InvoiceDate" type="DateTime">
+      <column name="InvoiceDate" default="NULL" not-null="false" />
+    </property>
+    <property name="SubTotal" type="Single">
+      <column name="SubTotal" default="NULL" not-null="false" precision="24" />
+    </property>
+    <property name="SalesTax" type="Single">
+      <column name="SalesTax" default="NULL" not-null="false" precision="24" />
+    </property>
+    <property name="Disccount" type="Single">
+      <column name="Disccount" default="NULL" not-null="false" precision="24" />
+    </property>
+    <property name="CreationDate" type="DateTime">
+      <column name="CreationDate" default="NULL" not-null="false" />
+    </property>
+    <property name="ModifyDate" type="DateTime">
+      <column name="ModifyDate" default="NULL" not-null="false" />
+    </property>
+    <property name="CreatedByUser" type="String">
+      <column name="CreatedByUser" default="NULL" not-null="false" length="25" />
+    </property>
+    <property name="ModifiedByUser" type="String">
+      <column name="ModifiedByUser" default="NULL" not-null="false" length="25" />
+    </property>
+    <many-to-one name="Customer" class="Customer">
+      <column name="CustomerId" not-null="true" precision="10" scale="0" />
+    </many-to-one>
+    <set name="Invoicedetails" inverse="true" generic="true">
+      <key>
+        <column name="InvoiceId" />
+      </key>
+      <one-to-many class="InvoiceDetail" />
+    </set>
+  </class>
+</hibernate-mapping>

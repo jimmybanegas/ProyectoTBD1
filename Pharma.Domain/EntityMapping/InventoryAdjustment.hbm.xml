@@ -1,0 +1,36 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<hibernate-mapping assembly="Pharma.Domain" namespace="Pharma.Domain" xmlns="urn:nhibernate-mapping-2.2">
+  <class name="InventoryAdjustment" table="InventoryAdjustments">
+    <id name="AdjustmentId" type="Int32">
+      <column name="AdjustmentId" not-null="true" precision="10" scale="0" />
+      <generator class="identity" />
+    </id>
+    <property name="AdjustmentType" type="String">
+      <column name="AdjustmentType" default="NULL" not-null="false" length="25" />
+    </property>
+    <property name="AdjustmentDate" type="DateTime">
+      <column name="AdjustmentDate" default="NULL" not-null="false" />
+    </property>
+    <property name="TotalAdjusted" type="Int32">
+      <column name="TotalAdjusted" default="NULL" not-null="false" precision="10" scale="0" />
+    </property>
+    <property name="CreationDate" type="DateTime">
+      <column name="CreationDate" default="NULL" not-null="false" />
+    </property>
+    <property name="ModifyDate" type="DateTime">
+      <column name="ModifyDate" default="NULL" not-null="false" />
+    </property>
+    <property name="CreatedByUser" type="String">
+      <column name="CreatedByUser" default="NULL" not-null="false" length="25" />
+    </property>
+    <property name="ModifiedByUser" type="String">
+      <column name="ModifiedByUser" default="NULL" not-null="false" length="25" />
+    </property>
+    <set name="Inventoryadjustmentdetails" inverse="true" generic="true">
+      <key>
+        <column name="AdjustmentId" />
+      </key>
+      <one-to-many class="InventoryaAjustmentDetail" />
+    </set>
+  </class>
+</hibernate-mapping>

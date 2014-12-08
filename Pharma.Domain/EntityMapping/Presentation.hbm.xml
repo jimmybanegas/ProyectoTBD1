@@ -1,0 +1,30 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<hibernate-mapping assembly="Pharma.Domain" namespace="Pharma.Domain" xmlns="urn:nhibernate-mapping-2.2">
+  <class name="Presentation" table="Presentations">
+    <id name="PresentationId" type="Int32">
+      <column name="PresentationId" not-null="true" precision="10" scale="0" />
+      <generator class="identity" />
+    </id>
+    <property name="Name" type="String">
+      <column name="Name" default="NULL" not-null="false" length="25" />
+    </property>
+    <property name="CreationDate" type="DateTime">
+      <column name="CreationDate" default="NULL" not-null="false" />
+    </property>
+    <property name="ModifyDate" type="DateTime">
+      <column name="ModifyDate" default="NULL" not-null="false" />
+    </property>
+    <property name="CreatedByUser" type="String">
+      <column name="CreatedByUser" default="NULL" not-null="false" length="25" />
+    </property>
+    <property name="ModifiedByUser" type="String">
+      <column name="ModifiedByUser" default="NULL" not-null="false" length="25" />
+    </property>
+    <set name="Products" inverse="true" generic="true">
+      <key>
+        <column name="PresentationId" />
+      </key>
+      <one-to-many class="Product" />
+    </set>
+  </class>
+</hibernate-mapping>

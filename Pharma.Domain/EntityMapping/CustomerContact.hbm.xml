@@ -1,0 +1,33 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<hibernate-mapping assembly="Pharma.Domain" namespace="Pharma.Domain" xmlns="urn:nhibernate-mapping-2.2">
+  <class name="CustomerContact" table="CustomerContacts">
+    <id name="ContactId" type="Int32">
+      <column name="ContactId" not-null="true" precision="10" scale="0" />
+      <generator class="identity" />
+    </id>
+    <property name="Email" type="String">
+      <column name="Email" default="NULL" not-null="false" length="25" />
+    </property>
+    <property name="Name" type="String">
+      <column name="Name" default="NULL" not-null="false" length="25" />
+    </property>
+    <property name="Phone" type="String">
+      <column name="Phone" default="NULL" not-null="false" length="25" />
+    </property>
+    <property name="CreationDate" type="DateTime">
+      <column name="CreationDate" default="NULL" not-null="false" />
+    </property>
+    <property name="ModifyDate" type="DateTime">
+      <column name="ModifyDate" default="NULL" not-null="false" />
+    </property>
+    <property name="CreatedByUser" type="String">
+      <column name="CreatedByUser" default="NULL" not-null="false" length="25" />
+    </property>
+    <property name="ModifiedByUser" type="String">
+      <column name="ModifiedByUser" default="NULL" not-null="false" length="25" />
+    </property>
+    <many-to-one name="Customer" class="Customer">
+      <column name="CustomerId" not-null="true" precision="10" scale="0" />
+    </many-to-one>
+  </class>
+</hibernate-mapping>

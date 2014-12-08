@@ -1,0 +1,37 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<hibernate-mapping assembly="Pharma.Domain" namespace="Pharma.Domain" xmlns="urn:nhibernate-mapping-2.2">
+  <class name="EstimateDetail" table="EstimateDetails">
+    <composite-id>
+      <key-property name="EstimateDetailNumber" type="Int32">
+        <column name="EstimateDetailNumber" not-null="true" precision="10" scale="0" />
+      </key-property>
+      <key-property name="ProductId" type="Int32">
+        <column name="ProductId" not-null="true" precision="10" scale="0" />
+      </key-property>
+    </composite-id>
+    <property name="Quantity" type="Int32">
+      <column name="Quantity" default="NULL" not-null="false" precision="10" scale="0" />
+    </property>
+    <property name="UnitPrice" type="Single">
+      <column name="UnitPrice" default="NULL" not-null="false" precision="24" />
+    </property>
+    <property name="CreationDate" type="DateTime">
+      <column name="CreationDate" default="NULL" not-null="false" />
+    </property>
+    <property name="ModifyDate" type="DateTime">
+      <column name="ModifyDate" default="NULL" not-null="false" />
+    </property>
+    <property name="CreatedByUser" type="String">
+      <column name="CreatedByUser" default="NULL" not-null="false" length="25" />
+    </property>
+    <property name="ModifiedByUser" type="String">
+      <column name="ModifiedByUser" default="NULL" not-null="false" length="25" />
+    </property>
+    <many-to-one name="Product" class="Product">
+      <column name="ProductId" not-null="true" precision="10" scale="0" />
+    </many-to-one>
+    <many-to-one name="Priceestimate" class="PriceEstimate">
+      <column name="PriceEstimateId" not-null="true" precision="10" scale="0" />
+    </many-to-one>
+  </class>
+</hibernate-mapping>

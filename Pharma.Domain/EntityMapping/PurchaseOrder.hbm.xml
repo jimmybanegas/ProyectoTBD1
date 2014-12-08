@@ -1,0 +1,39 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<hibernate-mapping assembly="Pharma.Domain" namespace="Pharma.Domain" xmlns="urn:nhibernate-mapping-2.2">
+  <class name="PurchaseOrder" table="PurchaseOrders">
+    <id name="PurchaseOrderId" type="Int32">
+      <column name="PurchaseOrderId" not-null="true" precision="10" scale="0" />
+      <generator class="identity" />
+    </id>
+    <property name="OrderDate" type="DateTime">
+      <column name="OrderDate" default="NULL" not-null="false" />
+    </property>
+    <property name="Total" type="DateTime">
+      <column name="Total" default="NULL" not-null="false" />
+    </property>
+    <property name="OrderStatus" type="String">
+      <column name="OrderStatus" default="NULL" not-null="false" length="25" />
+    </property>
+    <property name="CreationDate" type="DateTime">
+      <column name="CreationDate" default="NULL" not-null="false" />
+    </property>
+    <property name="ModifyDate" type="DateTime">
+      <column name="ModifyDate" default="NULL" not-null="false" />
+    </property>
+    <property name="CreatedByUser" type="String">
+      <column name="CreatedByUser" default="NULL" not-null="false" length="25" />
+    </property>
+    <property name="ModifiedByUser" type="String">
+      <column name="ModifiedByUser" default="NULL" not-null="false" length="25" />
+    </property>
+    <many-to-one name="Provider" class="Provider">
+      <column name="ProviderId" not-null="true" precision="10" scale="0" />
+    </many-to-one>
+    <set name="Purchaseorderdetails" inverse="true" generic="true">
+      <key>
+        <column name="PurchaseOrderId" />
+      </key>
+      <one-to-many class="PurchaseOrderDetail" />
+    </set>
+  </class>
+</hibernate-mapping>

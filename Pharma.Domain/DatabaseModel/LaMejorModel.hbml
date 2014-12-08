@@ -1,0 +1,1470 @@
+<?xml version="1.0" encoding="utf-8"?>
+<hibernate-mapping assembly="Pharma.Domain" namespace="Pharma.Domain" p1:name="LaMejorDBModel" p1:Guid="f4b78636-0e8a-425a-b98b-47293e053efa" xmlns:p1="http://devart.com/schemas/EntityDeveloper/1.0" xmlns="urn:nhibernate-mapping-2.2">
+  <class name="Address" table="" p1:Guid="1926ab77-905d-4959-88d6-36d2eee77a1c">
+    <id name="AddressId" type="Int32" p1:ValidateRequired="True" p1:Guid="9a078bbd-d2cd-4108-a59f-7b0c054b05ee">
+      <column name="" not-null="true" precision="10" scale="0" p1:unicode="false" />
+      <generator class="identity" />
+    </id>
+    <property name="AddressContent" type="String" p1:nullable="true" p1:ValidateMaxLength="25" p1:ValidateRequired="False" p1:Guid="7cdb1fa0-474e-4c13-8062-41088a8f15e7">
+      <column name="" default="NULL" not-null="false" length="25" p1:unicode="true" />
+    </property>
+    <property name="ModifyDate" type="DateTime" p1:nullable="true" p1:ValidateRequired="False" p1:Guid="d45b4102-6ac6-4e06-ae0d-9153a251c15d">
+      <column name="" default="NULL" not-null="false" p1:unicode="false" />
+    </property>
+    <property name="CreationDate" type="DateTime" p1:nullable="true" p1:ValidateRequired="False" p1:Guid="486fc40c-33d8-43fa-a19b-11127e452e74">
+      <column name="" default="NULL" not-null="false" p1:unicode="false" />
+    </property>
+    <property name="CreatedByUser" type="String" p1:nullable="true" p1:ValidateMaxLength="25" p1:ValidateRequired="False" p1:Guid="c577ee30-6906-40b8-ba8d-8a0d94e1c5f4">
+      <column name="" default="NULL" not-null="false" length="25" p1:unicode="true" />
+    </property>
+    <property name="ModifiedByUser" type="String" p1:nullable="true" p1:ValidateMaxLength="25" p1:ValidateRequired="False" p1:Guid="79b0590a-fa27-4c41-8385-021304f79124">
+      <column name="" default="NULL" not-null="false" length="25" p1:unicode="true" />
+    </property>
+    <many-to-one name="Customer" class="Customer" p1:AssociationGuid="e8a5917f-7c75-4db9-8901-9f232edfa8b9" p1:Guid="9c6cb23d-5a88-4244-8824-dfd410810ec5">
+      <column name="" not-null="true" precision="10" scale="0" p1:unicode="false" />
+    </many-to-one>
+  </class>
+  <class name="Category" table="" p1:Guid="cbde8965-f364-41eb-aa27-8e5fb6015b54">
+    <id name="CategoryId" type="Int32" p1:ValidateRequired="True" p1:Guid="0456f320-9be2-4a1c-a54c-0386b86c9a83">
+      <column name="" not-null="true" precision="10" scale="0" p1:unicode="false" />
+      <generator class="identity" />
+    </id>
+    <property name="CategoryName" type="String" p1:nullable="true" p1:ValidateMaxLength="25" p1:ValidateRequired="False" p1:Guid="26adab0c-30d5-44d1-b012-6bdf6c67a053">
+      <column name="" default="NULL" not-null="false" length="25" p1:unicode="true" />
+    </property>
+    <property name="CreationDate" type="DateTime" p1:nullable="true" p1:ValidateRequired="False" p1:Guid="72da2d5a-8a59-420e-bb0d-326a35eb47ae">
+      <column name="" default="NULL" not-null="false" p1:unicode="false" />
+    </property>
+    <property name="ModifyDate" type="DateTime" p1:nullable="true" p1:ValidateRequired="False" p1:Guid="9b979a44-e725-48e1-b6f2-d7bfc104cb93">
+      <column name="" default="NULL" not-null="false" p1:unicode="false" />
+    </property>
+    <property name="CreatedByUser" type="String" p1:nullable="true" p1:ValidateMaxLength="25" p1:ValidateRequired="False" p1:Guid="a26e48f0-1ca6-4dd1-94c8-f9326d8d56d4">
+      <column name="" default="NULL" not-null="false" length="25" p1:unicode="true" />
+    </property>
+    <property name="ModifiedByUser" type="String" p1:nullable="true" p1:ValidateMaxLength="25" p1:ValidateRequired="False" p1:Guid="dd6aba08-b9ec-4731-85d9-2ee536d6d941">
+      <column name="" default="NULL" not-null="false" length="25" p1:unicode="true" />
+    </property>
+    <set name="Products" inverse="true" generic="true" p1:AssociationGuid="095627f3-cd6a-46ec-9c62-6d362ea1e70b" p1:Guid="878be7fb-d007-407c-89cf-3fc1305ff4da">
+      <key>
+        <column name="" />
+      </key>
+      <one-to-many class="Product" />
+    </set>
+  </class>
+  <class name="Customer" table="" p1:Guid="da05e32d-8274-4470-9154-0bf7e0b3ea1b">
+    <id name="CustomerId" type="Int32" p1:ValidateRequired="True" p1:Guid="a83fb0ee-810d-440b-a5a5-b514dc184d98">
+      <column name="" not-null="true" precision="10" scale="0" p1:unicode="false" />
+      <generator class="identity" />
+    </id>
+    <property name="CustomerName" type="String" p1:nullable="true" p1:ValidateMaxLength="25" p1:ValidateRequired="False" p1:Guid="f11d3170-93b6-43e9-bee0-34d703879d0e">
+      <column name="" default="NULL" not-null="false" length="25" p1:unicode="true" />
+    </property>
+    <property name="CreationDate" type="DateTime" p1:nullable="true" p1:ValidateRequired="False" p1:Guid="4a8e059e-f143-48d6-8ac6-d75677cc588c">
+      <column name="" default="NULL" not-null="false" p1:unicode="false" />
+    </property>
+    <property name="ModifyDate" type="DateTime" p1:nullable="true" p1:ValidateRequired="False" p1:Guid="42f8eedc-66e8-4727-9f9a-8c72fbdf3bd4">
+      <column name="" default="NULL" not-null="false" p1:unicode="false" />
+    </property>
+    <property name="CreatedByUser" type="String" p1:nullable="true" p1:ValidateMaxLength="25" p1:ValidateRequired="False" p1:Guid="698bfced-afef-42eb-90ee-32b8c5d515c5">
+      <column name="" default="NULL" not-null="false" length="25" p1:unicode="true" />
+    </property>
+    <property name="ModifiedByUser" type="String" p1:nullable="true" p1:ValidateMaxLength="25" p1:ValidateRequired="False" p1:Guid="6feeced3-c25b-4d48-81d5-5ba154b5040a">
+      <column name="" default="NULL" not-null="false" length="25" p1:unicode="true" />
+    </property>
+    <many-to-one name="Customertype" class="CustomerType" p1:AssociationGuid="4d111830-3670-4012-bbe3-0e9df98b02f7" p1:Guid="b527edfe-a600-46d8-9e49-5241738dc52f">
+      <column name="" not-null="true" precision="10" scale="0" p1:unicode="false" />
+    </many-to-one>
+    <set name="Addresses" inverse="true" generic="true" p1:AssociationGuid="e8a5917f-7c75-4db9-8901-9f232edfa8b9" p1:Guid="d6dd0db9-4283-4034-9665-08e70c7d4a8b">
+      <key>
+        <column name="" />
+      </key>
+      <one-to-many class="Address" />
+    </set>
+    <set name="Customercontacts" inverse="true" generic="true" p1:AssociationGuid="c7806145-2773-4a9a-bee6-45eb110b05bc" p1:Guid="c88f9a2e-1f42-47be-a29c-555f0cc01787">
+      <key>
+        <column name="" />
+      </key>
+      <one-to-many class="CustomerContact" />
+    </set>
+    <set name="Invoices" inverse="true" generic="true" p1:AssociationGuid="48189a69-9255-41a3-9002-0218cd4dea53" p1:Guid="7af9e5d7-578f-42e2-86e5-747e015e65e9">
+      <key>
+        <column name="" />
+      </key>
+      <one-to-many class="Invoice" />
+    </set>
+    <set name="Phonenumbers" inverse="true" generic="true" p1:AssociationGuid="20338055-372c-45b5-baf9-45df82cbdb37" p1:Guid="270c48c3-de02-4661-8c8e-6d301ea51e1e">
+      <key>
+        <column name="" />
+      </key>
+      <one-to-many class="PhoneNumber" />
+    </set>
+  </class>
+  <class name="CustomerContact" table="" p1:Guid="2046009c-e443-4e38-bfaa-1e62d8f0ee28">
+    <id name="ContactId" type="Int32" p1:ValidateRequired="True" p1:Guid="d386a3a8-ab09-4952-bd61-75d313c16866">
+      <column name="" not-null="true" precision="10" scale="0" p1:unicode="false" />
+      <generator class="identity" />
+    </id>
+    <property name="Email" type="String" p1:nullable="true" p1:ValidateMaxLength="25" p1:ValidateRequired="False" p1:Guid="be45edb0-b51b-4593-86d5-06fbebd32971">
+      <column name="" default="NULL" not-null="false" length="25" p1:unicode="true" />
+    </property>
+    <property name="Name" type="String" p1:nullable="true" p1:ValidateMaxLength="25" p1:ValidateRequired="False" p1:Guid="82f6aecb-c40d-4299-b314-38dcd75c7711">
+      <column name="" default="NULL" not-null="false" length="25" p1:unicode="true" />
+    </property>
+    <property name="Phone" type="String" p1:nullable="true" p1:ValidateMaxLength="25" p1:ValidateRequired="False" p1:Guid="5c688a30-2ca0-4e69-9cba-591ac40c8ef0">
+      <column name="" default="NULL" not-null="false" length="25" p1:unicode="true" />
+    </property>
+    <property name="CreationDate" type="DateTime" p1:nullable="true" p1:ValidateRequired="False" p1:Guid="7a74cbd8-772e-4f17-9394-96fe04ad9593">
+      <column name="" default="NULL" not-null="false" p1:unicode="false" />
+    </property>
+    <property name="ModifyDate" type="DateTime" p1:nullable="true" p1:ValidateRequired="False" p1:Guid="56f13e1a-f193-463b-a808-3ee25838509f">
+      <column name="" default="NULL" not-null="false" p1:unicode="false" />
+    </property>
+    <property name="CreatedByUser" type="String" p1:nullable="true" p1:ValidateMaxLength="25" p1:ValidateRequired="False" p1:Guid="6ae91699-8b46-49c2-b4da-9cba43ad0da3">
+      <column name="" default="NULL" not-null="false" length="25" p1:unicode="true" />
+    </property>
+    <property name="ModifiedByUser" type="String" p1:nullable="true" p1:ValidateMaxLength="25" p1:ValidateRequired="False" p1:Guid="5520423b-982c-4dd1-a398-5da27d375316">
+      <column name="" default="NULL" not-null="false" length="25" p1:unicode="true" />
+    </property>
+    <many-to-one name="Customer" class="Customer" p1:AssociationGuid="c7806145-2773-4a9a-bee6-45eb110b05bc" p1:Guid="ad0dd29c-e713-4774-ab40-855190f5745e">
+      <column name="" not-null="true" precision="10" scale="0" p1:unicode="false" />
+    </many-to-one>
+  </class>
+  <class name="CustomerType" table="" p1:Guid="bdf6bef8-1f4f-471a-97da-c2aba421749b">
+    <id name="CustomerTypeId" type="Int32" p1:ValidateRequired="True" p1:Guid="1bbff5e0-e55b-47c5-9b83-60017f4bcd83">
+      <column name="" not-null="true" precision="10" scale="0" p1:unicode="false" />
+    </id>
+    <property name="TypeName" type="String" p1:nullable="true" p1:ValidateMaxLength="25" p1:ValidateRequired="False" p1:Guid="4d77133b-bffd-43be-bde8-83365cbacd29">
+      <column name="" default="NULL" not-null="false" length="25" p1:unicode="true" />
+    </property>
+    <property name="CreatedByUser" type="String" p1:nullable="true" p1:ValidateMaxLength="25" p1:ValidateRequired="False" p1:Guid="4749f5f7-4963-44bf-9f04-edfeb462a63a">
+      <column name="" default="NULL" not-null="false" length="25" p1:unicode="true" />
+    </property>
+    <property name="ModifiedByUser" type="String" p1:nullable="true" p1:ValidateMaxLength="25" p1:ValidateRequired="False" p1:Guid="c9fadf7b-862e-482d-9059-1b37734705f4">
+      <column name="" default="NULL" not-null="false" length="25" p1:unicode="true" />
+    </property>
+    <property name="CreationDate" type="DateTime" p1:nullable="true" p1:ValidateRequired="False" p1:Guid="58e3e156-90f5-477a-99d3-8e24dd776095">
+      <column name="" default="NULL" not-null="false" p1:unicode="false" />
+    </property>
+    <property name="ModifyDate" type="DateTime" p1:nullable="true" p1:ValidateRequired="False" p1:Guid="5abf99f5-60cd-4822-b899-ef868b09c3ca">
+      <column name="" default="NULL" not-null="false" p1:unicode="false" />
+    </property>
+    <set name="Customers" inverse="true" generic="true" p1:AssociationGuid="4d111830-3670-4012-bbe3-0e9df98b02f7" p1:Guid="e997e913-78e4-45c4-a7db-0a953dc229d9">
+      <key>
+        <column name="" />
+      </key>
+      <one-to-many class="Customer" />
+    </set>
+  </class>
+  <class name="EstimateDetail" table="" p1:Guid="933c88ad-e612-4eb2-ba86-45a3396bb7c8">
+    <composite-id>
+      <key-property name="EstimateDetailNumber" type="Int32" p1:ValidateRequired="True" p1:Guid="db461535-cb4b-41a8-981a-1b11b4a912d9">
+        <column name="" not-null="true" precision="10" scale="0" p1:unicode="false" />
+      </key-property>
+      <key-property name="ProductId" type="Int32" p1:ValidateRequired="True" p1:Guid="e6c0b681-2467-4c5e-be59-37662d71c5ef">
+        <column name="" not-null="true" precision="10" scale="0" p1:unicode="false" />
+      </key-property>
+    </composite-id>
+    <property name="Quantity" type="Int32" p1:nullable="true" p1:ValidateRequired="False" p1:Guid="976ddc16-d392-4da6-9ede-bc6936d21310">
+      <column name="" default="NULL" not-null="false" precision="10" scale="0" p1:unicode="false" />
+    </property>
+    <property name="UnitPrice" type="Single" p1:nullable="true" p1:ValidateRequired="False" p1:Guid="fa18efaf-2559-439b-b3b8-c44969bc8a23">
+      <column name="" default="NULL" not-null="false" precision="24" p1:unicode="false" />
+    </property>
+    <property name="CreationDate" type="DateTime" p1:nullable="true" p1:ValidateRequired="False" p1:Guid="290e52d0-c512-49bb-adad-013aeb3221a4">
+      <column name="" default="NULL" not-null="false" p1:unicode="false" />
+    </property>
+    <property name="ModifyDate" type="DateTime" p1:nullable="true" p1:ValidateRequired="False" p1:Guid="cdfb503b-d163-4c90-8cf3-063143a2f8ff">
+      <column name="" default="NULL" not-null="false" p1:unicode="false" />
+    </property>
+    <property name="CreatedByUser" type="String" p1:nullable="true" p1:ValidateMaxLength="25" p1:ValidateRequired="False" p1:Guid="42bbd892-47fa-4558-a3bc-c401141eeef1">
+      <column name="" default="NULL" not-null="false" length="25" p1:unicode="true" />
+    </property>
+    <property name="ModifiedByUser" type="String" p1:nullable="true" p1:ValidateMaxLength="25" p1:ValidateRequired="False" p1:Guid="d3b7253b-2557-447a-9b75-f3286a92c270">
+      <column name="" default="NULL" not-null="false" length="25" p1:unicode="true" />
+    </property>
+    <many-to-one name="Product" class="Product" p1:AssociationGuid="33163d8b-e8d6-44f8-8082-bf12fd68a665" p1:Guid="d7cad485-68ff-478e-bb64-d32e22ce9614">
+      <column name="" not-null="true" precision="10" scale="0" p1:unicode="false" />
+    </many-to-one>
+    <many-to-one name="Priceestimate" class="PriceEstimate" p1:AssociationGuid="9793d249-a26b-44c1-9e9f-4cbb15ef1850" p1:Guid="1190fe95-3b7f-42c3-89a2-52a5c18a9969">
+      <column name="" not-null="true" precision="10" scale="0" p1:unicode="false" />
+    </many-to-one>
+  </class>
+  <class name="InventoryAdjustment" table="" p1:Guid="656790d2-a590-475e-bbd6-3201657d6a42">
+    <id name="AdjustmentId" type="Int32" p1:ValidateRequired="True" p1:Guid="88ec1c38-9a0c-4843-95fc-147e071b00f5">
+      <column name="" not-null="true" precision="10" scale="0" p1:unicode="false" />
+      <generator class="identity" />
+    </id>
+    <property name="AdjustmentType" type="String" p1:nullable="true" p1:ValidateMaxLength="25" p1:ValidateRequired="False" p1:Guid="376ae130-2ea8-45e2-8e15-f1e6a14a0d87">
+      <column name="" default="NULL" not-null="false" length="25" p1:unicode="true" />
+    </property>
+    <property name="AdjustmentDate" type="DateTime" p1:nullable="true" p1:ValidateRequired="False" p1:Guid="ec596fa3-f67f-43ab-9c2c-3f0535bc65c7">
+      <column name="" default="NULL" not-null="false" p1:unicode="false" />
+    </property>
+    <property name="TotalAdjusted" type="Int32" p1:nullable="true" p1:ValidateRequired="False" p1:Guid="000644ce-d3c2-4cf3-8588-d051f9936f9a">
+      <column name="" default="NULL" not-null="false" precision="10" scale="0" p1:unicode="false" />
+    </property>
+    <property name="CreationDate" type="DateTime" p1:nullable="true" p1:ValidateRequired="False" p1:Guid="df44658f-a711-40fe-b378-1ccd6f4b12d1">
+      <column name="" default="NULL" not-null="false" p1:unicode="false" />
+    </property>
+    <property name="ModifyDate" type="DateTime" p1:nullable="true" p1:ValidateRequired="False" p1:Guid="1a915854-001d-4fa1-b232-a2ec128f2bab">
+      <column name="" default="NULL" not-null="false" p1:unicode="false" />
+    </property>
+    <property name="CreatedByUser" type="String" p1:nullable="true" p1:ValidateMaxLength="25" p1:ValidateRequired="False" p1:Guid="b7126a67-25b2-478b-b8e9-8c281e606bad">
+      <column name="" default="NULL" not-null="false" length="25" p1:unicode="true" />
+    </property>
+    <property name="ModifiedByUser" type="String" p1:nullable="true" p1:ValidateMaxLength="25" p1:ValidateRequired="False" p1:Guid="236716ed-bea9-4760-a1a9-fa60ba766b09">
+      <column name="" default="NULL" not-null="false" length="25" p1:unicode="true" />
+    </property>
+    <set name="Inventoryadjustmentdetails" inverse="true" generic="true" p1:AssociationGuid="dbb75d4d-bb5b-4e4a-acba-1cdd48de30f8" p1:Guid="9a9f9adc-eea8-426b-9dcd-4123fdb859f4">
+      <key>
+        <column name="" />
+      </key>
+      <one-to-many class="InventoryaAjustmentDetail" />
+    </set>
+  </class>
+  <class name="InventoryaAjustmentDetail" table="" p1:Guid="9a5bd4ad-8863-4fe5-8d0b-4a816a280e25">
+    <composite-id>
+      <key-property name="AdjustmentDetailNumber" type="Int32" p1:ValidateRequired="True" p1:Guid="c64dc51c-205f-481f-8c49-5556be5ad638">
+        <column name="" not-null="true" precision="10" scale="0" p1:unicode="false" />
+      </key-property>
+      <key-property name="AdjustmentId" type="Int32" p1:ValidateRequired="True" p1:Guid="b525eb36-cf9d-4e19-bdb6-53f998a9a7fa">
+        <column name="" not-null="true" precision="10" scale="0" p1:unicode="false" />
+      </key-property>
+    </composite-id>
+    <property name="Quantity" type="Int32" p1:nullable="true" p1:ValidateRequired="False" p1:Guid="5b21f90a-9fdd-441e-9a9d-776905d9e4a1">
+      <column name="" default="NULL" not-null="false" precision="10" scale="0" p1:unicode="false" />
+    </property>
+    <property name="CreationDate" type="DateTime" p1:nullable="true" p1:ValidateRequired="False" p1:Guid="dab94f85-086a-4f99-b7fc-165497326df9">
+      <column name="" default="NULL" not-null="false" p1:unicode="false" />
+    </property>
+    <property name="ModifyDate" type="DateTime" p1:nullable="true" p1:ValidateRequired="False" p1:Guid="21c7dcec-796b-4e95-a73d-5daceab5e310">
+      <column name="" default="NULL" not-null="false" p1:unicode="false" />
+    </property>
+    <property name="CreatedByUser" type="String" p1:nullable="true" p1:ValidateMaxLength="25" p1:ValidateRequired="False" p1:Guid="acd69661-91b5-433d-ae9a-377576245194">
+      <column name="" default="NULL" not-null="false" length="25" p1:unicode="true" />
+    </property>
+    <property name="ModifiedByUser" type="String" p1:nullable="true" p1:ValidateMaxLength="25" p1:ValidateRequired="False" p1:Guid="04fbceb0-45f7-44fd-9674-835109e0c3c5">
+      <column name="" default="NULL" not-null="false" length="25" p1:unicode="true" />
+    </property>
+    <many-to-one name="Inventoryadjustment" class="InventoryAdjustment" p1:AssociationGuid="dbb75d4d-bb5b-4e4a-acba-1cdd48de30f8" p1:Guid="917abdd8-2615-4684-93f3-266f064e5f90">
+      <column name="" not-null="true" precision="10" scale="0" p1:unicode="false" />
+    </many-to-one>
+    <many-to-one name="Product" class="Product" p1:AssociationGuid="27efdfa6-c01f-484c-b1ac-7556a6dd3d69" p1:Guid="1012d00b-f9bb-4829-ad05-81972861011f">
+      <column name="" not-null="true" precision="10" scale="0" p1:unicode="false" />
+    </many-to-one>
+  </class>
+  <class name="Invoice" table="" p1:Guid="f6d65028-3358-42b4-b0e7-1dced42165ab">
+    <id name="InvoiceId" type="Int32" p1:ValidateRequired="True" p1:Guid="5f13d25f-7f74-4bfc-991e-cf06192da67d">
+      <column name="" not-null="true" precision="10" scale="0" p1:unicode="false" />
+      <generator class="identity" />
+    </id>
+    <property name="InvoiceDate" type="DateTime" p1:nullable="true" p1:ValidateRequired="False" p1:Guid="7443861f-08f9-43dd-95e5-4acf123a73c2">
+      <column name="" default="NULL" not-null="false" p1:unicode="false" />
+    </property>
+    <property name="SubTotal" type="Single" p1:nullable="true" p1:ValidateRequired="False" p1:Guid="07174a9a-9425-4307-8166-a76b56390a45">
+      <column name="" default="NULL" not-null="false" precision="24" p1:unicode="false" />
+    </property>
+    <property name="SalesTax" type="Single" p1:nullable="true" p1:ValidateRequired="False" p1:Guid="d826990a-c420-4397-b9da-f642c7342428">
+      <column name="" default="NULL" not-null="false" precision="24" p1:unicode="false" />
+    </property>
+    <property name="Disccount" type="Single" p1:nullable="true" p1:ValidateRequired="False" p1:Guid="88c8e1be-84f0-4385-b293-9cb16ef5b1df">
+      <column name="" default="NULL" not-null="false" precision="24" p1:unicode="false" />
+    </property>
+    <property name="CreationDate" type="DateTime" p1:nullable="true" p1:ValidateRequired="False" p1:Guid="f6cb3e79-fb59-4889-9090-c545567a082c">
+      <column name="" default="NULL" not-null="false" p1:unicode="false" />
+    </property>
+    <property name="ModifyDate" type="DateTime" p1:nullable="true" p1:ValidateRequired="False" p1:Guid="62f27416-102d-4821-92e7-5b24e03ab51c">
+      <column name="" default="NULL" not-null="false" p1:unicode="false" />
+    </property>
+    <property name="CreatedByUser" type="String" p1:nullable="true" p1:ValidateMaxLength="25" p1:ValidateRequired="False" p1:Guid="cd3d04de-401f-47eb-bc47-46181ad93e18">
+      <column name="" default="NULL" not-null="false" length="25" p1:unicode="true" />
+    </property>
+    <property name="ModifiedByUser" type="String" p1:nullable="true" p1:ValidateMaxLength="25" p1:ValidateRequired="False" p1:Guid="159a0883-20ec-4116-8b7b-43cb39103f79">
+      <column name="" default="NULL" not-null="false" length="25" p1:unicode="true" />
+    </property>
+    <many-to-one name="Customer" class="Customer" p1:AssociationGuid="48189a69-9255-41a3-9002-0218cd4dea53" p1:Guid="29427a41-6bfe-4ba2-9485-b846a3182ddb">
+      <column name="" not-null="true" precision="10" scale="0" p1:unicode="false" />
+    </many-to-one>
+    <set name="Invoicedetails" inverse="true" generic="true" p1:AssociationGuid="697c1b56-5e93-4130-a783-00e01fe4ab3f" p1:Guid="23296ca1-e3e0-413a-8643-dc1d69e56d3f">
+      <key>
+        <column name="" />
+      </key>
+      <one-to-many class="InvoiceDetail" />
+    </set>
+  </class>
+  <class name="InvoiceDetail" table="" p1:Guid="500164b3-6b38-4a25-84cc-439a542ee30e">
+    <composite-id>
+      <key-property name="InvoiceDetailNumber" type="Int32" p1:ValidateRequired="True" p1:Guid="1bdeaf3e-9c77-4013-957b-d9e8689a3119">
+        <column name="" not-null="true" precision="10" scale="0" p1:unicode="false" />
+      </key-property>
+      <key-property name="InvoiceId" type="Int32" p1:ValidateRequired="True" p1:Guid="11da6883-2167-41a0-a35c-6483dc62de0c">
+        <column name="" not-null="true" precision="10" scale="0" p1:unicode="false" />
+      </key-property>
+    </composite-id>
+    <property name="SalePrice" type="Single" p1:nullable="true" p1:ValidateRequired="False" p1:Guid="afe97d40-d46e-4208-bacf-bebb793b884d">
+      <column name="" default="NULL" not-null="false" precision="24" p1:unicode="false" />
+    </property>
+    <property name="Quantity" type="Int32" p1:nullable="true" p1:ValidateRequired="False" p1:Guid="08f52388-3812-4eaf-89da-41988f67e343">
+      <column name="" default="NULL" not-null="false" precision="10" scale="0" p1:unicode="false" />
+    </property>
+    <property name="SubTotal" type="Single" p1:nullable="true" p1:ValidateRequired="False" p1:Guid="62c93886-4e76-44b1-a7e8-971e88ecadde">
+      <column name="" default="NULL" not-null="false" precision="24" p1:unicode="false" />
+    </property>
+    <property name="CreatedByUser" type="String" p1:nullable="true" p1:ValidateMaxLength="25" p1:ValidateRequired="False" p1:Guid="d721209c-298d-48c5-8edc-fb61e5c1a4cd">
+      <column name="" default="NULL" not-null="false" length="25" p1:unicode="true" />
+    </property>
+    <property name="ModifiedByUser" type="String" p1:nullable="true" p1:ValidateMaxLength="25" p1:ValidateRequired="False" p1:Guid="067e9972-dfac-43fb-a623-4184b2b71119">
+      <column name="" default="NULL" not-null="false" length="25" p1:unicode="true" />
+    </property>
+    <property name="CreationDate" type="DateTime" p1:nullable="true" p1:ValidateRequired="False" p1:Guid="8be4088e-4b86-46d2-bb2d-8ad044538f95">
+      <column name="" default="NULL" not-null="false" p1:unicode="false" />
+    </property>
+    <property name="ModifyDate" type="DateTime" p1:nullable="true" p1:ValidateRequired="False" p1:Guid="e770a44b-7a06-49d9-bada-a95af62b946c">
+      <column name="" default="NULL" not-null="false" p1:unicode="false" />
+    </property>
+    <many-to-one name="Invoice" class="Invoice" p1:AssociationGuid="697c1b56-5e93-4130-a783-00e01fe4ab3f" p1:Guid="461a2afc-8aa2-443c-9c74-8a1224f26a3f">
+      <column name="" not-null="true" precision="10" scale="0" p1:unicode="false" />
+    </many-to-one>
+    <many-to-one name="Product" class="Product" p1:AssociationGuid="0158b8d9-8609-4639-8042-e2b92500d76d" p1:Guid="259b52c6-e725-431a-bd84-8fab78131235">
+      <column name="" not-null="true" precision="10" scale="0" p1:unicode="false" />
+    </many-to-one>
+  </class>
+  <class name="KardexOperation" table="" p1:Guid="56ac3a12-32e6-4b2c-af5f-ba69e90c511d">
+    <id name="OperationId" type="Int32" p1:ValidateRequired="True" p1:Guid="0b7a5f8f-f52f-4ccc-98f8-c3f72056b5be">
+      <column name="" not-null="true" precision="10" scale="0" p1:unicode="false" />
+    </id>
+    <property name="OperationName" type="String" p1:nullable="true" p1:ValidateMaxLength="25" p1:ValidateRequired="False" p1:Guid="76cd4f05-3f04-42d9-8bd1-d81a5e53bef5">
+      <column name="" default="NULL" not-null="false" length="25" p1:unicode="true" />
+    </property>
+    <property name="ProductCost" type="Single" p1:nullable="true" p1:ValidateRequired="False" p1:Guid="2181fc12-3cf9-427a-bc3f-c1528413db60">
+      <column name="" default="NULL" not-null="false" precision="24" p1:unicode="false" />
+    </property>
+    <property name="PreviousExistence" type="Int32" p1:nullable="true" p1:ValidateRequired="False" p1:Guid="5fb640a9-b066-4d33-b792-f7b74d12c3ce">
+      <column name="" default="NULL" not-null="false" precision="10" scale="0" p1:unicode="false" />
+    </property>
+    <property name="NewExistence" type="Int32" p1:nullable="true" p1:ValidateRequired="False" p1:Guid="83b49652-5e96-460e-9172-6ea6027dae77">
+      <column name="" default="NULL" not-null="false" precision="10" scale="0" p1:unicode="false" />
+    </property>
+    <property name="ProductPrice" type="Single" p1:nullable="true" p1:ValidateRequired="False" p1:Guid="30279253-1988-46c3-84c5-65f63e9cb3db">
+      <column name="" default="NULL" not-null="false" precision="24" p1:unicode="false" />
+    </property>
+    <property name="Quantity" type="Int32" p1:nullable="true" p1:ValidateRequired="False" p1:Guid="0e37627e-3a0b-4335-91e4-4860b5da1022">
+      <column name="" default="NULL" not-null="false" precision="10" scale="0" p1:unicode="false" />
+    </property>
+    <property name="CreationDate" type="DateTime" p1:nullable="true" p1:ValidateRequired="False" p1:Guid="0c59d6b0-ea7b-480c-a6b2-15f2bbf8110a">
+      <column name="" default="NULL" not-null="false" p1:unicode="false" />
+    </property>
+    <property name="ModifyDate" type="DateTime" p1:nullable="true" p1:ValidateRequired="False" p1:Guid="2e967a54-5ed4-466a-90ca-70a64371e258">
+      <column name="" default="NULL" not-null="false" p1:unicode="false" />
+    </property>
+    <property name="OperationDate" type="DateTime" p1:nullable="true" p1:ValidateRequired="False" p1:Guid="849d5979-7e8c-44a8-967d-b9fe2164101e">
+      <column name="" default="NULL" not-null="false" p1:unicode="false" />
+    </property>
+    <property name="CreatedByUser" type="String" p1:nullable="true" p1:ValidateMaxLength="25" p1:ValidateRequired="False" p1:Guid="e5a325f7-18c4-472c-a434-2c4d3785382e">
+      <column name="" default="NULL" not-null="false" length="25" p1:unicode="true" />
+    </property>
+    <property name="ModifiedByUser" type="String" p1:nullable="true" p1:ValidateMaxLength="25" p1:ValidateRequired="False" p1:Guid="d446324c-75ff-4fbd-b894-db12619aa2c8">
+      <column name="" default="NULL" not-null="false" length="25" p1:unicode="true" />
+    </property>
+    <many-to-one name="Product" class="Product" p1:AssociationGuid="281bbdc7-e418-41a9-a5fa-2c92bc75273a" p1:Guid="2e0d1943-356d-4225-b4b7-030bb5b011ed">
+      <column name="" not-null="true" precision="10" scale="0" p1:unicode="false" />
+    </many-to-one>
+  </class>
+  <class name="PhoneNumber" table="" p1:Guid="5e582a55-cc8f-47ff-a256-4f61cbf2e11d">
+    <id name="PhoneId" type="Int32" p1:ValidateRequired="True" p1:Guid="253a9266-9829-49a8-8ca1-922d6952a8ab">
+      <column name="" not-null="true" precision="10" scale="0" p1:unicode="false" />
+    </id>
+    <property name="Number" type="String" p1:ValidateMaxLength="45" p1:ValidateRequired="True" p1:Guid="ddd61f55-f52b-4cf4-9a86-1099d9155ccd">
+      <column name="" not-null="true" length="45" p1:unicode="true" />
+    </property>
+    <property name="CreatedByUser" type="String" p1:nullable="true" p1:ValidateMaxLength="25" p1:ValidateRequired="False" p1:Guid="8c0ba05f-34d5-4519-9f7b-858633967ad3">
+      <column name="" default="NULL" not-null="false" length="25" p1:unicode="true" />
+    </property>
+    <property name="ModifiedByUser" type="String" p1:nullable="true" p1:ValidateMaxLength="25" p1:ValidateRequired="False" p1:Guid="595dc78b-b752-473a-bef2-01db64157216">
+      <column name="" default="NULL" not-null="false" length="25" p1:unicode="true" />
+    </property>
+    <property name="CreationDate" type="DateTime" p1:nullable="true" p1:ValidateRequired="False" p1:Guid="7c6f80aa-14ee-459b-84dd-e7a9808c5774">
+      <column name="" default="NULL" not-null="false" p1:unicode="false" />
+    </property>
+    <property name="ModifyDate" type="DateTime" p1:nullable="true" p1:ValidateRequired="False" p1:Guid="22a22425-ae3c-4c8e-9190-7d9cef0b9446">
+      <column name="" default="NULL" not-null="false" p1:unicode="false" />
+    </property>
+    <many-to-one name="Customer" class="Customer" p1:AssociationGuid="20338055-372c-45b5-baf9-45df82cbdb37" p1:Guid="696992a0-3438-497e-ad5f-c05c82ed0940">
+      <column name="" not-null="true" precision="10" scale="0" p1:unicode="false" />
+    </many-to-one>
+  </class>
+  <class name="Presentation" table="" p1:Guid="e84fe1e6-a5d5-4fb2-8ecc-776eaedc2741">
+    <id name="PresentationId" type="Int32" p1:ValidateRequired="True" p1:Guid="421f9e38-9945-4c03-9baa-8b6553168704">
+      <column name="" not-null="true" precision="10" scale="0" p1:unicode="false" />
+      <generator class="identity" />
+    </id>
+    <property name="Name" type="String" p1:nullable="true" p1:ValidateMaxLength="25" p1:ValidateRequired="False" p1:Guid="ada52151-c091-4452-ac0a-5f136ca1e592">
+      <column name="" default="NULL" not-null="false" length="25" p1:unicode="true" />
+    </property>
+    <property name="CreationDate" type="DateTime" p1:nullable="true" p1:ValidateRequired="False" p1:Guid="d6690cfe-af84-4b72-9cb6-f30696c7ae59">
+      <column name="" default="NULL" not-null="false" p1:unicode="false" />
+    </property>
+    <property name="ModifyDate" type="DateTime" p1:nullable="true" p1:ValidateRequired="False" p1:Guid="1cc365c1-7d9c-4489-96fa-dd278c00adee">
+      <column name="" default="NULL" not-null="false" p1:unicode="false" />
+    </property>
+    <property name="CreatedByUser" type="String" p1:nullable="true" p1:ValidateMaxLength="25" p1:ValidateRequired="False" p1:Guid="15b30f0d-5ae7-408a-8c57-5b0d5022306f">
+      <column name="" default="NULL" not-null="false" length="25" p1:unicode="true" />
+    </property>
+    <property name="ModifiedByUser" type="String" p1:nullable="true" p1:ValidateMaxLength="25" p1:ValidateRequired="False" p1:Guid="61e2d933-89d6-4019-86af-85476686f08c">
+      <column name="" default="NULL" not-null="false" length="25" p1:unicode="true" />
+    </property>
+    <set name="Products" inverse="true" generic="true" p1:AssociationGuid="dcdfe5fc-8f9a-4318-994a-f159f3b0ad65" p1:Guid="372d6649-b81f-4fc3-8010-66c18ab3a45f">
+      <key>
+        <column name="" />
+      </key>
+      <one-to-many class="Product" />
+    </set>
+  </class>
+  <class name="PriceEstimate" table="" p1:Guid="df341922-e490-4c38-92d8-ad6dd97d83c7">
+    <id name="PriceEstimateId" type="Int32" p1:ValidateRequired="True" p1:Guid="33d94b26-22b4-4638-9972-d25e0830ecd6">
+      <column name="" not-null="true" precision="10" scale="0" p1:unicode="false" />
+      <generator class="identity" />
+    </id>
+    <property name="EstimateDate" type="Int32" p1:nullable="true" p1:ValidateRequired="False" p1:Guid="f94650a5-700f-4927-90aa-42ab118a3546">
+      <column name="" default="NULL" not-null="false" precision="10" scale="0" p1:unicode="false" />
+    </property>
+    <property name="EstimateTotal" type="Single" p1:nullable="true" p1:ValidateRequired="False" p1:Guid="b92e39bc-56c4-4342-aabc-7103f5f23683">
+      <column name="" default="NULL" not-null="false" precision="24" p1:unicode="false" />
+    </property>
+    <property name="CreationDate" type="DateTime" p1:nullable="true" p1:ValidateRequired="False" p1:Guid="e514a074-8194-4af1-a3d6-75745caf3dc9">
+      <column name="" default="NULL" not-null="false" p1:unicode="false" />
+    </property>
+    <property name="ModifyDate" type="DateTime" p1:nullable="true" p1:ValidateRequired="False" p1:Guid="e6bb736f-b8ea-4ef9-88d2-5559f963e9be">
+      <column name="" default="NULL" not-null="false" p1:unicode="false" />
+    </property>
+    <property name="CreatedByUser" type="String" p1:nullable="true" p1:ValidateMaxLength="25" p1:ValidateRequired="False" p1:Guid="02493a0b-4100-4f73-b9ee-9d2c3aab9879">
+      <column name="" default="NULL" not-null="false" length="25" p1:unicode="true" />
+    </property>
+    <property name="ModifiedByUser" type="String" p1:nullable="true" p1:ValidateMaxLength="25" p1:ValidateRequired="False" p1:Guid="304481ec-dd93-462c-97d9-82ce0d0f249d">
+      <column name="" default="NULL" not-null="false" length="25" p1:unicode="true" />
+    </property>
+    <many-to-one name="Provider" class="Provider" p1:AssociationGuid="822d0b46-aa9f-4aa9-ba4b-59b7069662f0" p1:Guid="a6096d61-5c53-4513-bbea-42ab8258649f">
+      <column name="" not-null="true" precision="10" scale="0" p1:unicode="false" />
+    </many-to-one>
+    <set name="Estimatedetails" inverse="true" generic="true" p1:AssociationGuid="9793d249-a26b-44c1-9e9f-4cbb15ef1850" p1:Guid="315ac5d3-d017-4bab-b7b7-63642f25c5a0">
+      <key>
+        <column name="" />
+      </key>
+      <one-to-many class="EstimateDetail" />
+    </set>
+  </class>
+  <class name="Privilege" table="" p1:Guid="22e3187f-a1ca-4394-b312-480d0c5f0ac3">
+    <id name="PrivilegeId" type="Int32" p1:ValidateRequired="True" p1:Guid="8b6b7ab3-84ee-4203-b302-d0520156bd54">
+      <column name="" not-null="true" precision="10" scale="0" p1:unicode="false" />
+      <generator class="identity" />
+    </id>
+    <property name="Name" type="String" p1:nullable="true" p1:ValidateMaxLength="25" p1:ValidateRequired="False" p1:Guid="f693092f-a3b9-46c3-b698-8345673d460d">
+      <column name="" default="NULL" not-null="false" length="25" p1:unicode="true" />
+    </property>
+    <property name="CreationDate" type="DateTime" p1:nullable="true" p1:ValidateRequired="False" p1:Guid="ab5d4a25-d982-4285-ba6f-89097218e2a3">
+      <column name="" default="NULL" not-null="false" p1:unicode="false" />
+    </property>
+    <property name="ModifyDate" type="DateTime" p1:nullable="true" p1:ValidateRequired="False" p1:Guid="cacbb7a8-0672-4219-9024-97965c81438e">
+      <column name="" default="NULL" not-null="false" p1:unicode="false" />
+    </property>
+    <property name="CreatedByUser" type="String" p1:nullable="true" p1:ValidateMaxLength="25" p1:ValidateRequired="False" p1:Guid="4cdddd01-6348-4684-9876-3c751f4585d8">
+      <column name="" default="NULL" not-null="false" length="25" p1:unicode="true" />
+    </property>
+    <property name="ModifiedByUser" type="String" p1:nullable="true" p1:ValidateMaxLength="25" p1:ValidateRequired="False" p1:Guid="f2a30785-3780-4f3b-abd9-2c0f1e46d016">
+      <column name="" default="NULL" not-null="false" length="25" p1:unicode="true" />
+    </property>
+    <set name="PrivilegeHasRoles" inverse="true" generic="true" p1:AssociationGuid="e1e83f08-8fc3-4274-8a78-98ef38d0c209" p1:Guid="2aea5573-70fa-4989-9cf4-8c259e160f5e">
+      <key>
+        <column name="" />
+      </key>
+      <one-to-many class="PrivilegeHasRole" />
+    </set>
+  </class>
+  <class name="PrivilegeHasRole" table="" p1:Guid="d4e8b6c3-d6a3-432c-9a61-b02a3c2d12d3">
+    <composite-id>
+      <key-property name="PrivilegeId" type="Int32" p1:ValidateRequired="True" p1:Guid="374cdc3a-74b7-4e51-b002-6cd9a4ba8e90">
+        <column name="" not-null="true" precision="10" scale="0" p1:unicode="false" />
+      </key-property>
+      <key-property name="RoleId" type="Int32" p1:ValidateRequired="True" p1:Guid="12c000bf-1498-4a91-9bf9-6b0be1ac77cb">
+        <column name="" not-null="true" precision="10" scale="0" p1:unicode="false" />
+      </key-property>
+    </composite-id>
+    <property name="CreationDate" type="DateTime" p1:nullable="true" p1:ValidateRequired="False" p1:Guid="431a376d-5d5b-4684-b074-882f0c00a52b">
+      <column name="" default="NULL" not-null="false" p1:unicode="false" />
+    </property>
+    <property name="ModifyDate" type="DateTime" p1:nullable="true" p1:ValidateRequired="False" p1:Guid="b3d963c7-020d-4b8d-9c61-e2dedc4150d4">
+      <column name="" default="NULL" not-null="false" p1:unicode="false" />
+    </property>
+    <property name="CreatedByUser" type="String" p1:nullable="true" p1:ValidateMaxLength="25" p1:ValidateRequired="False" p1:Guid="071ac2ea-b8da-4d45-b16a-c7d7a6f0d4e8">
+      <column name="" default="NULL" not-null="false" length="25" p1:unicode="true" />
+    </property>
+    <property name="ModifiedByUser" type="String" p1:nullable="true" p1:ValidateMaxLength="25" p1:ValidateRequired="False" p1:Guid="02bbb33f-8dad-41d0-a162-b65aeb5c8972">
+      <column name="" default="NULL" not-null="false" length="25" p1:unicode="true" />
+    </property>
+    <many-to-one name="Privilege" class="Privilege" p1:AssociationGuid="e1e83f08-8fc3-4274-8a78-98ef38d0c209" p1:Guid="276dcfcd-71db-4e3c-aada-180de109d3f9">
+      <column name="" not-null="true" precision="10" scale="0" p1:unicode="false" />
+    </many-to-one>
+    <many-to-one name="Role" class="Role" p1:AssociationGuid="26442f81-df13-4b5a-9570-1eed29f05e8f" p1:Guid="41efb167-c7ac-4911-8b2d-7ace12716625">
+      <column name="" not-null="true" precision="10" scale="0" p1:unicode="false" />
+    </many-to-one>
+  </class>
+  <class name="Product" table="" p1:Guid="344dc16d-5505-429c-849a-9c07ecf4a5ef">
+    <id name="ProductId" type="Int32" p1:ValidateRequired="True" p1:Guid="26460feb-5b73-4484-a7af-3a0e34a0bbc0">
+      <column name="" not-null="true" precision="10" scale="0" p1:unicode="false" />
+    </id>
+    <property name="ProductName" type="String" p1:nullable="true" p1:ValidateMaxLength="25" p1:ValidateRequired="False" p1:Guid="5b06b1d1-336d-46b5-924e-08cd2fe7faf4">
+      <column name="" default="NULL" not-null="false" length="25" p1:unicode="true" />
+    </property>
+    <property name="RetailPrice" type="Single" p1:nullable="true" p1:ValidateRequired="False" p1:Guid="153a1c85-08fa-48af-a92e-aadc1c8fb14c">
+      <column name="" default="NULL" not-null="false" precision="24" p1:unicode="false" />
+    </property>
+    <property name="Cost" type="Single" p1:nullable="true" p1:ValidateRequired="False" p1:Guid="38f2f15d-45f8-451a-bc90-442af8fb2dca">
+      <column name="" default="NULL" not-null="false" precision="24" p1:unicode="false" />
+    </property>
+    <property name="MinimumExistence" type="Int64" p1:nullable="true" p1:ValidateRequired="False" p1:Guid="3375a56e-b6d1-466f-ae35-1add3508ed42">
+      <column name="" default="NULL" not-null="false" precision="19" scale="0" p1:unicode="false" />
+    </property>
+    <property name="WholeSalerPercentage" type="Single" p1:nullable="true" p1:ValidateRequired="False" p1:Guid="d88604e7-35ea-4d0a-8113-01119b096d6c">
+      <column name="" default="NULL" not-null="false" precision="24" p1:unicode="false" />
+    </property>
+    <property name="ExpireDate" type="DateTime" p1:nullable="true" p1:ValidateRequired="False" p1:Guid="9b351555-b9b8-4f30-9097-9a557047ffbc">
+      <column name="" default="NULL" not-null="false" p1:unicode="false" />
+    </property>
+    <property name="CreationDate" type="DateTime" p1:nullable="true" p1:ValidateRequired="False" p1:Guid="c33332c9-d583-4ffa-8e55-71e3e0db6fcf">
+      <column name="" default="NULL" not-null="false" p1:unicode="false" />
+    </property>
+    <property name="ModifyDate" type="DateTime" p1:nullable="true" p1:ValidateRequired="False" p1:Guid="c4238916-3ab9-4cd5-b08b-25f5ed5a3d4e">
+      <column name="" default="NULL" not-null="false" p1:unicode="false" />
+    </property>
+    <property name="CurrentExistence" type="Int32" p1:nullable="true" p1:ValidateRequired="False" p1:Guid="a9923e88-1153-41fb-9a76-b9d36d6a61aa">
+      <column name="" default="NULL" not-null="false" precision="10" scale="0" p1:unicode="false" />
+    </property>
+    <property name="CreatedByUser" type="String" p1:nullable="true" p1:ValidateMaxLength="25" p1:ValidateRequired="False" p1:Guid="0cff96c4-f511-457b-ab1f-bac80b4733b4">
+      <column name="" default="NULL" not-null="false" length="25" p1:unicode="true" />
+    </property>
+    <property name="ModifiedByUser" type="String" p1:nullable="true" p1:ValidateMaxLength="25" p1:ValidateRequired="False" p1:Guid="14dfaded-fd40-402d-9bd5-b6f9137cfbf4">
+      <column name="" default="NULL" not-null="false" length="25" p1:unicode="true" />
+    </property>
+    <many-to-one name="Category" class="Category" p1:AssociationGuid="095627f3-cd6a-46ec-9c62-6d362ea1e70b" p1:Guid="eaf9667e-55e0-4b95-8dad-b89d9a566c97">
+      <column name="" not-null="true" precision="10" scale="0" p1:unicode="false" />
+    </many-to-one>
+    <many-to-one name="Presentation" class="Presentation" p1:AssociationGuid="dcdfe5fc-8f9a-4318-994a-f159f3b0ad65" p1:Guid="ff9729c9-3184-45a0-b705-4df8251726b0">
+      <column name="" not-null="true" precision="10" scale="0" p1:unicode="false" />
+    </many-to-one>
+    <set name="Estimatedetails" inverse="true" generic="true" p1:AssociationGuid="33163d8b-e8d6-44f8-8082-bf12fd68a665" p1:Guid="804e0275-dcff-4d7d-be38-30f04b87725a">
+      <key>
+        <column name="" />
+      </key>
+      <one-to-many class="EstimateDetail" />
+    </set>
+    <set name="Inventoryadjustmentdetails" inverse="true" generic="true" p1:AssociationGuid="27efdfa6-c01f-484c-b1ac-7556a6dd3d69" p1:Guid="41e5ac9f-e891-4f39-bb42-24d27f1dbe6a">
+      <key>
+        <column name="" />
+      </key>
+      <one-to-many class="InventoryaAjustmentDetail" />
+    </set>
+    <set name="Invoicedetails" inverse="true" generic="true" p1:AssociationGuid="0158b8d9-8609-4639-8042-e2b92500d76d" p1:Guid="a2ddc368-9310-4b6b-841f-5981a403dc60">
+      <key>
+        <column name="" />
+      </key>
+      <one-to-many class="InvoiceDetail" />
+    </set>
+    <set name="Kardexoperations" inverse="true" generic="true" p1:AssociationGuid="281bbdc7-e418-41a9-a5fa-2c92bc75273a" p1:Guid="895f6d75-a4aa-4cdb-8dc6-f90392872115">
+      <key>
+        <column name="" />
+      </key>
+      <one-to-many class="KardexOperation" />
+    </set>
+    <set name="Providersellsproducts" inverse="true" generic="true" p1:AssociationGuid="23d8821b-a819-49cf-a455-2b4b08a09632" p1:Guid="0ebdceb9-5622-444c-b342-7a286584c913">
+      <key>
+        <column name="" />
+      </key>
+      <one-to-many class="ProviderSellsProduct" />
+    </set>
+    <set name="Purchasedetails" inverse="true" generic="true" p1:AssociationGuid="ff172da8-a419-46de-8877-74952cc21e06" p1:Guid="522c7f63-1e56-4b0a-b57f-cf5c716e308a">
+      <key>
+        <column name="" />
+      </key>
+      <one-to-many class="PurchaseDetail" />
+    </set>
+    <set name="Purchaseorderdetails" inverse="true" generic="true" p1:AssociationGuid="b1a7afac-eaf6-42c6-a332-2d278c733cbc" p1:Guid="dab3770f-21d7-4705-9437-e608927e4a96">
+      <key>
+        <column name="" />
+      </key>
+      <one-to-many class="PurchaseOrderDetail" />
+    </set>
+  </class>
+  <class name="Provider" table="" p1:Guid="71ef6429-c54d-43de-8d3c-98fc243c7607">
+    <id name="ProviderId" type="Int32" p1:ValidateRequired="True" p1:Guid="a0f648b4-5893-435b-9d67-920037d9aacf">
+      <column name="" not-null="true" precision="10" scale="0" p1:unicode="false" />
+      <generator class="identity" />
+    </id>
+    <property name="Name" type="String" p1:nullable="true" p1:ValidateMaxLength="25" p1:ValidateRequired="False" p1:Guid="ae954527-e38c-41ed-8670-2f58e4fe3086">
+      <column name="" default="NULL" not-null="false" length="25" p1:unicode="true" />
+    </property>
+    <property name="Phone" type="String" p1:nullable="true" p1:ValidateMaxLength="25" p1:ValidateRequired="False" p1:Guid="9854e2db-a6da-4c1b-b551-3b4298d29757">
+      <column name="" default="NULL" not-null="false" length="25" p1:unicode="true" />
+    </property>
+    <property name="ContactName" type="String" p1:nullable="true" p1:ValidateMaxLength="25" p1:ValidateRequired="False" p1:Guid="9b04a1d0-3b13-4ba1-8256-f86c381c3c2a">
+      <column name="" default="NULL" not-null="false" length="25" p1:unicode="true" />
+    </property>
+    <property name="Address" type="String" p1:nullable="true" p1:ValidateMaxLength="25" p1:ValidateRequired="False" p1:Guid="9a595cd4-9fae-4339-861d-6aa4de2661b6">
+      <column name="" default="NULL" not-null="false" length="25" p1:unicode="true" />
+    </property>
+    <property name="CreatedByUser" type="String" p1:nullable="true" p1:ValidateMaxLength="25" p1:ValidateRequired="False" p1:Guid="4014c92a-2dde-4aa2-86fe-8695050b5ecd">
+      <column name="" default="NULL" not-null="false" length="25" p1:unicode="true" />
+    </property>
+    <property name="ModifiedByUser" type="String" p1:nullable="true" p1:ValidateMaxLength="25" p1:ValidateRequired="False" p1:Guid="904a9505-2c53-4860-94c1-2b09da4183e2">
+      <column name="" default="NULL" not-null="false" length="25" p1:unicode="true" />
+    </property>
+    <property name="ModifyDate" type="DateTime" p1:nullable="true" p1:ValidateRequired="False" p1:Guid="d1b2b7b3-44ac-44f6-8ae6-bcc9ba674dfe">
+      <column name="" default="NULL" not-null="false" p1:unicode="false" />
+    </property>
+    <property name="CreationDate" type="DateTime" p1:nullable="true" p1:ValidateRequired="False" p1:Guid="6610a28a-5f18-479a-bc98-a84c92e7aec7">
+      <column name="" default="NULL" not-null="false" p1:unicode="false" />
+    </property>
+    <set name="Priceestimates" inverse="true" generic="true" p1:AssociationGuid="822d0b46-aa9f-4aa9-ba4b-59b7069662f0" p1:Guid="123f3bcb-831f-4ac7-be3b-994ee01d8420">
+      <key>
+        <column name="" />
+      </key>
+      <one-to-many class="PriceEstimate" />
+    </set>
+    <set name="Providersellsproducts" inverse="true" generic="true" p1:AssociationGuid="121377f6-0ca1-4224-8f83-e5c1129a67f2" p1:Guid="d6fdf5f5-782e-4866-9145-7b8b97da5f7a">
+      <key>
+        <column name="" />
+      </key>
+      <one-to-many class="ProviderSellsProduct" />
+    </set>
+    <set name="Purchases" inverse="true" generic="true" p1:AssociationGuid="9d4324be-55ad-4f1c-b9d8-d1c8646b2949" p1:Guid="f6bbdb7a-164f-4223-ac91-6604bdc4644e">
+      <key>
+        <column name="" />
+      </key>
+      <one-to-many class="Purchase" />
+    </set>
+    <set name="Purchaseorders" inverse="true" generic="true" p1:AssociationGuid="c452cbc4-617f-46e7-b68f-ad9525d8f1da" p1:Guid="44781a2e-4625-4c52-86c8-68af721f9b8b">
+      <key>
+        <column name="" />
+      </key>
+      <one-to-many class="PurchaseOrder" />
+    </set>
+  </class>
+  <class name="ProviderSellsProduct" table="" p1:Guid="3e5e5ab9-5790-4a82-a242-2153ea84b94e">
+    <composite-id>
+      <key-property name="ProviderId" type="Int32" p1:ValidateRequired="True" p1:Guid="a4f5dfa9-c5b5-407d-b0fe-fbd71e314560">
+        <column name="" not-null="true" precision="10" scale="0" p1:unicode="false" />
+      </key-property>
+      <key-property name="ProductId" type="Int32" p1:ValidateRequired="True" p1:Guid="2d5591f3-1a19-4216-b326-ef078f4719d8">
+        <column name="" not-null="true" precision="10" scale="0" p1:unicode="false" />
+      </key-property>
+    </composite-id>
+    <property name="Cost" type="Single" p1:nullable="true" p1:ValidateRequired="False" p1:Guid="89e8e0f9-da1e-4be5-acfa-77e161a5da8c">
+      <column name="" default="NULL" not-null="false" precision="24" p1:unicode="false" />
+    </property>
+    <property name="CreatedByUser" type="String" p1:nullable="true" p1:ValidateMaxLength="25" p1:ValidateRequired="False" p1:Guid="fbcee597-0eb6-4531-91e9-4b8f438e699a">
+      <column name="" default="NULL" not-null="false" length="25" p1:unicode="true" />
+    </property>
+    <property name="ModifiedByUser" type="String" p1:nullable="true" p1:ValidateMaxLength="25" p1:ValidateRequired="False" p1:Guid="f19d936a-feeb-41ad-850c-4d80313018f1">
+      <column name="" default="NULL" not-null="false" length="25" p1:unicode="true" />
+    </property>
+    <many-to-one name="Product" class="Product" p1:AssociationGuid="23d8821b-a819-49cf-a455-2b4b08a09632" p1:Guid="d4c393cf-f069-4e5f-b697-8cd268830c30">
+      <column name="" not-null="true" precision="10" scale="0" p1:unicode="false" />
+    </many-to-one>
+    <many-to-one name="Provider" class="Provider" p1:AssociationGuid="121377f6-0ca1-4224-8f83-e5c1129a67f2" p1:Guid="4e636a87-e353-4f7a-a3b7-2a220f400117">
+      <column name="" not-null="true" precision="10" scale="0" p1:unicode="false" />
+    </many-to-one>
+  </class>
+  <class name="Purchase" table="" p1:Guid="099ea869-c6ba-4134-84d5-192ffccbfc78">
+    <id name="PurchaseId" type="Int32" p1:ValidateRequired="True" p1:Guid="9177e638-f7ec-4788-9dcd-1184502609ec">
+      <column name="" not-null="true" precision="10" scale="0" p1:unicode="false" />
+      <generator class="identity" />
+    </id>
+    <property name="PurchaseDate" type="DateTime" p1:nullable="true" p1:ValidateRequired="False" p1:Guid="520176b6-75c7-4317-b2fc-de251b031158">
+      <column name="" default="NULL" not-null="false" p1:unicode="false" />
+    </property>
+    <property name="Total" type="Single" p1:nullable="true" p1:ValidateRequired="False" p1:Guid="f7cbd11f-e91a-41d8-8413-2936e074294a">
+      <column name="" default="NULL" not-null="false" precision="24" p1:unicode="false" />
+    </property>
+    <property name="CreationDate" type="DateTime" p1:nullable="true" p1:ValidateRequired="False" p1:Guid="9adb972d-61dc-4a26-a811-68e6a0e8ce0d">
+      <column name="" default="NULL" not-null="false" p1:unicode="false" />
+    </property>
+    <property name="ModifyDate" type="DateTime" p1:nullable="true" p1:ValidateRequired="False" p1:Guid="555e645b-4ac3-40af-95a1-6a837eed10bd">
+      <column name="" default="NULL" not-null="false" p1:unicode="false" />
+    </property>
+    <property name="CreatedByUser" type="String" p1:nullable="true" p1:ValidateMaxLength="25" p1:ValidateRequired="False" p1:Guid="ff6769b7-23dc-4666-a71f-7b5569c6e38e">
+      <column name="" default="NULL" not-null="false" length="25" p1:unicode="true" />
+    </property>
+    <property name="ModifiedByUser" type="String" p1:nullable="true" p1:ValidateMaxLength="25" p1:ValidateRequired="False" p1:Guid="ca8f8e46-e72a-417f-900d-be3880ffcd69">
+      <column name="" default="NULL" not-null="false" length="25" p1:unicode="true" />
+    </property>
+    <many-to-one name="Provider" class="Provider" p1:AssociationGuid="9d4324be-55ad-4f1c-b9d8-d1c8646b2949" p1:Guid="9f5f7b6b-622a-4eaf-96c8-18f67e09cf51">
+      <column name="" not-null="true" precision="10" scale="0" p1:unicode="false" />
+    </many-to-one>
+    <set name="Purchasedetails" inverse="true" generic="true" p1:AssociationGuid="dd4e9690-ccec-4cbe-8173-b44e84541dee" p1:Guid="c4be685e-b636-477f-87fe-4952acd4cc55">
+      <key>
+        <column name="" />
+      </key>
+      <one-to-many class="PurchaseDetail" />
+    </set>
+  </class>
+  <class name="PurchaseDetail" table="" p1:Guid="1725f5fb-b975-4312-b182-7c753d025e78">
+    <composite-id>
+      <key-property name="PurchaseDetailNumber" type="Int32" p1:ValidateRequired="True" p1:Guid="ecd1044c-40c1-44fa-8486-2656630265af">
+        <column name="" not-null="true" precision="10" scale="0" p1:unicode="false" />
+      </key-property>
+      <key-property name="PurchaseId" type="Int32" p1:ValidateRequired="True" p1:Guid="19bf0646-778f-46ce-87d9-b2c8c801494e">
+        <column name="" not-null="true" precision="10" scale="0" p1:unicode="false" />
+      </key-property>
+    </composite-id>
+    <property name="PurchasePrice" type="Single" p1:nullable="true" p1:ValidateRequired="False" p1:Guid="e9c39275-6af0-4810-85ad-1801cdc803db">
+      <column name="" default="NULL" not-null="false" precision="24" p1:unicode="false" />
+    </property>
+    <property name="Quantity" type="Int32" p1:nullable="true" p1:ValidateRequired="False" p1:Guid="3025aa5a-e478-42ad-a26c-7c5a3b259633">
+      <column name="" default="NULL" not-null="false" precision="10" scale="0" p1:unicode="false" />
+    </property>
+    <property name="Subtotal" type="Single" p1:nullable="true" p1:ValidateRequired="False" p1:Guid="6cd1835f-0ae8-44cd-be2b-2f6625d6ff47">
+      <column name="" default="NULL" not-null="false" precision="24" p1:unicode="false" />
+    </property>
+    <property name="CreationDate" type="DateTime" p1:nullable="true" p1:ValidateRequired="False" p1:Guid="d26ed733-d462-49c5-9c11-69bc0f92d34f">
+      <column name="" default="NULL" not-null="false" p1:unicode="false" />
+    </property>
+    <property name="ModifyDate" type="DateTime" p1:nullable="true" p1:ValidateRequired="False" p1:Guid="a02df337-a04a-42ee-a5c2-20a7aa853297">
+      <column name="" default="NULL" not-null="false" p1:unicode="false" />
+    </property>
+    <many-to-one name="Product" class="Product" p1:AssociationGuid="ff172da8-a419-46de-8877-74952cc21e06" p1:Guid="2b72ad33-f072-49d8-98c1-071c0b3c5f48">
+      <column name="" not-null="true" precision="10" scale="0" p1:unicode="false" />
+    </many-to-one>
+    <many-to-one name="Purchase" class="Purchase" p1:AssociationGuid="dd4e9690-ccec-4cbe-8173-b44e84541dee" p1:Guid="bc7873f9-172d-4596-a3c8-eef744fba995">
+      <column name="" not-null="true" precision="10" scale="0" p1:unicode="false" />
+    </many-to-one>
+  </class>
+  <class name="PurchaseOrder" table="" p1:Guid="3e3f1582-bd6f-40d9-982b-ec58cb8e797a">
+    <id name="PurchaseOrderId" type="Int32" p1:ValidateRequired="True" p1:Guid="3677879c-9cb7-42ac-86f1-b300d89a3a3d">
+      <column name="" not-null="true" precision="10" scale="0" p1:unicode="false" />
+      <generator class="identity" />
+    </id>
+    <property name="OrderDate" type="DateTime" p1:nullable="true" p1:ValidateRequired="False" p1:Guid="00720689-187e-4fae-83b0-0eee16f6722a">
+      <column name="" default="NULL" not-null="false" p1:unicode="false" />
+    </property>
+    <property name="Total" type="DateTime" p1:nullable="true" p1:ValidateRequired="False" p1:Guid="1f9f2808-a4b3-46b8-8a0d-fac84a46f281">
+      <column name="" default="NULL" not-null="false" p1:unicode="false" />
+    </property>
+    <property name="OrderStatus" type="String" p1:nullable="true" p1:ValidateMaxLength="25" p1:ValidateRequired="False" p1:Guid="92c2e327-18d6-425f-ab0b-374cf8b9d1cf">
+      <column name="" default="NULL" not-null="false" length="25" p1:unicode="true" />
+    </property>
+    <property name="CreationDate" type="DateTime" p1:nullable="true" p1:ValidateRequired="False" p1:Guid="be89ca3d-1d16-4436-934d-6c2e5c9df85b">
+      <column name="" default="NULL" not-null="false" p1:unicode="false" />
+    </property>
+    <property name="ModifyDate" type="DateTime" p1:nullable="true" p1:ValidateRequired="False" p1:Guid="6cbfff0d-5bcb-4c04-b066-05b1822bbaab">
+      <column name="" default="NULL" not-null="false" p1:unicode="false" />
+    </property>
+    <property name="CreatedByUser" type="String" p1:nullable="true" p1:ValidateMaxLength="25" p1:ValidateRequired="False" p1:Guid="b56adb4a-1d42-4542-9205-da833c30e840">
+      <column name="" default="NULL" not-null="false" length="25" p1:unicode="true" />
+    </property>
+    <property name="ModifiedByUser" type="String" p1:nullable="true" p1:ValidateMaxLength="25" p1:ValidateRequired="False" p1:Guid="b7352f53-c48d-4794-b8bd-c73594fdb197">
+      <column name="" default="NULL" not-null="false" length="25" p1:unicode="true" />
+    </property>
+    <many-to-one name="Provider" class="Provider" p1:AssociationGuid="c452cbc4-617f-46e7-b68f-ad9525d8f1da" p1:Guid="74052bda-fdb8-49d7-8ddd-36bb48cad580">
+      <column name="" not-null="true" precision="10" scale="0" p1:unicode="false" />
+    </many-to-one>
+    <set name="Purchaseorderdetails" inverse="true" generic="true" p1:AssociationGuid="d320f034-d3d9-4361-ab28-dcbaf79eaf8e" p1:Guid="b9ed3984-220a-4722-8768-1ed75cb060c3">
+      <key>
+        <column name="" />
+      </key>
+      <one-to-many class="PurchaseOrderDetail" />
+    </set>
+  </class>
+  <class name="PurchaseOrderDetail" table="" p1:Guid="e7ef4c59-8aeb-46e2-8ea2-57cb10da459c">
+    <composite-id>
+      <key-property name="OrderDetailNumber" type="Int32" p1:ValidateRequired="True" p1:Guid="632e52d7-7f3c-45e9-8f81-b2505a4584b5">
+        <column name="" not-null="true" precision="10" scale="0" p1:unicode="false" />
+      </key-property>
+      <key-property name="PurchaseOrderId" type="Int32" p1:ValidateRequired="True" p1:Guid="09d53d88-fd1f-4568-af07-926e93dc3bc3">
+        <column name="" not-null="true" precision="10" scale="0" p1:unicode="false" />
+      </key-property>
+    </composite-id>
+    <property name="Quantity" type="Int32" p1:nullable="true" p1:ValidateRequired="False" p1:Guid="b06fd64d-c773-467d-91f3-52b5570a83ef">
+      <column name="" default="NULL" not-null="false" precision="10" scale="0" p1:unicode="false" />
+    </property>
+    <property name="UnitPrice" type="Single" p1:nullable="true" p1:ValidateRequired="False" p1:Guid="4d68a020-b470-4e34-88ee-5f91dbed3ced">
+      <column name="" default="NULL" not-null="false" precision="24" p1:unicode="false" />
+    </property>
+    <property name="SubTotal" type="Single" p1:nullable="true" p1:ValidateRequired="False" p1:Guid="834ad220-8e94-4522-8f1c-e84ac97802cf">
+      <column name="" default="NULL" not-null="false" precision="24" p1:unicode="false" />
+    </property>
+    <property name="CreationDate" type="DateTime" p1:nullable="true" p1:ValidateRequired="False" p1:Guid="22dbd784-d134-45de-ae80-5a2dc0c408c5">
+      <column name="" default="NULL" not-null="false" p1:unicode="false" />
+    </property>
+    <property name="ModifyDate" type="DateTime" p1:nullable="true" p1:ValidateRequired="False" p1:Guid="cd915716-e496-4690-922c-1f38559c1fcd">
+      <column name="" default="NULL" not-null="false" p1:unicode="false" />
+    </property>
+    <property name="CreatedByUser" type="String" p1:nullable="true" p1:ValidateMaxLength="25" p1:ValidateRequired="False" p1:Guid="0da3262a-f1e8-46cb-89d4-9291dd28727e">
+      <column name="" default="NULL" not-null="false" length="25" p1:unicode="true" />
+    </property>
+    <property name="ModifiedByUser" type="String" p1:nullable="true" p1:ValidateMaxLength="25" p1:ValidateRequired="False" p1:Guid="876968ac-ec16-40f3-b5c0-72e3bcbde2b9">
+      <column name="" default="NULL" not-null="false" length="25" p1:unicode="true" />
+    </property>
+    <many-to-one name="Product" class="Product" p1:AssociationGuid="b1a7afac-eaf6-42c6-a332-2d278c733cbc" p1:Guid="d8ee2e69-1809-46be-a4d3-52032ce5a6e9">
+      <column name="" not-null="true" precision="10" scale="0" p1:unicode="false" />
+    </many-to-one>
+    <many-to-one name="Purchaseorder" class="PurchaseOrder" p1:AssociationGuid="d320f034-d3d9-4361-ab28-dcbaf79eaf8e" p1:Guid="bcd059cc-f22b-461d-9523-9f3c27125dca">
+      <column name="" not-null="true" precision="10" scale="0" p1:unicode="false" />
+    </many-to-one>
+  </class>
+  <class name="Role" table="" p1:Guid="7de3317c-393a-404f-b9b8-d2b163cc129a">
+    <id name="RoleId" type="Int32" p1:ValidateRequired="True" p1:Guid="0b7e445a-2857-4346-b548-a3154b64ef48">
+      <column name="" not-null="true" precision="10" scale="0" p1:unicode="false" />
+      <generator class="identity" />
+    </id>
+    <property name="RoleName" type="String" p1:nullable="true" p1:ValidateMaxLength="25" p1:ValidateRequired="False" p1:Guid="b3bb7087-ef34-4f97-9a92-fcc5cb70eb4a">
+      <column name="" default="NULL" not-null="false" length="25" p1:unicode="true" />
+    </property>
+    <property name="CreationDate" type="DateTime" p1:nullable="true" p1:ValidateRequired="False" p1:Guid="21b47275-b144-46f8-a02b-736f665becc6">
+      <column name="" default="NULL" not-null="false" p1:unicode="false" />
+    </property>
+    <property name="ModifyDate" type="DateTime" p1:nullable="true" p1:ValidateRequired="False" p1:Guid="4498be42-a067-43a0-acf0-a84df62776d8">
+      <column name="" default="NULL" not-null="false" p1:unicode="false" />
+    </property>
+    <property name="CreatedByUser" type="String" p1:nullable="true" p1:ValidateMaxLength="25" p1:ValidateRequired="False" p1:Guid="2c8595ae-dd17-4845-a510-a86c239c66cc">
+      <column name="" default="NULL" not-null="false" length="25" p1:unicode="true" />
+    </property>
+    <property name="ModifiedByUser" type="String" p1:nullable="true" p1:ValidateMaxLength="25" p1:ValidateRequired="False" p1:Guid="42f7e88a-6e86-47e6-877a-a86f7d95a391">
+      <column name="" default="NULL" not-null="false" length="25" p1:unicode="true" />
+    </property>
+    <set name="PrivilegeHasRoles" inverse="true" generic="true" p1:AssociationGuid="26442f81-df13-4b5a-9570-1eed29f05e8f" p1:Guid="63c6c5a6-68a5-455e-89a4-57c7b147ce76">
+      <key>
+        <column name="" />
+      </key>
+      <one-to-many class="PrivilegeHasRole" />
+    </set>
+    <set name="UsersHasRoles" inverse="true" generic="true" p1:AssociationGuid="79bf01a9-7ea2-4ae4-8c25-6f7630e7efb7" p1:Guid="a8b734fa-ad01-4f53-8ac0-46bd9883a126">
+      <key>
+        <column name="" />
+      </key>
+      <one-to-many class="UsersHasRole" />
+    </set>
+  </class>
+  <class name="User" table="" p1:Guid="7d3d3875-889a-482e-a6a9-c3e7e7b843f1">
+    <id name="UserId" type="String" p1:ValidateMaxLength="25" p1:ValidateRequired="True" p1:Guid="a1a3acae-1e1a-451f-a12d-ed00c5de9114">
+      <column name="" not-null="true" length="25" p1:unicode="true" />
+    </id>
+    <property name="Name" type="String" p1:nullable="true" p1:ValidateMaxLength="25" p1:ValidateRequired="False" p1:Guid="e1faa465-b0a9-44f0-af8d-8286dc0eb194">
+      <column name="" default="NULL" not-null="false" length="25" p1:unicode="true" />
+    </property>
+    <property name="Email" type="String" p1:nullable="true" p1:ValidateMaxLength="25" p1:ValidateRequired="False" p1:Guid="2088dc2c-f97b-4771-a980-ad609b3e4b5e">
+      <column name="" default="NULL" not-null="false" length="25" p1:unicode="true" />
+    </property>
+    <property name="Pass" type="String" p1:nullable="true" p1:ValidateMaxLength="64" p1:ValidateRequired="False" p1:Guid="e22fb038-7ee1-42c8-aea6-dbaf48a9846a">
+      <column name="" default="NULL" not-null="false" length="64" p1:unicode="true" />
+    </property>
+    <property name="CreationDate" type="DateTime" p1:nullable="true" p1:ValidateRequired="False" p1:Guid="51049c02-b9fd-4f1a-80f3-a8644e94d98c">
+      <column name="" default="NULL" not-null="false" p1:unicode="false" />
+    </property>
+    <property name="ModifyDate" type="DateTime" p1:nullable="true" p1:ValidateRequired="False" p1:Guid="0e752848-e63b-4176-8a8e-81ea14624825">
+      <column name="" default="NULL" not-null="false" p1:unicode="false" />
+    </property>
+    <property name="CreatedByUser" type="String" p1:nullable="true" p1:ValidateMaxLength="25" p1:ValidateRequired="False" p1:Guid="f76c1f4f-2452-4082-923f-7a0b8441c4b9">
+      <column name="" default="NULL" not-null="false" length="25" p1:unicode="true" />
+    </property>
+    <property name="ModifiedByUser" type="String" p1:nullable="true" p1:ValidateMaxLength="25" p1:ValidateRequired="False" p1:Guid="a57455c4-9c09-43c5-941c-bc3d72c4312a">
+      <column name="" default="NULL" not-null="false" length="25" p1:unicode="true" />
+    </property>
+    <set name="UsersHasRoles" inverse="true" generic="true" p1:AssociationGuid="8b499d94-44a9-4444-b76a-9ad5e26c1a18" p1:Guid="1079f375-cf60-4782-abdf-1198a360b496">
+      <key>
+        <column name="" />
+      </key>
+      <one-to-many class="UsersHasRole" />
+    </set>
+  </class>
+  <class name="UsersHasRole" table="" p1:Guid="7311f659-55bf-4413-9547-8a68599e2a1c">
+    <composite-id>
+      <key-property name="RoleId" type="Int32" p1:ValidateRequired="True" p1:Guid="dbfe8945-e57b-48a5-9041-eab62cab8766">
+        <column name="" not-null="true" precision="10" scale="0" p1:unicode="false" />
+      </key-property>
+      <key-property name="UserId" type="String" p1:ValidateMaxLength="25" p1:ValidateRequired="True" p1:Guid="55479640-2a0d-4320-8804-e323e37a774a">
+        <column name="" not-null="true" length="25" p1:unicode="true" />
+      </key-property>
+    </composite-id>
+    <property name="CreatedByUser" type="String" p1:nullable="true" p1:ValidateMaxLength="25" p1:ValidateRequired="False" p1:Guid="b3a86c1e-d85e-438c-b95c-e6d4d384fb82">
+      <column name="" default="NULL" not-null="false" length="25" p1:unicode="true" />
+    </property>
+    <property name="ModifiedByUser" type="String" p1:nullable="true" p1:ValidateMaxLength="25" p1:ValidateRequired="False" p1:Guid="8bbe358c-3bb3-419b-b27f-eb8a78cc0ace">
+      <column name="" default="NULL" not-null="false" length="25" p1:unicode="true" />
+    </property>
+    <property name="CreationDate" type="DateTime" p1:nullable="true" p1:ValidateRequired="False" p1:Guid="e9218fb6-7d34-42c5-a0e9-348e114764b7">
+      <column name="" default="NULL" not-null="false" p1:unicode="false" />
+    </property>
+    <property name="ModifyDate" type="DateTime" p1:nullable="true" p1:ValidateRequired="False" p1:Guid="71add524-513d-4cd5-9959-a58ed1e7f2ac">
+      <column name="" default="NULL" not-null="false" p1:unicode="false" />
+    </property>
+    <many-to-one name="Role" class="Role" p1:AssociationGuid="79bf01a9-7ea2-4ae4-8c25-6f7630e7efb7" p1:Guid="caf3e6b5-48e3-44dc-8300-42f22d15318b">
+      <column name="" not-null="true" precision="10" scale="0" p1:unicode="false" />
+    </many-to-one>
+    <many-to-one name="User" class="User" p1:AssociationGuid="8b499d94-44a9-4444-b76a-9ad5e26c1a18" p1:Guid="6e6fbd26-b80d-450d-8615-a00e18c84316">
+      <column name="" not-null="true" length="25" p1:unicode="true" />
+    </many-to-one>
+  </class>
+  <sql-query name="SPAddressDEL" p1:procedure="dbo.SP_address_DEL" callable="true" p1:Guid="8020f28b-c3f7-4f28-b1bd-c88782e54b39">
+    <query-param name="pAddressId" p1:source="pAddressId" type="Int32" />exec dbo.SP_address_DEL :pAddressId</sql-query>
+  <sql-query name="SPAddressIN" p1:procedure="dbo.SP_address_INS" callable="true" p1:Guid="94427fa6-24ff-4da6-a36d-871065b47ac4">
+    <query-param name="pCustomerId" p1:source="pCustomerId" type="Int32" />
+    <query-param name="pAddressContent" p1:source="pAddressContent" type="String" />
+    <query-param name="pModifyDate" p1:source="pModifyDate" type="DateTime" />
+    <query-param name="pCreationDate" p1:source="pCreationDate" type="DateTime" />
+    <query-param name="pCreatedByUser" p1:source="pCreatedByUser" type="String" />
+    <query-param name="pModifiedByUser" p1:source="pModifiedByUser" type="String" />exec dbo.SP_address_INS :pCustomerId, :pAddressContent, :pModifyDate, :pCreationDate, :pCreatedByUser, :pModifiedByUser</sql-query>
+  <sql-query name="SPAddressSEL" p1:procedure="dbo.SP_address_SEL" callable="true" p1:Guid="cb788dc8-be40-480a-ac72-afa9e0db8253">
+    <return class="Address" />exec dbo.SP_address_SEL</sql-query>
+  <sql-query name="SPAddressUPD" p1:procedure="dbo.SP_address_UPD" callable="true" p1:Guid="57072870-b416-4520-9d6d-fbff825a9b4b">
+    <query-param name="pAddressId" p1:source="pAddressId" type="Int32" />
+    <query-param name="pCustomerId" p1:source="pCustomerId" type="Int32" />
+    <query-param name="pAddressContent" p1:source="pAddressContent" type="String" />
+    <query-param name="pModifyDate" p1:source="pModifyDate" type="DateTime" />
+    <query-param name="pCreationDate" p1:source="pCreationDate" type="DateTime" />
+    <query-param name="pCreatedByUser" p1:source="pCreatedByUser" type="String" />
+    <query-param name="pModifiedByUser" p1:source="pModifiedByUser" type="String" />exec dbo.SP_address_UPD :pAddressId, :pCustomerId, :pAddressContent, :pModifyDate, :pCreationDate, :pCreatedByUser, :pModifiedByUser</sql-query>
+  <sql-query name="SPCategoryDEL" p1:procedure="dbo.SP_category_DEL" callable="true" p1:Guid="46f5e3e7-55e5-4194-b9ca-2061add0f8c2">
+    <query-param name="pCategoryId" p1:source="pCategoryId" type="Int32" />exec dbo.SP_category_DEL :pCategoryId</sql-query>
+  <sql-query name="SPCategoryIN" p1:procedure="dbo.SP_category_INS" callable="true" p1:Guid="a95f409f-443c-47a2-ab95-72e33dfa500c">
+    <query-param name="pCategoryName" p1:source="pCategoryName" type="String" />
+    <query-param name="pCreationDate" p1:source="pCreationDate" type="DateTime" />
+    <query-param name="pModifyDate" p1:source="pModifyDate" type="DateTime" />
+    <query-param name="pCreatedByUser" p1:source="pCreatedByUser" type="String" />
+    <query-param name="pModifiedByUser" p1:source="pModifiedByUser" type="String" />exec dbo.SP_category_INS :pCategoryName, :pCreationDate, :pModifyDate, :pCreatedByUser, :pModifiedByUser</sql-query>
+  <sql-query name="SPCategorySEL" p1:procedure="dbo.SP_category_SEL" callable="true" p1:Guid="8d7865cc-5765-42ac-9821-1267efec4c07">
+    <return class="Category" />exec dbo.SP_category_SEL</sql-query>
+  <sql-query name="SPCategoryUPD" p1:procedure="dbo.SP_category_UPD" callable="true" p1:Guid="df24d50d-ea41-418a-b895-729f22374c6c">
+    <query-param name="pCategoryId" p1:source="pCategoryId" type="Int32" />
+    <query-param name="pCategoryName" p1:source="pCategoryName" type="String" />
+    <query-param name="pCreationDate" p1:source="pCreationDate" type="DateTime" />
+    <query-param name="pModifyDate" p1:source="pModifyDate" type="DateTime" />
+    <query-param name="pCreatedByUser" p1:source="pCreatedByUser" type="String" />
+    <query-param name="pModifiedByUser" p1:source="pModifiedByUser" type="String" />exec dbo.SP_category_UPD :pCategoryId, :pCategoryName, :pCreationDate, :pModifyDate, :pCreatedByUser, :pModifiedByUser</sql-query>
+  <sql-query name="SPCustomerDEL" p1:procedure="dbo.SP_customer_DEL" callable="true" p1:Guid="5567e365-ca1a-409d-bb9a-529cc84ca81d">
+    <query-param name="pCustomerId" p1:source="pCustomerId" type="Int32" />exec dbo.SP_customer_DEL :pCustomerId</sql-query>
+  <sql-query name="SPCustomerIN" p1:procedure="dbo.SP_customer_INS" callable="true" p1:Guid="428c123b-5da1-4c0c-9de3-8e5c090a8c39">
+    <query-param name="pCustomerName" p1:source="pCustomerName" type="String" />
+    <query-param name="pCreationDate" p1:source="pCreationDate" type="DateTime" />
+    <query-param name="pModifyDate" p1:source="pModifyDate" type="DateTime" />
+    <query-param name="pCustomerTypeId" p1:source="pCustomerTypeId" type="Int32" />
+    <query-param name="pCreatedByUser" p1:source="pCreatedByUser" type="String" />
+    <query-param name="pModifiedByUser" p1:source="pModifiedByUser" type="String" />exec dbo.SP_customer_INS :pCustomerName, :pCreationDate, :pModifyDate, :pCustomerTypeId, :pCreatedByUser, :pModifiedByUser</sql-query>
+  <sql-query name="SPCustomerSEL" p1:procedure="dbo.SP_customer_SEL" callable="true" p1:Guid="fc6b5193-80ea-4e9a-82b9-e8477ad507f2">
+    <return class="Customer" />exec dbo.SP_customer_SEL</sql-query>
+  <sql-query name="SPCustomerUPD" p1:procedure="dbo.SP_customer_UPD" callable="true" p1:Guid="84ef2915-5de5-4ad4-8af4-c0f11ff33591">
+    <query-param name="pCustomerId" p1:source="pCustomerId" type="Int32" />
+    <query-param name="pCustomerName" p1:source="pCustomerName" type="String" />
+    <query-param name="pCreationDate" p1:source="pCreationDate" type="DateTime" />
+    <query-param name="pModifyDate" p1:source="pModifyDate" type="DateTime" />
+    <query-param name="pCustomerTypeId" p1:source="pCustomerTypeId" type="Int32" />
+    <query-param name="pCreatedByUser" p1:source="pCreatedByUser" type="String" />
+    <query-param name="pModifiedByUser" p1:source="pModifiedByUser" type="String" />exec dbo.SP_customer_UPD :pCustomerId, :pCustomerName, :pCreationDate, :pModifyDate, :pCustomerTypeId, :pCreatedByUser, :pModifiedByUser</sql-query>
+  <sql-query name="SPCustomercontactDEL" p1:procedure="dbo.SP_customercontact_DEL" callable="true" p1:Guid="3309f121-2a80-4984-bc19-97fe2e1f5e16">
+    <query-param name="pContactId" p1:source="pContactId" type="Int32" />exec dbo.SP_customercontact_DEL :pContactId</sql-query>
+  <sql-query name="SPCustomercontactIN" p1:procedure="dbo.SP_customercontact_INS" callable="true" p1:Guid="95bbf901-e19b-43dd-91f3-ecb894da339e">
+    <query-param name="pCustomerId" p1:source="pCustomerId" type="Int32" />
+    <query-param name="pEmail" p1:source="pEmail" type="String" />
+    <query-param name="pName" p1:source="pName" type="String" />
+    <query-param name="pPhone" p1:source="pPhone" type="String" />
+    <query-param name="pCreationDate" p1:source="pCreationDate" type="DateTime" />
+    <query-param name="pModifyDate" p1:source="pModifyDate" type="DateTime" />
+    <query-param name="pCreatedByUser" p1:source="pCreatedByUser" type="String" />
+    <query-param name="pModifiedByUser" p1:source="pModifiedByUser" type="String" />exec dbo.SP_customercontact_INS :pCustomerId, :pEmail, :pName, :pPhone, :pCreationDate, :pModifyDate, :pCreatedByUser, :pModifiedByUser</sql-query>
+  <sql-query name="SPCustomercontactSEL" p1:procedure="dbo.SP_customercontact_SEL" callable="true" p1:Guid="b581607c-096e-43df-84f1-087e4192a19f">
+    <return class="CustomerContact" />exec dbo.SP_customercontact_SEL</sql-query>
+  <sql-query name="SPCustomercontactUPD" p1:procedure="dbo.SP_customercontact_UPD" callable="true" p1:Guid="a4e04c88-25d9-4f0f-a2cf-8dd2916297d1">
+    <query-param name="pContactId" p1:source="pContactId" type="Int32" />
+    <query-param name="pCustomerId" p1:source="pCustomerId" type="Int32" />
+    <query-param name="pEmail" p1:source="pEmail" type="String" />
+    <query-param name="pName" p1:source="pName" type="String" />
+    <query-param name="pPhone" p1:source="pPhone" type="String" />
+    <query-param name="pCreationDate" p1:source="pCreationDate" type="DateTime" />
+    <query-param name="pModifyDate" p1:source="pModifyDate" type="DateTime" />
+    <query-param name="pCreatedByUser" p1:source="pCreatedByUser" type="String" />
+    <query-param name="pModifiedByUser" p1:source="pModifiedByUser" type="String" />exec dbo.SP_customercontact_UPD :pContactId, :pCustomerId, :pEmail, :pName, :pPhone, :pCreationDate, :pModifyDate, :pCreatedByUser, :pModifiedByUser</sql-query>
+  <sql-query name="SPCustomertypeDEL" p1:procedure="dbo.SP_customertype_DEL" callable="true" p1:Guid="ad538630-0c30-4ee9-9db2-e26bbfce6a60">
+    <query-param name="pCustomerTypeId" p1:source="pCustomerTypeId" type="Int32" />exec dbo.SP_customertype_DEL :pCustomerTypeId</sql-query>
+  <sql-query name="SPCustomertypeIN" p1:procedure="dbo.SP_customertype_INS" callable="true" p1:Guid="3dbcd882-f8de-4327-a648-13d55e9337af">
+    <query-param name="pCustomerTypeId" p1:source="pCustomerTypeId" type="Int32" />
+    <query-param name="pTypeName" p1:source="pTypeName" type="String" />
+    <query-param name="pCreatedByUser" p1:source="pCreatedByUser" type="String" />
+    <query-param name="pModifiedByUser" p1:source="pModifiedByUser" type="String" />
+    <query-param name="pCreationDate" p1:source="pCreationDate" type="DateTime" />
+    <query-param name="pModifyDate" p1:source="pModifyDate" type="DateTime" />exec dbo.SP_customertype_INS :pCustomerTypeId, :pTypeName, :pCreatedByUser, :pModifiedByUser, :pCreationDate, :pModifyDate</sql-query>
+  <sql-query name="SPCustomertypeSEL" p1:procedure="dbo.SP_customertype_SEL" callable="true" p1:Guid="ed43a664-a6e4-46a0-bdae-e7f1ecc207c6">
+    <return class="CustomerType" />exec dbo.SP_customertype_SEL</sql-query>
+  <sql-query name="SPCustomertypeUPD" p1:procedure="dbo.SP_customertype_UPD" callable="true" p1:Guid="dcd9a1df-3179-4db7-896c-cdc1bfe68367">
+    <query-param name="pCustomerTypeId" p1:source="pCustomerTypeId" type="Int32" />
+    <query-param name="pTypeName" p1:source="pTypeName" type="String" />
+    <query-param name="pCreatedByUser" p1:source="pCreatedByUser" type="String" />
+    <query-param name="pModifiedByUser" p1:source="pModifiedByUser" type="String" />
+    <query-param name="pCreationDate" p1:source="pCreationDate" type="DateTime" />
+    <query-param name="pModifyDate" p1:source="pModifyDate" type="DateTime" />exec dbo.SP_customertype_UPD :pCustomerTypeId, :pTypeName, :pCreatedByUser, :pModifiedByUser, :pCreationDate, :pModifyDate</sql-query>
+  <sql-query name="SPEstimatedetailDEL" p1:procedure="dbo.SP_estimatedetail_DEL" callable="true" p1:Guid="39c9dd42-e17a-404a-bbb4-f905acea0d20">
+    <query-param name="pEstimateDetailNumber" p1:source="pEstimateDetailNumber" type="Int32" />
+    <query-param name="pProductId" p1:source="pProductId" type="Int32" />exec dbo.SP_estimatedetail_DEL :pEstimateDetailNumber, :pProductId</sql-query>
+  <sql-query name="SPEstimatedetailIN" p1:procedure="dbo.SP_estimatedetail_INS" callable="true" p1:Guid="76ea5aa1-199a-43e5-a6c7-3e510717d1dd">
+    <query-param name="pProductId" p1:source="pProductId" type="Int32" />
+    <query-param name="pPriceEstimateId" p1:source="pPriceEstimateId" type="Int32" />
+    <query-param name="pQuantity" p1:source="pQuantity" type="Int32" />
+    <query-param name="pUnitPrice" p1:source="pUnitPrice" type="Single" />
+    <query-param name="pCreationDate" p1:source="pCreationDate" type="DateTime" />
+    <query-param name="pModifyDate" p1:source="pModifyDate" type="DateTime" />
+    <query-param name="pCreatedByUser" p1:source="pCreatedByUser" type="String" />
+    <query-param name="pModifiedByUser" p1:source="pModifiedByUser" type="String" />exec dbo.SP_estimatedetail_INS :pProductId, :pPriceEstimateId, :pQuantity, :pUnitPrice, :pCreationDate, :pModifyDate, :pCreatedByUser, :pModifiedByUser</sql-query>
+  <sql-query name="SPEstimatedetailSEL" p1:procedure="dbo.SP_estimatedetail_SEL" callable="true" p1:Guid="6ea87914-1738-40a5-9394-a1174bb804c7">
+    <return class="EstimateDetail" />exec dbo.SP_estimatedetail_SEL</sql-query>
+  <sql-query name="SPEstimatedetailUPD" p1:procedure="dbo.SP_estimatedetail_UPD" callable="true" p1:Guid="a74f1f9d-c7b6-408a-8a2a-bdf729e5d2aa">
+    <query-param name="pEstimateDetailNumber" p1:source="pEstimateDetailNumber" type="Int32" />
+    <query-param name="pProductId" p1:source="pProductId" type="Int32" />
+    <query-param name="pPriceEstimateId" p1:source="pPriceEstimateId" type="Int32" />
+    <query-param name="pQuantity" p1:source="pQuantity" type="Int32" />
+    <query-param name="pUnitPrice" p1:source="pUnitPrice" type="Single" />
+    <query-param name="pCreationDate" p1:source="pCreationDate" type="DateTime" />
+    <query-param name="pModifyDate" p1:source="pModifyDate" type="DateTime" />
+    <query-param name="pCreatedByUser" p1:source="pCreatedByUser" type="String" />
+    <query-param name="pModifiedByUser" p1:source="pModifiedByUser" type="String" />exec dbo.SP_estimatedetail_UPD :pEstimateDetailNumber, :pProductId, :pPriceEstimateId, :pQuantity, :pUnitPrice, :pCreationDate, :pModifyDate, :pCreatedByUser, :pModifiedByUser</sql-query>
+  <sql-query name="SPInventoryadjustmentDEL" p1:procedure="dbo.SP_inventoryadjustment_DEL" callable="true" p1:Guid="ba5afff1-b4a4-447d-a53a-0b5375fed330">
+    <query-param name="pAdjustmentId" p1:source="pAdjustmentId" type="Int32" />exec dbo.SP_inventoryadjustment_DEL :pAdjustmentId</sql-query>
+  <sql-query name="SPInventoryadjustmentIN" p1:procedure="dbo.SP_inventoryadjustment_INS" callable="true" p1:Guid="6ad9848f-bee6-497a-aaa5-70effc2fc790">
+    <query-param name="pAdjustmentType" p1:source="pAdjustmentType" type="String" />
+    <query-param name="pAdjustmentDate" p1:source="pAdjustmentDate" type="DateTime" />
+    <query-param name="pTotalAdjusted" p1:source="pTotalAdjusted" type="Int32" />
+    <query-param name="pCreationDate" p1:source="pCreationDate" type="DateTime" />
+    <query-param name="pModifyDate" p1:source="pModifyDate" type="DateTime" />
+    <query-param name="pCreatedByUser" p1:source="pCreatedByUser" type="String" />
+    <query-param name="pModifiedByUser" p1:source="pModifiedByUser" type="String" />exec dbo.SP_inventoryadjustment_INS :pAdjustmentType, :pAdjustmentDate, :pTotalAdjusted, :pCreationDate, :pModifyDate, :pCreatedByUser, :pModifiedByUser</sql-query>
+  <sql-query name="SPInventoryadjustmentSEL" p1:procedure="dbo.SP_inventoryadjustment_SEL" callable="true" p1:Guid="51ee9864-15db-4b6d-93ba-79a001f8d606">
+    <return class="InventoryAdjustment" />exec dbo.SP_inventoryadjustment_SEL</sql-query>
+  <sql-query name="SPInventoryadjustmentUPD" p1:procedure="dbo.SP_inventoryadjustment_UPD" callable="true" p1:Guid="c9990132-480b-408e-a62f-4b621aa46670">
+    <query-param name="pAdjustmentId" p1:source="pAdjustmentId" type="Int32" />
+    <query-param name="pAdjustmentType" p1:source="pAdjustmentType" type="String" />
+    <query-param name="pAdjustmentDate" p1:source="pAdjustmentDate" type="DateTime" />
+    <query-param name="pTotalAdjusted" p1:source="pTotalAdjusted" type="Int32" />
+    <query-param name="pCreationDate" p1:source="pCreationDate" type="DateTime" />
+    <query-param name="pModifyDate" p1:source="pModifyDate" type="DateTime" />
+    <query-param name="pCreatedByUser" p1:source="pCreatedByUser" type="String" />
+    <query-param name="pModifiedByUser" p1:source="pModifiedByUser" type="String" />exec dbo.SP_inventoryadjustment_UPD :pAdjustmentId, :pAdjustmentType, :pAdjustmentDate, :pTotalAdjusted, :pCreationDate, :pModifyDate, :pCreatedByUser, :pModifiedByUser</sql-query>
+  <sql-query name="SPInventoryadjustmentdetailDEL" p1:procedure="dbo.SP_inventoryadjustmentdetail_DEL" callable="true" p1:Guid="89981840-e7c8-4a3a-89ad-1cc3425cbabb">
+    <query-param name="pAdjustmentDetailNumber" p1:source="pAdjustmentDetailNumber" type="Int32" />
+    <query-param name="pAdjustmentId" p1:source="pAdjustmentId" type="Int32" />exec dbo.SP_inventoryadjustmentdetail_DEL :pAdjustmentDetailNumber, :pAdjustmentId</sql-query>
+  <sql-query name="SPInventoryadjustmentdetailIN" p1:procedure="dbo.SP_inventoryadjustmentdetail_INS" callable="true" p1:Guid="9c6ced98-c403-425a-a778-9b575c67f776">
+    <query-param name="pProductId" p1:source="pProductId" type="Int32" />
+    <query-param name="pAdjustmentId" p1:source="pAdjustmentId" type="Int32" />
+    <query-param name="pQuantity" p1:source="pQuantity" type="Int32" />
+    <query-param name="pCreationDate" p1:source="pCreationDate" type="DateTime" />
+    <query-param name="pModifyDate" p1:source="pModifyDate" type="DateTime" />
+    <query-param name="pCreatedByUser" p1:source="pCreatedByUser" type="String" />
+    <query-param name="pModifiedByUser" p1:source="pModifiedByUser" type="String" />exec dbo.SP_inventoryadjustmentdetail_INS :pProductId, :pAdjustmentId, :pQuantity, :pCreationDate, :pModifyDate, :pCreatedByUser, :pModifiedByUser</sql-query>
+  <sql-query name="SPInventoryadjustmentdetailSEL" p1:procedure="dbo.SP_inventoryadjustmentdetail_SEL" callable="true" p1:Guid="8da83103-d4e6-48e5-b262-7c29db30f591">
+    <return class="InventoryaAjustmentDetail" />exec dbo.SP_inventoryadjustmentdetail_SEL</sql-query>
+  <sql-query name="SPInventoryadjustmentdetailUPD" p1:procedure="dbo.SP_inventoryadjustmentdetail_UPD" callable="true" p1:Guid="60098b1e-aa44-4a03-8fcd-6d33a372c8b5">
+    <query-param name="pAdjustmentDetailNumber" p1:source="pAdjustmentDetailNumber" type="Int32" />
+    <query-param name="pProductId" p1:source="pProductId" type="Int32" />
+    <query-param name="pAdjustmentId" p1:source="pAdjustmentId" type="Int32" />
+    <query-param name="pQuantity" p1:source="pQuantity" type="Int32" />
+    <query-param name="pCreationDate" p1:source="pCreationDate" type="DateTime" />
+    <query-param name="pModifyDate" p1:source="pModifyDate" type="DateTime" />
+    <query-param name="pCreatedByUser" p1:source="pCreatedByUser" type="String" />
+    <query-param name="pModifiedByUser" p1:source="pModifiedByUser" type="String" />exec dbo.SP_inventoryadjustmentdetail_UPD :pAdjustmentDetailNumber, :pProductId, :pAdjustmentId, :pQuantity, :pCreationDate, :pModifyDate, :pCreatedByUser, :pModifiedByUser</sql-query>
+  <sql-query name="SPInvoiceDEL" p1:procedure="dbo.SP_invoice_DEL" callable="true" p1:Guid="00136ea1-14ae-4489-bbe7-9718f82b0dbb">
+    <query-param name="pInvoiceId" p1:source="pInvoiceId" type="Int32" />exec dbo.SP_invoice_DEL :pInvoiceId</sql-query>
+  <sql-query name="SPInvoiceIN" p1:procedure="dbo.SP_invoice_INS" callable="true" p1:Guid="ad14606d-1bf3-4306-9526-519dcc7ddd9c">
+    <query-param name="pCustomerId" p1:source="pCustomerId" type="Int32" />
+    <query-param name="pInvoiceDate" p1:source="pInvoiceDate" type="DateTime" />
+    <query-param name="pSubTotal" p1:source="pSubTotal" type="Single" />
+    <query-param name="pSalesTax" p1:source="pSalesTax" type="Single" />
+    <query-param name="pDisccount" p1:source="pDisccount" type="Single" />
+    <query-param name="pCreationDate" p1:source="pCreationDate" type="DateTime" />
+    <query-param name="pModifyDate" p1:source="pModifyDate" type="DateTime" />
+    <query-param name="pCreatedByUser" p1:source="pCreatedByUser" type="String" />
+    <query-param name="pModifiedByUser" p1:source="pModifiedByUser" type="String" />exec dbo.SP_invoice_INS :pCustomerId, :pInvoiceDate, :pSubTotal, :pSalesTax, :pDisccount, :pCreationDate, :pModifyDate, :pCreatedByUser, :pModifiedByUser</sql-query>
+  <sql-query name="SPInvoiceSEL" p1:procedure="dbo.SP_invoice_SEL" callable="true" p1:Guid="d7aa7e64-16d4-4c43-89f8-3b0eb4b4d549">
+    <return class="Invoice" />exec dbo.SP_invoice_SEL</sql-query>
+  <sql-query name="SPInvoiceUPD" p1:procedure="dbo.SP_invoice_UPD" callable="true" p1:Guid="455b4f4a-6383-4dca-bdab-54d545f3d06d">
+    <query-param name="pInvoiceId" p1:source="pInvoiceId" type="Int32" />
+    <query-param name="pCustomerId" p1:source="pCustomerId" type="Int32" />
+    <query-param name="pInvoiceDate" p1:source="pInvoiceDate" type="DateTime" />
+    <query-param name="pSubTotal" p1:source="pSubTotal" type="Single" />
+    <query-param name="pSalesTax" p1:source="pSalesTax" type="Single" />
+    <query-param name="pDisccount" p1:source="pDisccount" type="Single" />
+    <query-param name="pCreationDate" p1:source="pCreationDate" type="DateTime" />
+    <query-param name="pModifyDate" p1:source="pModifyDate" type="DateTime" />
+    <query-param name="pCreatedByUser" p1:source="pCreatedByUser" type="String" />
+    <query-param name="pModifiedByUser" p1:source="pModifiedByUser" type="String" />exec dbo.SP_invoice_UPD :pInvoiceId, :pCustomerId, :pInvoiceDate, :pSubTotal, :pSalesTax, :pDisccount, :pCreationDate, :pModifyDate, :pCreatedByUser, :pModifiedByUser</sql-query>
+  <sql-query name="SPInvoicedetailDEL" p1:procedure="dbo.SP_invoicedetail_DEL" callable="true" p1:Guid="3d796085-87e2-4166-ac14-e6a23d3bbaff">
+    <query-param name="pInvoiceDetailNumber" p1:source="pInvoiceDetailNumber" type="Int32" />
+    <query-param name="pInvoiceId" p1:source="pInvoiceId" type="Int32" />exec dbo.SP_invoicedetail_DEL :pInvoiceDetailNumber, :pInvoiceId</sql-query>
+  <sql-query name="SPInvoicedetailIN" p1:procedure="dbo.SP_invoicedetail_INS" callable="true" p1:Guid="af832d93-1b8f-4515-8524-7cf7e0b6eb13">
+    <query-param name="pProductId" p1:source="pProductId" type="Int32" />
+    <query-param name="pSalePrice" p1:source="pSalePrice" type="Single" />
+    <query-param name="pQuantity" p1:source="pQuantity" type="Int32" />
+    <query-param name="pSubTotal" p1:source="pSubTotal" type="Single" />
+    <query-param name="pInvoiceId" p1:source="pInvoiceId" type="Int32" />
+    <query-param name="pCreatedByUser" p1:source="pCreatedByUser" type="String" />
+    <query-param name="pModifiedByUser" p1:source="pModifiedByUser" type="String" />
+    <query-param name="pCreationDate" p1:source="pCreationDate" type="DateTime" />
+    <query-param name="pModifyDate" p1:source="pModifyDate" type="DateTime" />exec dbo.SP_invoicedetail_INS :pProductId, :pSalePrice, :pQuantity, :pSubTotal, :pInvoiceId, :pCreatedByUser, :pModifiedByUser, :pCreationDate, :pModifyDate</sql-query>
+  <sql-query name="SPInvoicedetailSEL" p1:procedure="dbo.SP_invoicedetail_SEL" callable="true" p1:Guid="0517f44d-78ed-4813-8de0-5b4c5b91e3cd">
+    <return class="InvoiceDetail" />exec dbo.SP_invoicedetail_SEL</sql-query>
+  <sql-query name="SPInvoicedetailUPD" p1:procedure="dbo.SP_invoicedetail_UPD" callable="true" p1:Guid="732312f5-a45f-489d-a18c-8bfd76255748">
+    <query-param name="pInvoiceDetailNumber" p1:source="pInvoiceDetailNumber" type="Int32" />
+    <query-param name="pProductId" p1:source="pProductId" type="Int32" />
+    <query-param name="pSalePrice" p1:source="pSalePrice" type="Single" />
+    <query-param name="pQuantity" p1:source="pQuantity" type="Int32" />
+    <query-param name="pSubTotal" p1:source="pSubTotal" type="Single" />
+    <query-param name="pInvoiceId" p1:source="pInvoiceId" type="Int32" />
+    <query-param name="pCreatedByUser" p1:source="pCreatedByUser" type="String" />
+    <query-param name="pModifiedByUser" p1:source="pModifiedByUser" type="String" />
+    <query-param name="pCreationDate" p1:source="pCreationDate" type="DateTime" />
+    <query-param name="pModifyDate" p1:source="pModifyDate" type="DateTime" />exec dbo.SP_invoicedetail_UPD :pInvoiceDetailNumber, :pProductId, :pSalePrice, :pQuantity, :pSubTotal, :pInvoiceId, :pCreatedByUser, :pModifiedByUser, :pCreationDate, :pModifyDate</sql-query>
+  <sql-query name="SPKardexoperationDEL" p1:procedure="dbo.SP_kardexoperation_DEL" callable="true" p1:Guid="eee7c3f4-522a-450b-bce1-b35daabab794">
+    <query-param name="pOperationId" p1:source="pOperationId" type="Int32" />exec dbo.SP_kardexoperation_DEL :pOperationId</sql-query>
+  <sql-query name="SPKardexoperationIN" p1:procedure="dbo.SP_kardexoperation_INS" callable="true" p1:Guid="33a11afa-1dc3-4734-aa5e-a47b23e473dd">
+    <query-param name="pOperationId" p1:source="pOperationId" type="Int32" />
+    <query-param name="pProductId" p1:source="pProductId" type="Int32" />
+    <query-param name="pOperationName" p1:source="pOperationName" type="String" />
+    <query-param name="pProductCost" p1:source="pProductCost" type="Single" />
+    <query-param name="pPreviousExistence" p1:source="pPreviousExistence" type="Int32" />
+    <query-param name="pNewExistence" p1:source="pNewExistence" type="Int32" />
+    <query-param name="pProductPrice" p1:source="pProductPrice" type="Single" />
+    <query-param name="pQuantity" p1:source="pQuantity" type="Int32" />
+    <query-param name="pCreationDate" p1:source="pCreationDate" type="DateTime" />
+    <query-param name="pModifyDate" p1:source="pModifyDate" type="DateTime" />
+    <query-param name="pOperationDate" p1:source="pOperationDate" type="DateTime" />
+    <query-param name="pCreatedByUser" p1:source="pCreatedByUser" type="String" />
+    <query-param name="pModifiedByUser" p1:source="pModifiedByUser" type="String" />exec dbo.SP_kardexoperation_INS :pOperationId, :pProductId, :pOperationName, :pProductCost, :pPreviousExistence, :pNewExistence, :pProductPrice, :pQuantity, :pCreationDate, :pModifyDate, :pOperationDate, :pCreatedByUser, :pModifiedByUser</sql-query>
+  <sql-query name="SPKardexoperationSEL" p1:procedure="dbo.SP_kardexoperation_SEL" callable="true" p1:Guid="e8bde04c-acb4-4541-ac5d-3de149fb4132">
+    <return class="KardexOperation" />exec dbo.SP_kardexoperation_SEL</sql-query>
+  <sql-query name="SPKardexoperationUPD" p1:procedure="dbo.SP_kardexoperation_UPD" callable="true" p1:Guid="4b1d9e44-4df7-4895-ad88-8d63a9487f69">
+    <query-param name="pOperationId" p1:source="pOperationId" type="Int32" />
+    <query-param name="pProductId" p1:source="pProductId" type="Int32" />
+    <query-param name="pOperationName" p1:source="pOperationName" type="String" />
+    <query-param name="pProductCost" p1:source="pProductCost" type="Single" />
+    <query-param name="pPreviousExistence" p1:source="pPreviousExistence" type="Int32" />
+    <query-param name="pNewExistence" p1:source="pNewExistence" type="Int32" />
+    <query-param name="pProductPrice" p1:source="pProductPrice" type="Single" />
+    <query-param name="pQuantity" p1:source="pQuantity" type="Int32" />
+    <query-param name="pCreationDate" p1:source="pCreationDate" type="DateTime" />
+    <query-param name="pModifyDate" p1:source="pModifyDate" type="DateTime" />
+    <query-param name="pOperationDate" p1:source="pOperationDate" type="DateTime" />
+    <query-param name="pCreatedByUser" p1:source="pCreatedByUser" type="String" />
+    <query-param name="pModifiedByUser" p1:source="pModifiedByUser" type="String" />exec dbo.SP_kardexoperation_UPD :pOperationId, :pProductId, :pOperationName, :pProductCost, :pPreviousExistence, :pNewExistence, :pProductPrice, :pQuantity, :pCreationDate, :pModifyDate, :pOperationDate, :pCreatedByUser, :pModifiedByUser</sql-query>
+  <sql-query name="SPPhonenumberDEL" p1:procedure="dbo.SP_phonenumber_DEL" callable="true" p1:Guid="cd1cddb8-9dd6-47db-8aa3-e9b063fd8e31">
+    <query-param name="pPhoneId" p1:source="pPhoneId" type="Int32" />exec dbo.SP_phonenumber_DEL :pPhoneId</sql-query>
+  <sql-query name="SPPhonenumberIN" p1:procedure="dbo.SP_phonenumber_INS" callable="true" p1:Guid="901a46fc-4581-4b6a-bba7-e4cfcb6bcead">
+    <query-param name="pPhoneId" p1:source="pPhoneId" type="Int32" />
+    <query-param name="pNumber" p1:source="pNumber" type="String" />
+    <query-param name="pCustomerId" p1:source="pCustomerId" type="Int32" />
+    <query-param name="pCreatedByUser" p1:source="pCreatedByUser" type="String" />
+    <query-param name="pModifiedByUser" p1:source="pModifiedByUser" type="String" />
+    <query-param name="pCreationDate" p1:source="pCreationDate" type="DateTime" />
+    <query-param name="pModifyDate" p1:source="pModifyDate" type="DateTime" />exec dbo.SP_phonenumber_INS :pPhoneId, :pNumber, :pCustomerId, :pCreatedByUser, :pModifiedByUser, :pCreationDate, :pModifyDate</sql-query>
+  <sql-query name="SPPhonenumberSEL" p1:procedure="dbo.SP_phonenumber_SEL" callable="true" p1:Guid="d53fb46a-d414-4957-802b-5e6d2a2e5c57">
+    <return class="PhoneNumber" />exec dbo.SP_phonenumber_SEL</sql-query>
+  <sql-query name="SPPhonenumberUPD" p1:procedure="dbo.SP_phonenumber_UPD" callable="true" p1:Guid="d7494776-c863-4b2a-a69c-9c547970e1a7">
+    <query-param name="pPhoneId" p1:source="pPhoneId" type="Int32" />
+    <query-param name="pNumber" p1:source="pNumber" type="String" />
+    <query-param name="pCustomerId" p1:source="pCustomerId" type="Int32" />
+    <query-param name="pCreatedByUser" p1:source="pCreatedByUser" type="String" />
+    <query-param name="pModifiedByUser" p1:source="pModifiedByUser" type="String" />
+    <query-param name="pCreationDate" p1:source="pCreationDate" type="DateTime" />
+    <query-param name="pModifyDate" p1:source="pModifyDate" type="DateTime" />exec dbo.SP_phonenumber_UPD :pPhoneId, :pNumber, :pCustomerId, :pCreatedByUser, :pModifiedByUser, :pCreationDate, :pModifyDate</sql-query>
+  <sql-query name="SPPresentationDEL" p1:procedure="dbo.SP_presentation_DEL" callable="true" p1:Guid="efc2b70f-f757-4a19-a7ed-22cdbf5a4cac">
+    <query-param name="pPresentationId" p1:source="pPresentationId" type="Int32" />exec dbo.SP_presentation_DEL :pPresentationId</sql-query>
+  <sql-query name="SPPresentationIN" p1:procedure="dbo.SP_presentation_INS" callable="true" p1:Guid="fa95e7a5-30bd-4f0d-960a-6be5473e30b9">
+    <query-param name="pName" p1:source="pName" type="String" />
+    <query-param name="pCreationDate" p1:source="pCreationDate" type="DateTime" />
+    <query-param name="pModifyDate" p1:source="pModifyDate" type="DateTime" />
+    <query-param name="pCreatedByUser" p1:source="pCreatedByUser" type="String" />
+    <query-param name="pModifiedByUser" p1:source="pModifiedByUser" type="String" />exec dbo.SP_presentation_INS :pName, :pCreationDate, :pModifyDate, :pCreatedByUser, :pModifiedByUser</sql-query>
+  <sql-query name="SPPresentationSEL" p1:procedure="dbo.SP_presentation_SEL" callable="true" p1:Guid="cc91cf41-e153-4d1c-afee-ad77b43b15ec">
+    <return class="Presentation" />exec dbo.SP_presentation_SEL</sql-query>
+  <sql-query name="SPPresentationUPD" p1:procedure="dbo.SP_presentation_UPD" callable="true" p1:Guid="b7a65a61-7acf-4367-96e5-ed0a67761bf5">
+    <query-param name="pPresentationId" p1:source="pPresentationId" type="Int32" />
+    <query-param name="pName" p1:source="pName" type="String" />
+    <query-param name="pCreationDate" p1:source="pCreationDate" type="DateTime" />
+    <query-param name="pModifyDate" p1:source="pModifyDate" type="DateTime" />
+    <query-param name="pCreatedByUser" p1:source="pCreatedByUser" type="String" />
+    <query-param name="pModifiedByUser" p1:source="pModifiedByUser" type="String" />exec dbo.SP_presentation_UPD :pPresentationId, :pName, :pCreationDate, :pModifyDate, :pCreatedByUser, :pModifiedByUser</sql-query>
+  <sql-query name="SPPriceestimateDEL" p1:procedure="dbo.SP_priceestimate_DEL" callable="true" p1:Guid="3dece5ef-2d92-470a-a182-7e194b9bb846">
+    <query-param name="pPriceEstimateId" p1:source="pPriceEstimateId" type="Int32" />exec dbo.SP_priceestimate_DEL :pPriceEstimateId</sql-query>
+  <sql-query name="SPPriceestimateIN" p1:procedure="dbo.SP_priceestimate_INS" callable="true" p1:Guid="165338dd-4721-401a-88c9-484ca0873a0d">
+    <query-param name="pEstimateDate" p1:source="pEstimateDate" type="Int32" />
+    <query-param name="pEstimateTotal" p1:source="pEstimateTotal" type="Single" />
+    <query-param name="pCreationDate" p1:source="pCreationDate" type="DateTime" />
+    <query-param name="pModifyDate" p1:source="pModifyDate" type="DateTime" />
+    <query-param name="pProviderId" p1:source="pProviderId" type="Int32" />
+    <query-param name="pCreatedByUser" p1:source="pCreatedByUser" type="String" />
+    <query-param name="pModifiedByUser" p1:source="pModifiedByUser" type="String" />exec dbo.SP_priceestimate_INS :pEstimateDate, :pEstimateTotal, :pCreationDate, :pModifyDate, :pProviderId, :pCreatedByUser, :pModifiedByUser</sql-query>
+  <sql-query name="SPPriceestimateSEL" p1:procedure="dbo.SP_priceestimate_SEL" callable="true" p1:Guid="d07dbe6a-d7de-4fa0-814d-b0426b0176ad">
+    <return class="PriceEstimate" />exec dbo.SP_priceestimate_SEL</sql-query>
+  <sql-query name="SPPriceestimateUPD" p1:procedure="dbo.SP_priceestimate_UPD" callable="true" p1:Guid="4da3d23e-9fbb-4650-928f-d0e0f7efa3f3">
+    <query-param name="pPriceEstimateId" p1:source="pPriceEstimateId" type="Int32" />
+    <query-param name="pEstimateDate" p1:source="pEstimateDate" type="Int32" />
+    <query-param name="pEstimateTotal" p1:source="pEstimateTotal" type="Single" />
+    <query-param name="pCreationDate" p1:source="pCreationDate" type="DateTime" />
+    <query-param name="pModifyDate" p1:source="pModifyDate" type="DateTime" />
+    <query-param name="pProviderId" p1:source="pProviderId" type="Int32" />
+    <query-param name="pCreatedByUser" p1:source="pCreatedByUser" type="String" />
+    <query-param name="pModifiedByUser" p1:source="pModifiedByUser" type="String" />exec dbo.SP_priceestimate_UPD :pPriceEstimateId, :pEstimateDate, :pEstimateTotal, :pCreationDate, :pModifyDate, :pProviderId, :pCreatedByUser, :pModifiedByUser</sql-query>
+  <sql-query name="SPPrivilegeDEL" p1:procedure="dbo.SP_privilege_DEL" callable="true" p1:Guid="e1b3645e-fe0c-4150-a387-e0004654065a">
+    <query-param name="pPrivilegeId" p1:source="pPrivilegeId" type="Int32" />exec dbo.SP_privilege_DEL :pPrivilegeId</sql-query>
+  <sql-query name="SPPrivilegeHasRoleDEL" p1:procedure="dbo.SP_privilege_has_role_DEL" callable="true" p1:Guid="447b0fdf-3d27-47c6-a34d-d8cfb0d2ff17">
+    <query-param name="pPrivilegeId" p1:source="pPrivilegeId" type="Int32" />
+    <query-param name="pRoleId" p1:source="pRoleId" type="Int32" />exec dbo.SP_privilege_has_role_DEL :pPrivilegeId, :pRoleId</sql-query>
+  <sql-query name="SPPrivilegeHasRoleIN" p1:procedure="dbo.SP_privilege_has_role_INS" callable="true" p1:Guid="2d1d2098-09a1-4341-a224-6fb09df033b8">
+    <query-param name="pPrivilegeId" p1:source="pPrivilegeId" type="Int32" />
+    <query-param name="pRoleId" p1:source="pRoleId" type="Int32" />
+    <query-param name="pCreationDate" p1:source="pCreationDate" type="DateTime" />
+    <query-param name="pModifyDate" p1:source="pModifyDate" type="DateTime" />
+    <query-param name="pCreatedByUser" p1:source="pCreatedByUser" type="String" />
+    <query-param name="pModifiedByUser" p1:source="pModifiedByUser" type="String" />exec dbo.SP_privilege_has_role_INS :pPrivilegeId, :pRoleId, :pCreationDate, :pModifyDate, :pCreatedByUser, :pModifiedByUser</sql-query>
+  <sql-query name="SPPrivilegeHasRoleSEL" p1:procedure="dbo.SP_privilege_has_role_SEL" callable="true" p1:Guid="151e7a2b-8806-42cd-a514-3b9abdfa72e9">
+    <return class="PrivilegeHasRole" />exec dbo.SP_privilege_has_role_SEL</sql-query>
+  <sql-query name="SPPrivilegeHasRoleUPD" p1:procedure="dbo.SP_privilege_has_role_UPD" callable="true" p1:Guid="f253d725-54b4-48c3-883e-cc1ae8be41d9">
+    <query-param name="pPrivilegeId" p1:source="pPrivilegeId" type="Int32" />
+    <query-param name="pRoleId" p1:source="pRoleId" type="Int32" />
+    <query-param name="pCreationDate" p1:source="pCreationDate" type="DateTime" />
+    <query-param name="pModifyDate" p1:source="pModifyDate" type="DateTime" />
+    <query-param name="pCreatedByUser" p1:source="pCreatedByUser" type="String" />
+    <query-param name="pModifiedByUser" p1:source="pModifiedByUser" type="String" />exec dbo.SP_privilege_has_role_UPD :pPrivilegeId, :pRoleId, :pCreationDate, :pModifyDate, :pCreatedByUser, :pModifiedByUser</sql-query>
+  <sql-query name="SPPrivilegeIN" p1:procedure="dbo.SP_privilege_INS" callable="true" p1:Guid="22973d4d-5e24-458a-8427-9ae7d5132bcd">
+    <query-param name="pName" p1:source="pName" type="String" />
+    <query-param name="pCreationDate" p1:source="pCreationDate" type="DateTime" />
+    <query-param name="pModifyDate" p1:source="pModifyDate" type="DateTime" />
+    <query-param name="pCreatedByUser" p1:source="pCreatedByUser" type="String" />
+    <query-param name="pModifiedByUser" p1:source="pModifiedByUser" type="String" />exec dbo.SP_privilege_INS :pName, :pCreationDate, :pModifyDate, :pCreatedByUser, :pModifiedByUser</sql-query>
+  <sql-query name="SPPrivilegeSEL" p1:procedure="dbo.SP_privilege_SEL" callable="true" p1:Guid="83c60d1c-f672-46ca-8345-5476100b2c54">
+    <return class="Privilege" />exec dbo.SP_privilege_SEL</sql-query>
+  <sql-query name="SPPrivilegeUPD" p1:procedure="dbo.SP_privilege_UPD" callable="true" p1:Guid="239ab985-0f2e-4c19-acde-dbe50b5d35ff">
+    <query-param name="pPrivilegeId" p1:source="pPrivilegeId" type="Int32" />
+    <query-param name="pName" p1:source="pName" type="String" />
+    <query-param name="pCreationDate" p1:source="pCreationDate" type="DateTime" />
+    <query-param name="pModifyDate" p1:source="pModifyDate" type="DateTime" />
+    <query-param name="pCreatedByUser" p1:source="pCreatedByUser" type="String" />
+    <query-param name="pModifiedByUser" p1:source="pModifiedByUser" type="String" />exec dbo.SP_privilege_UPD :pPrivilegeId, :pName, :pCreationDate, :pModifyDate, :pCreatedByUser, :pModifiedByUser</sql-query>
+  <sql-query name="SPProductDEL" p1:procedure="dbo.SP_product_DEL" callable="true" p1:Guid="195df72f-47a6-45f7-aca1-fd1f0de163b4">
+    <query-param name="pProductId" p1:source="pProductId" type="Int32" />exec dbo.SP_product_DEL :pProductId</sql-query>
+  <sql-query name="SPProductIN" p1:procedure="dbo.SP_product_INS" callable="true" p1:Guid="08ec77ab-1840-4589-8b29-e51a239dc8dd">
+    <query-param name="pProductId" p1:source="pProductId" type="Int32" />
+    <query-param name="pProductName" p1:source="pProductName" type="String" />
+    <query-param name="pRetailPrice" p1:source="pRetailPrice" type="Single" />
+    <query-param name="pCost" p1:source="pCost" type="Single" />
+    <query-param name="pCategoryId" p1:source="pCategoryId" type="Int32" />
+    <query-param name="pMinimumExistence" p1:source="pMinimumExistence" type="Int64" />
+    <query-param name="pWholeSalerPercentage" p1:source="pWholeSalerPercentage" type="Single" />
+    <query-param name="pExpireDate" p1:source="pExpireDate" type="DateTime" />
+    <query-param name="pCreationDate" p1:source="pCreationDate" type="DateTime" />
+    <query-param name="pModifyDate" p1:source="pModifyDate" type="DateTime" />
+    <query-param name="pPresentationId" p1:source="pPresentationId" type="Int32" />
+    <query-param name="pCurrentExistence" p1:source="pCurrentExistence" type="Int32" />
+    <query-param name="pCreatedByUser" p1:source="pCreatedByUser" type="String" />
+    <query-param name="pModifiedByUser" p1:source="pModifiedByUser" type="String" />exec dbo.SP_product_INS :pProductId, :pProductName, :pRetailPrice, :pCost, :pCategoryId, :pMinimumExistence, :pWholeSalerPercentage, :pExpireDate, :pCreationDate, :pModifyDate, :pPresentationId, :pCurrentExistence, :pCreatedByUser, :pModifiedByUser</sql-query>
+  <sql-query name="SPProductSEL" p1:procedure="dbo.SP_product_SEL" callable="true" p1:Guid="312277de-e27f-490f-b640-a7698d6416ef">
+    <return class="Product" />exec dbo.SP_product_SEL</sql-query>
+  <sql-query name="SPProductUPD" p1:procedure="dbo.SP_product_UPD" callable="true" p1:Guid="c7e4f8f8-c207-4215-95d0-ba83fa18c61a">
+    <query-param name="pProductId" p1:source="pProductId" type="Int32" />
+    <query-param name="pProductName" p1:source="pProductName" type="String" />
+    <query-param name="pRetailPrice" p1:source="pRetailPrice" type="Single" />
+    <query-param name="pCost" p1:source="pCost" type="Single" />
+    <query-param name="pCategoryId" p1:source="pCategoryId" type="Int32" />
+    <query-param name="pMinimumExistence" p1:source="pMinimumExistence" type="Int64" />
+    <query-param name="pWholeSalerPercentage" p1:source="pWholeSalerPercentage" type="Single" />
+    <query-param name="pExpireDate" p1:source="pExpireDate" type="DateTime" />
+    <query-param name="pCreationDate" p1:source="pCreationDate" type="DateTime" />
+    <query-param name="pModifyDate" p1:source="pModifyDate" type="DateTime" />
+    <query-param name="pPresentationId" p1:source="pPresentationId" type="Int32" />
+    <query-param name="pCurrentExistence" p1:source="pCurrentExistence" type="Int32" />
+    <query-param name="pCreatedByUser" p1:source="pCreatedByUser" type="String" />
+    <query-param name="pModifiedByUser" p1:source="pModifiedByUser" type="String" />exec dbo.SP_product_UPD :pProductId, :pProductName, :pRetailPrice, :pCost, :pCategoryId, :pMinimumExistence, :pWholeSalerPercentage, :pExpireDate, :pCreationDate, :pModifyDate, :pPresentationId, :pCurrentExistence, :pCreatedByUser, :pModifiedByUser</sql-query>
+  <sql-query name="SPProviderDEL" p1:procedure="dbo.SP_provider_DEL" callable="true" p1:Guid="0f078a9b-8469-47f7-b90b-e9cd5dfb0884">
+    <query-param name="pProviderId" p1:source="pProviderId" type="Int32" />exec dbo.SP_provider_DEL :pProviderId</sql-query>
+  <sql-query name="SPProviderIN" p1:procedure="dbo.SP_provider_INS" callable="true" p1:Guid="a99e7da9-ad26-4525-90e5-2551a5f5a5b9">
+    <query-param name="pName" p1:source="pName" type="String" />
+    <query-param name="pPhone" p1:source="pPhone" type="String" />
+    <query-param name="pContactName" p1:source="pContactName" type="String" />
+    <query-param name="pAddress" p1:source="pAddress" type="String" />
+    <query-param name="pCreatedByUser" p1:source="pCreatedByUser" type="String" />
+    <query-param name="pModifiedByUser" p1:source="pModifiedByUser" type="String" />
+    <query-param name="pModifyDate" p1:source="pModifyDate" type="DateTime" />
+    <query-param name="pCreationDate" p1:source="pCreationDate" type="DateTime" />exec dbo.SP_provider_INS :pName, :pPhone, :pContactName, :pAddress, :pCreatedByUser, :pModifiedByUser, :pModifyDate, :pCreationDate</sql-query>
+  <sql-query name="SPProviderSEL" p1:procedure="dbo.SP_provider_SEL" callable="true" p1:Guid="7b9f083c-8629-4186-91e4-fd2bcb061fda">
+    <return class="Provider" />exec dbo.SP_provider_SEL</sql-query>
+  <sql-query name="SPProviderUPD" p1:procedure="dbo.SP_provider_UPD" callable="true" p1:Guid="7250629c-f95a-4e09-8707-ca59bd82e07b">
+    <query-param name="pProviderId" p1:source="pProviderId" type="Int32" />
+    <query-param name="pName" p1:source="pName" type="String" />
+    <query-param name="pPhone" p1:source="pPhone" type="String" />
+    <query-param name="pContactName" p1:source="pContactName" type="String" />
+    <query-param name="pAddress" p1:source="pAddress" type="String" />
+    <query-param name="pCreatedByUser" p1:source="pCreatedByUser" type="String" />
+    <query-param name="pModifiedByUser" p1:source="pModifiedByUser" type="String" />
+    <query-param name="pModifyDate" p1:source="pModifyDate" type="DateTime" />
+    <query-param name="pCreationDate" p1:source="pCreationDate" type="DateTime" />exec dbo.SP_provider_UPD :pProviderId, :pName, :pPhone, :pContactName, :pAddress, :pCreatedByUser, :pModifiedByUser, :pModifyDate, :pCreationDate</sql-query>
+  <sql-query name="SPProvidersellsproductDEL" p1:procedure="dbo.SP_providersellsproduct_DEL" callable="true" p1:Guid="0b57dd0c-cb76-407d-939d-ceaf3eeb3818">
+    <query-param name="pProviderId" p1:source="pProviderId" type="Int32" />
+    <query-param name="pProductId" p1:source="pProductId" type="Int32" />exec dbo.SP_providersellsproduct_DEL :pProviderId, :pProductId</sql-query>
+  <sql-query name="SPProvidersellsproductIN" p1:procedure="dbo.SP_providersellsproduct_INS" callable="true" p1:Guid="893dfd45-6fc0-4d19-a5ae-61622e0e8ace">
+    <query-param name="pProviderId" p1:source="pProviderId" type="Int32" />
+    <query-param name="pProductId" p1:source="pProductId" type="Int32" />
+    <query-param name="pCost" p1:source="pCost" type="Single" />
+    <query-param name="pCreatedByUser" p1:source="pCreatedByUser" type="String" />
+    <query-param name="pModifiedByUser" p1:source="pModifiedByUser" type="String" />exec dbo.SP_providersellsproduct_INS :pProviderId, :pProductId, :pCost, :pCreatedByUser, :pModifiedByUser</sql-query>
+  <sql-query name="SPProvidersellsproductSEL" p1:procedure="dbo.SP_providersellsproduct_SEL" callable="true" p1:Guid="3cc6f041-d20c-414c-ab69-63ebe753a734">
+    <return class="ProviderSellsProduct" />exec dbo.SP_providersellsproduct_SEL</sql-query>
+  <sql-query name="SPProvidersellsproductUPD" p1:procedure="dbo.SP_providersellsproduct_UPD" callable="true" p1:Guid="be55ca5c-714d-40b7-9572-830ae409c70d">
+    <query-param name="pProviderId" p1:source="pProviderId" type="Int32" />
+    <query-param name="pProductId" p1:source="pProductId" type="Int32" />
+    <query-param name="pCost" p1:source="pCost" type="Single" />
+    <query-param name="pCreatedByUser" p1:source="pCreatedByUser" type="String" />
+    <query-param name="pModifiedByUser" p1:source="pModifiedByUser" type="String" />exec dbo.SP_providersellsproduct_UPD :pProviderId, :pProductId, :pCost, :pCreatedByUser, :pModifiedByUser</sql-query>
+  <sql-query name="SPPurchaseDEL" p1:procedure="dbo.SP_purchase_DEL" callable="true" p1:Guid="23a93b8d-2b13-47b1-a717-279f65614d1f">
+    <query-param name="pPurchaseId" p1:source="pPurchaseId" type="Int32" />exec dbo.SP_purchase_DEL :pPurchaseId</sql-query>
+  <sql-query name="SPPurchaseIN" p1:procedure="dbo.SP_purchase_INS" callable="true" p1:Guid="438e7665-7e36-4b90-8689-633a2383b767">
+    <query-param name="pProviderId" p1:source="pProviderId" type="Int32" />
+    <query-param name="pPurchaseDate" p1:source="pPurchaseDate" type="DateTime" />
+    <query-param name="pTotal" p1:source="pTotal" type="Single" />
+    <query-param name="pCreationDate" p1:source="pCreationDate" type="DateTime" />
+    <query-param name="pModifyDate" p1:source="pModifyDate" type="DateTime" />
+    <query-param name="pCreatedByUser" p1:source="pCreatedByUser" type="String" />
+    <query-param name="pModifiedByUser" p1:source="pModifiedByUser" type="String" />exec dbo.SP_purchase_INS :pProviderId, :pPurchaseDate, :pTotal, :pCreationDate, :pModifyDate, :pCreatedByUser, :pModifiedByUser</sql-query>
+  <sql-query name="SPPurchaseSEL" p1:procedure="dbo.SP_purchase_SEL" callable="true" p1:Guid="222d4c2e-e759-4587-9c6c-4a66dff175e5">
+    <return class="Purchase" />exec dbo.SP_purchase_SEL</sql-query>
+  <sql-query name="SPPurchaseUPD" p1:procedure="dbo.SP_purchase_UPD" callable="true" p1:Guid="4b355971-4016-445f-b975-4e83197220e4">
+    <query-param name="pPurchaseId" p1:source="pPurchaseId" type="Int32" />
+    <query-param name="pProviderId" p1:source="pProviderId" type="Int32" />
+    <query-param name="pPurchaseDate" p1:source="pPurchaseDate" type="DateTime" />
+    <query-param name="pTotal" p1:source="pTotal" type="Single" />
+    <query-param name="pCreationDate" p1:source="pCreationDate" type="DateTime" />
+    <query-param name="pModifyDate" p1:source="pModifyDate" type="DateTime" />
+    <query-param name="pCreatedByUser" p1:source="pCreatedByUser" type="String" />
+    <query-param name="pModifiedByUser" p1:source="pModifiedByUser" type="String" />exec dbo.SP_purchase_UPD :pPurchaseId, :pProviderId, :pPurchaseDate, :pTotal, :pCreationDate, :pModifyDate, :pCreatedByUser, :pModifiedByUser</sql-query>
+  <sql-query name="SPPurchasedetailDEL" p1:procedure="dbo.SP_purchasedetail_DEL" callable="true" p1:Guid="10055c9e-1272-44bb-968c-42ab3e729186">
+    <query-param name="pPurchaseDetailNumber" p1:source="pPurchaseDetailNumber" type="Int32" />
+    <query-param name="pPurchaseId" p1:source="pPurchaseId" type="Int32" />exec dbo.SP_purchasedetail_DEL :pPurchaseDetailNumber, :pPurchaseId</sql-query>
+  <sql-query name="SPPurchasedetailIN" p1:procedure="dbo.SP_purchasedetail_INS" callable="true" p1:Guid="eb32d602-8af4-47f2-a116-585846b83d33">
+    <query-param name="pProductId" p1:source="pProductId" type="Int32" />
+    <query-param name="pPurchaseId" p1:source="pPurchaseId" type="Int32" />
+    <query-param name="pPurchasePrice" p1:source="pPurchasePrice" type="Single" />
+    <query-param name="pQuantity" p1:source="pQuantity" type="Int32" />
+    <query-param name="pSubtotal" p1:source="pSubtotal" type="Single" />
+    <query-param name="pCreationDate" p1:source="pCreationDate" type="DateTime" />
+    <query-param name="pModifyDate" p1:source="pModifyDate" type="DateTime" />exec dbo.SP_purchasedetail_INS :pProductId, :pPurchaseId, :pPurchasePrice, :pQuantity, :pSubtotal, :pCreationDate, :pModifyDate</sql-query>
+  <sql-query name="SPPurchasedetailSEL" p1:procedure="dbo.SP_purchasedetail_SEL" callable="true" p1:Guid="b18277c1-3423-46f8-8a72-b57b96b54f69">
+    <return class="PurchaseDetail" />exec dbo.SP_purchasedetail_SEL</sql-query>
+  <sql-query name="SPPurchasedetailUPD" p1:procedure="dbo.SP_purchasedetail_UPD" callable="true" p1:Guid="2ef3fff4-1ad8-4918-8f55-39b7225607b3">
+    <query-param name="pPurchaseDetailNumber" p1:source="pPurchaseDetailNumber" type="Int32" />
+    <query-param name="pProductId" p1:source="pProductId" type="Int32" />
+    <query-param name="pPurchaseId" p1:source="pPurchaseId" type="Int32" />
+    <query-param name="pPurchasePrice" p1:source="pPurchasePrice" type="Single" />
+    <query-param name="pQuantity" p1:source="pQuantity" type="Int32" />
+    <query-param name="pSubtotal" p1:source="pSubtotal" type="Single" />
+    <query-param name="pCreationDate" p1:source="pCreationDate" type="DateTime" />
+    <query-param name="pModifyDate" p1:source="pModifyDate" type="DateTime" />exec dbo.SP_purchasedetail_UPD :pPurchaseDetailNumber, :pProductId, :pPurchaseId, :pPurchasePrice, :pQuantity, :pSubtotal, :pCreationDate, :pModifyDate</sql-query>
+  <sql-query name="SPPurchaseorderDEL" p1:procedure="dbo.SP_purchaseorder_DEL" callable="true" p1:Guid="e50bd008-1ac9-427a-b00c-587f407b5a74">
+    <query-param name="pPurchaseOrderId" p1:source="pPurchaseOrderId" type="Int32" />exec dbo.SP_purchaseorder_DEL :pPurchaseOrderId</sql-query>
+  <sql-query name="SPPurchaseorderIN" p1:procedure="dbo.SP_purchaseorder_INS" callable="true" p1:Guid="70aaa30d-d905-4e60-910a-38e70fe7e8df">
+    <query-param name="pProviderId" p1:source="pProviderId" type="Int32" />
+    <query-param name="pOrderDate" p1:source="pOrderDate" type="DateTime" />
+    <query-param name="pTotal" p1:source="pTotal" type="DateTime" />
+    <query-param name="pOrderStatus" p1:source="pOrderStatus" type="String" />
+    <query-param name="pCreationDate" p1:source="pCreationDate" type="DateTime" />
+    <query-param name="pModifyDate" p1:source="pModifyDate" type="DateTime" />
+    <query-param name="pCreatedByUser" p1:source="pCreatedByUser" type="String" />
+    <query-param name="pModifiedByUser" p1:source="pModifiedByUser" type="String" />exec dbo.SP_purchaseorder_INS :pProviderId, :pOrderDate, :pTotal, :pOrderStatus, :pCreationDate, :pModifyDate, :pCreatedByUser, :pModifiedByUser</sql-query>
+  <sql-query name="SPPurchaseorderSEL" p1:procedure="dbo.SP_purchaseorder_SEL" callable="true" p1:Guid="c615f515-a03e-4a97-a9bf-f5522dc527fc">
+    <return class="PurchaseOrder" />exec dbo.SP_purchaseorder_SEL</sql-query>
+  <sql-query name="SPPurchaseorderUPD" p1:procedure="dbo.SP_purchaseorder_UPD" callable="true" p1:Guid="93bea15c-b1a1-4293-a65c-7475272e5abd">
+    <query-param name="pPurchaseOrderId" p1:source="pPurchaseOrderId" type="Int32" />
+    <query-param name="pProviderId" p1:source="pProviderId" type="Int32" />
+    <query-param name="pOrderDate" p1:source="pOrderDate" type="DateTime" />
+    <query-param name="pTotal" p1:source="pTotal" type="DateTime" />
+    <query-param name="pOrderStatus" p1:source="pOrderStatus" type="String" />
+    <query-param name="pCreationDate" p1:source="pCreationDate" type="DateTime" />
+    <query-param name="pModifyDate" p1:source="pModifyDate" type="DateTime" />
+    <query-param name="pCreatedByUser" p1:source="pCreatedByUser" type="String" />
+    <query-param name="pModifiedByUser" p1:source="pModifiedByUser" type="String" />exec dbo.SP_purchaseorder_UPD :pPurchaseOrderId, :pProviderId, :pOrderDate, :pTotal, :pOrderStatus, :pCreationDate, :pModifyDate, :pCreatedByUser, :pModifiedByUser</sql-query>
+  <sql-query name="SPPurchaseorderdetailDEL" p1:procedure="dbo.SP_purchaseorderdetail_DEL" callable="true" p1:Guid="05f6487d-89f0-43c1-892f-141bded5c56f">
+    <query-param name="pOrderDetailNumber" p1:source="pOrderDetailNumber" type="Int32" />
+    <query-param name="pPurchaseOrderId" p1:source="pPurchaseOrderId" type="Int32" />exec dbo.SP_purchaseorderdetail_DEL :pOrderDetailNumber, :pPurchaseOrderId</sql-query>
+  <sql-query name="SPPurchaseorderdetailIN" p1:procedure="dbo.SP_purchaseorderdetail_INS" callable="true" p1:Guid="f357214b-fd42-4d8d-81a1-fa85301c78db">
+    <query-param name="pProductId" p1:source="pProductId" type="Int32" />
+    <query-param name="pPurchaseOrderId" p1:source="pPurchaseOrderId" type="Int32" />
+    <query-param name="pQuantity" p1:source="pQuantity" type="Int32" />
+    <query-param name="pUnitPrice" p1:source="pUnitPrice" type="Single" />
+    <query-param name="pSubTotal" p1:source="pSubTotal" type="Single" />
+    <query-param name="pCreationDate" p1:source="pCreationDate" type="DateTime" />
+    <query-param name="pModifyDate" p1:source="pModifyDate" type="DateTime" />
+    <query-param name="pCreatedByUser" p1:source="pCreatedByUser" type="String" />
+    <query-param name="pModifiedByUser" p1:source="pModifiedByUser" type="String" />exec dbo.SP_purchaseorderdetail_INS :pProductId, :pPurchaseOrderId, :pQuantity, :pUnitPrice, :pSubTotal, :pCreationDate, :pModifyDate, :pCreatedByUser, :pModifiedByUser</sql-query>
+  <sql-query name="SPPurchaseorderdetailSEL" p1:procedure="dbo.SP_purchaseorderdetail_SEL" callable="true" p1:Guid="35a90a27-4ccd-4bfc-85d8-764f0acc9b37">
+    <return class="PurchaseOrderDetail" />exec dbo.SP_purchaseorderdetail_SEL</sql-query>
+  <sql-query name="SPPurchaseorderdetailUPD" p1:procedure="dbo.SP_purchaseorderdetail_UPD" callable="true" p1:Guid="d911f730-5c97-4563-880f-9897b693b6a7">
+    <query-param name="pOrderDetailNumber" p1:source="pOrderDetailNumber" type="Int32" />
+    <query-param name="pProductId" p1:source="pProductId" type="Int32" />
+    <query-param name="pPurchaseOrderId" p1:source="pPurchaseOrderId" type="Int32" />
+    <query-param name="pQuantity" p1:source="pQuantity" type="Int32" />
+    <query-param name="pUnitPrice" p1:source="pUnitPrice" type="Single" />
+    <query-param name="pSubTotal" p1:source="pSubTotal" type="Single" />
+    <query-param name="pCreationDate" p1:source="pCreationDate" type="DateTime" />
+    <query-param name="pModifyDate" p1:source="pModifyDate" type="DateTime" />
+    <query-param name="pCreatedByUser" p1:source="pCreatedByUser" type="String" />
+    <query-param name="pModifiedByUser" p1:source="pModifiedByUser" type="String" />exec dbo.SP_purchaseorderdetail_UPD :pOrderDetailNumber, :pProductId, :pPurchaseOrderId, :pQuantity, :pUnitPrice, :pSubTotal, :pCreationDate, :pModifyDate, :pCreatedByUser, :pModifiedByUser</sql-query>
+  <sql-query name="SPRoleDEL" p1:procedure="dbo.SP_role_DEL" callable="true" p1:Guid="dbe700eb-7ff2-4935-b26c-839779240cfb">
+    <query-param name="pRoleId" p1:source="pRoleId" type="Int32" />exec dbo.SP_role_DEL :pRoleId</sql-query>
+  <sql-query name="SPRoleIN" p1:procedure="dbo.SP_role_INS" callable="true" p1:Guid="4bd1d50a-1f97-424e-97b8-07858bf7c3c0">
+    <query-param name="pRoleName" p1:source="pRoleName" type="String" />
+    <query-param name="pCreationDate" p1:source="pCreationDate" type="DateTime" />
+    <query-param name="pModifyDate" p1:source="pModifyDate" type="DateTime" />
+    <query-param name="pCreatedByUser" p1:source="pCreatedByUser" type="String" />
+    <query-param name="pModifiedByUser" p1:source="pModifiedByUser" type="String" />exec dbo.SP_role_INS :pRoleName, :pCreationDate, :pModifyDate, :pCreatedByUser, :pModifiedByUser</sql-query>
+  <sql-query name="SPRoleSEL" p1:procedure="dbo.SP_role_SEL" callable="true" p1:Guid="a38ea7ae-3d67-452c-88e4-d4fc63ac704d">
+    <return class="Role" />exec dbo.SP_role_SEL</sql-query>
+  <sql-query name="SPRoleUPD" p1:procedure="dbo.SP_role_UPD" callable="true" p1:Guid="95067ddb-d79f-4426-b8da-496512a5abc3">
+    <query-param name="pRoleId" p1:source="pRoleId" type="Int32" />
+    <query-param name="pRoleName" p1:source="pRoleName" type="String" />
+    <query-param name="pCreationDate" p1:source="pCreationDate" type="DateTime" />
+    <query-param name="pModifyDate" p1:source="pModifyDate" type="DateTime" />
+    <query-param name="pCreatedByUser" p1:source="pCreatedByUser" type="String" />
+    <query-param name="pModifiedByUser" p1:source="pModifiedByUser" type="String" />exec dbo.SP_role_UPD :pRoleId, :pRoleName, :pCreationDate, :pModifyDate, :pCreatedByUser, :pModifiedByUser</sql-query>
+  <sql-query name="SPUsersDEL" p1:procedure="dbo.SP_users_DEL" callable="true" p1:Guid="2a9b4fb4-6111-468d-a517-260d54754eba">
+    <query-param name="pUserId" p1:source="pUserId" type="String" />exec dbo.SP_users_DEL :pUserId</sql-query>
+  <sql-query name="SPUsersHasRoleDEL" p1:procedure="dbo.SP_users_has_role_DEL" callable="true" p1:Guid="212805be-ffbe-4833-9239-8e678be8db58">
+    <query-param name="pRoleId" p1:source="pRoleId" type="Int32" />
+    <query-param name="pUserId" p1:source="pUserId" type="String" />exec dbo.SP_users_has_role_DEL :pRoleId, :pUserId</sql-query>
+  <sql-query name="SPUsersHasRoleIN" p1:procedure="dbo.SP_users_has_role_INS" callable="true" p1:Guid="b29a6d84-66ec-4e2a-8dd4-b8badd80a87e">
+    <query-param name="pRoleId" p1:source="pRoleId" type="Int32" />
+    <query-param name="pUserId" p1:source="pUserId" type="String" />
+    <query-param name="pCreatedByUser" p1:source="pCreatedByUser" type="String" />
+    <query-param name="pModifiedByUser" p1:source="pModifiedByUser" type="String" />
+    <query-param name="pCreationDate" p1:source="pCreationDate" type="DateTime" />
+    <query-param name="pModifyDate" p1:source="pModifyDate" type="DateTime" />exec dbo.SP_users_has_role_INS :pRoleId, :pUserId, :pCreatedByUser, :pModifiedByUser, :pCreationDate, :pModifyDate</sql-query>
+  <sql-query name="SPUsersHasRoleSEL" p1:procedure="dbo.SP_users_has_role_SEL" callable="true" p1:Guid="ec63136b-c5e3-4866-bc1f-0fde1181a423">
+    <return class="UsersHasRole" />exec dbo.SP_users_has_role_SEL</sql-query>
+  <sql-query name="SPUsersHasRoleUPD" p1:procedure="dbo.SP_users_has_role_UPD" callable="true" p1:Guid="9933f721-fd6f-4669-9560-404d5573225b">
+    <query-param name="pRoleId" p1:source="pRoleId" type="Int32" />
+    <query-param name="pUserId" p1:source="pUserId" type="String" />
+    <query-param name="pCreatedByUser" p1:source="pCreatedByUser" type="String" />
+    <query-param name="pModifiedByUser" p1:source="pModifiedByUser" type="String" />
+    <query-param name="pCreationDate" p1:source="pCreationDate" type="DateTime" />
+    <query-param name="pModifyDate" p1:source="pModifyDate" type="DateTime" />exec dbo.SP_users_has_role_UPD :pRoleId, :pUserId, :pCreatedByUser, :pModifiedByUser, :pCreationDate, :pModifyDate</sql-query>
+  <sql-query name="SPUsersIN" p1:procedure="dbo.SP_users_INS" callable="true" p1:Guid="20cf25ae-4487-4313-872a-a10b281d376b">
+    <query-param name="pUserId" p1:source="pUserId" type="String" />
+    <query-param name="pName" p1:source="pName" type="String" />
+    <query-param name="pEmail" p1:source="pEmail" type="String" />
+    <query-param name="pPass" p1:source="pPass" type="String" />
+    <query-param name="pCreationDate" p1:source="pCreationDate" type="DateTime" />
+    <query-param name="pModifyDate" p1:source="pModifyDate" type="DateTime" />
+    <query-param name="pCreatedByUser" p1:source="pCreatedByUser" type="String" />
+    <query-param name="pModifiedByUser" p1:source="pModifiedByUser" type="String" />exec dbo.SP_users_INS :pUserId, :pName, :pEmail, :pPass, :pCreationDate, :pModifyDate, :pCreatedByUser, :pModifiedByUser</sql-query>
+  <sql-query name="SPUsersSEL" p1:procedure="dbo.SP_users_SEL" callable="true" p1:Guid="54041ca5-abc8-4f5b-b851-2b957ceb9c20">
+    <return class="User" />exec dbo.SP_users_SEL</sql-query>
+  <sql-query name="SPUsersUPD" p1:procedure="dbo.SP_users_UPD" callable="true" p1:Guid="69d71f85-7178-464a-baff-7b8b02467fbe">
+    <query-param name="pUserId" p1:source="pUserId" type="String" />
+    <query-param name="pName" p1:source="pName" type="String" />
+    <query-param name="pEmail" p1:source="pEmail" type="String" />
+    <query-param name="pPass" p1:source="pPass" type="String" />
+    <query-param name="pCreationDate" p1:source="pCreationDate" type="DateTime" />
+    <query-param name="pModifyDate" p1:source="pModifyDate" type="DateTime" />
+    <query-param name="pCreatedByUser" p1:source="pCreatedByUser" type="String" />
+    <query-param name="pModifiedByUser" p1:source="pModifiedByUser" type="String" />exec dbo.SP_users_UPD :pUserId, :pName, :pEmail, :pPass, :pCreationDate, :pModifyDate, :pCreatedByUser, :pModifiedByUser</sql-query>
+</hibernate-mapping>

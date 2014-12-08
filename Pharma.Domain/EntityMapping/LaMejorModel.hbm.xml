@@ -1,0 +1,786 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<hibernate-mapping assembly="Pharma.Domain" namespace="Pharma.Domain" xmlns="urn:nhibernate-mapping-2.2">
+  <sql-query name="SPAddressDEL" callable="true">
+    <query-param name="pAddressId" type="Int32" />exec dbo.SP_address_DEL :pAddressId</sql-query>
+  <sql-query name="SPAddressIN" callable="true">
+    <query-param name="pCustomerId" type="Int32" />
+    <query-param name="pAddressContent" type="String" />
+    <query-param name="pModifyDate" type="DateTime" />
+    <query-param name="pCreationDate" type="DateTime" />
+    <query-param name="pCreatedByUser" type="String" />
+    <query-param name="pModifiedByUser" type="String" />exec dbo.SP_address_INS :pCustomerId, :pAddressContent, :pModifyDate, :pCreationDate, :pCreatedByUser, :pModifiedByUser</sql-query>
+  <sql-query name="SPAddressSEL" callable="true">
+    <return class="Address">
+      <return-property name="AddressId" column="AddressId" />
+      <return-property name="AddressContent" column="AddressContent" />
+      <return-property name="ModifyDate" column="ModifyDate" />
+      <return-property name="CreationDate" column="CreationDate" />
+      <return-property name="CreatedByUser" column="CreatedByUser" />
+      <return-property name="ModifiedByUser" column="ModifiedByUser" />
+    </return>exec dbo.SP_address_SEL</sql-query>
+  <sql-query name="SPAddressUPD" callable="true">
+    <query-param name="pAddressId" type="Int32" />
+    <query-param name="pCustomerId" type="Int32" />
+    <query-param name="pAddressContent" type="String" />
+    <query-param name="pModifyDate" type="DateTime" />
+    <query-param name="pCreationDate" type="DateTime" />
+    <query-param name="pCreatedByUser" type="String" />
+    <query-param name="pModifiedByUser" type="String" />exec dbo.SP_address_UPD :pAddressId, :pCustomerId, :pAddressContent, :pModifyDate, :pCreationDate, :pCreatedByUser, :pModifiedByUser</sql-query>
+  <sql-query name="SPCategoryDEL" callable="true">
+    <query-param name="pCategoryId" type="Int32" />exec dbo.SP_category_DEL :pCategoryId</sql-query>
+  <sql-query name="SPCategoryIN" callable="true">
+    <query-param name="pCategoryName" type="String" />
+    <query-param name="pCreationDate" type="DateTime" />
+    <query-param name="pModifyDate" type="DateTime" />
+    <query-param name="pCreatedByUser" type="String" />
+    <query-param name="pModifiedByUser" type="String" />exec dbo.SP_category_INS :pCategoryName, :pCreationDate, :pModifyDate, :pCreatedByUser, :pModifiedByUser</sql-query>
+  <sql-query name="SPCategorySEL" callable="true">
+    <return class="Category">
+      <return-property name="CategoryId" column="CategoryId" />
+      <return-property name="CategoryName" column="CategoryName" />
+      <return-property name="CreationDate" column="CreationDate" />
+      <return-property name="ModifyDate" column="ModifyDate" />
+      <return-property name="CreatedByUser" column="CreatedByUser" />
+      <return-property name="ModifiedByUser" column="ModifiedByUser" />
+    </return>exec dbo.SP_category_SEL</sql-query>
+  <sql-query name="SPCategoryUPD" callable="true">
+    <query-param name="pCategoryId" type="Int32" />
+    <query-param name="pCategoryName" type="String" />
+    <query-param name="pCreationDate" type="DateTime" />
+    <query-param name="pModifyDate" type="DateTime" />
+    <query-param name="pCreatedByUser" type="String" />
+    <query-param name="pModifiedByUser" type="String" />exec dbo.SP_category_UPD :pCategoryId, :pCategoryName, :pCreationDate, :pModifyDate, :pCreatedByUser, :pModifiedByUser</sql-query>
+  <sql-query name="SPCustomerDEL" callable="true">
+    <query-param name="pCustomerId" type="Int32" />exec dbo.SP_customer_DEL :pCustomerId</sql-query>
+  <sql-query name="SPCustomerIN" callable="true">
+    <query-param name="pCustomerName" type="String" />
+    <query-param name="pCreationDate" type="DateTime" />
+    <query-param name="pModifyDate" type="DateTime" />
+    <query-param name="pCustomerTypeId" type="Int32" />
+    <query-param name="pCreatedByUser" type="String" />
+    <query-param name="pModifiedByUser" type="String" />exec dbo.SP_customer_INS :pCustomerName, :pCreationDate, :pModifyDate, :pCustomerTypeId, :pCreatedByUser, :pModifiedByUser</sql-query>
+  <sql-query name="SPCustomerSEL" callable="true">
+    <return class="Customer">
+      <return-property name="CustomerId" column="CustomerId" />
+      <return-property name="CustomerName" column="CustomerName" />
+      <return-property name="CreationDate" column="CreationDate" />
+      <return-property name="ModifyDate" column="ModifyDate" />
+      <return-property name="CreatedByUser" column="CreatedByUser" />
+      <return-property name="ModifiedByUser" column="ModifiedByUser" />
+    </return>exec dbo.SP_customer_SEL</sql-query>
+  <sql-query name="SPCustomerUPD" callable="true">
+    <query-param name="pCustomerId" type="Int32" />
+    <query-param name="pCustomerName" type="String" />
+    <query-param name="pCreationDate" type="DateTime" />
+    <query-param name="pModifyDate" type="DateTime" />
+    <query-param name="pCustomerTypeId" type="Int32" />
+    <query-param name="pCreatedByUser" type="String" />
+    <query-param name="pModifiedByUser" type="String" />exec dbo.SP_customer_UPD :pCustomerId, :pCustomerName, :pCreationDate, :pModifyDate, :pCustomerTypeId, :pCreatedByUser, :pModifiedByUser</sql-query>
+  <sql-query name="SPCustomercontactDEL" callable="true">
+    <query-param name="pContactId" type="Int32" />exec dbo.SP_customercontact_DEL :pContactId</sql-query>
+  <sql-query name="SPCustomercontactIN" callable="true">
+    <query-param name="pCustomerId" type="Int32" />
+    <query-param name="pEmail" type="String" />
+    <query-param name="pName" type="String" />
+    <query-param name="pPhone" type="String" />
+    <query-param name="pCreationDate" type="DateTime" />
+    <query-param name="pModifyDate" type="DateTime" />
+    <query-param name="pCreatedByUser" type="String" />
+    <query-param name="pModifiedByUser" type="String" />exec dbo.SP_customercontact_INS :pCustomerId, :pEmail, :pName, :pPhone, :pCreationDate, :pModifyDate, :pCreatedByUser, :pModifiedByUser</sql-query>
+  <sql-query name="SPCustomercontactSEL" callable="true">
+    <return class="CustomerContact">
+      <return-property name="ContactId" column="ContactId" />
+      <return-property name="Email" column="Email" />
+      <return-property name="Name" column="Name" />
+      <return-property name="Phone" column="Phone" />
+      <return-property name="CreationDate" column="CreationDate" />
+      <return-property name="ModifyDate" column="ModifyDate" />
+      <return-property name="CreatedByUser" column="CreatedByUser" />
+      <return-property name="ModifiedByUser" column="ModifiedByUser" />
+    </return>exec dbo.SP_customercontact_SEL</sql-query>
+  <sql-query name="SPCustomercontactUPD" callable="true">
+    <query-param name="pContactId" type="Int32" />
+    <query-param name="pCustomerId" type="Int32" />
+    <query-param name="pEmail" type="String" />
+    <query-param name="pName" type="String" />
+    <query-param name="pPhone" type="String" />
+    <query-param name="pCreationDate" type="DateTime" />
+    <query-param name="pModifyDate" type="DateTime" />
+    <query-param name="pCreatedByUser" type="String" />
+    <query-param name="pModifiedByUser" type="String" />exec dbo.SP_customercontact_UPD :pContactId, :pCustomerId, :pEmail, :pName, :pPhone, :pCreationDate, :pModifyDate, :pCreatedByUser, :pModifiedByUser</sql-query>
+  <sql-query name="SPCustomertypeDEL" callable="true">
+    <query-param name="pCustomerTypeId" type="Int32" />exec dbo.SP_customertype_DEL :pCustomerTypeId</sql-query>
+  <sql-query name="SPCustomertypeIN" callable="true">
+    <query-param name="pCustomerTypeId" type="Int32" />
+    <query-param name="pTypeName" type="String" />
+    <query-param name="pCreatedByUser" type="String" />
+    <query-param name="pModifiedByUser" type="String" />
+    <query-param name="pCreationDate" type="DateTime" />
+    <query-param name="pModifyDate" type="DateTime" />exec dbo.SP_customertype_INS :pCustomerTypeId, :pTypeName, :pCreatedByUser, :pModifiedByUser, :pCreationDate, :pModifyDate</sql-query>
+  <sql-query name="SPCustomertypeSEL" callable="true">
+    <return class="CustomerType">
+      <return-property name="CustomerTypeId" column="CustomerTypeId" />
+      <return-property name="TypeName" column="TypeName" />
+      <return-property name="CreatedByUser" column="CreatedByUser" />
+      <return-property name="ModifiedByUser" column="ModifiedByUser" />
+      <return-property name="CreationDate" column="CreationDate" />
+      <return-property name="ModifyDate" column="ModifyDate" />
+    </return>exec dbo.SP_customertype_SEL</sql-query>
+  <sql-query name="SPCustomertypeUPD" callable="true">
+    <query-param name="pCustomerTypeId" type="Int32" />
+    <query-param name="pTypeName" type="String" />
+    <query-param name="pCreatedByUser" type="String" />
+    <query-param name="pModifiedByUser" type="String" />
+    <query-param name="pCreationDate" type="DateTime" />
+    <query-param name="pModifyDate" type="DateTime" />exec dbo.SP_customertype_UPD :pCustomerTypeId, :pTypeName, :pCreatedByUser, :pModifiedByUser, :pCreationDate, :pModifyDate</sql-query>
+  <sql-query name="SPEstimatedetailDEL" callable="true">
+    <query-param name="pEstimateDetailNumber" type="Int32" />
+    <query-param name="pProductId" type="Int32" />exec dbo.SP_estimatedetail_DEL :pEstimateDetailNumber, :pProductId</sql-query>
+  <sql-query name="SPEstimatedetailIN" callable="true">
+    <query-param name="pProductId" type="Int32" />
+    <query-param name="pPriceEstimateId" type="Int32" />
+    <query-param name="pQuantity" type="Int32" />
+    <query-param name="pUnitPrice" type="Single" />
+    <query-param name="pCreationDate" type="DateTime" />
+    <query-param name="pModifyDate" type="DateTime" />
+    <query-param name="pCreatedByUser" type="String" />
+    <query-param name="pModifiedByUser" type="String" />exec dbo.SP_estimatedetail_INS :pProductId, :pPriceEstimateId, :pQuantity, :pUnitPrice, :pCreationDate, :pModifyDate, :pCreatedByUser, :pModifiedByUser</sql-query>
+  <sql-query name="SPEstimatedetailSEL" callable="true">
+    <return class="EstimateDetail">
+      <return-property name="EstimateDetailNumber" column="EstimateDetailNumber" />
+      <return-property name="ProductId" column="ProductId" />
+      <return-property name="Quantity" column="Quantity" />
+      <return-property name="UnitPrice" column="UnitPrice" />
+      <return-property name="CreationDate" column="CreationDate" />
+      <return-property name="ModifyDate" column="ModifyDate" />
+      <return-property name="CreatedByUser" column="CreatedByUser" />
+      <return-property name="ModifiedByUser" column="ModifiedByUser" />
+    </return>exec dbo.SP_estimatedetail_SEL</sql-query>
+  <sql-query name="SPEstimatedetailUPD" callable="true">
+    <query-param name="pEstimateDetailNumber" type="Int32" />
+    <query-param name="pProductId" type="Int32" />
+    <query-param name="pPriceEstimateId" type="Int32" />
+    <query-param name="pQuantity" type="Int32" />
+    <query-param name="pUnitPrice" type="Single" />
+    <query-param name="pCreationDate" type="DateTime" />
+    <query-param name="pModifyDate" type="DateTime" />
+    <query-param name="pCreatedByUser" type="String" />
+    <query-param name="pModifiedByUser" type="String" />exec dbo.SP_estimatedetail_UPD :pEstimateDetailNumber, :pProductId, :pPriceEstimateId, :pQuantity, :pUnitPrice, :pCreationDate, :pModifyDate, :pCreatedByUser, :pModifiedByUser</sql-query>
+  <sql-query name="SPInventoryadjustmentDEL" callable="true">
+    <query-param name="pAdjustmentId" type="Int32" />exec dbo.SP_inventoryadjustment_DEL :pAdjustmentId</sql-query>
+  <sql-query name="SPInventoryadjustmentIN" callable="true">
+    <query-param name="pAdjustmentType" type="String" />
+    <query-param name="pAdjustmentDate" type="DateTime" />
+    <query-param name="pTotalAdjusted" type="Int32" />
+    <query-param name="pCreationDate" type="DateTime" />
+    <query-param name="pModifyDate" type="DateTime" />
+    <query-param name="pCreatedByUser" type="String" />
+    <query-param name="pModifiedByUser" type="String" />exec dbo.SP_inventoryadjustment_INS :pAdjustmentType, :pAdjustmentDate, :pTotalAdjusted, :pCreationDate, :pModifyDate, :pCreatedByUser, :pModifiedByUser</sql-query>
+  <sql-query name="SPInventoryadjustmentSEL" callable="true">
+    <return class="InventoryAdjustment">
+      <return-property name="AdjustmentId" column="AdjustmentId" />
+      <return-property name="AdjustmentType" column="AdjustmentType" />
+      <return-property name="AdjustmentDate" column="AdjustmentDate" />
+      <return-property name="TotalAdjusted" column="TotalAdjusted" />
+      <return-property name="CreationDate" column="CreationDate" />
+      <return-property name="ModifyDate" column="ModifyDate" />
+      <return-property name="CreatedByUser" column="CreatedByUser" />
+      <return-property name="ModifiedByUser" column="ModifiedByUser" />
+    </return>exec dbo.SP_inventoryadjustment_SEL</sql-query>
+  <sql-query name="SPInventoryadjustmentUPD" callable="true">
+    <query-param name="pAdjustmentId" type="Int32" />
+    <query-param name="pAdjustmentType" type="String" />
+    <query-param name="pAdjustmentDate" type="DateTime" />
+    <query-param name="pTotalAdjusted" type="Int32" />
+    <query-param name="pCreationDate" type="DateTime" />
+    <query-param name="pModifyDate" type="DateTime" />
+    <query-param name="pCreatedByUser" type="String" />
+    <query-param name="pModifiedByUser" type="String" />exec dbo.SP_inventoryadjustment_UPD :pAdjustmentId, :pAdjustmentType, :pAdjustmentDate, :pTotalAdjusted, :pCreationDate, :pModifyDate, :pCreatedByUser, :pModifiedByUser</sql-query>
+  <sql-query name="SPInventoryadjustmentdetailDEL" callable="true">
+    <query-param name="pAdjustmentDetailNumber" type="Int32" />
+    <query-param name="pAdjustmentId" type="Int32" />exec dbo.SP_inventoryadjustmentdetail_DEL :pAdjustmentDetailNumber, :pAdjustmentId</sql-query>
+  <sql-query name="SPInventoryadjustmentdetailIN" callable="true">
+    <query-param name="pProductId" type="Int32" />
+    <query-param name="pAdjustmentId" type="Int32" />
+    <query-param name="pQuantity" type="Int32" />
+    <query-param name="pCreationDate" type="DateTime" />
+    <query-param name="pModifyDate" type="DateTime" />
+    <query-param name="pCreatedByUser" type="String" />
+    <query-param name="pModifiedByUser" type="String" />exec dbo.SP_inventoryadjustmentdetail_INS :pProductId, :pAdjustmentId, :pQuantity, :pCreationDate, :pModifyDate, :pCreatedByUser, :pModifiedByUser</sql-query>
+  <sql-query name="SPInventoryadjustmentdetailSEL" callable="true">
+    <return class="InventoryaAjustmentDetail">
+      <return-property name="AdjustmentDetailNumber" column="AdjustmentDetailNumber" />
+      <return-property name="AdjustmentId" column="AdjustmentId" />
+      <return-property name="Quantity" column="Quantity" />
+      <return-property name="CreationDate" column="CreationDate" />
+      <return-property name="ModifyDate" column="ModifyDate" />
+      <return-property name="CreatedByUser" column="CreatedByUser" />
+      <return-property name="ModifiedByUser" column="ModifiedByUser" />
+    </return>exec dbo.SP_inventoryadjustmentdetail_SEL</sql-query>
+  <sql-query name="SPInventoryadjustmentdetailUPD" callable="true">
+    <query-param name="pAdjustmentDetailNumber" type="Int32" />
+    <query-param name="pProductId" type="Int32" />
+    <query-param name="pAdjustmentId" type="Int32" />
+    <query-param name="pQuantity" type="Int32" />
+    <query-param name="pCreationDate" type="DateTime" />
+    <query-param name="pModifyDate" type="DateTime" />
+    <query-param name="pCreatedByUser" type="String" />
+    <query-param name="pModifiedByUser" type="String" />exec dbo.SP_inventoryadjustmentdetail_UPD :pAdjustmentDetailNumber, :pProductId, :pAdjustmentId, :pQuantity, :pCreationDate, :pModifyDate, :pCreatedByUser, :pModifiedByUser</sql-query>
+  <sql-query name="SPInvoiceDEL" callable="true">
+    <query-param name="pInvoiceId" type="Int32" />exec dbo.SP_invoice_DEL :pInvoiceId</sql-query>
+  <sql-query name="SPInvoiceIN" callable="true">
+    <query-param name="pCustomerId" type="Int32" />
+    <query-param name="pInvoiceDate" type="DateTime" />
+    <query-param name="pSubTotal" type="Single" />
+    <query-param name="pSalesTax" type="Single" />
+    <query-param name="pDisccount" type="Single" />
+    <query-param name="pCreationDate" type="DateTime" />
+    <query-param name="pModifyDate" type="DateTime" />
+    <query-param name="pCreatedByUser" type="String" />
+    <query-param name="pModifiedByUser" type="String" />exec dbo.SP_invoice_INS :pCustomerId, :pInvoiceDate, :pSubTotal, :pSalesTax, :pDisccount, :pCreationDate, :pModifyDate, :pCreatedByUser, :pModifiedByUser</sql-query>
+  <sql-query name="SPInvoiceSEL" callable="true">
+    <return class="Invoice">
+      <return-property name="InvoiceId" column="InvoiceId" />
+      <return-property name="InvoiceDate" column="InvoiceDate" />
+      <return-property name="SubTotal" column="SubTotal" />
+      <return-property name="SalesTax" column="SalesTax" />
+      <return-property name="Disccount" column="Disccount" />
+      <return-property name="CreationDate" column="CreationDate" />
+      <return-property name="ModifyDate" column="ModifyDate" />
+      <return-property name="CreatedByUser" column="CreatedByUser" />
+      <return-property name="ModifiedByUser" column="ModifiedByUser" />
+    </return>exec dbo.SP_invoice_SEL</sql-query>
+  <sql-query name="SPInvoiceUPD" callable="true">
+    <query-param name="pInvoiceId" type="Int32" />
+    <query-param name="pCustomerId" type="Int32" />
+    <query-param name="pInvoiceDate" type="DateTime" />
+    <query-param name="pSubTotal" type="Single" />
+    <query-param name="pSalesTax" type="Single" />
+    <query-param name="pDisccount" type="Single" />
+    <query-param name="pCreationDate" type="DateTime" />
+    <query-param name="pModifyDate" type="DateTime" />
+    <query-param name="pCreatedByUser" type="String" />
+    <query-param name="pModifiedByUser" type="String" />exec dbo.SP_invoice_UPD :pInvoiceId, :pCustomerId, :pInvoiceDate, :pSubTotal, :pSalesTax, :pDisccount, :pCreationDate, :pModifyDate, :pCreatedByUser, :pModifiedByUser</sql-query>
+  <sql-query name="SPInvoicedetailDEL" callable="true">
+    <query-param name="pInvoiceDetailNumber" type="Int32" />
+    <query-param name="pInvoiceId" type="Int32" />exec dbo.SP_invoicedetail_DEL :pInvoiceDetailNumber, :pInvoiceId</sql-query>
+  <sql-query name="SPInvoicedetailIN" callable="true">
+    <query-param name="pProductId" type="Int32" />
+    <query-param name="pSalePrice" type="Single" />
+    <query-param name="pQuantity" type="Int32" />
+    <query-param name="pSubTotal" type="Single" />
+    <query-param name="pInvoiceId" type="Int32" />
+    <query-param name="pCreatedByUser" type="String" />
+    <query-param name="pModifiedByUser" type="String" />
+    <query-param name="pCreationDate" type="DateTime" />
+    <query-param name="pModifyDate" type="DateTime" />exec dbo.SP_invoicedetail_INS :pProductId, :pSalePrice, :pQuantity, :pSubTotal, :pInvoiceId, :pCreatedByUser, :pModifiedByUser, :pCreationDate, :pModifyDate</sql-query>
+  <sql-query name="SPInvoicedetailSEL" callable="true">
+    <return class="InvoiceDetail">
+      <return-property name="InvoiceDetailNumber" column="InvoiceDetailNumber" />
+      <return-property name="InvoiceId" column="InvoiceId" />
+      <return-property name="SalePrice" column="SalePrice" />
+      <return-property name="Quantity" column="Quantity" />
+      <return-property name="SubTotal" column="SubTotal" />
+      <return-property name="CreatedByUser" column="CreatedByUser" />
+      <return-property name="ModifiedByUser" column="ModifiedByUser" />
+      <return-property name="CreationDate" column="CreationDate" />
+      <return-property name="ModifyDate" column="ModifyDate" />
+    </return>exec dbo.SP_invoicedetail_SEL</sql-query>
+  <sql-query name="SPInvoicedetailUPD" callable="true">
+    <query-param name="pInvoiceDetailNumber" type="Int32" />
+    <query-param name="pProductId" type="Int32" />
+    <query-param name="pSalePrice" type="Single" />
+    <query-param name="pQuantity" type="Int32" />
+    <query-param name="pSubTotal" type="Single" />
+    <query-param name="pInvoiceId" type="Int32" />
+    <query-param name="pCreatedByUser" type="String" />
+    <query-param name="pModifiedByUser" type="String" />
+    <query-param name="pCreationDate" type="DateTime" />
+    <query-param name="pModifyDate" type="DateTime" />exec dbo.SP_invoicedetail_UPD :pInvoiceDetailNumber, :pProductId, :pSalePrice, :pQuantity, :pSubTotal, :pInvoiceId, :pCreatedByUser, :pModifiedByUser, :pCreationDate, :pModifyDate</sql-query>
+  <sql-query name="SPKardexoperationDEL" callable="true">
+    <query-param name="pOperationId" type="Int32" />exec dbo.SP_kardexoperation_DEL :pOperationId</sql-query>
+  <sql-query name="SPKardexoperationIN" callable="true">
+    <query-param name="pOperationId" type="Int32" />
+    <query-param name="pProductId" type="Int32" />
+    <query-param name="pOperationName" type="String" />
+    <query-param name="pProductCost" type="Single" />
+    <query-param name="pPreviousExistence" type="Int32" />
+    <query-param name="pNewExistence" type="Int32" />
+    <query-param name="pProductPrice" type="Single" />
+    <query-param name="pQuantity" type="Int32" />
+    <query-param name="pCreationDate" type="DateTime" />
+    <query-param name="pModifyDate" type="DateTime" />
+    <query-param name="pOperationDate" type="DateTime" />
+    <query-param name="pCreatedByUser" type="String" />
+    <query-param name="pModifiedByUser" type="String" />exec dbo.SP_kardexoperation_INS :pOperationId, :pProductId, :pOperationName, :pProductCost, :pPreviousExistence, :pNewExistence, :pProductPrice, :pQuantity, :pCreationDate, :pModifyDate, :pOperationDate, :pCreatedByUser, :pModifiedByUser</sql-query>
+  <sql-query name="SPKardexoperationSEL" callable="true">
+    <return class="KardexOperation">
+      <return-property name="OperationId" column="OperationId" />
+      <return-property name="OperationName" column="OperationName" />
+      <return-property name="ProductCost" column="ProductCost" />
+      <return-property name="PreviousExistence" column="PreviousExistence" />
+      <return-property name="NewExistence" column="NewExistence" />
+      <return-property name="ProductPrice" column="ProductPrice" />
+      <return-property name="Quantity" column="Quantity" />
+      <return-property name="CreationDate" column="CreationDate" />
+      <return-property name="ModifyDate" column="ModifyDate" />
+      <return-property name="OperationDate" column="OperationDate" />
+      <return-property name="CreatedByUser" column="CreatedByUser" />
+      <return-property name="ModifiedByUser" column="ModifiedByUser" />
+    </return>exec dbo.SP_kardexoperation_SEL</sql-query>
+  <sql-query name="SPKardexoperationUPD" callable="true">
+    <query-param name="pOperationId" type="Int32" />
+    <query-param name="pProductId" type="Int32" />
+    <query-param name="pOperationName" type="String" />
+    <query-param name="pProductCost" type="Single" />
+    <query-param name="pPreviousExistence" type="Int32" />
+    <query-param name="pNewExistence" type="Int32" />
+    <query-param name="pProductPrice" type="Single" />
+    <query-param name="pQuantity" type="Int32" />
+    <query-param name="pCreationDate" type="DateTime" />
+    <query-param name="pModifyDate" type="DateTime" />
+    <query-param name="pOperationDate" type="DateTime" />
+    <query-param name="pCreatedByUser" type="String" />
+    <query-param name="pModifiedByUser" type="String" />exec dbo.SP_kardexoperation_UPD :pOperationId, :pProductId, :pOperationName, :pProductCost, :pPreviousExistence, :pNewExistence, :pProductPrice, :pQuantity, :pCreationDate, :pModifyDate, :pOperationDate, :pCreatedByUser, :pModifiedByUser</sql-query>
+  <sql-query name="SPPhonenumberDEL" callable="true">
+    <query-param name="pPhoneId" type="Int32" />exec dbo.SP_phonenumber_DEL :pPhoneId</sql-query>
+  <sql-query name="SPPhonenumberIN" callable="true">
+    <query-param name="pPhoneId" type="Int32" />
+    <query-param name="pNumber" type="String" />
+    <query-param name="pCustomerId" type="Int32" />
+    <query-param name="pCreatedByUser" type="String" />
+    <query-param name="pModifiedByUser" type="String" />
+    <query-param name="pCreationDate" type="DateTime" />
+    <query-param name="pModifyDate" type="DateTime" />exec dbo.SP_phonenumber_INS :pPhoneId, :pNumber, :pCustomerId, :pCreatedByUser, :pModifiedByUser, :pCreationDate, :pModifyDate</sql-query>
+  <sql-query name="SPPhonenumberSEL" callable="true">
+    <return class="PhoneNumber">
+      <return-property name="PhoneId" column="PhoneId" />
+      <return-property name="Number" column="Number" />
+      <return-property name="CreatedByUser" column="CreatedByUser" />
+      <return-property name="ModifiedByUser" column="ModifiedByUser" />
+      <return-property name="CreationDate" column="CreationDate" />
+      <return-property name="ModifyDate" column="ModifyDate" />
+    </return>exec dbo.SP_phonenumber_SEL</sql-query>
+  <sql-query name="SPPhonenumberUPD" callable="true">
+    <query-param name="pPhoneId" type="Int32" />
+    <query-param name="pNumber" type="String" />
+    <query-param name="pCustomerId" type="Int32" />
+    <query-param name="pCreatedByUser" type="String" />
+    <query-param name="pModifiedByUser" type="String" />
+    <query-param name="pCreationDate" type="DateTime" />
+    <query-param name="pModifyDate" type="DateTime" />exec dbo.SP_phonenumber_UPD :pPhoneId, :pNumber, :pCustomerId, :pCreatedByUser, :pModifiedByUser, :pCreationDate, :pModifyDate</sql-query>
+  <sql-query name="SPPresentationDEL" callable="true">
+    <query-param name="pPresentationId" type="Int32" />exec dbo.SP_presentation_DEL :pPresentationId</sql-query>
+  <sql-query name="SPPresentationIN" callable="true">
+    <query-param name="pName" type="String" />
+    <query-param name="pCreationDate" type="DateTime" />
+    <query-param name="pModifyDate" type="DateTime" />
+    <query-param name="pCreatedByUser" type="String" />
+    <query-param name="pModifiedByUser" type="String" />exec dbo.SP_presentation_INS :pName, :pCreationDate, :pModifyDate, :pCreatedByUser, :pModifiedByUser</sql-query>
+  <sql-query name="SPPresentationSEL" callable="true">
+    <return class="Presentation">
+      <return-property name="PresentationId" column="PresentationId" />
+      <return-property name="Name" column="Name" />
+      <return-property name="CreationDate" column="CreationDate" />
+      <return-property name="ModifyDate" column="ModifyDate" />
+      <return-property name="CreatedByUser" column="CreatedByUser" />
+      <return-property name="ModifiedByUser" column="ModifiedByUser" />
+    </return>exec dbo.SP_presentation_SEL</sql-query>
+  <sql-query name="SPPresentationUPD" callable="true">
+    <query-param name="pPresentationId" type="Int32" />
+    <query-param name="pName" type="String" />
+    <query-param name="pCreationDate" type="DateTime" />
+    <query-param name="pModifyDate" type="DateTime" />
+    <query-param name="pCreatedByUser" type="String" />
+    <query-param name="pModifiedByUser" type="String" />exec dbo.SP_presentation_UPD :pPresentationId, :pName, :pCreationDate, :pModifyDate, :pCreatedByUser, :pModifiedByUser</sql-query>
+  <sql-query name="SPPriceestimateDEL" callable="true">
+    <query-param name="pPriceEstimateId" type="Int32" />exec dbo.SP_priceestimate_DEL :pPriceEstimateId</sql-query>
+  <sql-query name="SPPriceestimateIN" callable="true">
+    <query-param name="pEstimateDate" type="Int32" />
+    <query-param name="pEstimateTotal" type="Single" />
+    <query-param name="pCreationDate" type="DateTime" />
+    <query-param name="pModifyDate" type="DateTime" />
+    <query-param name="pProviderId" type="Int32" />
+    <query-param name="pCreatedByUser" type="String" />
+    <query-param name="pModifiedByUser" type="String" />exec dbo.SP_priceestimate_INS :pEstimateDate, :pEstimateTotal, :pCreationDate, :pModifyDate, :pProviderId, :pCreatedByUser, :pModifiedByUser</sql-query>
+  <sql-query name="SPPriceestimateSEL" callable="true">
+    <return class="PriceEstimate">
+      <return-property name="PriceEstimateId" column="PriceEstimateId" />
+      <return-property name="EstimateDate" column="EstimateDate" />
+      <return-property name="EstimateTotal" column="EstimateTotal" />
+      <return-property name="CreationDate" column="CreationDate" />
+      <return-property name="ModifyDate" column="ModifyDate" />
+      <return-property name="CreatedByUser" column="CreatedByUser" />
+      <return-property name="ModifiedByUser" column="ModifiedByUser" />
+    </return>exec dbo.SP_priceestimate_SEL</sql-query>
+  <sql-query name="SPPriceestimateUPD" callable="true">
+    <query-param name="pPriceEstimateId" type="Int32" />
+    <query-param name="pEstimateDate" type="Int32" />
+    <query-param name="pEstimateTotal" type="Single" />
+    <query-param name="pCreationDate" type="DateTime" />
+    <query-param name="pModifyDate" type="DateTime" />
+    <query-param name="pProviderId" type="Int32" />
+    <query-param name="pCreatedByUser" type="String" />
+    <query-param name="pModifiedByUser" type="String" />exec dbo.SP_priceestimate_UPD :pPriceEstimateId, :pEstimateDate, :pEstimateTotal, :pCreationDate, :pModifyDate, :pProviderId, :pCreatedByUser, :pModifiedByUser</sql-query>
+  <sql-query name="SPPrivilegeDEL" callable="true">
+    <query-param name="pPrivilegeId" type="Int32" />exec dbo.SP_privilege_DEL :pPrivilegeId</sql-query>
+  <sql-query name="SPPrivilegeHasRoleDEL" callable="true">
+    <query-param name="pPrivilegeId" type="Int32" />
+    <query-param name="pRoleId" type="Int32" />exec dbo.SP_privilege_has_role_DEL :pPrivilegeId, :pRoleId</sql-query>
+  <sql-query name="SPPrivilegeHasRoleIN" callable="true">
+    <query-param name="pPrivilegeId" type="Int32" />
+    <query-param name="pRoleId" type="Int32" />
+    <query-param name="pCreationDate" type="DateTime" />
+    <query-param name="pModifyDate" type="DateTime" />
+    <query-param name="pCreatedByUser" type="String" />
+    <query-param name="pModifiedByUser" type="String" />exec dbo.SP_privilege_has_role_INS :pPrivilegeId, :pRoleId, :pCreationDate, :pModifyDate, :pCreatedByUser, :pModifiedByUser</sql-query>
+  <sql-query name="SPPrivilegeHasRoleSEL" callable="true">
+    <return class="PrivilegeHasRole">
+      <return-property name="PrivilegeId" column="PrivilegeId" />
+      <return-property name="RoleId" column="RoleId" />
+      <return-property name="CreationDate" column="CreationDate" />
+      <return-property name="ModifyDate" column="ModifyDate" />
+      <return-property name="CreatedByUser" column="CreatedByUser" />
+      <return-property name="ModifiedByUser" column="ModifiedByUser" />
+    </return>exec dbo.SP_privilege_has_role_SEL</sql-query>
+  <sql-query name="SPPrivilegeHasRoleUPD" callable="true">
+    <query-param name="pPrivilegeId" type="Int32" />
+    <query-param name="pRoleId" type="Int32" />
+    <query-param name="pCreationDate" type="DateTime" />
+    <query-param name="pModifyDate" type="DateTime" />
+    <query-param name="pCreatedByUser" type="String" />
+    <query-param name="pModifiedByUser" type="String" />exec dbo.SP_privilege_has_role_UPD :pPrivilegeId, :pRoleId, :pCreationDate, :pModifyDate, :pCreatedByUser, :pModifiedByUser</sql-query>
+  <sql-query name="SPPrivilegeIN" callable="true">
+    <query-param name="pName" type="String" />
+    <query-param name="pCreationDate" type="DateTime" />
+    <query-param name="pModifyDate" type="DateTime" />
+    <query-param name="pCreatedByUser" type="String" />
+    <query-param name="pModifiedByUser" type="String" />exec dbo.SP_privilege_INS :pName, :pCreationDate, :pModifyDate, :pCreatedByUser, :pModifiedByUser</sql-query>
+  <sql-query name="SPPrivilegeSEL" callable="true">
+    <return class="Privilege">
+      <return-property name="PrivilegeId" column="PrivilegeId" />
+      <return-property name="Name" column="Name" />
+      <return-property name="CreationDate" column="CreationDate" />
+      <return-property name="ModifyDate" column="ModifyDate" />
+      <return-property name="CreatedByUser" column="CreatedByUser" />
+      <return-property name="ModifiedByUser" column="ModifiedByUser" />
+    </return>exec dbo.SP_privilege_SEL</sql-query>
+  <sql-query name="SPPrivilegeUPD" callable="true">
+    <query-param name="pPrivilegeId" type="Int32" />
+    <query-param name="pName" type="String" />
+    <query-param name="pCreationDate" type="DateTime" />
+    <query-param name="pModifyDate" type="DateTime" />
+    <query-param name="pCreatedByUser" type="String" />
+    <query-param name="pModifiedByUser" type="String" />exec dbo.SP_privilege_UPD :pPrivilegeId, :pName, :pCreationDate, :pModifyDate, :pCreatedByUser, :pModifiedByUser</sql-query>
+  <sql-query name="SPProductDEL" callable="true">
+    <query-param name="pProductId" type="Int32" />exec dbo.SP_product_DEL :pProductId</sql-query>
+  <sql-query name="SPProductIN" callable="true">
+    <query-param name="pProductId" type="Int32" />
+    <query-param name="pProductName" type="String" />
+    <query-param name="pRetailPrice" type="Single" />
+    <query-param name="pCost" type="Single" />
+    <query-param name="pCategoryId" type="Int32" />
+    <query-param name="pMinimumExistence" type="Int64" />
+    <query-param name="pWholeSalerPercentage" type="Single" />
+    <query-param name="pExpireDate" type="DateTime" />
+    <query-param name="pCreationDate" type="DateTime" />
+    <query-param name="pModifyDate" type="DateTime" />
+    <query-param name="pPresentationId" type="Int32" />
+    <query-param name="pCurrentExistence" type="Int32" />
+    <query-param name="pCreatedByUser" type="String" />
+    <query-param name="pModifiedByUser" type="String" />exec dbo.SP_product_INS :pProductId, :pProductName, :pRetailPrice, :pCost, :pCategoryId, :pMinimumExistence, :pWholeSalerPercentage, :pExpireDate, :pCreationDate, :pModifyDate, :pPresentationId, :pCurrentExistence, :pCreatedByUser, :pModifiedByUser</sql-query>
+  <sql-query name="SPProductSEL" callable="true">
+    <return class="Product">
+      <return-property name="ProductId" column="ProductId" />
+      <return-property name="ProductName" column="ProductName" />
+      <return-property name="RetailPrice" column="RetailPrice" />
+      <return-property name="Cost" column="Cost" />
+      <return-property name="MinimumExistence" column="MinimumExistence" />
+      <return-property name="WholeSalerPercentage" column="WholeSalerPercentage" />
+      <return-property name="ExpireDate" column="ExpireDate" />
+      <return-property name="CreationDate" column="CreationDate" />
+      <return-property name="ModifyDate" column="ModifyDate" />
+      <return-property name="CurrentExistence" column="CurrentExistence" />
+      <return-property name="CreatedByUser" column="CreatedByUser" />
+      <return-property name="ModifiedByUser" column="ModifiedByUser" />
+    </return>exec dbo.SP_product_SEL</sql-query>
+  <sql-query name="SPProductUPD" callable="true">
+    <query-param name="pProductId" type="Int32" />
+    <query-param name="pProductName" type="String" />
+    <query-param name="pRetailPrice" type="Single" />
+    <query-param name="pCost" type="Single" />
+    <query-param name="pCategoryId" type="Int32" />
+    <query-param name="pMinimumExistence" type="Int64" />
+    <query-param name="pWholeSalerPercentage" type="Single" />
+    <query-param name="pExpireDate" type="DateTime" />
+    <query-param name="pCreationDate" type="DateTime" />
+    <query-param name="pModifyDate" type="DateTime" />
+    <query-param name="pPresentationId" type="Int32" />
+    <query-param name="pCurrentExistence" type="Int32" />
+    <query-param name="pCreatedByUser" type="String" />
+    <query-param name="pModifiedByUser" type="String" />exec dbo.SP_product_UPD :pProductId, :pProductName, :pRetailPrice, :pCost, :pCategoryId, :pMinimumExistence, :pWholeSalerPercentage, :pExpireDate, :pCreationDate, :pModifyDate, :pPresentationId, :pCurrentExistence, :pCreatedByUser, :pModifiedByUser</sql-query>
+  <sql-query name="SPProviderDEL" callable="true">
+    <query-param name="pProviderId" type="Int32" />exec dbo.SP_provider_DEL :pProviderId</sql-query>
+  <sql-query name="SPProviderIN" callable="true">
+    <query-param name="pName" type="String" />
+    <query-param name="pPhone" type="String" />
+    <query-param name="pContactName" type="String" />
+    <query-param name="pAddress" type="String" />
+    <query-param name="pCreatedByUser" type="String" />
+    <query-param name="pModifiedByUser" type="String" />
+    <query-param name="pModifyDate" type="DateTime" />
+    <query-param name="pCreationDate" type="DateTime" />exec dbo.SP_provider_INS :pName, :pPhone, :pContactName, :pAddress, :pCreatedByUser, :pModifiedByUser, :pModifyDate, :pCreationDate</sql-query>
+  <sql-query name="SPProviderSEL" callable="true">
+    <return class="Provider">
+      <return-property name="ProviderId" column="ProviderId" />
+      <return-property name="Name" column="Name" />
+      <return-property name="Phone" column="Phone" />
+      <return-property name="ContactName" column="ContactName" />
+      <return-property name="Address" column="Address" />
+      <return-property name="CreatedByUser" column="CreatedByUser" />
+      <return-property name="ModifiedByUser" column="ModifiedByUser" />
+      <return-property name="ModifyDate" column="ModifyDate" />
+      <return-property name="CreationDate" column="CreationDate" />
+    </return>exec dbo.SP_provider_SEL</sql-query>
+  <sql-query name="SPProviderUPD" callable="true">
+    <query-param name="pProviderId" type="Int32" />
+    <query-param name="pName" type="String" />
+    <query-param name="pPhone" type="String" />
+    <query-param name="pContactName" type="String" />
+    <query-param name="pAddress" type="String" />
+    <query-param name="pCreatedByUser" type="String" />
+    <query-param name="pModifiedByUser" type="String" />
+    <query-param name="pModifyDate" type="DateTime" />
+    <query-param name="pCreationDate" type="DateTime" />exec dbo.SP_provider_UPD :pProviderId, :pName, :pPhone, :pContactName, :pAddress, :pCreatedByUser, :pModifiedByUser, :pModifyDate, :pCreationDate</sql-query>
+  <sql-query name="SPProvidersellsproductDEL" callable="true">
+    <query-param name="pProviderId" type="Int32" />
+    <query-param name="pProductId" type="Int32" />exec dbo.SP_providersellsproduct_DEL :pProviderId, :pProductId</sql-query>
+  <sql-query name="SPProvidersellsproductIN" callable="true">
+    <query-param name="pProviderId" type="Int32" />
+    <query-param name="pProductId" type="Int32" />
+    <query-param name="pCost" type="Single" />
+    <query-param name="pCreatedByUser" type="String" />
+    <query-param name="pModifiedByUser" type="String" />exec dbo.SP_providersellsproduct_INS :pProviderId, :pProductId, :pCost, :pCreatedByUser, :pModifiedByUser</sql-query>
+  <sql-query name="SPProvidersellsproductSEL" callable="true">
+    <return class="ProviderSellsProduct">
+      <return-property name="ProviderId" column="ProviderId" />
+      <return-property name="ProductId" column="ProductId" />
+      <return-property name="Cost" column="Cost" />
+      <return-property name="CreatedByUser" column="CreatedByUser" />
+      <return-property name="ModifiedByUser" column="ModifiedByUser" />
+    </return>exec dbo.SP_providersellsproduct_SEL</sql-query>
+  <sql-query name="SPProvidersellsproductUPD" callable="true">
+    <query-param name="pProviderId" type="Int32" />
+    <query-param name="pProductId" type="Int32" />
+    <query-param name="pCost" type="Single" />
+    <query-param name="pCreatedByUser" type="String" />
+    <query-param name="pModifiedByUser" type="String" />exec dbo.SP_providersellsproduct_UPD :pProviderId, :pProductId, :pCost, :pCreatedByUser, :pModifiedByUser</sql-query>
+  <sql-query name="SPPurchaseDEL" callable="true">
+    <query-param name="pPurchaseId" type="Int32" />exec dbo.SP_purchase_DEL :pPurchaseId</sql-query>
+  <sql-query name="SPPurchaseIN" callable="true">
+    <query-param name="pProviderId" type="Int32" />
+    <query-param name="pPurchaseDate" type="DateTime" />
+    <query-param name="pTotal" type="Single" />
+    <query-param name="pCreationDate" type="DateTime" />
+    <query-param name="pModifyDate" type="DateTime" />
+    <query-param name="pCreatedByUser" type="String" />
+    <query-param name="pModifiedByUser" type="String" />exec dbo.SP_purchase_INS :pProviderId, :pPurchaseDate, :pTotal, :pCreationDate, :pModifyDate, :pCreatedByUser, :pModifiedByUser</sql-query>
+  <sql-query name="SPPurchaseSEL" callable="true">
+    <return class="Purchase">
+      <return-property name="PurchaseId" column="PurchaseId" />
+      <return-property name="PurchaseDate" column="PurchaseDate" />
+      <return-property name="Total" column="Total" />
+      <return-property name="CreationDate" column="CreationDate" />
+      <return-property name="ModifyDate" column="ModifyDate" />
+      <return-property name="CreatedByUser" column="CreatedByUser" />
+      <return-property name="ModifiedByUser" column="ModifiedByUser" />
+    </return>exec dbo.SP_purchase_SEL</sql-query>
+  <sql-query name="SPPurchaseUPD" callable="true">
+    <query-param name="pPurchaseId" type="Int32" />
+    <query-param name="pProviderId" type="Int32" />
+    <query-param name="pPurchaseDate" type="DateTime" />
+    <query-param name="pTotal" type="Single" />
+    <query-param name="pCreationDate" type="DateTime" />
+    <query-param name="pModifyDate" type="DateTime" />
+    <query-param name="pCreatedByUser" type="String" />
+    <query-param name="pModifiedByUser" type="String" />exec dbo.SP_purchase_UPD :pPurchaseId, :pProviderId, :pPurchaseDate, :pTotal, :pCreationDate, :pModifyDate, :pCreatedByUser, :pModifiedByUser</sql-query>
+  <sql-query name="SPPurchasedetailDEL" callable="true">
+    <query-param name="pPurchaseDetailNumber" type="Int32" />
+    <query-param name="pPurchaseId" type="Int32" />exec dbo.SP_purchasedetail_DEL :pPurchaseDetailNumber, :pPurchaseId</sql-query>
+  <sql-query name="SPPurchasedetailIN" callable="true">
+    <query-param name="pProductId" type="Int32" />
+    <query-param name="pPurchaseId" type="Int32" />
+    <query-param name="pPurchasePrice" type="Single" />
+    <query-param name="pQuantity" type="Int32" />
+    <query-param name="pSubtotal" type="Single" />
+    <query-param name="pCreationDate" type="DateTime" />
+    <query-param name="pModifyDate" type="DateTime" />exec dbo.SP_purchasedetail_INS :pProductId, :pPurchaseId, :pPurchasePrice, :pQuantity, :pSubtotal, :pCreationDate, :pModifyDate</sql-query>
+  <sql-query name="SPPurchasedetailSEL" callable="true">
+    <return class="PurchaseDetail">
+      <return-property name="PurchaseDetailNumber" column="PurchaseDetailNumber" />
+      <return-property name="PurchaseId" column="PurchaseId" />
+      <return-property name="PurchasePrice" column="PurchasePrice" />
+      <return-property name="Quantity" column="Quantity" />
+      <return-property name="Subtotal" column="Subtotal" />
+      <return-property name="CreationDate" column="CreationDate" />
+      <return-property name="ModifyDate" column="ModifyDate" />
+    </return>exec dbo.SP_purchasedetail_SEL</sql-query>
+  <sql-query name="SPPurchasedetailUPD" callable="true">
+    <query-param name="pPurchaseDetailNumber" type="Int32" />
+    <query-param name="pProductId" type="Int32" />
+    <query-param name="pPurchaseId" type="Int32" />
+    <query-param name="pPurchasePrice" type="Single" />
+    <query-param name="pQuantity" type="Int32" />
+    <query-param name="pSubtotal" type="Single" />
+    <query-param name="pCreationDate" type="DateTime" />
+    <query-param name="pModifyDate" type="DateTime" />exec dbo.SP_purchasedetail_UPD :pPurchaseDetailNumber, :pProductId, :pPurchaseId, :pPurchasePrice, :pQuantity, :pSubtotal, :pCreationDate, :pModifyDate</sql-query>
+  <sql-query name="SPPurchaseorderDEL" callable="true">
+    <query-param name="pPurchaseOrderId" type="Int32" />exec dbo.SP_purchaseorder_DEL :pPurchaseOrderId</sql-query>
+  <sql-query name="SPPurchaseorderIN" callable="true">
+    <query-param name="pProviderId" type="Int32" />
+    <query-param name="pOrderDate" type="DateTime" />
+    <query-param name="pTotal" type="DateTime" />
+    <query-param name="pOrderStatus" type="String" />
+    <query-param name="pCreationDate" type="DateTime" />
+    <query-param name="pModifyDate" type="DateTime" />
+    <query-param name="pCreatedByUser" type="String" />
+    <query-param name="pModifiedByUser" type="String" />exec dbo.SP_purchaseorder_INS :pProviderId, :pOrderDate, :pTotal, :pOrderStatus, :pCreationDate, :pModifyDate, :pCreatedByUser, :pModifiedByUser</sql-query>
+  <sql-query name="SPPurchaseorderSEL" callable="true">
+    <return class="PurchaseOrder">
+      <return-property name="PurchaseOrderId" column="PurchaseOrderId" />
+      <return-property name="OrderDate" column="OrderDate" />
+      <return-property name="Total" column="Total" />
+      <return-property name="OrderStatus" column="OrderStatus" />
+      <return-property name="CreationDate" column="CreationDate" />
+      <return-property name="ModifyDate" column="ModifyDate" />
+      <return-property name="CreatedByUser" column="CreatedByUser" />
+      <return-property name="ModifiedByUser" column="ModifiedByUser" />
+    </return>exec dbo.SP_purchaseorder_SEL</sql-query>
+  <sql-query name="SPPurchaseorderUPD" callable="true">
+    <query-param name="pPurchaseOrderId" type="Int32" />
+    <query-param name="pProviderId" type="Int32" />
+    <query-param name="pOrderDate" type="DateTime" />
+    <query-param name="pTotal" type="DateTime" />
+    <query-param name="pOrderStatus" type="String" />
+    <query-param name="pCreationDate" type="DateTime" />
+    <query-param name="pModifyDate" type="DateTime" />
+    <query-param name="pCreatedByUser" type="String" />
+    <query-param name="pModifiedByUser" type="String" />exec dbo.SP_purchaseorder_UPD :pPurchaseOrderId, :pProviderId, :pOrderDate, :pTotal, :pOrderStatus, :pCreationDate, :pModifyDate, :pCreatedByUser, :pModifiedByUser</sql-query>
+  <sql-query name="SPPurchaseorderdetailDEL" callable="true">
+    <query-param name="pOrderDetailNumber" type="Int32" />
+    <query-param name="pPurchaseOrderId" type="Int32" />exec dbo.SP_purchaseorderdetail_DEL :pOrderDetailNumber, :pPurchaseOrderId</sql-query>
+  <sql-query name="SPPurchaseorderdetailIN" callable="true">
+    <query-param name="pProductId" type="Int32" />
+    <query-param name="pPurchaseOrderId" type="Int32" />
+    <query-param name="pQuantity" type="Int32" />
+    <query-param name="pUnitPrice" type="Single" />
+    <query-param name="pSubTotal" type="Single" />
+    <query-param name="pCreationDate" type="DateTime" />
+    <query-param name="pModifyDate" type="DateTime" />
+    <query-param name="pCreatedByUser" type="String" />
+    <query-param name="pModifiedByUser" type="String" />exec dbo.SP_purchaseorderdetail_INS :pProductId, :pPurchaseOrderId, :pQuantity, :pUnitPrice, :pSubTotal, :pCreationDate, :pModifyDate, :pCreatedByUser, :pModifiedByUser</sql-query>
+  <sql-query name="SPPurchaseorderdetailSEL" callable="true">
+    <return class="PurchaseOrderDetail">
+      <return-property name="OrderDetailNumber" column="OrderDetailNumber" />
+      <return-property name="PurchaseOrderId" column="PurchaseOrderId" />
+      <return-property name="Quantity" column="Quantity" />
+      <return-property name="UnitPrice" column="UnitPrice" />
+      <return-property name="SubTotal" column="SubTotal" />
+      <return-property name="CreationDate" column="CreationDate" />
+      <return-property name="ModifyDate" column="ModifyDate" />
+      <return-property name="CreatedByUser" column="CreatedByUser" />
+      <return-property name="ModifiedByUser" column="ModifiedByUser" />
+    </return>exec dbo.SP_purchaseorderdetail_SEL</sql-query>
+  <sql-query name="SPPurchaseorderdetailUPD" callable="true">
+    <query-param name="pOrderDetailNumber" type="Int32" />
+    <query-param name="pProductId" type="Int32" />
+    <query-param name="pPurchaseOrderId" type="Int32" />
+    <query-param name="pQuantity" type="Int32" />
+    <query-param name="pUnitPrice" type="Single" />
+    <query-param name="pSubTotal" type="Single" />
+    <query-param name="pCreationDate" type="DateTime" />
+    <query-param name="pModifyDate" type="DateTime" />
+    <query-param name="pCreatedByUser" type="String" />
+    <query-param name="pModifiedByUser" type="String" />exec dbo.SP_purchaseorderdetail_UPD :pOrderDetailNumber, :pProductId, :pPurchaseOrderId, :pQuantity, :pUnitPrice, :pSubTotal, :pCreationDate, :pModifyDate, :pCreatedByUser, :pModifiedByUser</sql-query>
+  <sql-query name="SPRoleDEL" callable="true">
+    <query-param name="pRoleId" type="Int32" />exec dbo.SP_role_DEL :pRoleId</sql-query>
+  <sql-query name="SPRoleIN" callable="true">
+    <query-param name="pRoleName" type="String" />
+    <query-param name="pCreationDate" type="DateTime" />
+    <query-param name="pModifyDate" type="DateTime" />
+    <query-param name="pCreatedByUser" type="String" />
+    <query-param name="pModifiedByUser" type="String" />exec dbo.SP_role_INS :pRoleName, :pCreationDate, :pModifyDate, :pCreatedByUser, :pModifiedByUser</sql-query>
+  <sql-query name="SPRoleSEL" callable="true">
+    <return class="Role">
+      <return-property name="RoleId" column="RoleId" />
+      <return-property name="RoleName" column="RoleName" />
+      <return-property name="CreationDate" column="CreationDate" />
+      <return-property name="ModifyDate" column="ModifyDate" />
+      <return-property name="CreatedByUser" column="CreatedByUser" />
+      <return-property name="ModifiedByUser" column="ModifiedByUser" />
+    </return>exec dbo.SP_role_SEL</sql-query>
+  <sql-query name="SPRoleUPD" callable="true">
+    <query-param name="pRoleId" type="Int32" />
+    <query-param name="pRoleName" type="String" />
+    <query-param name="pCreationDate" type="DateTime" />
+    <query-param name="pModifyDate" type="DateTime" />
+    <query-param name="pCreatedByUser" type="String" />
+    <query-param name="pModifiedByUser" type="String" />exec dbo.SP_role_UPD :pRoleId, :pRoleName, :pCreationDate, :pModifyDate, :pCreatedByUser, :pModifiedByUser</sql-query>
+  <sql-query name="SPUsersDEL" callable="true">
+    <query-param name="pUserId" type="String" />exec dbo.SP_users_DEL :pUserId</sql-query>
+  <sql-query name="SPUsersHasRoleDEL" callable="true">
+    <query-param name="pRoleId" type="Int32" />
+    <query-param name="pUserId" type="String" />exec dbo.SP_users_has_role_DEL :pRoleId, :pUserId</sql-query>
+  <sql-query name="SPUsersHasRoleIN" callable="true">
+    <query-param name="pRoleId" type="Int32" />
+    <query-param name="pUserId" type="String" />
+    <query-param name="pCreatedByUser" type="String" />
+    <query-param name="pModifiedByUser" type="String" />
+    <query-param name="pCreationDate" type="DateTime" />
+    <query-param name="pModifyDate" type="DateTime" />exec dbo.SP_users_has_role_INS :pRoleId, :pUserId, :pCreatedByUser, :pModifiedByUser, :pCreationDate, :pModifyDate</sql-query>
+  <sql-query name="SPUsersHasRoleSEL" callable="true">
+    <return class="UsersHasRole">
+      <return-property name="RoleId" column="RoleId" />
+      <return-property name="UserId" column="UserId" />
+      <return-property name="CreatedByUser" column="CreatedByUser" />
+      <return-property name="ModifiedByUser" column="ModifiedByUser" />
+      <return-property name="CreationDate" column="CreationDate" />
+      <return-property name="ModifyDate" column="ModifyDate" />
+    </return>exec dbo.SP_users_has_role_SEL</sql-query>
+  <sql-query name="SPUsersHasRoleUPD" callable="true">
+    <query-param name="pRoleId" type="Int32" />
+    <query-param name="pUserId" type="String" />
+    <query-param name="pCreatedByUser" type="String" />
+    <query-param name="pModifiedByUser" type="String" />
+    <query-param name="pCreationDate" type="DateTime" />
+    <query-param name="pModifyDate" type="DateTime" />exec dbo.SP_users_has_role_UPD :pRoleId, :pUserId, :pCreatedByUser, :pModifiedByUser, :pCreationDate, :pModifyDate</sql-query>
+  <sql-query name="SPUsersIN" callable="true">
+    <query-param name="pUserId" type="String" />
+    <query-param name="pName" type="String" />
+    <query-param name="pEmail" type="String" />
+    <query-param name="pPass" type="String" />
+    <query-param name="pCreationDate" type="DateTime" />
+    <query-param name="pModifyDate" type="DateTime" />
+    <query-param name="pCreatedByUser" type="String" />
+    <query-param name="pModifiedByUser" type="String" />exec dbo.SP_users_INS :pUserId, :pName, :pEmail, :pPass, :pCreationDate, :pModifyDate, :pCreatedByUser, :pModifiedByUser</sql-query>
+  <sql-query name="SPUsersSEL" callable="true">
+    <return class="User">
+      <return-property name="UserId" column="UserId" />
+      <return-property name="Name" column="Name" />
+      <return-property name="Email" column="Email" />
+      <return-property name="Pass" column="Pass" />
+      <return-property name="CreationDate" column="CreationDate" />
+      <return-property name="ModifyDate" column="ModifyDate" />
+      <return-property name="CreatedByUser" column="CreatedByUser" />
+      <return-property name="ModifiedByUser" column="ModifiedByUser" />
+    </return>exec dbo.SP_users_SEL</sql-query>
+  <sql-query name="SPUsersUPD" callable="true">
+    <query-param name="pUserId" type="String" />
+    <query-param name="pName" type="String" />
+    <query-param name="pEmail" type="String" />
+    <query-param name="pPass" type="String" />
+    <query-param name="pCreationDate" type="DateTime" />
+    <query-param name="pModifyDate" type="DateTime" />
+    <query-param name="pCreatedByUser" type="String" />
+    <query-param name="pModifiedByUser" type="String" />exec dbo.SP_users_UPD :pUserId, :pName, :pEmail, :pPass, :pCreationDate, :pModifyDate, :pCreatedByUser, :pModifiedByUser</sql-query>
+</hibernate-mapping>

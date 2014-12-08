@@ -1,0 +1,151 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<EntityDeveloper Version="5.7.500.0">
+  <ModelSettings xmlns:ed="http://devart.com/schemas/EntityDeveloper/1.0" ConnectionStringInAppConfig="False" TargetFramework="Net45" DetectTPTInheritance="True">
+    <Connection ConnectionString="Data Source=(localdb)\Projects;Initial Catalog=LaMejorDB;Integrated Security=True;Persist Security Info=True" Provider="System.Data.SqlClient" />
+    <Generation>
+      <GeneratedFiles>
+        <File Name="Address.cs" Project="Pharma.Domain" ProjectFolder="Entities" />
+        <File Name="Category.cs" Project="Pharma.Domain" ProjectFolder="Entities" />
+        <File Name="Customer.cs" Project="Pharma.Domain" ProjectFolder="Entities" />
+        <File Name="CustomerContact.cs" Project="Pharma.Domain" ProjectFolder="Entities" />
+        <File Name="CustomerType.cs" Project="Pharma.Domain" ProjectFolder="Entities" />
+        <File Name="EstimateDetail.cs" Project="Pharma.Domain" ProjectFolder="Entities" />
+        <File Name="InventoryAdjustment.cs" Project="Pharma.Domain" ProjectFolder="Entities" />
+        <File Name="InventoryaAjustmentDetail.cs" Project="Pharma.Domain" ProjectFolder="Entities" />
+        <File Name="Invoice.cs" Project="Pharma.Domain" ProjectFolder="Entities" />
+        <File Name="InvoiceDetail.cs" Project="Pharma.Domain" ProjectFolder="Entities" />
+        <File Name="KardexOperation.cs" Project="Pharma.Domain" ProjectFolder="Entities" />
+        <File Name="PhoneNumber.cs" Project="Pharma.Domain" ProjectFolder="Entities" />
+        <File Name="Presentation.cs" Project="Pharma.Domain" ProjectFolder="Entities" />
+        <File Name="PriceEstimate.cs" Project="Pharma.Domain" ProjectFolder="Entities" />
+        <File Name="Privilege.cs" Project="Pharma.Domain" ProjectFolder="Entities" />
+        <File Name="PrivilegeHasRole.cs" Project="Pharma.Domain" ProjectFolder="Entities" />
+        <File Name="Product.cs" Project="Pharma.Domain" ProjectFolder="Entities" />
+        <File Name="Provider.cs" Project="Pharma.Domain" ProjectFolder="Entities" />
+        <File Name="ProviderSellsProduct.cs" Project="Pharma.Domain" ProjectFolder="Entities" />
+        <File Name="Purchase.cs" Project="Pharma.Domain" ProjectFolder="Entities" />
+        <File Name="PurchaseDetail.cs" Project="Pharma.Domain" ProjectFolder="Entities" />
+        <File Name="PurchaseOrder.cs" Project="Pharma.Domain" ProjectFolder="Entities" />
+        <File Name="PurchaseOrderDetail.cs" Project="Pharma.Domain" ProjectFolder="Entities" />
+        <File Name="Role.cs" Project="Pharma.Domain" ProjectFolder="Entities" />
+        <File Name="User.cs" Project="Pharma.Domain" ProjectFolder="Entities" />
+        <File Name="UsersHasRole.cs" Project="Pharma.Domain" ProjectFolder="Entities" />
+        <File Name="LaMejorModel.Extensions.MethodsExecutor.cs" Project="Pharma.Domain" ProjectFolder="Entities" />
+        <File Name="Address.hbm.xml" Project="Pharma.Domain" ProjectFolder="EntityMapping" />
+        <File Name="Category.hbm.xml" Project="Pharma.Domain" ProjectFolder="EntityMapping" />
+        <File Name="Customer.hbm.xml" Project="Pharma.Domain" ProjectFolder="EntityMapping" />
+        <File Name="CustomerContact.hbm.xml" Project="Pharma.Domain" ProjectFolder="EntityMapping" />
+        <File Name="CustomerType.hbm.xml" Project="Pharma.Domain" ProjectFolder="EntityMapping" />
+        <File Name="EstimateDetail.hbm.xml" Project="Pharma.Domain" ProjectFolder="EntityMapping" />
+        <File Name="InventoryAdjustment.hbm.xml" Project="Pharma.Domain" ProjectFolder="EntityMapping" />
+        <File Name="InventoryaAjustmentDetail.hbm.xml" Project="Pharma.Domain" ProjectFolder="EntityMapping" />
+        <File Name="Invoice.hbm.xml" Project="Pharma.Domain" ProjectFolder="EntityMapping" />
+        <File Name="InvoiceDetail.hbm.xml" Project="Pharma.Domain" ProjectFolder="EntityMapping" />
+        <File Name="KardexOperation.hbm.xml" Project="Pharma.Domain" ProjectFolder="EntityMapping" />
+        <File Name="PhoneNumber.hbm.xml" Project="Pharma.Domain" ProjectFolder="EntityMapping" />
+        <File Name="Presentation.hbm.xml" Project="Pharma.Domain" ProjectFolder="EntityMapping" />
+        <File Name="PriceEstimate.hbm.xml" Project="Pharma.Domain" ProjectFolder="EntityMapping" />
+        <File Name="Privilege.hbm.xml" Project="Pharma.Domain" ProjectFolder="EntityMapping" />
+        <File Name="PrivilegeHasRole.hbm.xml" Project="Pharma.Domain" ProjectFolder="EntityMapping" />
+        <File Name="Product.hbm.xml" Project="Pharma.Domain" ProjectFolder="EntityMapping" />
+        <File Name="Provider.hbm.xml" Project="Pharma.Domain" ProjectFolder="EntityMapping" />
+        <File Name="ProviderSellsProduct.hbm.xml" Project="Pharma.Domain" ProjectFolder="EntityMapping" />
+        <File Name="Purchase.hbm.xml" Project="Pharma.Domain" ProjectFolder="EntityMapping" />
+        <File Name="PurchaseDetail.hbm.xml" Project="Pharma.Domain" ProjectFolder="EntityMapping" />
+        <File Name="PurchaseOrder.hbm.xml" Project="Pharma.Domain" ProjectFolder="EntityMapping" />
+        <File Name="PurchaseOrderDetail.hbm.xml" Project="Pharma.Domain" ProjectFolder="EntityMapping" />
+        <File Name="Role.hbm.xml" Project="Pharma.Domain" ProjectFolder="EntityMapping" />
+        <File Name="User.hbm.xml" Project="Pharma.Domain" ProjectFolder="EntityMapping" />
+        <File Name="UsersHasRole.hbm.xml" Project="Pharma.Domain" ProjectFolder="EntityMapping" />
+        <File Name="LaMejorModel.hbm.xml" Project="Pharma.Domain" ProjectFolder="EntityMapping" />
+      </GeneratedFiles>
+    </Generation>
+    <generator class="guid" />
+    <DatabaseFirstNamingRules>
+      <EntitySet PluralizationName="Pluralize" />
+      <Class UseSchemaAsPrefix="False" PluralizeCollectionNavigationPropertyName="True" RemoveUnderscores="True" RemoveInvalidCharacters="True" CodeCase="FirstLetterUppercase" AddPrefix="" AddSuffix="" RemovePrefixes="" RemoveSuffixes="" PluralizationName="Singularize" />
+      <Property RemoveUnderscores="True" RemoveInvalidCharacters="True" CodeCase="FirstLetterUppercase" AddPrefix="" AddSuffix="" RemovePrefixes="" RemoveSuffixes="" PluralizationName="Unchanged" />
+    </DatabaseFirstNamingRules>
+    <ModelFirst StorageSynchronizationEnabled="False" TargetSchema="dbo" TargetProviderName="System.Data.SqlClient">
+      <TargetServer Server="SQL Server" ServerVersion="2012" />
+      <ModelFirstNamingRules>
+        <Table RemoveUnderscores="False" RemoveInvalidCharacters="True" CodeCase="Unchanged" AddPrefix="" AddSuffix="" RemovePrefixes="" RemoveSuffixes="" PluralizationName="Pluralize" />
+        <Column RemoveUnderscores="False" RemoveInvalidCharacters="True" CodeCase="Unchanged" AddPrefix="" AddSuffix="" RemovePrefixes="" RemoveSuffixes="" PluralizationName="Unchanged" />
+      </ModelFirstNamingRules>
+    </ModelFirst>
+    <Diagrams>
+      <Diagram Name="Diagram1" DefaultDiagram="True" />
+    </Diagrams>
+    <Templates>
+      <Template Name="NHibernate" Description="Use this template to generate classes and xml mappings for an NHibernate model." Enabled="True" PredefinedTemplateName="NHibernate C#">
+        <ed:Property Name="ValidationFramework" Type="EntityDeveloper.TemplateEngine.ValidationFramework, EntityDeveloper.Common, Version=5.7.500.0, Culture=neutral, PublicKeyToken=09af7300eec23701">
+          <ValidationFramework>DataAnnotations</ValidationFramework>
+        </ed:Property>
+        <ed:Property Name="ValidationErrorMessages" Type="EntityDeveloper.TemplateEngine.ValidationErrorMessages, EntityDeveloper.Common, Version=5.7.500.0, Culture=neutral, PublicKeyToken=09af7300eec23701">
+          <ValidationErrorMessages xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" />
+        </ed:Property>
+        <ed:Property Name="FilePerClass" Type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+          <boolean>true</boolean>
+        </ed:Property>
+        <ed:Property Name="ModelNameAsFilesPrefix" Type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+          <boolean>false</boolean>
+        </ed:Property>
+        <ed:Property Name="HeaderTimestampVersionControlTag" Type="System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+          <string d6p1:nil="true" xmlns:d6p1="http://www.w3.org/2001/XMLSchema-instance" />
+        </ed:Property>
+        <ed:Property Name="EntitiesOutput" Type="EntityDeveloper.TemplateEngine.OutputInfo, EntityDeveloper.Common, Version=5.7.500.0, Culture=neutral, PublicKeyToken=09af7300eec23701">
+          <OutputInfo xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+            <Project>Pharma.Domain</Project>
+            <ProjectFolder>Entities</ProjectFolder>
+            <DestinationFolder />
+          </OutputInfo>
+        </ed:Property>
+        <ed:Property Name="NHibernateV3Compatible" Type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+          <boolean>false</boolean>
+        </ed:Property>
+        <ed:Property Name="PropertyChangeNotifiers" Type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+          <boolean>false</boolean>
+        </ed:Property>
+        <ed:Property Name="PropertyChangePartialMethods" Type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+          <boolean>false</boolean>
+        </ed:Property>
+        <ed:Property Name="ImplementValidatable" Type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+          <boolean>false</boolean>
+        </ed:Property>
+        <ed:Property Name="ImplementEquals" Type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+          <boolean>false</boolean>
+        </ed:Property>
+        <ed:Property Name="ImplementCloneable" Type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+          <boolean>false</boolean>
+        </ed:Property>
+        <ed:Property Name="GeneratePartialClass" Type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+          <boolean>false</boolean>
+        </ed:Property>
+        <ed:Property Name="GenerateDataContracts" Type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+          <boolean>false</boolean>
+        </ed:Property>
+        <ed:Property Name="GenerateDummyComments" Type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+          <boolean>true</boolean>
+        </ed:Property>
+        <ed:Property Name="GenerateSerializableAttributes" Type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+          <boolean>false</boolean>
+        </ed:Property>
+        <ed:Property Name="XmlMappingOutput" Type="EntityDeveloper.TemplateEngine.OutputInfo, EntityDeveloper.Common, Version=5.7.500.0, Culture=neutral, PublicKeyToken=09af7300eec23701">
+          <OutputInfo xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+            <Project>Pharma.Domain</Project>
+            <ProjectFolder>EntityMapping</ProjectFolder>
+            <DestinationFolder />
+          </OutputInfo>
+        </ed:Property>
+        <ed:Property Name="XmlMappingAction" Type="EntityDeveloper.MetadataArtifactProcessing, EntityDeveloper.Orm.Common, Version=5.7.500.0, Culture=neutral, PublicKeyToken=09af7300eec23701">
+          <MetadataArtifactProcessing>EmbedInOutputAssembly</MetadataArtifactProcessing>
+        </ed:Property>
+        <ed:Property Name="XmlMappingFilePerClass" Type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+          <boolean>true</boolean>
+        </ed:Property>
+      </Template>
+    </Templates>
+    <AttributeAssemblies />
+    <Configuration SeparateConfigFile="False" />
+  </ModelSettings>
+</EntityDeveloper>
