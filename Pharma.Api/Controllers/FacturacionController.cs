@@ -112,13 +112,12 @@ namespace Pharma.Api.Controllers
             if (account == null) return null;
 
             var lista = PharmaMethodsExecutor.sp_ins_facturas(_session, model.fecha, model.subtotal, model.isv,
-                model.descuento, model.total,
-                DateTime.Now, DateTime.Now, sessions.account.Email, sessions.account.Email, model.clientes.id_cliente);
+                model.descuento, model.total,DateTime.Now, DateTime.Now, sessions.account.Email, 
+                sessions.account.Email, model.clientes.id_cliente);
 
 
 
-            var sql = @"SELECT factura
-                            FROM last_number";
+            var sql = @"SELECT factura FROM last_number";
 
             IQuery sqlQuery = _session.CreateSQLQuery(sql);
                                           
@@ -129,7 +128,12 @@ namespace Pharma.Api.Controllers
                 Console.WriteLine(al);
             }
             
+            
+          //  var fact = _mappingEngine.Map<FacturasModel, facturas>(model);
 
+          //  var factura = _session.Save(fact);
+
+          //  if(factura!=null)
          
             return new RestorePasswordResponseModel()
                         {

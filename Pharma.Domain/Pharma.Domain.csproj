@@ -105,7 +105,6 @@
       <DependentUpon>Pharma.hbml</DependentUpon>
     </None>
   </ItemGroup>
-  <ItemGroup />
   <ItemGroup>
     <EmbeddedResource Include="Mapping\account.hbm.xml" />
   </ItemGroup>

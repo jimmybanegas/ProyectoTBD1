@@ -38,46 +38,112 @@ angular.module('app', ['ui.router', 'app.filters', 'app.services', 'app.directiv
               .state('Facturacion', {
                        url: '/facturacion',
                        layout: 'basic',
-                       templateUrl: '/views/facturacion',
+                       templateUrl: '/views/facturacion/facturacion',
                        controller: 'FacturacionCtrl'
                 })
                 .state('Facturar', {
                      url: '/facturar',
                      layout: 'basic',
-                     templateUrl: '/views/facturar',
+                     templateUrl: '/views/facturacion/facturar',
                      controller: 'FacturacionCtrl'
                  })
                 .state('Compras', {
                        url: '/compras',
                        layout: 'basic',
-                       templateUrl: '/views/compras',
+                       templateUrl: '/views/compras/compras',
                        controller: 'ComprasCtrl'
+                })
+                .state('IngresarCotizacion', {
+                    url: '/ingresarcotizacion',
+                    layout: 'basic',
+                    templateUrl: '/views/compras/ingresarcotizacion',
+                    controller: 'ComprasCtrl'
                 })
                 .state('Inventarios', {
                       url: '/inventarios',
                       layout: 'basic',
-                      templateUrl: '/views/inventarios',
+                      templateUrl: '/views/inventarios/inventarios',
                       controller: 'InventariosCtrl'
                 })
+                 .state('IngresarAjuste', {
+                     url: '/ingresarajuste',
+                     layout: 'basic',
+                     templateUrl: '/views/inventarios/ingresarajuste',
+                     controller: 'InventariosCtrl'
+                 })
                 .state('Parametros', {
                      url: '/parametros',
                      layout: 'basic',
-                     templateUrl: '/views/parametros',
+                     templateUrl: '/views/parametros/parametros',
                      controller: 'ParametrosCtrl'
                 })
+                 .state('Clientes', {
+                     url: '/clientes',
+                     layout: 'basic',
+                     templateUrl: '/views/parametros/clientes',
+                     controller: 'ParametrosCtrl'
+                 })
+                 .state('Proveedores', {
+                     url: '/proveedores',
+                     layout: 'basic',
+                     templateUrl: '/views/parametros/proveedores',
+                     controller: 'ParametrosCtrl'
+                 })
+                 .state('Productos', {
+                     url: '/productos',
+                     layout: 'basic',
+                     templateUrl: '/views/parametros/productos',
+                     controller: 'ParametrosCtrl'
+                 })
+                 .state('CategoriasProductos', {
+                     url: '/categorias',
+                     layout: 'basic',
+                     templateUrl: '/views/parametros/categorias',
+                     controller: 'ParametrosCtrl'
+                 })
+                 .state('TiposProductos', {
+                     url: '/tiposproductos',
+                     layout: 'basic',
+                     templateUrl: '/views/parametros/tiposproductos',
+                     controller: 'ParametrosCtrl'
+                 })
                 .state('Sistema', {
                      url: '/sistema',
                      layout: 'basic',
-                     templateUrl: '/views/sistema',
+                     templateUrl: '/views/sistema/sistema',
+                     controller: 'SistemaCtrl'
+                })
+                 .state('Usuarios', {
+                     url: '/usarios',
+                     layout: 'basic',
+                     templateUrl: '/views/sistema/usarios',
                      controller: 'SistemaCtrl'
                  })
+                 .state('Roles', {
+                     url: '/roles',
+                     layout: 'basic',
+                     templateUrl: '/views/sistema/roles',
+                     controller: 'SistemaCtrl'
+                 })
+                 .state('Privilegios', {
+                     url: '/privilegios',
+                     layout: 'basic',
+                     templateUrl: '/views/sistema/privilegios',
+                     controller: 'SistemaCtrl'
+                 })
+                 .state('Permisos', {
+                     url: '/permisos',
+                     layout: 'basic',
+                     templateUrl: '/views/sistema/permisos',
+                     controller: 'SistemaCtrl'
+                 })
+
                 .state('otherwise', {
                     url: '*path',
                     templateUrl: '/views/404',
                     controller: 'Error404Ctrl'
                 });
-
-
+          
             $locationProvider.html5Mode(true);
 
         }

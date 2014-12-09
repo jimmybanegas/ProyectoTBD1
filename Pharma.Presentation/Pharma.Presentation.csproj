@@ -529,13 +529,24 @@
     <Content Include="Views\_Layout.cshtml" />
     <Content Include="Views\_PageStart.cshtml" />
     <Content Include="Views\About.cshtml" />
-    <Content Include="Views\facturacion.cshtml" />
-    <Content Include="Views\compras.cshtml" />
-    <Content Include="Views\inventarios.cshtml" />
-    <Content Include="Views\parametros.cshtml" />
-    <Content Include="Views\sistema.cshtml" />
     <Content Include="Views\Register.cshtml" />
-    <Content Include="Views\facturar.cshtml" />
+    <Content Include="Views\Compras\compras.cshtml" />
+    <Content Include="Views\Facturacion\facturacion.cshtml" />
+    <Content Include="Views\Facturacion\facturar.cshtml" />
+    <Content Include="Views\Compras\ingresarcotizacion.cshtml" />
+    <Content Include="Views\Sistema\sistema.cshtml" />
+    <Content Include="Views\Parametros\parametros.cshtml" />
+    <Content Include="Views\Inventarios\inventarios.cshtml" />
+    <Content Include="Views\Inventarios\ingresarajuste.cshtml" />
+    <Content Include="Views\Parametros\clientes.cshtml" />
+    <Content Include="Views\Parametros\proveedores.cshtml" />
+    <Content Include="Views\Parametros\productos.cshtml" />
+    <Content Include="Views\Parametros\categorias.cshtml" />
+    <Content Include="Views\Parametros\tiposproductos.cshtml" />
+    <Content Include="Views\Sistema\usuarios.cshtml" />
+    <Content Include="Views\Sistema\roles.cshtml" />
+    <Content Include="Views\Sistema\permisos.cshtml" />
+    <Content Include="Views\Sistema\privilegios.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

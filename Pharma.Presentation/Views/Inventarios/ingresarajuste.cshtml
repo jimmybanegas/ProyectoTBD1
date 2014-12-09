@@ -1,0 +1,191 @@
+﻿@{
+    PageData["title"] = "Farmacia La Mejor";
+}
+
+<link href="~/Views/css/facturar.css" rel="stylesheet">
+<html>
+<head>
+    <title>Ingresar Ajuste</title>
+</head>
+<body>
+    <div id="css">
+        <link href="~/Content/bootstrap.css" rel="stylesheet">
+    </div>
+    <div class="container" width="800px" id="invoice" ng-init="getProductos(); getClientes()">
+        <table class="table">
+            <tr>
+                <td align="center" style="background-color:#357EBD;color:#FFF" colspan="2">
+                    Farmacia La Mejor --AJUSTES
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <h4>Factura #<input type="text" id="invoice_number" ng-model="invoice.invoice_number" /></h4>
+                    <div>
+                        <strong> {{fecha | date:'dd-MM-yyyy'}}</strong>
+                    </div>
+                </td>
+                <td align="right">
+                    <input type='file' id="imgInp" />
+                    <img ng-hide="logoRemoved" id="company_logo" src="~/Images/logo.png" alt="your image" width="100" />
+                </td>
+            </tr>
+        </table>
+        <table class="table">
+            <tr>
+                <td>
+                    <div class="infos">
+                        <button data-toggle="modal" data-target="#t_and_c_c" type="button" class="btn btn-default btn-lg">
+                            <span class="glyphicon glyphicon-user" aria-hidden="true"></span> Cliente
+                        </button>
+                        <div><strong><input type="text" ng-model="sample_invoice.clientes.nombre" /></strong></div>
+                        <div><input type="text" ng-model="sample_invoice.clientes.id_cliente" /></div>
+                        <div><input type="text" ng-model="sample_invoice.clientes.tipo_cliente.descripcion" /></div>
+                    </div>
+                </td>
+                <td align="right">
+                    <div class="align-right">
+                        <div><strong>Farmacia La Mejor</strong></div>
+                        <div>San Pedro Sula, Honduras</div>
+                    </div>
+                </td>
+            </tr>
+        </table>
+        <table class="table table-striped" align="center">
+            <tr>
+                <th></th>
+                <th>Código</th>
+                <th>Descripcion</th>
+                <th>Cant</th>
+                <th>Precio</th>
+                <th style="text-align:right;">Total</th>
+            </tr>
+            <tr ng:repeat="item in sample_invoice.detalle_facturas">
+                <td><a ng-click="removeItem(item)" class="btn btn-danger">[X]</a></td>
+                <td><input ng:model="item.productos.cod_prod" placeholder="Codigo"></td>
+                <td><input ng:model="item.productos.nombre" placeholder="Descripcion"></td>
+                <td><input ng:model="item.cantidad" value="1" size="4" ng:required ng:validate="integer" placeholder="qty"></td>
+                <td><input ng:model="item.precio_venta" value="0.00" ng:required ng:validate="number" size="6" placeholder="cost"></td>
+                <td align="right">{{item.precio_venta * item.cantidad | currency}}</td>
+            </tr>
+
+            <tr ng-hide="printMode">
+                <td colspan="5"><a class="btn btn-primary" data-toggle="modal" data-target="#t_and_c_p">Agregar</a></td>
+            </tr>
+            <tr>
+                <td colspan="5" align="right">
+                    Sub Total
+                </td>
+                <td align="right">
+                    {{invoice_sub_total() | currency}}
+                </td>
+            </tr>
+            <tr>
+                <td colspan="5" align="right">
+                    Tax(%): <input ng:model="sample_invoice.tax" ng:validate="number" style="width:43px">
+                </td>
+                <td align="right">
+                    {{calculate_tax() | currency}}
+                </td>
+            </tr>
+            <tr>
+                <td colspan="5" align="right">
+                    Grand Total:
+                </td>
+                <td align="right">
+                    {{calculate_grand_total() | currency}}
+                </td>
+            </tr>
+        </table>
+        <div class="noPrint">
+            <!--<a href="#" class="btn btn-primary" ng-show="printMode" ng-click="printInfo()">Print</a>-->
+            <a href="#" class="btn btn-primary" ng-click="guardarFactura()">Guardar</a>
+            <a href="#" class="btn btn-primary" ng-click="clearLocalStorage()">Limpiar</a>
+            <!--<a href="#" class="btn btn-primary" ng-hide="printMode" ng-click="printMode = true;">Turn On Print Mode</a>
+            <a href="#" class="btn btn-primary" ng-show="printMode" ng-click="printMode = false;">Turn Off Print Mode</a>-->
+        </div>
+    </div>
+
+    <div ng-hide="printMode" class="copy noPrint">
+        <!-- <a href="http://jasdeep.ca/?utm_source=angular_invoicing">Jasdeep Singh</a> &
+            <a href="http://github.com/manpreetrules">Manpreet Singh</a>
+            Made with
+            <span class="love">&#9829;</span> in Toronto by
+            <a href="http://metawarelabs.com/?utm_source=angular_invoicing">Metaware Labs Inc.</a>-->
+    </div>
+    <script src="~/Scripts/vendor/jquery-2.0.3.js"></script>
+    <script src="~/Scripts/vendor/bootstrap.min.js"></script>
+</body>
+</html>
+
+
+<div class="modal fade" id="t_and_c_p" tabindex="-1" role="dialog" aria-labelledby="myModalLabel1" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                <h4 class="modal-title" id="myModalLabel1"><strong class="label label-primary">Productos</strong></h4>
+                <div class="modal-body">
+                    <table class="table table-bordered">
+
+                        <tr>
+                            <th>Código <input type="text" class="" placeholder="Buscar por codigo" ng-model="buscar.cod_prod"></th>
+                            <th>Nombre <input type="text" class="" placeholder="Buscar por nombre" ng-model="buscar.nombre"></th>
+                            <th>Precio Consumidor</th>
+                            <th>Precio Mayorista</th>
+                        </tr>
+
+
+                        <tbody>
+                            <tr ng-repeat="producto in productos | filter:buscar">
+                                <td ng-dblclick="addItem(producto)"><strong>{{producto.cod_prod}}</strong></td>
+                                <td><i>{{producto.nombre}}</i></td>
+                                <td>{{producto.precio_consumi}}</td>
+                                <td>{{producto.precio_mayor}}</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <div class="row">
+                        <div class="col-xs-4 col-sm-4 col-md-4">
+                            <button class="btn btn-lg btn-primary btn-block" data-dismiss="modal" aria-hidden="true">Volver</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+
+
+<div class="modal fade" id="t_and_c_c" tabindex="-1" role="dialog" aria-labelledby="myModalLabel2" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                <h4 class="modal-title" id="myModalLabel2"><strong class="label label-primary">Clientes</strong></h4>
+                <div class="modal-body">
+                    <table class="table table-bordered">
+                        <tr>
+                            <th>Código <input type="text" class="" placeholder="Buscar por codigo" ng-model="buscar.id_cliente"></th>
+                            <th>Nombre <input type="text" class="" placeholder="Buscar por nombre" ng-model="buscar.nombre"></th>
+                            <th>Tipo</th>
+                        </tr>
+
+                        <tbody>
+                            <tr ng-repeat="cliente in clientes | filter:buscar">
+                                <td ng-dblclick="addCliente(cliente)"><strong>{{cliente.id_cliente}}</strong></td>
+                                <td><i>{{cliente.nombre}}</i></td>
+                                <td>{{cliente.tipo_cliente.descripcion}}</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <div class="row">
+                        <div class="col-xs-4 col-sm-4 col-md-4">
+                            <button class="btn btn-lg btn-primary btn-block" data-dismiss="modal" aria-hidden="true">Volver</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->

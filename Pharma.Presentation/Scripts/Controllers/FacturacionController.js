@@ -18,7 +18,7 @@ angular.module('app.controllers')
             clientes: {},
             descuento: 0,
             detalle_facturas: []
-    };
+         };
 
         $scope.addItem = function (producto) {
            
