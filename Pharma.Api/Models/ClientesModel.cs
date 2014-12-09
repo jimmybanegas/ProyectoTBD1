@@ -7,14 +7,10 @@ namespace Pharma.Api.Models
     {
         public int id_cliente { get; set; }
 
-
-
-
-
+        
         public string nombre { get; set; }
 
-
-
+        
         /// There are no comments for fecha_crea in the schema.
 
         public DateTime? fecha_crea { get; set; }
@@ -60,12 +56,6 @@ namespace Pharma.Api.Models
         /// There are no comments for direcciones_clientes in the schema.
 
         public ICollection<DireccionesClientesModel> direcciones_clientes { get; set; }
-
-
-
-        /// There are no comments for facturas in the schema.
-
-        public ICollection<FacturasModel> facturas { get; set; }
 
 
 

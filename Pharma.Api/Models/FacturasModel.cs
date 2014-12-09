@@ -71,7 +71,7 @@ namespace Pharma.Api.Models
 
         /// There are no comments for clientes in the schema.
 
-        public clientes clientes { get; set; }
+        public ClientesModel clientes { get; set; }
         
         /// There are no comments for detalle_facturas in the schema.
 

@@ -18,7 +18,7 @@ angular.module('app.services')
         };
 
         factura.guardarFactura = function (model) {
-            return $http.post(baseUrl + '/guardarFactura', model);
+            return $http.post(baseUrl + '/guardarFactura/' + $window.sessionStorage.token, model);
         };
         
         return factura;

@@ -37,13 +37,6 @@ namespace Pharma.Api.Models
         public string cod_prod { get; set; }
 
 
-
-        /// There are no comments for facturas in the schema.
-
-        public FacturasModel facturas { get; set; }
-
-
-
         /// There are no comments for productos in the schema.
 
         public ProductosModel productos { get; set; }

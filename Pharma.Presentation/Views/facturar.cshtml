@@ -38,9 +38,9 @@
                         <button data-toggle="modal" data-target="#t_and_c_c" type="button" class="btn btn-default btn-lg">
                             <span class="glyphicon glyphicon-user" aria-hidden="true"></span> Cliente
                         </button>
-                        <div><strong><input type="text" ng-model="sample_invoice.customer_info.nombre" /></strong></div>
-                        <div><input type="text" ng-model="sample_invoice.customer_info.id_cliente" /></div>
-                        <div><input type="text" ng-model="sample_invoice.customer_info.tipo" /></div>
+                        <div><strong><input type="text" ng-model="sample_invoice.clientes.nombre" /></strong></div>
+                        <div><input type="text" ng-model="sample_invoice.clientes.id_cliente" /></div>
+                        <div><input type="text" ng-model="sample_invoice.clientes.tipo_cliente.descripcion" /></div>
                     </div>
                 </td>
                 <td align="right">
@@ -62,11 +62,11 @@
             </tr>
             <tr ng:repeat="item in sample_invoice.detalle_facturas">
                 <td><a ng-click="removeItem(item)" class="btn btn-danger">[X]</a></td>
-                <td><input ng:model="item.cod_prod" placeholder="Codigo"></td>
-                <td><input ng:model="item.description" placeholder="Descripcion"></td>
-                <td><input ng:model="item.qty" value="1" size="4" ng:required ng:validate="integer" placeholder="qty"></td>
-                <td><input ng:model="item.cost" value="0.00" ng:required ng:validate="number" size="6" placeholder="cost"></td>
-                <td align="right">{{item.cost * item.qty | currency}}</td>
+                <td><input ng:model="item.productos.cod_prod" placeholder="Codigo"></td>
+                <td><input ng:model="item.productos.nombre" placeholder="Descripcion"></td>
+                <td><input ng:model="item.cantidad" value="1" size="4" ng:required ng:validate="integer" placeholder="qty"></td>
+                <td><input ng:model="item.precio_venta" value="0.00" ng:required ng:validate="number" size="6" placeholder="cost"></td>
+                <td align="right">{{item.precio_venta * item.cantidad | currency}}</td>
             </tr>
           
             <tr ng-hide="printMode">

@@ -40,6 +40,7 @@ namespace Pharma.Api.Controllers
             var account = _session.QueryOver<account>().Where(c => c.Email == model.Email)
                 .SingleOrDefault<account>();
 
+           
 
             if (account == null)
                 return new AuthenticationModel()
@@ -139,34 +140,28 @@ namespace Pharma.Api.Controllers
                             .SingleOrDefault<account>();
 
 
-            if (accountExist == null)
-            {
-                var account = _mappingEngine.Map<AccountRegisterModel, account>(model);
+           if (accountExist != null) return new AccountRegisterResponseModel(model.Email, model.FirstName, 0);
+               var account = _mappingEngine.Map<AccountRegisterModel, account>(model);
 
-                var encryptObj = new EncryptServices();
-                encryptObj.GenerateKeys();
-                account.Password = encryptObj.EncryptStringToBytes(account.Password, encryptObj.myRijndael.Key,
-                    encryptObj.myRijndael.IV);
-                account.EncryptKey = encryptObj.myRijndael.Key;
-                account.EncryptIV = encryptObj.myRijndael.IV;
+               var encryptObj = new EncryptServices();
+               encryptObj.GenerateKeys();
+               account.Password = encryptObj.EncryptStringToBytes(account.Password, encryptObj.myRijndael.Key,
+                   encryptObj.myRijndael.IV);
+               account.EncryptKey = encryptObj.myRijndael.Key;
+               account.EncryptIV = encryptObj.myRijndael.IV;
                 
-                var accountCreated = _session.Save(account);
+               var accountCreated = _session.Save(account);
              
-                if (accountCreated != null)
-                {
+               if (accountCreated != null)
+               {
                    // SendSimpleMessage(accountCreated.FirstName, accountCreated.LastName, accountCreated.Email, model.Password);
-                    return new AccountRegisterResponseModel(account.Email, account.FirstName, 2);
-                }
-                return new AccountRegisterResponseModel()
-                {
-                    Message = "Hubo un error al guardar el usuario",
-                    Status = 0
-                };
-            
-               
-            }
-           return new AccountRegisterResponseModel(model.Email, model.FirstName, 0);
-          
+                   return new AccountRegisterResponseModel(account.Email, account.FirstName, 2);
+               }
+               return new AccountRegisterResponseModel()
+               {
+                   Message = "Hubo un error al guardar el usuario",
+                   Status = 0
+               };
         }
 
      

@@ -15,26 +15,43 @@ angular.module('app.controllers')
         $scope.sample_invoice = {
             fecha: $scope.fecha,
             tax: 15.00,
-            // invoice_number: 10,
-            customer_info: {},
-            total: $scope.calculate_grand_total,
+            clientes: {},
             descuento: 0,
             detalle_facturas: []
     };
 
         $scope.addItem = function (producto) {
+           
             var costo;
-            if ($scope.sample_invoice.customer_info.tipo == "CONSUMIDOR")
+           
+            if ($scope.sample_invoice.clientes.tipo_cliente.descripcion == "CONSUMIDOR")
                 costo = producto.precio_consumi;
             else
                 costo = producto.precio_mayor;
 
-            $scope.sample_invoice.detalle_facturas.push({ cod_prod: producto.cod_prod, description: producto.nombre, qty: 1, cost: costo });
+            $scope.sample_invoice.detalle_facturas.push({
+                productos: producto,
+                cantidad: 1,
+                precio_venta: costo,
+                subtotal: 0
+        });
+        }
+
+        $scope.actualizarPrecio = function(cliente) {
+            var costo;
+
+            angular.forEach($scope.sample_invoice.detalle_facturas, function (item, key) {
+                if ($scope.sample_invoice.clientes.tipo_cliente.descripcion == "CONSUMIDOR")
+                    costo = producto.precio_consumi;
+                else
+                    costo = producto.precio_mayor;
+            });
         }
         
         $scope.addCliente = function (cliente) {
-            $scope.sample_invoice.customer_info = {};
-            $scope.sample_invoice.customer_info = { id_cliente: cliente.id_cliente, nombre: cliente.nombre, tipo: cliente.tipo_cliente.descripcion };
+            $scope.sample_invoice.clientes = {};
+
+            $scope.sample_invoice.clientes = cliente;
         }
 
         $scope.showLogo = function () {
@@ -47,10 +64,15 @@ angular.module('app.controllers')
 
         $scope.invoice_sub_total = function () {
             var total = 0.00;
+            var numDetalle = 1;
             angular.forEach($scope.sample_invoice.detalle_facturas, function (item, key) {
-                total += (item.qty * item.cost);
+                total += (item.cantidad * item.precio_venta);
+                item.subtotal = total;
+                item.num_detalle = numDetalle;
+                numDetalle += 1;
             });
             $scope.sample_invoice.subtotal = total;
+
             return total;
         }
 
@@ -128,8 +150,8 @@ angular.module('app.controllers')
                       }
                       if (data.Status == 2) {
                           toastr.success(data.Message);
-                          $location.path('/facturar');
-                        //  $scope.goToLogin();
+                         // $location.path('/facturar');
+                          $scope.sample_invoice = "";
                       }
                   })
                   .error(function (data, status, headers, config) {

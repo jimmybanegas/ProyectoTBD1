@@ -11,9 +11,12 @@
 using System;
 using System.Collections;
 using System.ComponentModel;
+using System.Data;
+using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
 using System.Collections.Generic;
+using NHibernate.SqlTypes;
 
 namespace Pharma.Domain.Entities
 {
@@ -1193,7 +1196,7 @@ namespace Pharma.Domain.Entities
         /// <summary>
         /// There are no comments for sp_ins_facturas in the schema.
         /// </summary>
-        public static void sp_ins_facturas(NHibernate.ISession session, DateTime? p_fecha, double? p_subtotal, double? p_isv, double? p_descuento, double? p_total, DateTime? p_fecha_crea, DateTime? p_fecha_actu, string p_usuario_crea, string p_usuario_actu, int? p_id_cliente)
+        public static IList<facturas> sp_ins_facturas(NHibernate.ISession session, DateTime? p_fecha, double? p_subtotal, double? p_isv, double? p_descuento, double? p_total, DateTime? p_fecha_crea, DateTime? p_fecha_actu, string p_usuario_crea, string p_usuario_actu, int? p_id_cliente)
         {
 
             NHibernate.IQuery query = session.GetNamedQuery(@"sp_ins_facturas");
@@ -1207,7 +1210,8 @@ namespace Pharma.Domain.Entities
             query.SetParameter(@"p_usuario_crea", p_usuario_crea);
             query.SetParameter(@"p_usuario_actu", p_usuario_actu);
             query.SetParameter(@"p_id_cliente", p_id_cliente);
-            query.List();
+         
+            return query.List<facturas>();
         }
 
     

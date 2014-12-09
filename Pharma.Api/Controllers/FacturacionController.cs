@@ -6,8 +6,10 @@ using System.Web;
 using System.Web.Http;
 using AttributeRouting.Web.Mvc;
 using AutoMapper;
+using FluentNHibernate.Testing.Values;
 using NHibernate;
 using NHibernate.Impl;
+using NHibernate.Mapping;
 using NHibernate.Transform;
 using Pharma.Api.Models;
 using Pharma.Domain.Entities;
@@ -17,13 +19,13 @@ namespace Pharma.Api.Controllers
 {
     public class FacturacionController : ApiController
     {
-        readonly IReadOnlyRepository _readOnlyRepository;
-        readonly IWriteOnlyRepository _writeOnlyRepository;
-        readonly IMappingEngine _mappingEngine;
-        readonly ISession _session;
+        private readonly IReadOnlyRepository _readOnlyRepository;
+        private readonly IWriteOnlyRepository _writeOnlyRepository;
+        private readonly IMappingEngine _mappingEngine;
+        private readonly ISession _session;
 
         public FacturacionController(IReadOnlyRepository readOnlyRepository, IWriteOnlyRepository writeOnlyRepository,
-         IMappingEngine mappingEngine, ISession session)
+            IMappingEngine mappingEngine, ISession session)
         {
             _readOnlyRepository = readOnlyRepository;
             _writeOnlyRepository = writeOnlyRepository;
@@ -36,15 +38,18 @@ namespace Pharma.Api.Controllers
         [GET("productos/available/{accesstoken}")]
         public List<ProductosModel> GetAvailableProducts(string accesstoken)
         {
-          
-            var sessions = _session.QueryOver<sessions>().Where(c => c.Token == accesstoken).And(c=>c.ExpirationTime >= DateTime.Now)
-             .SingleOrDefault<sessions>();
+
+            var sessions =
+                _session.QueryOver<sessions>()
+                    .Where(c => c.Token == accesstoken)
+                    .And(c => c.ExpirationTime >= DateTime.Now)
+                    .SingleOrDefault<sessions>();
 
             if (sessions == null) return null;
-                var account = sessions.account;
+            var account = sessions.account;
 
             if (account == null) return null;
-                 var productsList = _session.CreateSQLQuery("CALL sp_sel_productos")
+            var productsList = _session.CreateSQLQuery("CALL sp_sel_productos")
                 .SetResultTransformer(Transformers.AliasToBean<productos>())
                 .List<productos>()
                 .ToList();
@@ -69,16 +74,16 @@ namespace Pharma.Api.Controllers
         public List<ClientesModel> GetAvailableClientes(string accesstoken)
         {
             var sessions = _session.QueryOver<sessions>().Where(c => c.Token == accesstoken)
-             .SingleOrDefault<sessions>();
+                .SingleOrDefault<sessions>();
 
             if (sessions == null) return null;
-                var account = sessions.account;
+            var account = sessions.account;
 
             if (account == null) return null;
             var clientesList = _session.CreateSQLQuery("CALL sp_sel_clientes")
-             .SetResultTransformer(Transformers.AliasToBean<clientes>())
-             .List<clientes>()
-             .ToList();
+                .SetResultTransformer(Transformers.AliasToBean<clientes>())
+                .List<clientes>()
+                .ToList();
 
             foreach (var cliente in clientesList)
             {
@@ -95,23 +100,43 @@ namespace Pharma.Api.Controllers
 
         [HttpPost]
         [AcceptVerbs("POST", "HEAD")]
-        [POST("guardarFactura")]
-        public RestorePasswordResponseModel guardarFactura([FromBody] FacturasModel model)
+        [POST("guardarFactura/{accesstoken}")]
+        public RestorePasswordResponseModel guardarFactura(string accesstoken, [FromBody] FacturasModel model)
         {
-           /* var sessions = _session.QueryOver<sessions>().Where(c => c.Token == accesstoken)
-             .SingleOrDefault<sessions>();
+            var sessions = _session.QueryOver<sessions>().Where(c => c.Token == accesstoken)
+                .SingleOrDefault<sessions>();
 
             if (sessions == null) return null;
-                var account = sessions.account;
+            var account = sessions.account;
 
-            if (account == null) return null;*/
+            if (account == null) return null;
 
-            return new RestorePasswordResponseModel()
+            var lista = PharmaMethodsExecutor.sp_ins_facturas(_session, model.fecha, model.subtotal, model.isv,
+                model.descuento, model.total,
+                DateTime.Now, DateTime.Now, sessions.account.Email, sessions.account.Email, model.clientes.id_cliente);
+
+
+
+            var sql = @"SELECT factura
+                            FROM last_number";
+
+            IQuery sqlQuery = _session.CreateSQLQuery(sql);
+                                          
+                                        var list = sqlQuery.List(); //or if simple scalar query.UniqueResult<int>();
+
+            foreach (var al in list)
             {
-                Message = "Grabada",
-                Status = 2
-            };
-        }
+                Console.WriteLine(al);
+            }
+            
 
-    }
-}
+         
+            return new RestorePasswordResponseModel()
+                        {
+                            Message = "Grabada",
+                            Status = 2
+                        };
+                    }
+
+                }
+            }
