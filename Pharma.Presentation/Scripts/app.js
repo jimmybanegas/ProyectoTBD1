@@ -71,6 +71,18 @@ angular.module('app', ['ui.router', 'app.filters', 'app.services', 'app.directiv
                      templateUrl: '/views/inventarios/ingresarajuste',
                      controller: 'InventariosCtrl'
                  })
+                  .state('VerAjustes', {
+                      url: '/verajustes',
+                      layout: 'basic',
+                      templateUrl: '/views/inventarios/verajustes',
+                      controller: 'InventariosCtrl'
+                  })
+                 .state('VerKardex', {
+                     url: '/verkardex',
+                     layout: 'basic',
+                     templateUrl: '/views/inventarios/verkardex',
+                     controller: 'InventariosCtrl'
+                 })
                 .state('Parametros', {
                      url: '/parametros',
                      layout: 'basic',
@@ -114,9 +126,9 @@ angular.module('app', ['ui.router', 'app.filters', 'app.services', 'app.directiv
                      controller: 'SistemaCtrl'
                 })
                  .state('Usuarios', {
-                     url: '/usarios',
+                     url: '/usuarios',
                      layout: 'basic',
-                     templateUrl: '/views/sistema/usarios',
+                     templateUrl: '/views/sistema/usuarios',
                      controller: 'SistemaCtrl'
                  })
                  .state('Roles', {
