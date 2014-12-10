@@ -11,7 +11,7 @@
     <div id="css">
         <link href="~/Content/bootstrap.css" rel="stylesheet">
     </div>
-    <div class="container" width="800px" id="invoice" ng-init="getProductos(); getClientes()">
+    <div class="container" width="800px" id="invoice" ng-init="getProductos(); getProveedores()">
         <table class="table">
             <tr>
                 <td align="center" style="background-color:#357EBD;color:#FFF" colspan="2">
@@ -36,11 +36,11 @@
                 <td>
                     <div class="infos">
                         <button data-toggle="modal" data-target="#t_and_c_c" type="button" class="btn btn-default btn-lg">
-                            <span class="glyphicon glyphicon-user" aria-hidden="true"></span> Cliente
+                            <span class="glyphicon glyphicon-user" aria-hidden="true"></span> Proveedor
                         </button>
-                        <div><strong><input type="text" ng-model="sample_invoice.clientes.nombre" /></strong></div>
-                        <div><input type="text" ng-model="sample_invoice.clientes.id_cliente" /></div>
-                        <div><input type="text" ng-model="sample_invoice.clientes.tipo_cliente.descripcion" /></div>
+                        <div><strong><input type="text" ng-model="sample_invoice.proveedores.nombre" /></strong></div>
+                        <div><input type="text" ng-model="sample_invoice.proveedores.id_proveedor" /></div>
+                        <div><input type="text" ng-model="sample_invoice.proveedores.telefono" /></div>
                     </div>
                 </td>
                 <td align="right">
@@ -162,20 +162,20 @@
         <div class="modal-content">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-                <h4 class="modal-title" id="myModalLabel2"><strong class="label label-primary">Clientes</strong></h4>
+                <h4 class="modal-title" id="myModalLabel2"><strong class="label label-primary">Proveedores</strong></h4>
                 <div class="modal-body">
                     <table class="table table-bordered">
                         <tr>
                             <th>Código <input type="text" class="" placeholder="Buscar por codigo" ng-model="buscar.id_cliente"></th>
                             <th>Nombre <input type="text" class="" placeholder="Buscar por nombre" ng-model="buscar.nombre"></th>
-                            <th>Tipo</th>
+                            <th>Teléfono</th>
                         </tr>
 
                         <tbody>
-                            <tr ng-repeat="cliente in clientes | filter:buscar">
-                                <td ng-dblclick="addCliente(cliente)"><strong>{{cliente.id_cliente}}</strong></td>
-                                <td><i>{{cliente.nombre}}</i></td>
-                                <td>{{cliente.tipo_cliente.descripcion}}</td>
+                            <tr ng-repeat="proveedor in proveedores | filter:buscar">
+                                <td ng-dblclick="addProveedor(proveedor)"><strong>{{proveedor.id_proveedor}}</strong></td>
+                                <td><i>{{proveedor.nombre}}</i></td>
+                                <td>{{proveedor.telefono}}</td>
                             </tr>
                         </tbody>
                     </table>

@@ -8,7 +8,7 @@ using AutoMapper;
 using NHibernate;
 using NHibernate.Transform;
 using Pharma.Api.Models;
-using Pharma.Domain.Entities;
+using Pharma.Domain.Entities; 
 using Pharma.Domain.Services;
 
 namespace Pharma.Api.Controllers
@@ -52,6 +52,31 @@ namespace Pharma.Api.Controllers
             return tipoClient;
         }
 
+        [HttpPost]
+        [AcceptVerbs("POST", "HEAD")]
+        [POST("guardarTipoCliente/{accesstoken}")]
+        public RestorePasswordResponseModel guardarTipoCliente(string accesstoken, [FromBody] TipoClienteModel model)
+        {
+            var sessions = _session.QueryOver<sessions>().Where(c => c.Token == accesstoken)
+                .SingleOrDefault<sessions>();
+
+            if (sessions == null) return null;
+            var account = sessions.account;
+
+            if (account == null) return null;
+
+            PharmaMethodsExecutor.sp_ins_tipo_cliente(_session,model.descripcion,DateTime.Now, DateTime.Now, sessions.account.Email, 
+                sessions.account.Email);
+
+         
+            return new RestorePasswordResponseModel()
+                        {
+                            Message = "Guardado",
+                            Status = 2
+                        };
+          }
+
+
         [HttpGet]
         [AcceptVerbs("GET", "HEAD")]
         [GET("categorias/available/{accesstoken}")]
@@ -72,6 +97,29 @@ namespace Pharma.Api.Controllers
             var cat = _mappingEngine.Map<List<categoria_productos>, List<CategoriasModel>>(categoriasList);
 
             return cat;
+        }
+
+
+        [HttpPost]
+        [AcceptVerbs("POST", "HEAD")]
+        [POST("guardarCategoria/{accesstoken}")]
+        public RestorePasswordResponseModel guardarCategoria(string accesstoken, [FromBody] CategoriasModel model)
+        {
+            var sessions = _session.QueryOver<sessions>().Where(c => c.Token == accesstoken)
+                .SingleOrDefault<sessions>();
+
+            if (sessions == null) return null;
+            var account = sessions.account;
+
+            if (account == null) return null;
+
+            PharmaMethodsExecutor.sp_ins_categoria_productos(_session,model.nombre,DateTime.Now,DateTime.Now,sessions.account.Email,sessions.account.Email);
+             
+            return new RestorePasswordResponseModel()
+            {
+                Message = "Guardado",
+                Status = 2
+            };
         }
 
         [HttpGet]
@@ -96,6 +144,28 @@ namespace Pharma.Api.Controllers
             return present;
         }
 
+        [HttpPost]
+        [AcceptVerbs("POST", "HEAD")]
+        [POST("guardarPresentacion/{accesstoken}")]
+        public RestorePasswordResponseModel guardarPresentacion(string accesstoken, [FromBody] PresentacionModel model)
+        {
+            var sessions = _session.QueryOver<sessions>().Where(c => c.Token == accesstoken)
+                .SingleOrDefault<sessions>();
+
+            if (sessions == null) return null;
+            var account = sessions.account;
+
+            if (account == null) return null;
+
+            PharmaMethodsExecutor.sp_ins_presentacion_productos(_session,model.nombre,DateTime.Now,DateTime.Now,sessions.account.Email,sessions.account.Email);
+
+            return new RestorePasswordResponseModel()
+            {
+                Message = "Guardado",
+                Status = 2
+            };
+        }
+
         [HttpGet]
         [AcceptVerbs("GET", "HEAD")]
         [GET("tipo_transacciones/available/{accesstoken}")]
@@ -118,6 +188,121 @@ namespace Pharma.Api.Controllers
             return tran;
         }
 
+        [HttpPost]
+        [AcceptVerbs("POST", "HEAD")]
+        [POST("guardarTipoTran/{accesstoken}")]
+        public RestorePasswordResponseModel guardarTipoTran(string accesstoken, [FromBody] TipoTranModel model)
+        {
+            var sessions = _session.QueryOver<sessions>().Where(c => c.Token == accesstoken)
+                .SingleOrDefault<sessions>();
+
+            if (sessions == null) return null;
+            var account = sessions.account;
+
+            if (account == null) return null;
+
+            PharmaMethodsExecutor.sp_ins_tipo_transacciones(_session,model.nombre,DateTime.Now,DateTime.Now,
+                sessions.account.Email,sessions.account.Email,model.entrada_o_salida);
+
+            return new RestorePasswordResponseModel()
+            {
+                Message = "Guardado",
+                Status = 2
+            };
+        }
+
+        [HttpPost]
+        [AcceptVerbs("POST", "HEAD")]
+        [POST("guardarTipoTran/{accesstoken}")]
+        public RestorePasswordResponseModel guardarTipoTran(string accesstoken, [FromBody] TipoTranModel model)
+        {
+            var sessions = _session.QueryOver<sessions>().Where(c => c.Token == accesstoken)
+                .SingleOrDefault<sessions>();
+
+            if (sessions == null) return null;
+            var account = sessions.account;
+
+            if (account == null) return null;
+
+            PharmaMethodsExecutor.sp_ins_tipo_transacciones(_session, model.nombre, DateTime.Now, DateTime.Now,
+                sessions.account.Email, sessions.account.Email, model.entrada_o_salida);
+
+            return new RestorePasswordResponseModel()
+            {
+                Message = "Guardado",
+                Status = 2
+            };
+        }
+       
+
+        [HttpPost]
+        [AcceptVerbs("POST", "HEAD")]
+        [POST("guardarCliente/{accesstoken}")]
+        public RestorePasswordResponseModel guardarCliente(string accesstoken, [FromBody] ClientesModel model)
+        {
+            var sessions = _session.QueryOver<sessions>().Where(c => c.Token == accesstoken)
+                .SingleOrDefault<sessions>();
+
+            if (sessions == null) return null;
+            var account = sessions.account;
+
+            if (account == null) return null;
+
+            PharmaMethodsExecutor.sp_ins_clientes(_session,model.nombre,DateTime.Now,DateTime.Now,sessions.account.Email,
+                sessions.account.Email,model.tipo_cliente.id_tipocliente);
+
+            return new RestorePasswordResponseModel()
+            {
+                Message = "Guardado",
+                Status = 2
+            };
+        }
+
+        [HttpPost]
+        [AcceptVerbs("POST", "HEAD")]
+        [POST("guardarProveedor/{accesstoken}")]
+        public RestorePasswordResponseModel guardarProveedor(string accesstoken, [FromBody] ProveedoresModel model)
+        {
+            var sessions = _session.QueryOver<sessions>().Where(c => c.Token == accesstoken)
+                .SingleOrDefault<sessions>();
+
+            if (sessions == null) return null;
+            var account = sessions.account;
+
+            if (account == null) return null;
+
+            PharmaMethodsExecutor.sp_ins_proveedores(_session,model.direccion,model.telefono,model.nombre,model.contacto,DateTime.Now,DateTime.Now,
+                sessions.account.Email,sessions.account.Email);
+
+            return new RestorePasswordResponseModel()
+            {
+                Message = "Guardado",
+                Status = 2
+            };
+        }
+
+        [HttpPost]
+        [AcceptVerbs("POST", "HEAD")]
+        [POST("guardarProducto/{accesstoken}")]
+        public RestorePasswordResponseModel guardarProducto(string accesstoken, [FromBody] ProductosModel model)
+        {
+            var sessions = _session.QueryOver<sessions>().Where(c => c.Token == accesstoken)
+                .SingleOrDefault<sessions>();
+
+            if (sessions == null) return null;
+            var account = sessions.account;
+
+            if (account == null) return null;
+
+            PharmaMethodsExecutor.sp_ins_productos(_session,model.cod_prod,model.existencia,model.fecha_venc,model.costo,
+                model.precio_consumi,model.precio_mayor,model.nombre,model.presentacion_productos.cod_presentacion,model.existencia_min,
+                model.existencia_max,model.porcentaje_m,DateTime.Now,DateTime.Now,sessions.account.Email,sessions.account.Email);
+            return new RestorePasswordResponseModel()
+            {
+                Message = "Guardado",
+                Status = 2
+            };
+        }
 
     }
 }

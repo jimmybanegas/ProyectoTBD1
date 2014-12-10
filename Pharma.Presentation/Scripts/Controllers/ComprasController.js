@@ -15,24 +15,17 @@ angular.module('app.controllers')
             $scope.sample_invoice = {
                 fecha: $scope.fecha,
                 tax: 15.00,
-                clientes: {},
+                proveedores: {},
                 descuento: 0,
                 detalle_facturas: []
             };
 
             $scope.addItem = function (producto) {
-
-                var costo;
-
-                if ($scope.sample_invoice.clientes.tipo_cliente.descripcion == "CONSUMIDOR")
-                    costo = producto.precio_consumi;
-                else
-                    costo = producto.precio_mayor;
-
+                
                 $scope.sample_invoice.detalle_facturas.push({
                     productos: producto,
                     cantidad: 1,
-                    precio_venta: costo,
+                    precio_venta :0,
                     subtotal: 0
                 });
             }
@@ -48,10 +41,10 @@ angular.module('app.controllers')
                 });
             }
 
-            $scope.addCliente = function (cliente) {
-                $scope.sample_invoice.clientes = {};
+            $scope.addProveedor = function (proveedor) {
+                $scope.sample_invoice.proveedores = {};
 
-                $scope.sample_invoice.clientes = cliente;
+                $scope.sample_invoice.proveedores = proveedor;
             }
 
             $scope.showLogo = function () {
@@ -121,6 +114,21 @@ angular.module('app.controllers')
                     .getClientes()
                     .success(function (data, status, headers, config) {
                         $scope.clientes = data;
+                        console.log(data);
+                    })
+                    .error(function (data, status, headers, config) {
+                        console.log(data);
+                    });
+            };
+
+            $scope.proveedores = [];
+
+            $scope.getProveedores = function () {
+
+                Compras
+                    .getProveedores()
+                    .success(function (data, status, headers, config) {
+                        $scope.proveedores = data;
                         console.log(data);
                     })
                     .error(function (data, status, headers, config) {

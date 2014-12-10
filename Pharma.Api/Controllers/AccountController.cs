@@ -41,7 +41,6 @@ namespace Pharma.Api.Controllers
                 .SingleOrDefault<account>();
 
            
-
             if (account == null)
                 return new AuthenticationModel()
                 {

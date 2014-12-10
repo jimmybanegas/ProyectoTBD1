@@ -547,6 +547,8 @@
     <Content Include="Views\Sistema\roles.cshtml" />
     <Content Include="Views\Sistema\permisos.cshtml" />
     <Content Include="Views\Sistema\privilegios.cshtml" />
+    <Content Include="Views\Inventarios\verajustes.cshtml" />
+    <Content Include="Views\Inventarios\verkardex.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

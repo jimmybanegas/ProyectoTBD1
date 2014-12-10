@@ -20,6 +20,13 @@ angular.module('app.controllers')
                 detalle_facturas: []
             };
 
+            $scope.proveedor = "";
+            $scope.cliente = "";
+            $scope.producto = "";
+            $scope.tipoProducto = "";
+            $scope.guardarCategoria = "";
+
+
             $scope.addItem = function (producto) {
 
                 var costo;
@@ -129,10 +136,10 @@ angular.module('app.controllers')
             };
 
 
-            $scope.guardarFactura = function () {
+            $scope.guardarCliente = function () {
                 console.log($scope.sample_invoice);
                 Parametros
-                      .guardarFactura($scope.sample_invoice)
+                      .guardarCliente($scope.sample_invoice)
                       .success(function (data, status, headers, config) {
                           console.log(data);
                           if (data.Status == 0) {
@@ -158,6 +165,129 @@ angular.module('app.controllers')
                           console.log(data);
                       });
             }
+
+
+
+            $scope.guardarProveedor = function () {
+                console.log($scope.sample_invoice);
+                Parametros
+                      .guardarCliente($scope.sample_invoice)
+                      .success(function (data, status, headers, config) {
+                          console.log(data);
+                          if (data.Status == 0) {
+                              toastr.error(data.Message, "Error", {
+                                  "closeButton": true,
+                                  "positionClass": "toast-bottom-full-width",
+                                  "showEasing": "swing",
+                                  "hideEasing": "swing",
+                                  "showMethod": "slideDown",
+                                  "hideMethod": "fadeOut"
+                              });
+                          }
+                          if (data.Status == 1) {
+                              toastr.warning(data.Message);
+                          }
+                          if (data.Status == 2) {
+                              toastr.success(data.Message);
+                              // $location.path('/facturar');
+                              $scope.sample_invoice = "";
+                          }
+                      })
+                      .error(function (data, status, headers, config) {
+                          console.log(data);
+                      });
+            }
+
+            $scope.guardarProducto = function () {
+                console.log($scope.sample_invoice);
+                Parametros
+                      .guardarProducto($scope.sample_invoice)
+                      .success(function (data, status, headers, config) {
+                          console.log(data);
+                          if (data.Status == 0) {
+                              toastr.error(data.Message, "Error", {
+                                  "closeButton": true,
+                                  "positionClass": "toast-bottom-full-width",
+                                  "showEasing": "swing",
+                                  "hideEasing": "swing",
+                                  "showMethod": "slideDown",
+                                  "hideMethod": "fadeOut"
+                              });
+                          }
+                          if (data.Status == 1) {
+                              toastr.warning(data.Message);
+                          }
+                          if (data.Status == 2) {
+                              toastr.success(data.Message);
+                              // $location.path('/facturar');
+                              $scope.sample_invoice = "";
+                          }
+                      })
+                      .error(function (data, status, headers, config) {
+                          console.log(data);
+                      });
+            }
+
+            $scope.guardarCategoria = function () {
+                console.log($scope.sample_invoice);
+                Parametros
+                      .guardarCategoria($scope.sample_invoice)
+                      .success(function (data, status, headers, config) {
+                          console.log(data);
+                          if (data.Status == 0) {
+                              toastr.error(data.Message, "Error", {
+                                  "closeButton": true,
+                                  "positionClass": "toast-bottom-full-width",
+                                  "showEasing": "swing",
+                                  "hideEasing": "swing",
+                                  "showMethod": "slideDown",
+                                  "hideMethod": "fadeOut"
+                              });
+                          }
+                          if (data.Status == 1) {
+                              toastr.warning(data.Message);
+                          }
+                          if (data.Status == 2) {
+                              toastr.success(data.Message);
+                              // $location.path('/facturar');
+                              $scope.sample_invoice = "";
+                          }
+                      })
+                      .error(function (data, status, headers, config) {
+                          console.log(data);
+                      });
+            }
+
+            $scope.guardarTipoProducto = function () {
+                console.log($scope.sample_invoice);
+                Parametros
+                      .guardarTipoProducto($scope.sample_invoice)
+                      .success(function (data, status, headers, config) {
+                          console.log(data);
+                          if (data.Status == 0) {
+                              toastr.error(data.Message, "Error", {
+                                  "closeButton": true,
+                                  "positionClass": "toast-bottom-full-width",
+                                  "showEasing": "swing",
+                                  "hideEasing": "swing",
+                                  "showMethod": "slideDown",
+                                  "hideMethod": "fadeOut"
+                              });
+                          }
+                          if (data.Status == 1) {
+                              toastr.warning(data.Message);
+                          }
+                          if (data.Status == 2) {
+                              toastr.success(data.Message);
+                              // $location.path('/facturar');
+                              $scope.sample_invoice = "";
+                          }
+                      })
+                      .error(function (data, status, headers, config) {
+                          console.log(data);
+                      });
+            }
+
 
             $scope.$on('$viewContentLoaded', function () {
                 $window.ga('send', 'pageview', { 'page': $location.path(), 'title': $scope.$root.title });

@@ -50,5 +50,85 @@ namespace Pharma.Api.Controllers
 
             return ac;
         }
+
+        [HttpPost]
+        [AcceptVerbs("POST", "HEAD")]
+        [POST("guardarRol/{accesstoken}")]
+        public RestorePasswordResponseModel guardarRol(string accesstoken, [FromBody] RolesModel model)
+        {
+            var sessions = _session.QueryOver<sessions>().Where(c => c.Token == accesstoken)
+                .SingleOrDefault<sessions>();
+
+            if (sessions == null) return null;
+            var account = sessions.account;
+
+            if (account == null) return new RestorePasswordResponseModel()
+            {
+                Message = "Error",
+                Status = 0
+            }; 
+
+            PharmaMethodsExecutor.sp_ins_grupos_roles(_session,model.nombre,DateTime.Now,DateTime.Now,sessions.account.Email,sessions.account.Email);
+
+            return new RestorePasswordResponseModel()
+            {
+                Message = "Guardado",
+                Status = 2
+            };
+        }
+
+
+        [HttpPost]
+        [AcceptVerbs("POST", "HEAD")]
+        [POST("guardarPrivilegio/{accesstoken}")]
+        public RestorePasswordResponseModel guardarPrivilegio(string accesstoken, [FromBody] PrivilegiosModel model)
+        {
+            var sessions = _session.QueryOver<sessions>().Where(c => c.Token == accesstoken)
+                .SingleOrDefault<sessions>();
+
+            if (sessions == null) return null;
+            var account = sessions.account;
+
+            if (account == null) return new RestorePasswordResponseModel()
+            {
+                Message = "Error",
+                Status = 0
+            };
+
+            PharmaMethodsExecutor.sp_ins_privilegios(_session,model.nombre,DateTime.Now,DateTime.Now,sessions.account.Email,sessions.account.Email);
+
+            return new RestorePasswordResponseModel()
+            {
+                Message = "Guardado",
+                Status = 2
+            };
+        }
+
+     /*   [HttpPost]
+        [AcceptVerbs("POST", "HEAD")]
+        [POST("guardarPermiso/{accesstoken}")]
+        public RestorePasswordResponseModel guardarPermiso(string accesstoken, [FromBody] PrivilegiosModel model)
+        {
+            var sessions = _session.QueryOver<sessions>().Where(c => c.Token == accesstoken)
+                .SingleOrDefault<sessions>();
+
+            if (sessions == null) return null;
+            var account = sessions.account;
+
+            if (account == null) return new RestorePasswordResponseModel()
+            {
+                Message = "Error",
+                Status = 0
+            };
+
+            PharmaMethodsExecutor.sp_ins_privilegios(_session, model.nombre, DateTime.Now, DateTime.Now, sessions.account.Email, sessions.account.Email);
+
+            return new RestorePasswordResponseModel()
+            {
+                Message = "Guardado",
+                Status = 2
+            };
+        }*/
+
     }
 }
