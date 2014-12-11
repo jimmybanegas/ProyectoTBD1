@@ -3,113 +3,34 @@ angular.module('app.controllers')
 
     // Path: /forgot-password
     .controller('ParametrosCtrl', [
-        '$scope', '$location', '$window', 'Parametros', function ($scope, $location, $window, Parametros) {
+        '$scope', '$location', '$window', 'Parametros', 'Facturacion', 'Compras', function ($scope, $location, $window, Parametros, Facturacion, Compras) {
             $scope.$root.title = 'Parametros';
           
-            $scope.logoRemoved = false;
-
-            $scope.printMode = false;
-
             $scope.fecha = new Date();
 
-            $scope.sample_invoice = {
-                fecha: $scope.fecha,
-                tax: 15.00,
-                clientes: {},
-                descuento: 0,
-                detalle_facturas: []
-            };
-
+          
             $scope.proveedor = "";
             $scope.cliente = "";
             $scope.producto = "";
             $scope.tipoProducto = "";
-            $scope.guardarCategoria = "";
-
-
-            $scope.addItem = function (producto) {
-
-                var costo;
-
-                if ($scope.sample_invoice.clientes.tipo_cliente.descripcion == "CONSUMIDOR")
-                    costo = producto.precio_consumi;
-                else
-                    costo = producto.precio_mayor;
-
-                $scope.sample_invoice.detalle_facturas.push({
-                    productos: producto,
-                    cantidad: 1,
-                    precio_venta: costo,
-                    subtotal: 0
-                });
-            }
-
-            $scope.actualizarPrecio = function (cliente) {
-                var costo;
-
-                angular.forEach($scope.sample_invoice.detalle_facturas, function (item, key) {
-                    if ($scope.sample_invoice.clientes.tipo_cliente.descripcion == "CONSUMIDOR")
-                        costo = producto.precio_consumi;
-                    else
-                        costo = producto.precio_mayor;
-                });
-            }
-
-            $scope.addCliente = function (cliente) {
-                $scope.sample_invoice.clientes = {};
-
-                $scope.sample_invoice.clientes = cliente;
-            }
-
-            $scope.showLogo = function () {
-                $scope.logoRemoved = false;
-            }
-
-            $scope.removeItem = function (item) {
-                $scope.sample_invoice.detalle_facturas.splice($scope.sample_invoice.detalle_facturas.indexOf(item), 1);
-            }
-
-            $scope.invoice_sub_total = function () {
-                var total = 0.00;
-                var numDetalle = 1;
-                angular.forEach($scope.sample_invoice.detalle_facturas, function (item, key) {
-                    total += (item.cantidad * item.precio_venta);
-                    item.subtotal = total;
-                    item.num_detalle = numDetalle;
-                    numDetalle += 1;
-                });
-                $scope.sample_invoice.subtotal = total;
-
-                return total;
-            }
-
-            $scope.calculate_tax = function () {
-                var taxs = (($scope.sample_invoice.tax * $scope.invoice_sub_total()) / 100);
-                $scope.sample_invoice.isv = taxs;
-                return taxs;
-            }
-            $scope.calculate_grand_total = function () {
-                var total = $scope.calculate_tax() + $scope.invoice_sub_total();
-                $scope.sample_invoice.total = total;
-                return total;
-            }
-
-            $scope.printInfo = function () {
-                window.print();
-            }
-
-            $scope.clearLocalStorage = function () {
-                var confirmClear = confirm("Are you sure you would like to clear the invoice?");
-                if (confirmClear) {
-                    $scope.sample_invoice = "";
-                }
-            }
+            $scope.categoria = "";
 
             $scope.productos = [];
+            $scope.clientes = [];
+            $scope.tiposClientes = [];
+            $scope.proveedores = [];
+
+            $scope.cancelar = function () {
+                $scope.proveedor = "";
+                $scope.cliente = "";
+                $scope.producto = "";
+                $scope.tipoProducto = "";
+                $scope.categoria = "";
+            };
 
             $scope.getProductos = function () {
 
-                Parametros
+                Facturacion
                     .getProductos()
                     .success(function (data, status, headers, config) {
                         $scope.productos = data;
@@ -120,11 +41,11 @@ angular.module('app.controllers')
                     });
             };
 
-            $scope.clientes = [];
+           
 
             $scope.getClientes = function () {
 
-                Parametros
+                Facturacion
                     .getClientes()
                     .success(function (data, status, headers, config) {
                         $scope.clientes = data;
@@ -135,11 +56,38 @@ angular.module('app.controllers')
                     });
             };
 
+          
+            $scope.getTiposClientes = function () {
+
+                Parametros
+                    .getTiposClientes()
+                    .success(function (data, status, headers, config) {
+                        $scope.tiposClientes = data;
+                        console.log(data);
+                    })
+                    .error(function (data, status, headers, config) {
+                        console.log(data);
+                    });
+            };
+
+            $scope.getProveedores = function () {
+
+                Compras
+                    .getProveedores()
+                    .success(function (data, status, headers, config) {
+                        $scope.proveedores = data;
+                        console.log(data);
+                    })
+                    .error(function (data, status, headers, config) {
+                        console.log(data);
+                    });
+            };
+
 
             $scope.guardarCliente = function () {
-                console.log($scope.sample_invoice);
+                console.log($scope.cliente);
                 Parametros
-                      .guardarCliente($scope.sample_invoice)
+                      .guardarCliente($scope.cliente)
                       .success(function (data, status, headers, config) {
                           console.log(data);
                           if (data.Status == 0) {
@@ -157,8 +105,8 @@ angular.module('app.controllers')
                           }
                           if (data.Status == 2) {
                               toastr.success(data.Message);
-                              // $location.path('/facturar');
-                              $scope.sample_invoice = "";
+                              $scope.cliente = "";
+                              $scope.getClientes();
                           }
                       })
                       .error(function (data, status, headers, config) {
@@ -166,12 +114,44 @@ angular.module('app.controllers')
                       });
             }
 
+            $scope.clienteBorrar = function(cliente) {
+                $scope.cliente = cliente;
+            }
 
-
+            $scope.borrarCliente = function () {
+                console.log($scope.cliente);
+                Parametros
+                      .borrarCliente($scope.cliente)
+                      .success(function (data, status, headers, config) {
+                          console.log(data);
+                          if (data.Status == 0) {
+                              toastr.error(data.Message, "Error", {
+                                  "closeButton": true,
+                                  "positionClass": "toast-bottom-full-width",
+                                  "showEasing": "swing",
+                                  "hideEasing": "swing",
+                                  "showMethod": "slideDown",
+                                  "hideMethod": "fadeOut"
+                              });
+                          }
+                          if (data.Status == 1) {
+                              toastr.warning(data.Message);
+                          }
+                          if (data.Status == 2) {
+                              toastr.success(data.Message);
+                              $scope.cliente = "";
+                              $scope.getClientes();
+                          }
+                      })
+                      .error(function (data, status, headers, config) {
+                          console.log(data);
+                      });
+            }
+            
             $scope.guardarProveedor = function () {
-                console.log($scope.sample_invoice);
+                console.log($scope.proveedor);
                 Parametros
-                      .guardarCliente($scope.sample_invoice)
+                      .guardarProveedor($scope.proveedor)
                       .success(function (data, status, headers, config) {
                           console.log(data);
                           if (data.Status == 0) {
@@ -189,8 +169,8 @@ angular.module('app.controllers')
                           }
                           if (data.Status == 2) {
                               toastr.success(data.Message);
-                              // $location.path('/facturar');
-                              $scope.sample_invoice = "";
+                              $scope.proveedor = "";
+                              $scope.getProveedores();
                           }
                       })
                       .error(function (data, status, headers, config) {
@@ -198,10 +178,44 @@ angular.module('app.controllers')
                       });
             }
 
+            $scope.proveedorBorrar = function (proveedor) {
+                $scope.proveedor = proveedor;
+            }
+
+            $scope.borrarProveedor = function () {
+                console.log($scope.proveedor);
+                Parametros
+                      .borrarProveedor($scope.proveedor)
+                      .success(function (data, status, headers, config) {
+                          console.log(data);
+                          if (data.Status == 0) {
+                              toastr.error(data.Message, "Error", {
+                                  "closeButton": true,
+                                  "positionClass": "toast-bottom-full-width",
+                                  "showEasing": "swing",
+                                  "hideEasing": "swing",
+                                  "showMethod": "slideDown",
+                                  "hideMethod": "fadeOut"
+                              });
+                          }
+                          if (data.Status == 1) {
+                              toastr.warning(data.Message);
+                          }
+                          if (data.Status == 2) {
+                              toastr.success(data.Message);
+                              $scope.proveedor = "";
+                              $scope.getProveedores();
+                          }
+                      })
+                      .error(function (data, status, headers, config) {
+                          console.log(data);
+                      });
+            }
+            
             $scope.guardarProducto = function () {
-                console.log($scope.sample_invoice);
+                console.log($scope.producto);
                 Parametros
-                      .guardarProducto($scope.sample_invoice)
+                      .guardarProducto($scope.producto)
                       .success(function (data, status, headers, config) {
                           console.log(data);
                           if (data.Status == 0) {
@@ -220,7 +234,7 @@ angular.module('app.controllers')
                           if (data.Status == 2) {
                               toastr.success(data.Message);
                               // $location.path('/facturar');
-                              $scope.sample_invoice = "";
+                              $scope.producto = "";
                           }
                       })
                       .error(function (data, status, headers, config) {
@@ -228,10 +242,11 @@ angular.module('app.controllers')
                       });
             }
 
+        
             $scope.guardarCategoria = function () {
-                console.log($scope.sample_invoice);
+                console.log($scope.categoria);
                 Parametros
-                      .guardarCategoria($scope.sample_invoice)
+                      .guardarCategoria($scope.categoria)
                       .success(function (data, status, headers, config) {
                           console.log(data);
                           if (data.Status == 0) {
@@ -250,18 +265,18 @@ angular.module('app.controllers')
                           if (data.Status == 2) {
                               toastr.success(data.Message);
                               // $location.path('/facturar');
-                              $scope.sample_invoice = "";
+                              $scope.categoria = "";
                           }
                       })
                       .error(function (data, status, headers, config) {
                           console.log(data);
                       });
             }
-
+            
             $scope.guardarTipoProducto = function () {
-                console.log($scope.sample_invoice);
+                console.log($scope.tipoProducto);
                 Parametros
-                      .guardarTipoProducto($scope.sample_invoice)
+                      .guardarTipoProducto($scope.tipoProducto)
                       .success(function (data, status, headers, config) {
                           console.log(data);
                           if (data.Status == 0) {
@@ -280,7 +295,7 @@ angular.module('app.controllers')
                           if (data.Status == 2) {
                               toastr.success(data.Message);
                               // $location.path('/facturar');
-                              $scope.sample_invoice = "";
+                              $scope.tipoProducto = "";
                           }
                       })
                       .error(function (data, status, headers, config) {

@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Http;
-using AttributeRouting.Web.Http;
+using AttributeRouting.Web.Mvc;
 using AutoMapper;
 using NHibernate;
 using NHibernate.Transform;
@@ -122,6 +122,29 @@ namespace Pharma.Api.Controllers
             };
         }
 
+        [HttpPost]
+        [AcceptVerbs("POST", "HEAD")]
+        [POST("borrarCategoria/{accesstoken}")]
+        public RestorePasswordResponseModel borrarCategoria(string accesstoken, [FromBody] CategoriasModel model)
+        {
+            var sessions = _session.QueryOver<sessions>().Where(c => c.Token == accesstoken)
+                .SingleOrDefault<sessions>();
+
+            if (sessions == null) return null;
+            var account = sessions.account;
+
+            if (account == null) return null;
+
+            PharmaMethodsExecutor.sp_del_categoria_productos(_session, model.cod_categoria);
+
+            return new RestorePasswordResponseModel()
+            {
+                Message = "Borrado",
+                Status = 2
+            };
+        }
+
+
         [HttpGet]
         [AcceptVerbs("GET", "HEAD")]
         [GET("presentaciones/available/{accesstoken}")]
@@ -162,6 +185,28 @@ namespace Pharma.Api.Controllers
             return new RestorePasswordResponseModel()
             {
                 Message = "Guardado",
+                Status = 2
+            };
+        }
+
+        [HttpPost]
+        [AcceptVerbs("POST", "HEAD")]
+        [POST("borrarPresentacion/{accesstoken}")]
+        public RestorePasswordResponseModel borrarPresentacion(string accesstoken, [FromBody] PresentacionModel model)
+        {
+            var sessions = _session.QueryOver<sessions>().Where(c => c.Token == accesstoken)
+                .SingleOrDefault<sessions>();
+
+            if (sessions == null) return null;
+            var account = sessions.account;
+
+            if (account == null) return null;
+
+            PharmaMethodsExecutor.sp_del_presentacion_productos(_session, model.cod_presentacion);
+
+            return new RestorePasswordResponseModel()
+            {
+                Message = "Borrado",
                 Status = 2
             };
         }
@@ -213,8 +258,8 @@ namespace Pharma.Api.Controllers
 
         [HttpPost]
         [AcceptVerbs("POST", "HEAD")]
-        [POST("guardarTipoTran/{accesstoken}")]
-        public RestorePasswordResponseModel guardarTipoTran(string accesstoken, [FromBody] TipoTranModel model)
+        [POST("borrarTipoTran/{accesstoken}")]
+        public RestorePasswordResponseModel borrarTipoTran(string accesstoken, [FromBody] TipoTranModel model)
         {
             var sessions = _session.QueryOver<sessions>().Where(c => c.Token == accesstoken)
                 .SingleOrDefault<sessions>();
@@ -224,16 +269,15 @@ namespace Pharma.Api.Controllers
 
             if (account == null) return null;
 
-            PharmaMethodsExecutor.sp_ins_tipo_transacciones(_session, model.nombre, DateTime.Now, DateTime.Now,
-                sessions.account.Email, sessions.account.Email, model.entrada_o_salida);
+            PharmaMethodsExecutor.sp_del_tipo_transacciones(_session, model.id_tipotran);
 
             return new RestorePasswordResponseModel()
             {
-                Message = "Guardado",
+                Message = "Borrado",
                 Status = 2
             };
         }
-       
+
 
         [HttpPost]
         [AcceptVerbs("POST", "HEAD")]
@@ -260,6 +304,28 @@ namespace Pharma.Api.Controllers
 
         [HttpPost]
         [AcceptVerbs("POST", "HEAD")]
+        [POST("borrarCliente/{accesstoken}")]
+        public RestorePasswordResponseModel borrarCliente(string accesstoken, [FromBody] ClientesModel model)
+        {
+            var sessions = _session.QueryOver<sessions>().Where(c => c.Token == accesstoken)
+                .SingleOrDefault<sessions>();
+
+            if (sessions == null) return null;
+            var account = sessions.account;
+
+            if (account == null) return null;
+
+            PharmaMethodsExecutor.sp_del_clientes(_session,model.id_cliente);
+
+            return new RestorePasswordResponseModel()
+            {
+                Message = "Borrado",
+                Status = 2
+            };
+        }
+
+        [HttpPost]
+        [AcceptVerbs("POST", "HEAD")]
         [POST("guardarProveedor/{accesstoken}")]
         public RestorePasswordResponseModel guardarProveedor(string accesstoken, [FromBody] ProveedoresModel model)
         {
@@ -277,6 +343,28 @@ namespace Pharma.Api.Controllers
             return new RestorePasswordResponseModel()
             {
                 Message = "Guardado",
+                Status = 2
+            };
+        }
+
+        [HttpPost]
+        [AcceptVerbs("POST", "HEAD")]
+        [POST("borrarProveedor/{accesstoken}")]
+        public RestorePasswordResponseModel borrarProveedor(string accesstoken, [FromBody] ProveedoresModel model)
+        {
+            var sessions = _session.QueryOver<sessions>().Where(c => c.Token == accesstoken)
+                .SingleOrDefault<sessions>();
+
+            if (sessions == null) return null;
+            var account = sessions.account;
+
+            if (account == null) return null;
+
+            PharmaMethodsExecutor.sp_del_proveedores(_session, model.id_proveedor);
+
+            return new RestorePasswordResponseModel()
+            {
+                Message = "Borrado",
                 Status = 2
             };
         }

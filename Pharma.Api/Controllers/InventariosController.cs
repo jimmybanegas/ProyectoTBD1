@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Http;
-using AttributeRouting.Web.Http;
+using AttributeRouting.Web.Mvc;
 using AutoMapper;
 using NHibernate;
 using NHibernate.Transform;
