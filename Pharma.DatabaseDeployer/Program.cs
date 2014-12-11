@@ -11,7 +11,7 @@ namespace Pharma.DatabaseDeployer
 {
     class Program
     {
-        static void Main(string[] args)
+        static void Main()
         {
 
             string connectionString = ConnectionStrings.Get();
