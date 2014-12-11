@@ -8,14 +8,11 @@
 // the code is regenerated.
 //------------------------------------------------------------------------------
 
-using System;
-using System.Collections;
-using System.ComponentModel;
-using System.Linq;
-using System.Text;
+using NHibernate;
+using Pharma.Domain;
 using System.Collections.Generic;
 
-namespace Pharma.Domain
+namespace Pharma.Data
 {
 
     /// <summary>
@@ -79,7 +76,7 @@ namespace Pharma.Domain
         /// <summary>
         /// There are no comments for SPAddressIN in the schema.
         /// </summary>
-        public static void SPAddressIN(NHibernate.ISession session, System.Nullable<int> pCustomerId, string pAddressContent, System.Nullable<System.DateTime> pModifyDate, System.Nullable<System.DateTime> pCreationDate, string pCreatedByUser, string pModifiedByUser)
+        public static void SPAddressIN(ISession session, System.Nullable<int> pCustomerId, string pAddressContent, System.Nullable<System.DateTime> pModifyDate, System.Nullable<System.DateTime> pCreationDate, string pCreatedByUser, string pModifiedByUser)
         {
 
             NHibernate.IQuery query = session.GetNamedQuery(@"SPAddressIN");
@@ -96,7 +93,7 @@ namespace Pharma.Domain
         /// <summary>
         /// There are no comments for SPAddressSEL in the schema.
         /// </summary>
-        public IList<Pharma.Domain.Address> SPAddressSEL()
+        public IList<Address> SPAddressSEL()
         {
 
             NHibernate.IQuery query = session.GetNamedQuery(@"SPAddressSEL");

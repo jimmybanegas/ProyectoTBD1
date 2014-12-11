@@ -54,7 +54,6 @@
     <Compile Include="Entities\Invoice.cs" />
     <Compile Include="Entities\InvoiceDetail.cs" />
     <Compile Include="Entities\KardexOperation.cs" />
-    <Compile Include="Entities\LaMejorModel.Extensions.MethodsExecutor.cs" />
     <Compile Include="Entities\Leagues.cs" />
     <Compile Include="Entities\PhoneNumber.cs" />
     <Compile Include="Entities\Presentation.cs" />

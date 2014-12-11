@@ -57,6 +57,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ItemNotFoundException.cs" />
+    <Compile Include="LaMejorModel.Extensions.MethodsExecutor.cs" />
     <Compile Include="MappingScheme.cs" />
     <Compile Include="ConnectionStrings.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
