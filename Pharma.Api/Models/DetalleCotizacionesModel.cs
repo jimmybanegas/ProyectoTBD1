@@ -17,9 +17,6 @@ namespace Pharma.Api.Models
         public  string cod_prod { get; set; }
 
 
-        public  CotizacionesModel cotizaciones { get; set; }
-
-
         public  ProductosModel productos { get; set; }
     }
 }

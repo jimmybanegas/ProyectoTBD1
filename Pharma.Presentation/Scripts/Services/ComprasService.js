@@ -29,9 +29,9 @@ angular.module('app.services')
             return $http.get(baseUrl + '/ordenes/available/' + '/' + $window.sessionStorage.token);
         };
 
-         /*  compras.getCotizaciones = function () {
-            return $http.get(baseUrl + '/cotizaciones/available/' + '/' + $window.sessionStorage.token);
-        };*/
+        compras.guardarCotizacion = function (model) {
+            return $http.post(baseUrl + '/guardarCotizacion/' + $window.sessionStorage.token, model);
+        };
 
      
         return compras;

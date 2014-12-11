@@ -941,7 +941,7 @@ namespace Pharma.Domain.Entities
         /// <summary>
         /// There are no comments for sp_ins_cotizaciones in the schema.
         /// </summary>
-        public void sp_ins_cotizaciones(DateTime? p_fecha, double? p_total, DateTime? p_fecha_crea, DateTime? p_fecha_actu, string p_usuario_crea, string p_usuario_actu, int? p_id_proveedor)
+      /*  public void sp_ins_cotizaciones(DateTime? p_fecha, double? p_total, DateTime? p_fecha_crea, DateTime? p_fecha_actu, string p_usuario_crea, string p_usuario_actu, int? p_id_proveedor)
         {
 
             NHibernate.IQuery query = session.GetNamedQuery(@"sp_ins_cotizaciones");
@@ -954,12 +954,12 @@ namespace Pharma.Domain.Entities
             query.SetParameter(@"p_id_proveedor", p_id_proveedor);
             query.List();
         }
-
+        */
     
         /// <summary>
         /// There are no comments for sp_ins_cotizaciones in the schema.
         /// </summary>
-        public static void sp_ins_cotizaciones(NHibernate.ISession session, DateTime? p_fecha, double? p_total, DateTime? p_fecha_crea, DateTime? p_fecha_actu, string p_usuario_crea, string p_usuario_actu, int? p_id_proveedor)
+        public static IList<cotizaciones> sp_ins_cotizaciones(NHibernate.ISession session, DateTime? p_fecha, double? p_total, DateTime? p_fecha_crea, DateTime? p_fecha_actu, string p_usuario_crea, string p_usuario_actu, int? p_id_proveedor)
         {
 
             NHibernate.IQuery query = session.GetNamedQuery(@"sp_ins_cotizaciones");
@@ -970,7 +970,9 @@ namespace Pharma.Domain.Entities
             query.SetParameter(@"p_usuario_crea", p_usuario_crea);
             query.SetParameter(@"p_usuario_actu", p_usuario_actu);
             query.SetParameter(@"p_id_proveedor", p_id_proveedor);
-            query.List();
+           // query.List();
+
+            return query.List<cotizaciones>();
         }
 
     

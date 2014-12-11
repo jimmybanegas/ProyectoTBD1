@@ -150,8 +150,8 @@ angular.module('app.controllers')
                       }
                       if (data.Status == 2) {
                           toastr.success(data.Message);
-                         // $location.path('/facturar');
                           $scope.sample_invoice = "";
+                          $location.path('/facturar');
                       }
                   })
                   .error(function (data, status, headers, config) {

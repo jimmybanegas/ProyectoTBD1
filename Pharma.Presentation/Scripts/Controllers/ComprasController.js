@@ -14,30 +14,19 @@ angular.module('app.controllers')
 
             $scope.sample_invoice = {
                 fecha: $scope.fecha,
-                tax: 15.00,
+              //  tax: 15.00,
                 proveedores: {},
                 descuento: 0,
-                detalle_facturas: []
+                detalle_cotizaciones: []
             };
 
             $scope.addItem = function (producto) {
                 
-                $scope.sample_invoice.detalle_facturas.push({
+                $scope.sample_invoice.detalle_cotizaciones.push({
                     productos: producto,
                     cantidad: 1,
-                    precio_venta :0,
+                    precio_unit :0,
                     subtotal: 0
-                });
-            }
-
-            $scope.actualizarPrecio = function (cliente) {
-                var costo;
-
-                angular.forEach($scope.sample_invoice.detalle_facturas, function (item, key) {
-                    if ($scope.sample_invoice.clientes.tipo_cliente.descripcion == "CONSUMIDOR")
-                        costo = producto.precio_consumi;
-                    else
-                        costo = producto.precio_mayor;
                 });
             }
 
@@ -52,14 +41,14 @@ angular.module('app.controllers')
             }
 
             $scope.removeItem = function (item) {
-                $scope.sample_invoice.detalle_facturas.splice($scope.sample_invoice.detalle_facturas.indexOf(item), 1);
+                $scope.sample_invoice.detalle_cotizaciones.splice($scope.sample_invoice.detalle_cotizaciones.indexOf(item), 1);
             }
 
             $scope.invoice_sub_total = function () {
                 var total = 0.00;
                 var numDetalle = 1;
-                angular.forEach($scope.sample_invoice.detalle_facturas, function (item, key) {
-                    total += (item.cantidad * item.precio_venta);
+                angular.forEach($scope.sample_invoice.detalle_cotizaciones, function (item, key) {
+                    total += (item.cantidad * item.precio_unit);
                     item.subtotal = total;
                     item.num_detalle = numDetalle;
                     numDetalle += 1;
@@ -69,13 +58,13 @@ angular.module('app.controllers')
                 return total;
             }
 
-            $scope.calculate_tax = function () {
+          /*  $scope.calculate_tax = function () {
                 var taxs = (($scope.sample_invoice.tax * $scope.invoice_sub_total()) / 100);
                 $scope.sample_invoice.isv = taxs;
                 return taxs;
-            }
+            }*/
             $scope.calculate_grand_total = function () {
-                var total = $scope.calculate_tax() + $scope.invoice_sub_total();
+                var total = $scope.invoice_sub_total();
                 $scope.sample_invoice.total = total;
                 return total;
             }
@@ -137,10 +126,10 @@ angular.module('app.controllers')
             };
 
 
-            $scope.guardarFactura = function () {
+            $scope.guardarCotizacion = function () {
                 console.log($scope.sample_invoice);
                 Compras
-                      .guardarFactura($scope.sample_invoice)
+                      .guardarCotizacion($scope.sample_invoice)
                       .success(function (data, status, headers, config) {
                           console.log(data);
                           if (data.Status == 0) {

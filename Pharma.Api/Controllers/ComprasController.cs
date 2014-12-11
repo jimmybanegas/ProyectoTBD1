@@ -115,5 +115,39 @@ namespace Pharma.Api.Controllers
 
             return oc;
         }
+
+        [HttpPost]
+        [AcceptVerbs("POST", "HEAD")]
+        [POST("guardarCotizacion/{accesstoken}")]
+        public RestorePasswordResponseModel guardarCotizacion(string accesstoken, [FromBody] CotizacionesModel model)
+        {
+            var sessions = _session.QueryOver<sessions>().Where(c => c.Token == accesstoken)
+                .SingleOrDefault<sessions>();
+
+            if (sessions == null) return null;
+            var account = sessions.account;
+
+            if (account == null) return null;
+
+            var lista = PharmaMethodsExecutor.sp_ins_cotizaciones(_session, model.fecha, model.total, DateTime.Now,
+                DateTime.Now,sessions.account.Email, sessions.account.Email, model.proveedores.id_proveedor);
+
+            var cotizacion = _session.QueryOver<cotizaciones>()
+                 .OrderBy(x => x.fecha_crea).Desc
+                 .Take(1)
+                 .SingleOrDefault<cotizaciones>();
+
+            foreach (var detalle in model.detalle_cotizaciones)
+            {
+                PharmaMethodsExecutor.sp_ins_detalle_cotizaciones(_session,detalle.num_detalle,detalle.cantidad,detalle.precio_unit,
+                    cotizacion.id_cotizacion,detalle.productos.cod_prod);
+            }
+
+            return new RestorePasswordResponseModel()
+            {
+                Message = "Grabada",
+                Status = 2
+            };
+        }
     }
 }

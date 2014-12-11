@@ -60,13 +60,13 @@
                 <th>Precio</th>
                 <th style="text-align:right;">Total</th>
             </tr>
-            <tr ng:repeat="item in sample_invoice.detalle_facturas">
+            <tr ng:repeat="item in sample_invoice.detalle_cotizaciones">
                 <td><a ng-click="removeItem(item)" class="btn btn-danger">[X]</a></td>
                 <td><input ng:model="item.productos.cod_prod" placeholder="Codigo"></td>
                 <td><input ng:model="item.productos.nombre" placeholder="Descripcion"></td>
                 <td><input ng:model="item.cantidad" value="1" size="4" ng:required ng:validate="integer" placeholder="qty"></td>
-                <td><input ng:model="item.precio_venta" value="0.00" ng:required ng:validate="number" size="6" placeholder="cost"></td>
-                <td align="right">{{item.precio_venta * item.cantidad | currency}}</td>
+                <td><input ng:model="item.precio_unit" value="0.00" ng:required ng:validate="number" size="6" placeholder="cost"></td>
+                <td align="right">{{item.precio_unit * item.cantidad | currency}}</td>
             </tr>
 
             <tr ng-hide="printMode">
@@ -80,14 +80,14 @@
                     {{invoice_sub_total() | currency}}
                 </td>
             </tr>
-            <tr>
+          <!-- <tr>
                 <td colspan="5" align="right">
                     Tax(%): <input ng:model="sample_invoice.tax" ng:validate="number" style="width:43px">
                 </td>
                 <td align="right">
                     {{calculate_tax() | currency}}
                 </td>
-            </tr>
+            </tr>-->
             <tr>
                 <td colspan="5" align="right">
                     Grand Total:
@@ -99,7 +99,7 @@
         </table>
         <div class="noPrint">
             <!--<a href="#" class="btn btn-primary" ng-show="printMode" ng-click="printInfo()">Print</a>-->
-            <a href="#" class="btn btn-primary" ng-click="guardarFactura()">Guardar</a>
+            <a href="#" class="btn btn-primary" ng-click="guardarCotizacion()">Guardar</a>
             <a href="#" class="btn btn-primary" ng-click="clearLocalStorage()">Limpiar</a>
             <!--<a href="#" class="btn btn-primary" ng-hide="printMode" ng-click="printMode = true;">Turn On Print Mode</a>
             <a href="#" class="btn btn-primary" ng-show="printMode" ng-click="printMode = false;">Turn Off Print Mode</a>-->

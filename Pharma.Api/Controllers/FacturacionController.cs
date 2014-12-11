@@ -111,36 +111,27 @@ namespace Pharma.Api.Controllers
 
             if (account == null) return null;
 
-            var lista = PharmaMethodsExecutor.sp_ins_facturas(_session, model.fecha, model.subtotal, model.isv,
+            PharmaMethodsExecutor.sp_ins_facturas(_session, model.fecha, model.subtotal, model.isv,
                 model.descuento, model.total,DateTime.Now, DateTime.Now, sessions.account.Email, 
                 sessions.account.Email, model.clientes.id_cliente);
 
+            var factura = _session.QueryOver<facturas>()
+                 .OrderBy(x => x.fecha_crea).Desc
+                 .Take(1)
+                 .SingleOrDefault<facturas>();
 
-
-            var sql = @"SELECT factura FROM last_number";
-
-            IQuery sqlQuery = _session.CreateSQLQuery(sql);
-                                          
-                                        var list = sqlQuery.List(); //or if simple scalar query.UniqueResult<int>();
-
-            foreach (var al in list)
+            foreach (var detalle in model.detalle_facturas)
             {
-                Console.WriteLine(al);
-            }
-            
-            
-          //  var fact = _mappingEngine.Map<FacturasModel, facturas>(model);
-
-          //  var factura = _session.Save(fact);
-
-          //  if(factura!=null)
-         
+                PharmaMethodsExecutor.sp_ins_detalle_facturas(_session,detalle.num_detalle,detalle.precio_venta,detalle.cantidad,
+                    detalle.subtotal,factura.num_factura,detalle.productos.cod_prod);
+            }   
+                 
             return new RestorePasswordResponseModel()
                         {
                             Message = "Grabada",
                             Status = 2
                         };
-                    }
+          }
 
-                }
-            }
+      }
+ }
