@@ -529,7 +529,6 @@
     <Content Include="Views\_Layout.cshtml" />
     <Content Include="Views\_PageStart.cshtml" />
     <Content Include="Views\About.cshtml" />
-    <Content Include="Views\Register.cshtml" />
     <Content Include="Views\Compras\compras.cshtml" />
     <Content Include="Views\Facturacion\facturacion.cshtml" />
     <Content Include="Views\Facturacion\facturar.cshtml" />
@@ -549,6 +548,8 @@
     <Content Include="Views\Sistema\privilegios.cshtml" />
     <Content Include="Views\Inventarios\verajustes.cshtml" />
     <Content Include="Views\Inventarios\verkardex.cshtml" />
+    <Content Include="Views\Sistema\Register.cshtml" />
+    <Content Include="Views\Register.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

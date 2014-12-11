@@ -12,21 +12,24 @@ angular.module('app.controllers')
             $scope.proveedor = "";
             $scope.cliente = "";
             $scope.producto = "";
-            $scope.tipoProducto = "";
             $scope.categoria = "";
+            $scope.presentacion = "";
+
 
             $scope.productos = [];
             $scope.clientes = [];
             $scope.tiposClientes = [];
             $scope.proveedores = [];
+            $scope.categorias = [];
+            $scope.presentaciones = [];
 
             $scope.cancelar = function () {
                 $scope.proveedor = "";
                 $scope.cliente = "";
                 $scope.producto = "";
-                $scope.tipoProducto = "";
                 $scope.categoria = "";
-            };
+                $scope.presentacion = "";
+                };
 
             $scope.getProductos = function () {
 
@@ -76,6 +79,32 @@ angular.module('app.controllers')
                     .getProveedores()
                     .success(function (data, status, headers, config) {
                         $scope.proveedores = data;
+                        console.log(data);
+                    })
+                    .error(function (data, status, headers, config) {
+                        console.log(data);
+                    });
+            };
+
+            $scope.getCategorias = function () {
+
+                Parametros
+                    .getCategorias()
+                    .success(function (data, status, headers, config) {
+                        $scope.categorias = data;
+                        console.log(data);
+                    })
+                    .error(function (data, status, headers, config) {
+                        console.log(data);
+                    });
+            };
+
+            $scope.getPresentaciones = function () {
+
+                Parametros
+                    .getPresentacionesProductos()
+                    .success(function (data, status, headers, config) {
+                        $scope.presentaciones = data;
                         console.log(data);
                     })
                     .error(function (data, status, headers, config) {
@@ -233,8 +262,8 @@ angular.module('app.controllers')
                           }
                           if (data.Status == 2) {
                               toastr.success(data.Message);
-                              // $location.path('/facturar');
                               $scope.producto = "";
+                              $scope.getProductos();
                           }
                       })
                       .error(function (data, status, headers, config) {
@@ -242,6 +271,39 @@ angular.module('app.controllers')
                       });
             }
 
+            $scope.productoBorrar = function (producto) {
+                $scope.producto = producto;
+            }
+
+            $scope.borrarProducto = function () {
+                console.log($scope.producto);
+                Parametros
+                      .borrarProducto($scope.producto)
+                      .success(function (data, status, headers, config) {
+                          console.log(data);
+                          if (data.Status == 0) {
+                              toastr.error(data.Message, "Error", {
+                                  "closeButton": true,
+                                  "positionClass": "toast-bottom-full-width",
+                                  "showEasing": "swing",
+                                  "hideEasing": "swing",
+                                  "showMethod": "slideDown",
+                                  "hideMethod": "fadeOut"
+                              });
+                          }
+                          if (data.Status == 1) {
+                              toastr.warning(data.Message);
+                          }
+                          if (data.Status == 2) {
+                              toastr.success(data.Message);
+                              $scope.producto = "";
+                              $scope.getProductos();
+                          }
+                      })
+                      .error(function (data, status, headers, config) {
+                          console.log(data);
+                      });
+            }
         
             $scope.guardarCategoria = function () {
                 console.log($scope.categoria);
@@ -264,19 +326,23 @@ angular.module('app.controllers')
                           }
                           if (data.Status == 2) {
                               toastr.success(data.Message);
-                              // $location.path('/facturar');
                               $scope.categoria = "";
+                              $scope.getCategorias();
                           }
                       })
                       .error(function (data, status, headers, config) {
                           console.log(data);
                       });
             }
-            
-            $scope.guardarTipoProducto = function () {
-                console.log($scope.tipoProducto);
+
+            $scope.categoriaBorrar = function (categoria) {
+                $scope.categoria = categoria;
+            }
+
+            $scope.borrarCategoria = function () {
+                console.log($scope.categoria);
                 Parametros
-                      .guardarTipoProducto($scope.tipoProducto)
+                      .borrarCategoria($scope.categoria)
                       .success(function (data, status, headers, config) {
                           console.log(data);
                           if (data.Status == 0) {
@@ -294,8 +360,72 @@ angular.module('app.controllers')
                           }
                           if (data.Status == 2) {
                               toastr.success(data.Message);
-                              // $location.path('/facturar');
-                              $scope.tipoProducto = "";
+                              $scope.categoria = "";
+                              $scope.getCategorias();
+                          }
+                      })
+                      .error(function (data, status, headers, config) {
+                          console.log(data);
+                      });
+            }
+            
+           $scope.guardarPresentacion = function () {
+                console.log($scope.presentacion);
+                Parametros
+                      .guardarPresentacion($scope.presentacion)
+                      .success(function (data, status, headers, config) {
+                          console.log(data);
+                          if (data.Status == 0) {
+                              toastr.error(data.Message, "Error", {
+                                  "closeButton": true,
+                                  "positionClass": "toast-bottom-full-width",
+                                  "showEasing": "swing",
+                                  "hideEasing": "swing",
+                                  "showMethod": "slideDown",
+                                  "hideMethod": "fadeOut"
+                              });
+                          }
+                          if (data.Status == 1) {
+                              toastr.warning(data.Message);
+                          }
+                          if (data.Status == 2) {
+                              toastr.success(data.Message);
+                              $scope.presentacion = "";
+                              $scope.getPresentaciones();
+                          }
+                      })
+                      .error(function (data, status, headers, config) {
+                          console.log(data);
+                      });
+            }
+
+            $scope.presentacionBorrar = function (presentacion) {
+                $scope.presentacion = presentacion;
+            }
+
+            $scope.borrarPresentacion = function () {
+                console.log($scope.presentacion);
+                Parametros
+                      .borrarPresentacion($scope.presentacion)
+                      .success(function (data, status, headers, config) {
+                          console.log(data);
+                          if (data.Status == 0) {
+                              toastr.error(data.Message, "Error", {
+                                  "closeButton": true,
+                                  "positionClass": "toast-bottom-full-width",
+                                  "showEasing": "swing",
+                                  "hideEasing": "swing",
+                                  "showMethod": "slideDown",
+                                  "hideMethod": "fadeOut"
+                              });
+                          }
+                          if (data.Status == 1) {
+                              toastr.warning(data.Message);
+                          }
+                          if (data.Status == 2) {
+                              toastr.success(data.Message);
+                              $scope.presentacion = "";
+                              $scope.getPresentaciones();
                           }
                       })
                       .error(function (data, status, headers, config) {

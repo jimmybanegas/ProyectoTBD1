@@ -3,7 +3,7 @@ angular.module('app.controllers')
 
     // Path: /forgot-password
     .controller('InventariosCtrl', [
-        '$scope', '$location', '$window', 'Inventarios', function ($scope, $location, $window, Inventarios) {
+        '$scope', '$location', '$window', 'Inventarios', 'Facturacion', function ($scope, $location, $window, Inventarios, Facturacion) {
             $scope.$root.title = 'Inventarios';
          
             $scope.logoRemoved = false;
@@ -22,17 +22,11 @@ angular.module('app.controllers')
 
             $scope.addItem = function (producto) {
 
-                var costo;
-
-                if ($scope.sample_invoice.clientes.tipo_cliente.descripcion == "CONSUMIDOR")
-                    costo = producto.precio_consumi;
-                else
-                    costo = producto.precio_mayor;
-
+              
                 $scope.sample_invoice.detalle_facturas.push({
                     productos: producto,
                     cantidad: 1,
-                    precio_venta: costo,
+                    precio_venta:0,
                     subtotal: 0
                 });
             }
@@ -53,6 +47,13 @@ angular.module('app.controllers')
 
                 $scope.sample_invoice.clientes = cliente;
             }
+
+            $scope.addTipo = function (tipo) {
+                $scope.sample_invoice.tipo_transacciones = {};
+
+                $scope.sample_invoice.tipo_transacciones = tipo;
+            }
+
 
             $scope.showLogo = function () {
                 $scope.logoRemoved = false;
@@ -102,7 +103,7 @@ angular.module('app.controllers')
 
             $scope.getProductos = function () {
 
-                Inventarios
+                Facturacion
                     .getProductos()
                     .success(function (data, status, headers, config) {
                         $scope.productos = data;
@@ -128,6 +129,20 @@ angular.module('app.controllers')
                     });
             };
 
+            $scope.tiposTran = [];
+
+            $scope.getTipoTran = function () {
+
+                Inventarios
+                    .getTipoTran()
+                    .success(function (data, status, headers, config) {
+                        $scope.tiposTran = data;
+                        console.log(data);
+                    })
+                    .error(function (data, status, headers, config) {
+                        console.log(data);
+                    });
+            };
 
             $scope.guardarFactura = function () {
                 console.log($scope.sample_invoice);

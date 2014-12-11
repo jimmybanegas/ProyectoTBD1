@@ -13,6 +13,10 @@ angular.module('app.services')
             return $http.get(baseUrl + '/ajustes/available/' + '/' + $window.sessionStorage.token);
         };
 
+        inventario.getTipoTran = function () {
+            return $http.get(baseUrl + '/tipo_transacciones/available/' + '/' + $window.sessionStorage.token);
+        };
+       
         inventario.getKardex = function () {
             return $http.get(baseUrl + '/kardex/available/' + '/' + $window.sessionStorage.token);
         };

@@ -11,7 +11,7 @@
     <div id="css">
         <link href="~/Content/bootstrap.css" rel="stylesheet">
     </div>
-    <div class="container" width="800px" id="invoice" ng-init="getProductos(); getClientes()">
+    <div class="container" width="800px" id="invoice" ng-init="getProductos(); getTipoTran()">
         <table class="table">
             <tr>
                 <td align="center" style="background-color:#357EBD;color:#FFF" colspan="2">
@@ -36,11 +36,11 @@
                 <td>
                     <div class="infos">
                         <button data-toggle="modal" data-target="#t_and_c_c" type="button" class="btn btn-default btn-lg">
-                            <span class="glyphicon glyphicon-user" aria-hidden="true"></span> Cliente
+                            <span class="glyphicon glyphicon-user" aria-hidden="true"></span> Tipo Ajuste
                         </button>
-                        <div><strong><input type="text" ng-model="sample_invoice.clientes.nombre" /></strong></div>
-                        <div><input type="text" ng-model="sample_invoice.clientes.id_cliente" /></div>
-                        <div><input type="text" ng-model="sample_invoice.clientes.tipo_cliente.descripcion" /></div>
+                        <div><strong><input type="text" ng-model="sample_invoice.tipo_transacciones.nombre" /></strong></div>
+                        <div><input type="text" ng-model="sample_invoice.tipo_transacciones.id_tipotran" /></div>
+                        <div><input type="text" ng-model="sample_invoice.tipo_transacciones.entrada_o_salida" /></div>
                     </div>
                 </td>
                 <td align="right">
@@ -168,14 +168,14 @@
                         <tr>
                             <th>Código <input type="text" class="" placeholder="Buscar por codigo" ng-model="buscar.id_cliente"></th>
                             <th>Nombre <input type="text" class="" placeholder="Buscar por nombre" ng-model="buscar.nombre"></th>
-                            <th>Tipo</th>
+                            <th>Entrada/Salida</th>
                         </tr>
 
                         <tbody>
-                            <tr ng-repeat="cliente in clientes | filter:buscar">
-                                <td ng-dblclick="addCliente(cliente)"><strong>{{cliente.id_cliente}}</strong></td>
-                                <td><i>{{cliente.nombre}}</i></td>
-                                <td>{{cliente.tipo_cliente.descripcion}}</td>
+                            <tr ng-repeat="tipo in tiposTran | filter:buscar">
+                                <td ng-dblclick="addTipo(tipo)" aria-hidden="true"><strong>{{tipo.id_tipotran}}</strong></td>
+                                <td><i>{{tipo.nombre}}</i></td>
+                                <td>{{tipo.entrada_o_salida}}</td>
                             </tr>
                         </tbody>
                     </table>

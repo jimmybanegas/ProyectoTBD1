@@ -81,9 +81,5 @@ namespace Pharma.Api.Models
         public ICollection<AccountRolesModel> account_has_grupos_roles { get; set; }
 
 
-
-        /// There are no comments for sessions in the schema.
-
-        public ICollection<SessionsModel> sessions { get; set; }
     }
 }

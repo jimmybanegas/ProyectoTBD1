@@ -87,8 +87,8 @@ angular.module('app.controllers')
                         }
                         if (data.Status == 2) {
                             toastr.success(data.Message);
-                            $location.path('/loading');
-                            $scope.goToLogin();
+                            $location.path('/usuarios');
+                          
                         }
                     })
                     .error(function (data, status, headers, config) {

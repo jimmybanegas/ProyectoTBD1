@@ -25,6 +25,18 @@ angular.module('app.services')
             return $http.post(baseUrl + '/borrarProveedor/' + $window.sessionStorage.token, model);
         };
 
+        parametro.borrarCategoria = function (model) {
+            return $http.post(baseUrl + '/borrarCategoria/' + $window.sessionStorage.token, model);
+        };
+
+        parametro.borrarPresentacion = function (model) {
+            return $http.post(baseUrl + '/borrarPresentacion/' + $window.sessionStorage.token, model);
+        };
+
+        parametro.borrarProducto = function (model) {
+            return $http.post(baseUrl + '/borrarProducto/' + $window.sessionStorage.token, model);
+        };
+
         parametro.guardarProveedor = function (model) {
             return $http.post(baseUrl + '/guardarProveedor/' + $window.sessionStorage.token, model);
         };
@@ -37,11 +49,15 @@ angular.module('app.services')
             return $http.post(baseUrl + '/guardarCategoria/' + $window.sessionStorage.token, model);
         };
 
+        parametro.guardarPresentacion = function (model) {
+            return $http.post(baseUrl + '/guardarPresentacion/' + $window.sessionStorage.token, model);
+        };
+
         parametro.guardarTipoProducto = function (model) {
             return $http.post(baseUrl + '/guardarFactura/' + $window.sessionStorage.token, model);
         };
 
-        parametro.getCategoriasProductos = function () {
+        parametro.getCategorias = function () {
             return $http.get(baseUrl + '/categorias/available/' + '/' + $window.sessionStorage.token);
         };
 

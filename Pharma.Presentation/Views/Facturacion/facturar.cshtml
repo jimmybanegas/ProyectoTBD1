@@ -138,7 +138,7 @@
                       
                         <tbody >
                             <tr ng-repeat="producto in productos | filter:buscar">
-                                <td ng-dblclick="addItem(producto)"><strong>{{producto.cod_prod}}</strong></td>
+                                <td ng-dblclick="addItem(producto)" aria-hidden="true"><strong>{{producto.cod_prod}}</strong></td>
                                 <td><i>{{producto.nombre}}</i></td>
                                 <td>{{producto.precio_consumi}}</td>
                                 <td>{{producto.precio_mayor}}</td>

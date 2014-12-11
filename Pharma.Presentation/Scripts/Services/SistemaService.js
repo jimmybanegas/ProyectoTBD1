@@ -10,7 +10,7 @@ angular.module('app.services')
         var baseUrl = baseLocalUrl;
 
         sistema.getUsuarios = function () {
-            return $http.get(baseUrl + '/usuarios/available/' + '/' + $window.sessionStorage.token);
+            return $http.get(baseUrl + '/usuarios/available/' + $window.sessionStorage.token);
         };
 
       

@@ -3,8 +3,8 @@
 }
 
 
-<div class="container">
-    <div class="row">
+<div class="container" ng-init="getProductos(); getPresentaciones()">
+    <div class=" row">
 
         <div class="col-md-12">
             <nav class="navbar navbar-default navbar-static-top" role="navigation" style="margin-bottom: 0">
@@ -58,7 +58,7 @@
             </div>
 
             <div class="btn-toolbar">
-                <button class="btn btn-primary">Nuevo Producto</button>
+                <button class="btn btn-primary" data-toggle="modal" data-target="#nuevoProducto">Nuevo Producto</button>
             </div>
             <br />
             <div class="table-responsive">
@@ -68,28 +68,35 @@
 
                     <thead>
                         <tr>
-                            <th><input type="checkbox" id="checkall" /></th>
-                            <th>First Name</th>
-                            <th>Last Name</th>
-                            <th>Address</th>
+                            <th>Código</th>
+                            <th>Nombre</th>
+                            <th>Costo</th>
+                            <th>Existencia</th>
+                            <th>Prec. Consumidor</th>
+                            <th>Prec. Mayorista</th>
+                            <th>Presentacion</th>
+                            <th>Exis. Minima</th>
+                            <th>Exis. Maxima</th>
                             <th>Edit</th>
                             <th>Delete</th>
                         </tr>
                     </thead>
                     <tbody>
 
-                        <tr>
-                            <td><input type="checkbox" class="checkthis" /></td>
-                            <td>Mohsin</td>
-                            <td>Irshad</td>
-                            <td>CB 106/107 Street # 11 Wah Cantt Islamabad Pakistan</td>
+                        <tr ng:repeat="producto in productos">
+                            <td>{{producto.cod_prod}}</td>
+                            <td>{{producto.nombre}}</td>
+                            <td>{{producto.costo}}</td>
+                            <td>{{producto.existencia}}</td>
+                            <td>{{producto.precio_consumi}}</td>
+                            <td>{{producto.precio_mayor}}</td>
+                            <td>{{producto.presentacion_productos.nombre}}</td>
+                            <td>{{producto.existencia_min}}</td>
+                            <td>{{producto.existencia_max}}</td>
                             <td><p><button class="btn btn-primary btn-xs" data-title="Edit" data-toggle="modal" data-target="#edit"><span class="glyphicon glyphicon-pencil"></span></button></p></td>
-                            <td><p><button class="btn btn-danger btn-xs" data-title="Delete" data-toggle="modal" data-target="#delete"><span class="glyphicon glyphicon-trash"></span></button></p></td>
+                            <td><p><button ng-click="productoBorrar(producto)" class="btn btn-danger btn-xs" data-title="Delete" data-toggle="modal" data-target="#delete"><span class="glyphicon glyphicon-trash"></span></button></p></td>
                         </tr>
-
-
                     </tbody>
-
                 </table>
 
                 <div class="clearfix"></div>
@@ -147,15 +154,15 @@
         <div class="modal-content">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-                <h4 class="modal-title custom_align" id="Heading">Delete this entry</h4>
+                <h4 class="modal-title custom_align" id="Heading">Borrar Producto</h4>
             </div>
             <div class="modal-body">
 
-                <div class="alert alert-warning"><span class="glyphicon glyphicon-warning-sign"></span> Are you sure you want to delete this Record?</div>
+                <div class="alert alert-warning"><span class="glyphicon glyphicon-warning-sign"></span> ¿Está seguro que desea borrar?</div>
 
             </div>
             <div class="modal-footer ">
-                <button type="button" class="btn btn-success"><span class="glyphicon glyphicon-ok-sign"></span> Yes</button>
+                <button type="button" ng-click="borrarProducto()" class="btn btn-success"><span class="glyphicon glyphicon-ok-sign" data-dismiss="modal"></span> Si</button>
                 <button type="button" class="btn btn-default" data-dismiss="modal"><span class="glyphicon glyphicon-remove"></span> No</button>
             </div>
         </div>
@@ -163,3 +170,50 @@
     </div>
     <!-- /.modal-dialog -->
 </div>
+
+
+<div class="modal fade" id="nuevoProducto" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                <h4 class="modal-title" id="myModalLabel"><strong class="label label-primary">Crear Producto</strong></h4>
+                <div class="modal-body">
+                    <div class="form-group">
+                        <input name="cod_prod" ng-model="producto.cod_prod" id="cod_prod" class="form-control input-lg" placeholder="Codigo">
+                    </div>
+                    <div class="form-group">
+                        <input name="nombre" ng-model="producto.nombre" id="email" class="form-control input-lg" placeholder="Nombre">
+                    </div>
+                    <div class="input-group">
+                        <select class="form-control input-lg" ng-model="producto.presentacion_productos" ng-options="presentacion.nombre for presentacion in presentaciones"></select>
+                        <br>
+                    </div>
+                    <br>
+                    <div class="form-group">
+                        <input name="nombre" ng-model="producto.costo" id="email" class="form-control input-lg" placeholder="Costo">
+                    </div>
+                    <div class="form-group">
+                        <input name="nombre" ng-model="producto.porcentaje_m" id="email" class="form-control input-lg" placeholder="Porcentaje de ganancia">
+                    </div>
+                    <div class="form-group">
+                        <input name="nombre" ng-model="producto.existencia_min" id="email" class="form-control input-lg" placeholder="Existencia Minima">
+                    </div>
+                    <div class="form-group">
+                        <input name="nombre" ng-model="producto.existencia_max" id="email" class="form-control input-lg" placeholder="Existencia Maxima">
+                    </div>
+                    <br>
+                    <div class="row">
+                        <div class="col-xs-4 col-sm-4 col-md-4">
+                            <button ng-click="guardarProducto()" class="btn btn-lg btn-success btn-block" data-dismiss="modal" aria-hidden="true">Guardar</button>
+                        </div>
+                        <div class="col-xs-4 col-sm-4 col-md-4">
+                            <button ng-click="cancelar()" class="btn btn-lg btn-primary btn-block" data-dismiss="modal" aria-hidden="true">Cancelar</button>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->

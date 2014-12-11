@@ -54,13 +54,13 @@ namespace Pharma.Api.Controllers
                 .List<productos>()
                 .ToList();
 
-            /*foreach (var productose in productsList)
+            foreach (var productose in productsList)
             {
                 var productose1 = productose;
                 productose.presentacion_productos = _session.QueryOver<presentacion_productos>()
                     .Where(c => c.cod_presentacion == productose1.cod_presentacion)
                     .SingleOrDefault<presentacion_productos>();
-            }*/
+            }
 
             var prod = _mappingEngine.Map<List<productos>, List<ProductosModel>>(productsList);
 

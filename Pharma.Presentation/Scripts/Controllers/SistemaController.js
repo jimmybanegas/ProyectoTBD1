@@ -114,6 +114,21 @@ angular.module('app.controllers')
                     });
             };
 
+            $scope.usuarios = [];
+
+            $scope.getUsuarios = function () {
+
+                Sistema
+                    .getUsuarios()
+                    .success(function (data, status, headers, config) {
+                        $scope.usuarios = data;
+                        console.log(data);
+                    })
+                    .error(function (data, status, headers, config) {
+                        console.log(data);
+                    });
+            };
+
             $scope.clientes = [];
 
             $scope.getClientes = function () {

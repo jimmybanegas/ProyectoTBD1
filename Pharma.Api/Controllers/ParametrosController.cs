@@ -382,12 +382,37 @@ namespace Pharma.Api.Controllers
 
             if (account == null) return null;
 
-            PharmaMethodsExecutor.sp_ins_productos(_session,model.cod_prod,model.existencia,model.fecha_venc,model.costo,
-                model.precio_consumi,model.precio_mayor,model.nombre,model.presentacion_productos.cod_presentacion,model.existencia_min,
+            PharmaMethodsExecutor.sp_ins_productos(_session,model.cod_prod,0,model.fecha_venc,model.costo,
+                PharmaMethodsExecutor.calcular_precio_consumidor(_session,model.costo),
+                PharmaMethodsExecutor.calcular_precio_mayorista(_session,model.costo,model.porcentaje_m),
+                model.nombre,model.presentacion_productos.cod_presentacion,model.existencia_min,
                 model.existencia_max,model.porcentaje_m,DateTime.Now,DateTime.Now,sessions.account.Email,sessions.account.Email);
             return new RestorePasswordResponseModel()
             {
                 Message = "Guardado",
+                Status = 2
+            };
+        }
+
+
+        [HttpPost]
+        [AcceptVerbs("POST", "HEAD")]
+        [POST("borrarProducto/{accesstoken}")]
+        public RestorePasswordResponseModel borrarProducto(string accesstoken, [FromBody] ProductosModel model)
+        {
+            var sessions = _session.QueryOver<sessions>().Where(c => c.Token == accesstoken)
+                .SingleOrDefault<sessions>();
+
+            if (sessions == null) return null;
+            var account = sessions.account;
+
+            if (account == null) return null;
+
+            PharmaMethodsExecutor.sp_del_productos(_session, model.cod_prod);
+
+            return new RestorePasswordResponseModel()
+            {
+                Message = "Borrado",
                 Status = 2
             };
         }
