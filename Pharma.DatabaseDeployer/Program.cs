@@ -51,9 +51,7 @@ namespace Pharma.DatabaseDeployer
             {
                 dd.Seed(new List<IDataSeeder>
                             {
-                                new LeagueSeeder(session),
-                                new AccountSeeder(session),
-                                new AccountLeaguesSeeder(session)
+                                new LeagueSeeder(session)
                             });
                 tx.Commit();
             }
